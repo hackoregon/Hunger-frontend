@@ -1,7 +1,8 @@
+var path = require('path')
 module.exports = {
     entry: './main.js',
     output: {
-        path: './',
+        path: __dirname,
         filename: 'index.js'
     },
     devServer: {
@@ -18,7 +19,14 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+              test: /\.scss$/,
+              loaders: ["style", "css", "sass"]
             }
         ]
+    },
+    sassLoader: {
+      includePaths: [path.resolve(__dirname, "./some-folder")]
     }
 }

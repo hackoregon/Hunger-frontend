@@ -4,8 +4,15 @@
   "description": "Front end code for the Hack Oregon hunger project",
   "main": "index.js",
   "scripts": {
+    "build:css": "node-sass -o dist/styles src/styles",
+    "build:dev": "npm run build:css",
+    "build:watch": "npm run build:dev && npm run watch:all",
+    "watch:css": "node-sass -w -o dist/styles src/styles",
+    "watch:js": "webpack-dev-server",
+    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "npm run build:dev && npm run build:watch",
+    "start": "echo \"Did you mean 'start:dev'?\""
   },
   "repository": {
     "type": "git",
@@ -24,8 +31,16 @@
     "babel-preset-react": "^6.5.0",
     "bootstrap": "^3.3.6",
     "classnames": "^2.2.4",
+    "css-loader": "^0.23.1",
     "jquery": "^2.2.3",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1"
+  },
+  "devDependencies": {
+    "node-sass": "^3.6.0",
+    "onchange": "^2.4.0",
+    "parallelshell": "^2.0.0"
   }
 }

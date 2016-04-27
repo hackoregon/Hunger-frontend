@@ -1,0 +1,49 @@
+
+/* COLORS */
+$lightYellow: #eee597;
+$darkYellow: #eadd69;
+$lightOrange: #dc6632;
+$darkOrange: #b5441d;
+$lightGreen: #b8dfab;
+$darkGreen: #669776;
+$lightBlue: #73c4d2;
+
+/* GLOBAL STYLES */
+header, section, footer {
+  padding: 1em;
+}
+
+p {
+  margin: 0;
+}
+
+/* HEADER */
+.main-title {
+  margin: 0;
+}
+
+header {
+  color: white;
+  background-color: $lightBlue;
+}
+
+h1 {
+  font-size: 1.3em;
+}
+
+/* SECTION 1: SELECT FAMILY AND COUNTY */
+.select-family-and-county {
+  height: 100%;
+  background-color: $lightGreen;
+}
+
+// menu
+.county-dropdown {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+// dropdown button
+.county-dropdown-toggle {
+  margin-left: 0.5em;
+}
