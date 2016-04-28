@@ -1,4 +1,5 @@
 import React from 'react'
+require('../../styles/main.scss')
 
 export default class App extends React.Component {
   constructor() {
