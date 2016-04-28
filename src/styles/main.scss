@@ -47,3 +47,18 @@ h1 {
 .county-dropdown-toggle {
   margin-left: 0.5em;
 }
+
+.family-types-wrapper {
+  margin-top: 1.5em;
+}
+
+.family-type-div {
+  margin-bottom: 1.5em;
+}
+
+/* TODO: Do something less hacky to override Bootstrap styles */
+#label-single-adult,
+#label-single-parent,
+#label-two-parents {
+  padding: 0;
+}

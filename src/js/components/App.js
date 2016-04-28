@@ -28,7 +28,27 @@ export default class App extends React.Component {
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
                   </ul>
-                  <p className="text-center">Select a Family Type:</p>
+                </div>
+                <p className="text-center">Select a Family Type:</p>
+                <div className="row family-types-wrapper">
+                  <div className="col-xs-12 col-sm-4 family-type-div">
+                    <div className="text-center">
+                      <label id="label-single-adult" className="family-type-label">
+                        <img className="img-responsive center-block"
+                          src="dist/images/HO_familyType_single_color.svg" alt="a single adult" />
+                        <input type="checkbox" className="family-type-checkbox" />
+                        Single Adult
+                      </label>
+                      </div>
+                  </div>
+                  <div className="col-xs-12 col-sm-4 family-type-div">
+                    <img className="img-responsive center-block"
+                      src="dist/images/HO_familyType_parent_twoKids_color.svg" alt="a single parent with two children" />
+                  </div>
+                  <div className="col-xs-12 col-sm-4 family-type-div">
+                    <img className="img-responsive center-block"
+                      src="dist/images/HO_familyType_twoParent_twoKids_color.svg" alt="two parents with two children" />
+                  </div>
                 </div>
             </div>
           </div>
