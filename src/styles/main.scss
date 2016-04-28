@@ -32,14 +32,17 @@ h1 {
 }
 
 /* SECTION 1: SELECT FAMILY AND COUNTY */
-.select-family-and-county {
+.family-and-county-section {
   height: 100%;
   background-color: $lightGreen;
 }
 
+.select-county-p,
+.select-family-type-p {
+  font-weight: bold;
+}
 // menu
 .county-dropdown {
-  font-weight: bold;
   margin-top: 1em;
 }
 
