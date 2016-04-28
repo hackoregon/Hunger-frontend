@@ -58,7 +58,7 @@ p {
   margin: 0;
 }
 
-header {
+header, footer {
   color: white;
   background-color: $lightBlue;
 }
@@ -144,4 +144,9 @@ h2, h3 {
 .map-wrapper {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+/* FOOTER */
+.ho-logo {
+  max-height: 3em;
 }
