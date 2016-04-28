@@ -124,6 +124,19 @@ export default class App extends React.Component {
           </div>
           <Indicator />
         </section>
+        <section className="housing">
+          <div className="row">
+            <div className="col-xs-12">
+              <h2 className="text-center">
+                Are you able to afford stable housing?
+              </h2>
+              <p>
+                At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
+              </p>
+              <div className="placeholder"></div>
+            </div>
+          </div>
+        </section>
       </div>
     )
   }
