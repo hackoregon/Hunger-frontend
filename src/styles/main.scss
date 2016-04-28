@@ -67,7 +67,7 @@ h1 {
   font-size: 1.3em;
 }
 
-h2 {
+h2, h3 {
   margin-top: 0;
   font-size: 1.1em;
   font-weight: bold;
@@ -130,4 +130,18 @@ h2 {
   border: 1px solid #ddd;
   height: 6em;
   width: 80%;
+}
+
+/* SECTION 5: STATE MAP VIEW */
+.map-view-section {
+  background-color: $lightYellow;
+}
+
+.map-row {
+  margin-top: 1em;
+}
+
+.map-wrapper {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }

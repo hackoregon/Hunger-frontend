@@ -137,6 +137,38 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
+        <section className="map-view-section">
+          <div className="row">
+            <div className="col-xs-12">
+              <h2 className="text-center">
+                Would my situation be different if I live in another area in Oregon?
+              </h2>
+              <p>
+                The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
+              </p>
+              <div className="row map-row">
+                <div className="col-xs-12 col-sm-6 map-wrapper food-map-wrapper">
+                  <h3 className="text-center">Food Map</h3>
+                  <img src="dist/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
+                </div>
+                <div className="col-xs-12 col-sm-6 map-wrapper housing-map-wrapper">
+                  <h3 className="text-center">Housing Map</h3>
+                  <img src="dist/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
+                </div>
+              </div>
+              <p>
+                The average minimum cost of housing in your county is X, which is above average for the
+                state of Oregon. See how your county compares to the rest of the state:
+              </p>
+              <div className="text-center">
+                <p>Conclusion:</p>
+                <p className="conclusion-text">
+                  Lorem ipsum dolor sit amet, con mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     )
   }
