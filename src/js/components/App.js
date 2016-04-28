@@ -9,6 +9,15 @@ export default class App extends React.Component {
     super()
   }
   render() {
+
+    const marks = {
+      0: '$0',
+      200: '$200',
+      700: '$700',
+      1200: '$1200',
+      2000: '$2000'
+    }
+    const dollarFormatter = (val) => ("$" + val);
     return (
       <div>
         <header>
@@ -66,10 +75,14 @@ export default class App extends React.Component {
                     </div>
                   </div>
                 </div> { /* end family-types-wrapper */ }
-                <div className="slider-wrapper">
+                <div className="slider-wrapper center-block">
                   <Slider
                     max={2000}
                     tipTransitionName="rc-slider-tooltip-zoom-down"
+                    tipFormatter={dollarFormatter}
+                    marks={marks}
+                    step={2}
+                    dots={false}
                   />
                 </div>
             </div>
