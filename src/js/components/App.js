@@ -108,6 +108,22 @@ export default class App extends React.Component {
           </div>
         </div>
         </section>
+        <section className="lunch-section">
+          <div className="row">
+            <div className="col-xs-12">
+              <h2 className="text-center">
+                How does free and reduced lunch affect your family?
+              </h2>
+              <p>
+                Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
+              </p>
+              <p>
+                However, many school districts in the state do not have these expanded programs and face new hardships during summer when school is out. This is what your scenario would look like without the help of free and reduced price lunch programs.
+              </p>
+            </div>
+          </div>
+          <Indicator />
+        </section>
       </div>
     )
   }
