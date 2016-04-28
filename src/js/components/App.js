@@ -1,5 +1,8 @@
 import React from 'react'
+import Slider from 'rc-slider'
+
 require('../../styles/main.scss')
+require('../../styles/rc-slider.scss')
 
 export default class App extends React.Component {
   constructor() {
@@ -62,6 +65,12 @@ export default class App extends React.Component {
                       </label>
                     </div>
                   </div>
+                </div> { /* end family-types-wrapper */ }
+                <div className="slider-wrapper">
+                  <Slider
+                    max={2000}
+                    tipTransitionName="rc-slider-tooltip-zoom-down"
+                  />
                 </div>
             </div>
           </div>
