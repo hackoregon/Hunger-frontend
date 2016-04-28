@@ -6,10 +6,9 @@
   "scripts": {
     "build:css": "node-sass -o dist/styles src/styles",
     "build:dev": "npm run build:css",
-    "build:watch": "npm run build:dev && npm run watch:all",
+    "build:watch": "npm run build:dev && npm run watch",
     "watch:css": "node-sass -w -o dist/styles src/styles",
-    "watch:js": "webpack-dev-server",
-    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+    "watch": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npm run build:watch",
     "start": "echo \"Did you mean 'start:dev'?\""
