@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from 'rc-slider'
+import Indicator from './Indicator'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
@@ -27,7 +28,7 @@ export default class App extends React.Component {
           <div className="row">
             <div className="col-xs-12">
                 <p className="text-center">Project Mission Statement:</p>
-                <p className="text-center intro-text">
+                <p className="text-center">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Blah.
                 </p>
                 <div className="dropdown county-dropdown">
@@ -87,6 +88,25 @@ export default class App extends React.Component {
                 </div>
             </div>
           </div>
+        </section>
+        <section className="day-to-day-section container-fluid">
+        <div className="row">
+          <div className="col-xs-12">
+            <Indicator />
+            <h2 className="text-center">
+            What’s your day-to-day experience putting food on the table?
+            </h2>
+            <p>
+              In general, you are struggling to put food on the table. It’s
+              likely that you and your children are skipping meals or
+              watering down food. You are eligible for benefits, but you
+              are still not able to supply every meal for yourself and your
+              family. In total, your family is missing X meals per month,
+              which could mean that you (and your partner) are skipping
+              three meals for every one meal that your kids are skipping.
+            </p>
+          </div>
+        </div>
         </section>
       </div>
     )

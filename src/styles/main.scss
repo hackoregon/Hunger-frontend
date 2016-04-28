@@ -9,12 +9,48 @@ $darkGreen: #669776;
 $lightBlue: #73c4d2;
 
 /* GLOBAL STYLES */
-header, section, footer {
+header, footer {
   padding: 1em;
+}
+
+section {
+  padding: 2em;
 }
 
 p {
   margin: 0;
+  text-indent: 1em;
+}
+
+/* INDICATOR */
+.indicator-blocks {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  min-width: 250px;
+}
+.ind-block {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1.5em;
+  width: 25%;
+}
+.block-1 {
+  background-color: $lightYellow;
+}
+.block-2 {
+  background-color: $darkYellow;
+}
+.block-3 {
+  background-color: $lightOrange;
+}
+.block-4 {
+  background-color: $darkOrange;
+}
+/* SLIDER (main styles in rc-slider.scss) */
+
+.slider-wrapper {
+  width: 90%;
+  margin-bottom: 1.5em;
 }
 
 /* HEADER */
@@ -29,6 +65,12 @@ header {
 
 h1 {
   font-size: 1.3em;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 /* SECTION 1: SELECT FAMILY AND COUNTY */
@@ -66,9 +108,8 @@ h1 {
   padding: 0;
 }
 
-/* SLIDER (main styles in rc-slider.scss) */
 
-.slider-wrapper {
-  width: 90%;
-  margin-bottom: 1.5em;
+/* SECTION 2: DAY-TO-DAY */
+.day-to-day-section {
+  background-color: $darkGreen;
 }
