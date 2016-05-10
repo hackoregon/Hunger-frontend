@@ -1,5 +1,5 @@
-
 /* COLORS */
+$offWhite: #fbfaf0;
 $lightYellow: #eee597;
 $darkYellow: #eadd69;
 $lightOrange: #dc6632;
@@ -7,10 +7,20 @@ $darkOrange: #b5441d;
 $lightGreen: #b8dfab;
 $darkGreen: #669776;
 $lightBlue: #73c4d2;
+$darkBlue: #279eb7;
 
+@mixin tfTranslate($x, $y) {
+  -moz-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
 /* GLOBAL STYLES */
-header, footer {
-  padding: 1em;
+body {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  background-color: $offWhite;
 }
 
 section {
@@ -22,61 +32,24 @@ p {
   text-indent: 1em;
 }
 
-/* INDICATOR */
-.indicator-blocks {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  min-width: 250px;
-}
-.ind-block {
-  box-sizing: border-box;
-  display: inline-block;
-  height: 1.5em;
-  width: 25%;
-}
-.block-1 {
-  background-color: $lightYellow;
-}
-.block-2 {
-  background-color: $darkYellow;
-}
-.block-3 {
-  background-color: $lightOrange;
-}
-.block-4 {
-  background-color: $darkOrange;
-}
-/* SLIDER (main styles in rc-slider.scss) */
-
-.slider-wrapper {
-  width: 90%;
-  margin-bottom: 1.5em;
-}
-
 /* HEADER */
+
 .main-title {
+  font-size: 1.5em;
+  max-width: 100%;
+  white-space: nowrap;
   margin: 0;
 }
 
 header, footer {
+  padding: 1em;
   color: white;
-  background-color: $lightBlue;
-}
-
-h1 {
-  font-size: 1.3em;
-}
-
-h2, h3 {
-  margin-top: 0;
-  font-size: 1.1em;
-  font-weight: bold;
+  background-color: $darkBlue;
 }
 
 /* SECTION 1: SELECT FAMILY AND COUNTY */
 .family-and-county-section {
-  height: 100%;
-  background-color: $lightGreen;
+
 }
 
 .select-county-p,
@@ -111,19 +84,19 @@ h2, h3 {
 
 /* SECTION 2: DAY-TO-DAY */
 .day-to-day-section {
-  background-color: $darkGreen;
+
 }
 
 
 /* SECTION 3: FREE AND REDUCED LUNCH */
 .lunch-section {
-  background-color: $lightBlue;
+
 }
 
 
 /* SECTION 4: HOUSING */
 .housing {
-  background-color: $lightOrange;
+
 }
 .placeholder {
   margin: 20px auto;
@@ -134,7 +107,7 @@ h2, h3 {
 
 /* SECTION 5: STATE MAP VIEW */
 .map-view-section {
-  background-color: $lightYellow;
+
 }
 
 .map-row {
@@ -147,6 +120,71 @@ h2, h3 {
 }
 
 /* FOOTER */
+
+footer {
+  padding: 1em;
+}
 .ho-logo {
   max-height: 3em;
+}
+
+/* HORIZONTAL-RULE */
+.hr-wrapper {
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
+  text-align: center;
+}
+.hr-line {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  @include tfTranslate(-50%, -50%);
+  width: 100%;
+  border-top: 1px solid black;
+}
+.hr-content {
+  font-size: 1.5em;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+  background-color: $offWhite;
+  font-weight: 300;
+}
+.hr-image {
+  height: 40px;
+}
+
+/* INDICATOR */
+.indicator-blocks {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  min-width: 250px;
+}
+.ind-block {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1.5em;
+  width: 25%;
+}
+.block-1 {
+  background-color: $lightYellow;
+}
+.block-2 {
+  background-color: $darkYellow;
+}
+.block-3 {
+  background-color: $lightOrange;
+}
+.block-4 {
+  background-color: $darkOrange;
+}
+
+/* SLIDER (main styles in rc-slider.scss) */
+
+.slider-wrapper {
+  width: 90%;
+  margin-bottom: 1.5em;
 }

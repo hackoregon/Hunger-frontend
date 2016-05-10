@@ -1,6 +1,7 @@
 import React from 'react'
 import Slider from 'rc-slider'
 import Indicator from './Indicator'
+import HorizontalRule from './HorizontalRule'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
@@ -24,6 +25,12 @@ export default class App extends React.Component {
         <header>
           <h1 className="main-title">Oregon Hunger Equation</h1>
         </header>
+        <HorizontalRule>
+          <h2 className="hr-content">Select a County</h2>
+        </HorizontalRule>
+        <HorizontalRule>
+          <img className="hr-content hr-image" src="dist/images/apple.svg" />
+        </HorizontalRule>
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
