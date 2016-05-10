@@ -1,14 +1,19 @@
 import React from 'react'
 import Slider from 'rc-slider'
+import Dropdown from 'react-dropdown'
 import Indicator from './Indicator'
 import HorizontalRule from './HorizontalRule'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
+require('../../styles/react-dropdown.scss')
 
 export default class App extends React.Component {
   constructor() {
     super()
+  }
+  _onSelect() {
+
   }
   render() {
 
@@ -19,6 +24,14 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
+    const options = [
+      'Baker',
+      'Benton',
+      'Clackamas',
+      'Clatsop',
+      '...'
+    ]
+    const defaultOption = options[0]
     const dollarFormatter = (val) => ("$" + val);
     return (
       <div>
@@ -45,17 +58,13 @@ export default class App extends React.Component {
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-                <div className="dropdown county-dropdown">
-                  <button className="btn btn-default dropdown-toggle county-dropdown-toggle" type="button" id="county-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown
-                    <span className="caret"></span>
-                  </button>
-                  <ul className="dropdown-menu" aria-labelledby="county-dropdown">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                  </ul>
-                </div>
+                <Dropdown
+                  options={options}
+                  onChange={this._onSelect}
+                  value={defaultOption}
+                  placeholder="Select an option"
+                />
+
                 <div className="row family-types-wrapper">
                   <p className="select-family-type-p text-center">Select a Family Type:</p>
                   <div className="col-xs-12 col-sm-4 family-type-div">
