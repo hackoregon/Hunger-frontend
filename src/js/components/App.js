@@ -34,14 +34,11 @@ export default class App extends React.Component {
         <HorizontalRule>
           <h2 className="hr-content">Select a County</h2>
         </HorizontalRule>
-        <HorizontalRule>
-          <img className="hr-content hr-image" src="dist/images/apple.svg" />
-        </HorizontalRule>
+
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
                 <div className="dropdown county-dropdown">
-                <p className="select-county-p text-center">Select a County:</p>
                   <button className="btn btn-default dropdown-toggle county-dropdown-toggle" type="button" id="county-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Dropdown
                     <span className="caret"></span>
@@ -98,13 +95,16 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
+        <HorizontalRule>
+          <img className="hr-content hr-image" src="dist/images/apple.svg" />
+        </HorizontalRule>
         <section className="day-to-day-section container-fluid">
         <div className="row">
           <div className="col-xs-12">
-            <Indicator />
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
+            <Indicator />
             <p>
               In general, you are struggling to put food on the table. It’s
               likely that you and your children are skipping meals or
