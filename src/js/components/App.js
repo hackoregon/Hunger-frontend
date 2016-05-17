@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown'
 import IndicatorSlider from './IndicatorSlider'
 import HorizontalRule from './HorizontalRule'
 import FamilyTypeSelect from './FamilyTypeSelect'
+import counties from '../../fixtures/counties'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
@@ -15,15 +16,17 @@ export default class App extends React.Component {
     super()
     this.state = {
       sliderWage: 0,
-      selectedFamilyType: "none"
+      selectedFamilyType: "none",
+      selectedCountyFips: 41 // "Oregon"
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
   }
 
-  _onDropdownSelect(selection) {
-    console.log(selection)
+  _onDropdownSelect(county) {
+    console.log(county)
+    this.setState({ selectedCountyFips: county.value })
   }
 
   _setSelectedFamilyType(fam) {
@@ -35,7 +38,7 @@ export default class App extends React.Component {
   }
 
   render() {
-
+    console.log("state:", this.state)
     const marks = {
       0: '$0',
       200: '$200',
@@ -43,13 +46,7 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
-    const options = [
-      'Baker',
-      'Benton',
-      'Clackamas',
-      'Clatsop',
-      '...'
-    ]
+    const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
     const dollarFormatter = (val) => ("$" + val);
     return (
@@ -79,8 +76,6 @@ export default class App extends React.Component {
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
-                value={defaultOption}
-                placeholder="Select an option"
               />
               <FamilyTypeSelect onSelect={this._setSelectedFamilyType} />
               <div className="slider-wrapper center-block">
