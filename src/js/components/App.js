@@ -14,14 +14,20 @@ export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      sliderWage: 0
+      sliderWage: 0,
+      selectedFamilyType: "none"
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
+    this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
   }
 
   _onDropdownSelect(selection) {
     console.log(selection)
+  }
+
+  _setSelectedFamilyType(fam) {
+    this.setState({ selectedFamilyType: fam})
   }
 
   _onSliderChange(value) {
@@ -76,7 +82,7 @@ export default class App extends React.Component {
                 value={defaultOption}
                 placeholder="Select an option"
               />
-              <FamilyTypeSelect />
+              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} />
               <div className="slider-wrapper center-block">
                 <Slider
                   max={2000}
