@@ -214,7 +214,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <footer>
-          <img src="dist/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
+          <img src="dist/assets/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
         </footer>
       </div>
     )
