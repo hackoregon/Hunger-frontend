@@ -1,13 +1,4 @@
-/* COLORS */
-$offWhite: #fbfaf0;
-$lightYellow: #eee597;
-$darkYellow: #eadd69;
-$lightOrange: #dc6632;
-$darkOrange: #b5441d;
-$lightGreen: #b8dfab;
-$darkGreen: #669776;
-$lightBlue: #73c4d2;
-$darkBlue: #279eb7;
+@import "colors";
 
 @mixin tfTranslate($x, $y) {
   -moz-transform: translate($x, $y);
@@ -16,9 +7,11 @@ $darkBlue: #279eb7;
   -o-transform: translate($x, $y);
   transform: translate($x, $y);
 }
+
+
 /* GLOBAL STYLES */
 body {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'TTChocolates', sans-serif;
   font-weight: 300;
   background-color: $offWhite;
 }

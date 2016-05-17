@@ -12,10 +12,21 @@ require('../../styles/indicator.scss')
 export default class App extends React.Component {
   constructor() {
     super()
+    this.state = {
+      sliderWage: 0
+    }
+    this._onDropdownSelect = this._onDropdownSelect.bind(this)
+    this._onSliderChange = this._onSliderChange.bind(this)
   }
-  _onSelect() {
 
+  _onDropdownSelect(selection) {
+    console.log(selection)
   }
+
+  _onSliderChange(value) {
+    this.setState({ sliderWage: value })
+  }
+
   render() {
 
     const marks = {
@@ -61,7 +72,7 @@ export default class App extends React.Component {
             <div className="col-xs-12">
                 <Dropdown
                   options={options}
-                  onChange={this._onSelect}
+                  onChange={this._onDropdownSelect}
                   value={defaultOption}
                   placeholder="Select an option"
                 />
@@ -107,6 +118,7 @@ export default class App extends React.Component {
                     marks={marks}
                     step={2}
                     dots={false}
+                    onChange={this._onSliderChange}
                   />
                 </div>
             </div>
@@ -121,7 +133,10 @@ export default class App extends React.Component {
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
-            <IndicatorSlider sections={4} />
+            <IndicatorSlider
+              value={this.state.sliderWage}
+              sections={4}
+            />
             <p>
               In general, you are struggling to put food on the table. It’s
               likely that you and your children are skipping meals or
@@ -148,7 +163,10 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
-          <IndicatorSlider sections={4} />
+          <IndicatorSlider
+            value={this.state.sliderWage}
+            sections={4}
+          />
         </section>
         <section className="housing">
           <div className="row">
@@ -196,7 +214,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <footer>
-          <img src="dist/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
+          <img src="dist/assets/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
         </footer>
       </div>
     )
