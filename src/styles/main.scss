@@ -1,4 +1,4 @@
-@import "colors"
+@import "colors";
 
 @mixin tfTranslate($x, $y) {
   -moz-transform: translate($x, $y);
