@@ -69,30 +69,30 @@ export default class App extends React.Component {
                   <p className="select-family-type-p text-center">Select a Family Type:</p>
                   <div className="col-xs-12 col-sm-4 family-type-div">
                     <div className="text-center">
-                      <label id="label-single-adult" className="family-type-label">
+                      <input type="radio" id="single-adult-radio" name="family-type" className="family-type-radio" />
+                      <label id="label-single-adult" htmlFor="single-adult-radio" className="family-type-label">
                         <img className="img-responsive center-block"
-                          src="dist/images/HO_familyType_single_color.svg" alt="a single adult" />
-                        <input type="checkbox" className="family-type-checkbox" />
+                          src="dist/assets/images/HO_familyType_single_color.svg" alt="a single adult" />
                         Single Adult
                       </label>
                       </div>
                   </div>
                   <div className="col-xs-12 col-sm-4 family-type-div">
                     <div className="text-center">
-                      <label id="label-single-parent" className="family-type-label">
+                      <input id="single-parent-2-kids-radio" type="radio" name="family-type" className="family-type-radio" />
+                      <label id="label-single-parent" htmlFor="single-parent-2-kids-radio" className="family-type-label">
                         <img className="img-responsive center-block"
-                          src="dist/images/HO_familyType_parent_twoKids_color.svg" alt="a single parent with two children" />
-                        <input type="checkbox" className="family-type-checkbox" />
+                        src="dist/assets/images/HO_familyType_parent_twoKids_color.svg" alt="a single parent with two children" />
                         Single Parent, Two Children
                       </label>
                     </div>
                   </div>
                   <div className="col-xs-12 col-sm-4 family-type-div">
                     <div className="text-center">
-                      <label id="label-two-parents" className="family-type-label">
+                      <input id="two-parents-2-kids-radio" type="radio" name="family-type" className="family-type-radio" />
+                      <label id="label-two-parents" htmlFor="two-parents-2-kids-radio" className="family-type-label">
                         <img className="img-responsive center-block"
-                        src="dist/images/HO_familyType_twoParent_twoKids_color.svg" alt="two parents with two children" />
-                        <input type="checkbox" className="family-type-checkbox" />
+                        src="dist/assets/images/HO_familyType_twoParent_twoKids_color.svg" alt="two parents with two children" />
                         Two Parents, Two Children
                       </label>
                     </div>
@@ -112,7 +112,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <HorizontalRule>
-          <img className="hr-content hr-image" src="dist/images/apple.svg" />
+          <img className="hr-content hr-image" src="dist/assets/apple.svg" />
         </HorizontalRule>
         <section className="day-to-day-section container-fluid">
         <div className="row">

@@ -74,11 +74,19 @@ header, footer {
   margin-bottom: 1.5em;
 }
 
+.family-type-radio {
+  display: none;
+}
+
+.family-type-radio:checked + .family-type-label {
+  background-color: darken($offWhite, 10%);
+}
+
 /* TODO: Do something less hacky to override Bootstrap styles */
 #label-single-adult,
 #label-single-parent,
 #label-two-parents {
-  padding: 0;
+  padding: 1em;
 }
 
 
@@ -155,6 +163,7 @@ footer {
 }
 .hr-image {
   height: 40px;
+  padding: 0;
 }
 
 /* INDICATOR */
