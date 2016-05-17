@@ -3,6 +3,7 @@ import Slider from 'rc-slider'
 import Dropdown from 'react-dropdown'
 import IndicatorSlider from './IndicatorSlider'
 import HorizontalRule from './HorizontalRule'
+import FamilyTypeSelect from './FamilyTypeSelect'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
@@ -66,61 +67,27 @@ export default class App extends React.Component {
         <HorizontalRule>
           <h2 className="hr-content">Select a County</h2>
         </HorizontalRule>
-
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-                <Dropdown
-                  options={options}
-                  onChange={this._onDropdownSelect}
-                  value={defaultOption}
-                  placeholder="Select an option"
+              <Dropdown
+                options={options}
+                onChange={this._onDropdownSelect}
+                value={defaultOption}
+                placeholder="Select an option"
+              />
+              <FamilyTypeSelect />
+              <div className="slider-wrapper center-block">
+                <Slider
+                  max={2000}
+                  tipTransitionName="rc-slider-tooltip-zoom-down"
+                  tipFormatter={dollarFormatter}
+                  marks={marks}
+                  step={2}
+                  dots={false}
+                  onChange={this._onSliderChange}
                 />
-
-                <div className="row family-types-wrapper">
-                  <p className="select-family-type-p text-center">Select a Family Type:</p>
-                  <div className="col-xs-12 col-sm-4 family-type-div">
-                    <div className="text-center">
-                      <input type="radio" id="single-adult-radio" name="family-type" className="family-type-radio" />
-                      <label id="label-single-adult" htmlFor="single-adult-radio" className="family-type-label">
-                        <img className="img-responsive center-block"
-                          src="dist/assets/images/HO_familyType_single_color.svg" alt="a single adult" />
-                        Single Adult
-                      </label>
-                      </div>
-                  </div>
-                  <div className="col-xs-12 col-sm-4 family-type-div">
-                    <div className="text-center">
-                      <input id="single-parent-2-kids-radio" type="radio" name="family-type" className="family-type-radio" />
-                      <label id="label-single-parent" htmlFor="single-parent-2-kids-radio" className="family-type-label">
-                        <img className="img-responsive center-block"
-                        src="dist/assets/images/HO_familyType_parent_twoKids_color.svg" alt="a single parent with two children" />
-                        Single Parent, Two Children
-                      </label>
-                    </div>
-                  </div>
-                  <div className="col-xs-12 col-sm-4 family-type-div">
-                    <div className="text-center">
-                      <input id="two-parents-2-kids-radio" type="radio" name="family-type" className="family-type-radio" />
-                      <label id="label-two-parents" htmlFor="two-parents-2-kids-radio" className="family-type-label">
-                        <img className="img-responsive center-block"
-                        src="dist/assets/images/HO_familyType_twoParent_twoKids_color.svg" alt="two parents with two children" />
-                        Two Parents, Two Children
-                      </label>
-                    </div>
-                  </div>
-                </div> { /* end family-types-wrapper */ }
-                <div className="slider-wrapper center-block">
-                  <Slider
-                    max={2000}
-                    tipTransitionName="rc-slider-tooltip-zoom-down"
-                    tipFormatter={dollarFormatter}
-                    marks={marks}
-                    step={2}
-                    dots={false}
-                    onChange={this._onSliderChange}
-                  />
-                </div>
+              </div>
             </div>
           </div>
         </section>
