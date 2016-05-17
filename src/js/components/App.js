@@ -1,12 +1,13 @@
 import React from 'react'
 import Slider from 'rc-slider'
 import Dropdown from 'react-dropdown'
-import Indicator from './Indicator'
+import IndicatorSlider from './IndicatorSlider'
 import HorizontalRule from './HorizontalRule'
 
 require('../../styles/main.scss')
 require('../../styles/rc-slider.scss')
 require('../../styles/react-dropdown.scss')
+require('../../styles/indicator.scss')
 
 export default class App extends React.Component {
   constructor() {
@@ -120,7 +121,7 @@ export default class App extends React.Component {
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
-            <Indicator />
+            <IndicatorSlider sections={4} />
             <p>
               In general, you are struggling to put food on the table. It’s
               likely that you and your children are skipping meals or
@@ -147,7 +148,7 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
-          <Indicator />
+          <IndicatorSlider sections={4} />
         </section>
         <section className="housing">
           <div className="row">
@@ -174,11 +175,11 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-sm-6 map-wrapper food-map-wrapper">
                   <h3 className="text-center">Food Map</h3>
-                  <img src="dist/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
+                  <img src="dist/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
                 </div>
                 <div className="col-xs-12 col-sm-6 map-wrapper housing-map-wrapper">
                   <h3 className="text-center">Housing Map</h3>
-                  <img src="dist/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
+                  <img src="dist/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
                 </div>
               </div>
               <p>
