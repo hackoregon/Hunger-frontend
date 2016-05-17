@@ -1,0 +1,49 @@
+{
+  "name": "hunger-frontend",
+  "version": "1.0.0",
+  "description": "Front end code for the Hack Oregon hunger project",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "node-sass -o dist/styles src/styles",
+    "build:dev": "npm run build:css",
+    "build:watch": "npm run build:dev && npm run watch",
+    "watch:css": "node-sass -w -o dist/styles src/styles",
+    "watch": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "npm run build:watch",
+    "start": "echo \"Did you mean 'start:dev'?\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackoregon/Hunger-frontend.git"
+  },
+  "author": "Team Hunger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackoregon/Hunger-frontend/issues"
+  },
+  "homepage": "https://github.com/hackoregon/Hunger-frontend#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "classnames": "^2.2.4",
+    "jquery": "^2.2.3",
+    "rc-slider": "^3.6.2",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-dropdown": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.6.0",
+    "onchange": "^2.4.0",
+    "parallelshell": "^2.0.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

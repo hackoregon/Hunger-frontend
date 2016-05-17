@@ -1,0 +1,251 @@
+/* COLORS */
+$offWhite: #fbfaf0;
+$lightYellow: #eee597;
+$darkYellow: #eadd69;
+$lightOrange: #dc6632;
+$darkOrange: #b5441d;
+$lightGreen: #b8dfab;
+$darkGreen: #669776;
+$lightBlue: #73c4d2;
+$darkBlue: #279eb7;
+
+@mixin tfTranslate($x, $y) {
+  -moz-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
+/* GLOBAL STYLES */
+body {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  background-color: $offWhite;
+}
+
+section {
+  padding: 2em;
+}
+
+p {
+  margin: 0;
+  text-indent: 1em;
+}
+
+/* HEADER */
+
+.main-title {
+  font-size: 1.5em;
+  max-width: 100%;
+  white-space: nowrap;
+  margin: 0;
+}
+
+header, footer {
+  padding: 1em;
+  color: white;
+  background-color: $darkBlue;
+}
+
+/* SECTION 1: SELECT FAMILY AND COUNTY */
+.family-and-county-section {
+
+}
+
+.select-county-p,
+.select-family-type-p {
+  font-weight: bold;
+}
+// menu
+.county-dropdown {
+  margin-top: 1em;
+}
+
+// dropdown button
+.county-dropdown-toggle {
+  margin-left: 0.5em;
+}
+
+.family-types-wrapper {
+  margin-top: 1.5em;
+}
+
+.family-type-div {
+  margin-bottom: 1.5em;
+}
+
+.family-type-radio {
+  display: none;
+}
+
+.family-type-radio:checked + .family-type-label {
+  background-color: darken($offWhite, 10%);
+}
+
+/* TODO: Do something less hacky to override Bootstrap styles */
+#label-single-adult,
+#label-single-parent,
+#label-two-parents {
+  padding: 1em;
+}
+
+
+/* SECTION 2: DAY-TO-DAY */
+.day-to-day-section {
+
+}
+
+
+/* SECTION 3: FREE AND REDUCED LUNCH */
+.lunch-section {
+
+}
+
+
+/* SECTION 4: HOUSING */
+.housing {
+
+}
+.placeholder {
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  height: 6em;
+  width: 80%;
+}
+
+/* SECTION 5: STATE MAP VIEW */
+.map-view-section {
+
+}
+
+.map-row {
+  margin-top: 1em;
+}
+
+.map-wrapper {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 1em;
+}
+.ho-logo {
+  max-height: 3em;
+}
+
+/* HORIZONTAL-RULE */
+.hr-wrapper {
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
+  text-align: center;
+}
+.hr-line {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  @include tfTranslate(-50%, -50%);
+  width: 100%;
+  border-top: 1px solid black;
+}
+.hr-content {
+  font-size: 1.5em;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+  background-color: $offWhite;
+  font-weight: 300;
+}
+.hr-image {
+  height: 40px;
+  padding: 0;
+}
+
+/* INDICATOR */
+$indicatorLineColor: black;
+$arrowBorderLength: 8px;
+$arrowOffset: 0.3em;
+$indicatorBlockHeight: 1.5em;
+$indicatorTotalHeight: 1.6em;
+.indicator-root {
+  margin: 10px auto;
+}
+.indicator-outer-wrapper,
+.indicator-blocks-wrapper {
+  min-width: 250px;
+}
+.indicator-outer-wrapper {
+  position: relative;
+  padding: $arrowBorderLength;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.indicator-blocks-wrapper {
+  position: relative;
+}
+.indicator-line-wrapper {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: $arrowBorderLength/2;
+}
+.indicator-line {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 2px;
+  height: $indicatorBlockHeight + 0.3em;
+  z-index: 5;
+  background-color: $indicatorLineColor;
+}
+.indicator-arrow {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: $arrowBorderLength/2 solid transparent;
+  border-right: $arrowBorderLength/2 solid transparent;
+}
+.ind-block {
+  box-sizing: border-box;
+  display: inline-block;
+  height: $indicatorTotalHeight;
+  width: 25%;
+}
+.block-1 {
+  background-color: $lightYellow;
+}
+.block-2 {
+  background-color: $darkYellow;
+}
+.block-3 {
+  background-color: $lightOrange;
+}
+.block-4 {
+  background-color: $darkOrange;
+}
+.indicator-line,
+.indicator-arrow {
+  top: 0%;
+  left: 0%;
+}
+.top-arrow {
+  /* triangle pointing down */
+  margin-bottom: -$arrowOffset/2;
+  border-top: $arrowBorderLength solid $indicatorLineColor;
+}
+.bottom-arrow {
+  /* triangle pointing up */
+  margin-top: -$arrowOffset/2;
+  border-bottom: $arrowBorderLength solid $indicatorLineColor;
+}
+/* SLIDER (main styles in rc-slider.scss) */
+
+.slider-wrapper {
+  width: 90%;
+  margin-bottom: 1.5em;
+}
