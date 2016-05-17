@@ -15,10 +15,12 @@ export default class App extends React.Component {
     this.state = {
       sliderWage: 0
     }
+    this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
   }
-  _onSelect() {
 
+  _onDropdownSelect(selection) {
+    console.log(selection)
   }
 
   _onSliderChange(value) {
@@ -70,7 +72,7 @@ export default class App extends React.Component {
             <div className="col-xs-12">
                 <Dropdown
                   options={options}
-                  onChange={this._onSelect}
+                  onChange={this._onDropdownSelect}
                   value={defaultOption}
                   placeholder="Select an option"
                 />
