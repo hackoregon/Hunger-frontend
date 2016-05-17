@@ -12,10 +12,19 @@ require('../../styles/indicator.scss')
 export default class App extends React.Component {
   constructor() {
     super()
+    this.state = {
+      sliderWage: 0
+    }
+    this._onSliderChange = this._onSliderChange.bind(this)
   }
   _onSelect() {
 
   }
+
+  _onSliderChange(value) {
+    this.setState({ sliderWage: value })
+  }
+
   render() {
 
     const marks = {
@@ -107,6 +116,7 @@ export default class App extends React.Component {
                     marks={marks}
                     step={2}
                     dots={false}
+                    onChange={this._onSliderChange}
                   />
                 </div>
             </div>
@@ -121,7 +131,10 @@ export default class App extends React.Component {
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
-            <IndicatorSlider sections={4} />
+            <IndicatorSlider
+              value={this.state.sliderWage}
+              sections={4}
+            />
             <p>
               In general, you are struggling to put food on the table. It’s
               likely that you and your children are skipping meals or
@@ -148,7 +161,10 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
-          <IndicatorSlider sections={4} />
+          <IndicatorSlider
+            value={this.state.sliderWage}
+            sections={4}
+          />
         </section>
         <section className="housing">
           <div className="row">
