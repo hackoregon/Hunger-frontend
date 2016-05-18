@@ -23,6 +23,7 @@ export default class App extends React.Component {
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
+    this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
   }
 
   _onDropdownSelect(county) {
@@ -38,6 +39,23 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
+  getFoodSecurityStatus() {
+    let status;
+    let wage = this.state.sliderWage;
+    if (wage < 500) {
+      return "moderately insecure"
+    }
+    else if (wage < 1000) {
+      return "very insecure"
+    }
+    else if (wage < 1500) {
+      return "moderately secure"
+    }
+    else {
+      return "very secure"
+    }
+  }
+
   render() {
     console.log("state:", this.state)
     const marks = {
@@ -49,7 +67,8 @@ export default class App extends React.Component {
     }
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
-    const dollarFormatter = (val) => ("$" + val);
+    const dollarFormatter = (val) => ("$" + val)
+    const foodStatus = this.getFoodSecurityStatus()
     return (
       <div>
         <header>
@@ -102,11 +121,14 @@ export default class App extends React.Component {
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
+
             <IndicatorSlider
               value={this.state.sliderWage}
               sections={4}
             />
-            <DayToDaySnugget securityStatus="very insecure" />
+
+            <DayToDaySnugget securityStatus={foodStatus} />
+
           </div>
         </div>
         </section>
