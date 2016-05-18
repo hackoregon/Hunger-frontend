@@ -24,6 +24,7 @@ export default class App extends React.Component {
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
+    this.getIndicatorValue = this.getIndicatorValue.bind(this)
   }
 
   _onDropdownSelect(county) {
@@ -56,6 +57,11 @@ export default class App extends React.Component {
     }
   }
 
+  getIndicatorValue() {
+    const sliderPercent = this.props.sliderMax / 100
+    return this.state.sliderWage / sliderPercent
+  }
+
   render() {
     console.log("state:", this.state)
     const marks = {
@@ -68,7 +74,7 @@ export default class App extends React.Component {
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
     const dollarFormatter = (val) => ("$" + val)
-    const foodStatus = this.getFoodSecurityStatus()
+
     return (
       <div>
         <header>
@@ -100,7 +106,7 @@ export default class App extends React.Component {
               <FamilyTypeSelect onSelect={this._setSelectedFamilyType} />
               <div className="slider-wrapper center-block">
                 <Slider
-                  max={2000}
+                  max={this.props.sliderMax}
                   tipTransitionName="rc-slider-tooltip-zoom-down"
                   tipFormatter={dollarFormatter}
                   marks={marks}
@@ -123,11 +129,11 @@ export default class App extends React.Component {
             </h2>
 
             <IndicatorSlider
-              value={this.state.sliderWage}
+              value={this.getIndicatorValue()}
               sections={4}
             />
 
-            <DayToDaySnugget securityStatus={foodStatus} />
+            <DayToDaySnugget securityStatus={this.getFoodSecurityStatus()} mealsMissed={5}/>
 
           </div>
         </div>
@@ -147,7 +153,7 @@ export default class App extends React.Component {
             </div>
           </div>
           <IndicatorSlider
-            value={this.state.sliderWage}
+            value={this.getIndicatorValue()}
             sections={4}
           />
         </section>
