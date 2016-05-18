@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown'
 import IndicatorSlider from './IndicatorSlider'
 import HorizontalRule from './HorizontalRule'
 import FamilyTypeSelect from './FamilyTypeSelect'
+import DayToDaySnugget from './DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
 
 require('../../styles/main.scss')
@@ -105,15 +106,7 @@ export default class App extends React.Component {
               value={this.state.sliderWage}
               sections={4}
             />
-            <p>
-              In general, you are struggling to put food on the table. It’s
-              likely that you and your children are skipping meals or
-              watering down food. You are eligible for benefits, but you
-              are still not able to supply every meal for yourself and your
-              family. In total, your family is missing X meals per month,
-              which could mean that you (and your partner) are skipping
-              three meals for every one meal that your kids are skipping.
-            </p>
+            <DayToDaySnugget securityStatus="very insecure" />
           </div>
         </div>
         </section>
