@@ -56,10 +56,13 @@ export default class App extends React.Component {
       return "very secure"
     }
   }
-
   getIndicatorValue() {
     const sliderPercent = this.props.sliderMax / 100
     return this.state.sliderWage / sliderPercent
+  }
+
+  isSingleAdult() {
+      return this.state.selectedFamilyType === "single-adult"
   }
 
   render() {
@@ -138,7 +141,7 @@ export default class App extends React.Component {
           </div>
         </div>
         </section>
-        <section className="lunch-section">
+        <section className="lunch-section" style={this.isSingleAdult() ? { display: "none" } : {}}>
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
