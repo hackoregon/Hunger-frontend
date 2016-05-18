@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown'
 import IndicatorSlider from './IndicatorSlider'
 import HorizontalRule from './HorizontalRule'
 import FamilyTypeSelect from './FamilyTypeSelect'
+import DayToDaySnugget from './DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
 
 require('../../styles/main.scss')
@@ -22,6 +23,7 @@ export default class App extends React.Component {
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
+    this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
   }
 
   _onDropdownSelect(county) {
@@ -37,6 +39,23 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
+  getFoodSecurityStatus() {
+    let status;
+    let wage = this.state.sliderWage;
+    if (wage < 500) {
+      return "moderately insecure"
+    }
+    else if (wage < 1000) {
+      return "very insecure"
+    }
+    else if (wage < 1500) {
+      return "moderately secure"
+    }
+    else {
+      return "very secure"
+    }
+  }
+
   render() {
     console.log("state:", this.state)
     const marks = {
@@ -48,7 +67,8 @@ export default class App extends React.Component {
     }
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
-    const dollarFormatter = (val) => ("$" + val);
+    const dollarFormatter = (val) => ("$" + val)
+    const foodStatus = this.getFoodSecurityStatus()
     return (
       <div>
         <header>
@@ -101,19 +121,14 @@ export default class App extends React.Component {
             <h2 className="text-center">
             What’s your day-to-day experience putting food on the table?
             </h2>
+
             <IndicatorSlider
               value={this.state.sliderWage}
               sections={4}
             />
-            <p>
-              In general, you are struggling to put food on the table. It’s
-              likely that you and your children are skipping meals or
-              watering down food. You are eligible for benefits, but you
-              are still not able to supply every meal for yourself and your
-              family. In total, your family is missing X meals per month,
-              which could mean that you (and your partner) are skipping
-              three meals for every one meal that your kids are skipping.
-            </p>
+
+            <DayToDaySnugget securityStatus={foodStatus} />
+
           </div>
         </div>
         </section>
