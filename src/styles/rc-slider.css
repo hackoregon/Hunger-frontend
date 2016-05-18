@@ -1,5 +1,3 @@
-$handleColor: #000;
-
 .rc-slider {
   position: relative;
   height: 4px;
@@ -30,7 +28,7 @@ $handleColor: #000;
   cursor: pointer;
   border-radius: 50%;
   border: solid 2px #000;
-  background-color: $handleColor;
+  background-color: #000;
   z-index: 2;
 }
 .rc-slider-handle:hover {
@@ -38,7 +36,7 @@ $handleColor: #000;
 }
 .rc-slider-handle-active:active {
   border-color: #fff;
-  box-shadow: 0 0 5px $handleColor;
+  box-shadow: 0 0 5px #000;
 }
 .rc-slider-mark {
   position: absolute;
