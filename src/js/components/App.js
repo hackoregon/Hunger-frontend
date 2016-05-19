@@ -6,7 +6,7 @@ import HorizontalRule from './HorizontalRule'
 import FamilyTypeSelect from './FamilyTypeSelect'
 import DayToDaySnugget from './DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
-import 'bootstrap'
+
 require('../../styles/fonts/Darwin.css')
 require('../../styles/fonts/TTChocolates.css')
 require('../../styles/main.css')
