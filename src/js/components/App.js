@@ -7,10 +7,12 @@ import FamilyTypeSelect from './FamilyTypeSelect'
 import DayToDaySnugget from './DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
 
-require('../../styles/main.scss')
-require('../../styles/rc-slider.scss')
-require('../../styles/react-dropdown.scss')
-require('../../styles/indicator.scss')
+require('../../styles/fonts/Darwin.css')
+require('../../styles/fonts/TTChocolates.css')
+require('../../styles/main.css')
+require('../../styles/rc-slider.css')
+require('../../styles/react-dropdown.css')
+require('../../styles/indicator.css')
 
 export default class App extends React.Component {
   constructor() {

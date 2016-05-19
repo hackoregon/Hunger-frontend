@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-require('../../styles/main.scss')
 
 const HorizontalRule = (props) => (
   <div className="hr-root">

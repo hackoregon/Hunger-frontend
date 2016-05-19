@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Darwin';
+  src: url('Darwin-ALT-Regular-webfont.eot');
+  src: url('Darwin-ALT-Regular-webfont.ttf') format('truetype'),
+       url('Darwin-ALT-Regular-webfont.woff') format('woff'),
+       url('Darwin-ALT-Regular-webfont.woff2') format('woff2');
+}

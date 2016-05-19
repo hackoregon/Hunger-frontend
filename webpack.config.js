@@ -21,12 +21,13 @@ module.exports = {
                 }
             },
             {
-              test: /\.scss$/,
-              loaders: ["style", "css", "resolve-url", "sass?sourceMap"]
+              test: /\.css$/,
+              loaders: ["style", "css"]
+            },
+            {
+              test: /\.(eot|ttf|woff|woff2)$/,
+              loader: 'file?name=src/styles/fonts/[name].[ext]'
             }
         ]
     }
-    // sassLoader: {
-    //   includePaths: [path.resolve(__dirname, "../../styles")]
-    // }
 }
