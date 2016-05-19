@@ -6,7 +6,7 @@ import HorizontalRule from './HorizontalRule'
 import FamilyTypeSelect from './FamilyTypeSelect'
 import DayToDaySnugget from './DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
-
+import 'bootstrap'
 require('../../styles/fonts/Darwin.css')
 require('../../styles/fonts/TTChocolates.css')
 require('../../styles/main.css')
@@ -83,9 +83,29 @@ export default class App extends React.Component {
     return (
       <div>
         <header>
-          <h1 className="main-title">Oregon Hunger Equation</h1>
+          <nav className="navbar navbar-default">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <a className="navbar-brand" href="#">Hack Oregon Logo Here</a>
+              </div>
+              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul className="nav navbar-nav navbar-right">
+                    <li><a href="#">See Our Research</a></li>
+                    <li className="hidden-xs" role="separator"><span className="glyphicon glyphicon-stop" aria-hidden="true"></span></li>
+                    <li><a href="#">Do Something</a></li>
+                  </ul>
+               </div>
+             </div>
+          </nav>
         </header>
         <section className="mission-statement container-fluid">
+          <h1 className="main-title">Oregon Hunger Equation</h1>
           <div className="row">
           <div className="col-xs-4">
             <img className="img-responsive placeholder" />

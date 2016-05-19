@@ -22,10 +22,42 @@ p {
   margin: 0;
 }
 
-header, footer {
+.navbar {
+  z-index: 1;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #5b5b5b;
+}
+
+.navbar-default .glyphicon-stop {
+  position: relative;
+  top: 1.2em;
+  background-color: #5b5b5b;
+  font-size: 0.4em;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+header {
+  height: 3em;
+  font-size: 2rem;
+  color: #5b5b5b;
+  background-color: #c9dacf;
+  box-shadow: 0 12px 2px 0 #999;
+}
+
+footer {
+  font-size: 2rem;
   padding: 1em;
-  color: white;
-  background-color: #279eb7;
+  color: #5b5b5b;
+  background-color: #c9dacf;
+}
+
+.navbar-default {
+  border: none;
+  background-color: #c9dacf;
+  padding: 0.5em;
 }
 
 /* SECTION 1: SELECT FAMILY AND COUNTY */
