@@ -143,7 +143,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <HorizontalRule>
-          <img className="hr-content hr-image" src="dist/assets/applecropped.png" />
+          <img className="hr-content hr-image" src="src/assets/applecropped.png" />
         </HorizontalRule>
         <section className="day-to-day-section container-fluid">
         <div className="row">
@@ -206,11 +206,11 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-sm-6 map-wrapper food-map-wrapper">
                   <h3 className="text-center">Food Map</h3>
-                  <img src="dist/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
+                  <img src="src/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
                 </div>
                 <div className="col-xs-12 col-sm-6 map-wrapper housing-map-wrapper">
                   <h3 className="text-center">Housing Map</h3>
-                  <img src="dist/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
+                  <img src="src/assets/images/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
                 </div>
               </div>
               <p>
@@ -227,7 +227,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <footer>
-          <img src="dist/assets/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
+          <img src="src/assets/images/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
         </footer>
       </div>
     )
