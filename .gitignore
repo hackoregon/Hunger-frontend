@@ -64,3 +64,13 @@ target/
 # Node / NPM
 node_modules/
 *.log
+
+# Font Source Files
+*.eot
+*.ttf
+*.woff
+*.woff2
+
+# Notes
+todos.md
+worklog.md
