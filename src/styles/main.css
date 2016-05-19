@@ -90,6 +90,9 @@ footer {
   background-color: #f0edc8;
 }
 
+.family-type-label img {
+  max-height: 235px;
+}
 /* TODO: Do something less hacky to override Bootstrap styles ? */
 #label-single-adult,
 #label-single-parent,

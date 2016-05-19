@@ -25,9 +25,9 @@ export default class FamilyTypeSelect extends React.Component {
             <input ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
             <label id="label-single-adult" htmlFor="single-adult" className="family-type-label">
               <img className="img-responsive center-block"
-                src="dist/assets/images/HO_familyType_single_color.svg" alt="a single adult" />
-              Single Adult
+                src="dist/assets/person_single.png" alt="a single adult" />
             </label>
+            <p>Single Adult</p>
             </div>
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
@@ -35,9 +35,9 @@ export default class FamilyTypeSelect extends React.Component {
             <input ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-single-parent" htmlFor="single-parent" className="family-type-label">
               <img className="img-responsive center-block"
-              src="dist/assets/images/HO_familyType_parent_twoKids_color.svg" alt="a single parent with two children" />
-              Single Parent, Two Children
+              src="dist/assets/HO_familyType_parent_twoKids_color.png" alt="a single parent with two children" />
             </label>
+            <p>Single Parent, Two Children</p>
           </div>
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
@@ -45,9 +45,9 @@ export default class FamilyTypeSelect extends React.Component {
             <input ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-two-parents" htmlFor="two-parents" className="family-type-label">
               <img className="img-responsive center-block"
-              src="dist/assets/images/HO_familyType_twoParent_twoKids_color.svg" alt="two parents with two children" />
-              Two Parents, Two Children
+              src="dist/assets/HO_familyType_2_parent_twoKids_color.png" alt="two parents with two children" />
             </label>
+            <p>Two Parents, Two Children</p>
           </div>
         </div>
       </div>
