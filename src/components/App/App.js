@@ -1,10 +1,10 @@
 import React from 'react'
 import Slider from 'rc-slider'
 import Dropdown from 'react-dropdown'
-import IndicatorSlider from './IndicatorSlider'
-import HorizontalRule from './HorizontalRule'
-import FamilyTypeSelect from './FamilyTypeSelect'
-import DayToDaySnugget from './DayToDayHungerSnugget'
+import IndicatorSlider from '../IndicatorSlider/IndicatorSlider'
+import HorizontalRule from '../HorizontalRule/HorizontalRule'
+import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
+import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
 
 require('../../styles/fonts/Darwin.css')
@@ -12,7 +12,6 @@ require('../../styles/fonts/TTChocolates.css')
 require('../../styles/main.css')
 require('../../styles/rc-slider.css')
 require('../../styles/react-dropdown.css')
-require('../../styles/indicator.css')
 
 export default class App extends React.Component {
   constructor() {

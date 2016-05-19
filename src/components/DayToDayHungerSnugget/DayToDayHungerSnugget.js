@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+require('./DayToDayHungerSnugget.css')
+
 const DayToDayHungerSnugget = (props) => {
   let content;
   switch (props.securityStatus) {

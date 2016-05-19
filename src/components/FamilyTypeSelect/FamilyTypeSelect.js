@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 
+require('./FamilyTypeSelect.css')
+
 export default class FamilyTypeSelect extends React.Component {
   constructor() {
     super()

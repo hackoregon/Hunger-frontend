@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import Slider from 'rc-slider'
 import classnames from 'classnames'
 
+require('./IndicatorSlider.css')
+
 export default class IndicatorSlider extends React.Component {
   constructor() {
     super()
