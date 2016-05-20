@@ -6,6 +6,7 @@ import HorizontalRule from '../HorizontalRule/HorizontalRule'
 import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
+import REHomepageMap from '../re-homepage'
 
 require('../../styles/fonts/Darwin.css')
 require('../../styles/fonts/TTChocolates.css')
@@ -162,7 +163,7 @@ export default class App extends React.Component {
           </div>
         </div>
         </section>
-        <section className="lunch-section" style={this.isSingleAdult() ? { display: "none" } : {}}>
+        <section className="lunch-section container-fluid" style={this.isSingleAdult() ? { display: "none" } : {}}>
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
@@ -181,7 +182,7 @@ export default class App extends React.Component {
             sections={4}
           />
         </section>
-        <section className="housing">
+        <section className="housing container-fluid">
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
@@ -194,7 +195,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
-        <section className="map-view-section">
+        <section className="map-view-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
@@ -204,10 +205,7 @@ export default class App extends React.Component {
                 The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
               </p>
               <div className="row map-row">
-                <div className="col-xs-12 col-sm-6 map-wrapper food-map-wrapper">
-                  <h3 className="text-center">Food Map</h3>
-                  <img src="src/assets/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide food access" />
-                </div>
+                <REHomepageMap />
                 <div className="col-xs-12 col-sm-6 map-wrapper housing-map-wrapper">
                   <h3 className="text-center">Housing Map</h3>
                   <img src="src/assets/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
