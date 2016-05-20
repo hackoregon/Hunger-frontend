@@ -39,7 +39,6 @@ let marriedParentFamilyTypes = [
 let HomePage = React.createClass({
     getInitialState: function() {
         return {
-            selectedCounty: {fips: "41", name: "Oregon"},
             census: {},
             weight: {},
             ssswages: {},
@@ -74,7 +73,7 @@ let HomePage = React.createClass({
       })
     },
     getBudgetData: function() {
-      if (this.state.selectedCounty.fips === "41") {
+      if (this.props.selectedCounty.fips === "41") {
         return [
           {name: "Housing", singleParent: 842, singleAdult: 673, marriedFamily: 842 },
           {name: "Food", singleParent: 608, singleAdult: 250, marriedFamily: 841},
@@ -86,8 +85,8 @@ let HomePage = React.createClass({
         ];
       }
       else {
-        var budgets = this.state.budgets[this.state.selectedCounty.fips];
-        var weights = this.state.weight[this.state.selectedCounty.fips];
+        var budgets = this.state.budgets[this.props.selectedCounty.fips];
+        var weights = this.state.weight[this.props.selectedCounty.fips];
         var singleAdult = this.getWeightedBudget(singleAdultTypes,budgets,weights);
         var singleParent = this.getWeightedBudget(singleParentFamilyTypes,budgets,weights);
         var marriedFamily = this.getWeightedBudget(marriedParentFamilyTypes,budgets,weights);
@@ -149,24 +148,14 @@ let HomePage = React.createClass({
           };
       return data;
     },
-    // handleSliderWageChange: function(value) {
-    //   this.setState({
-    //     sliderWage: value
-    //   });
-    // },
-    selectCounty: function(county) {
-      this.setState({
-        selectedCounty: county
-      });
-    },
     getPopulationPercents: function() {
-      if (!this.state.census[this.state.selectedCounty.fips]) return;
+      if (!this.state.census[this.props.selectedCounty.fips]) return;
 
       var {
         lowIncomeSingleAdults,
         lowIncomeSingleParents,
         lowIncomeMarriedParents
-      } = this.state.census[this.state.selectedCounty.fips];
+      } = this.state.census[this.props.selectedCounty.fips];
       var totalHouseHolds = lowIncomeMarriedParents + lowIncomeSingleParents + lowIncomeSingleAdults;
       return {
         singleAdult: Math.ceil( (lowIncomeSingleAdults/totalHouseHolds) * 100 ),
@@ -211,9 +200,9 @@ let HomePage = React.createClass({
 
     },
     getSufficiencyPercents: function() {
-      if (!this.state.census[this.state.selectedCounty.fips]) return;
+      if (!this.state.census[this.props.selectedCounty.fips]) return;
       var result = this.getOregonAggregation(this.getMapSufficiencyPercents());
-      var geo = result[this.state.selectedCounty.fips];
+      var geo = result[this.props.selectedCounty.fips];
       var cap = Math.max(geo.lowIncomeSingleAdults,geo.lowIncomeSingleParents,geo.lowIncomeMarriedParents);
 
       return {
@@ -266,7 +255,7 @@ let HomePage = React.createClass({
     },
 
     getAnnualSufficiencyWage: function() {
-      var fips          = this.state.selectedCounty.fips,
+      var fips          = this.props.selectedCounty.fips,
           countyWages   = this.state.ssswages[fips],
           countyWeights = this.state.weight[fips];
 
@@ -287,7 +276,7 @@ let HomePage = React.createClass({
 
     getMedianIncome: function() {
       if (_.isEmpty(this.state.wageStats)) return {};
-      var fips = this.state.selectedCounty.fips;
+      var fips = this.props.selectedCounty.fips;
 
       return {
         singleAdult: this.state.wageStats[fips][0].nonFamilyMedianIncome,
@@ -386,7 +375,7 @@ let HomePage = React.createClass({
         return (
             <div className="col-md-6 component map map-wrapper">
               <div id="map">
-                <MapView selectedCounty={this.state.selectedCounty.fips} onMapSelect={this.selectCounty} sufficiency={this.getMapSufficiencyPercents()} />
+                <MapView selectedCounty={this.props.selectedCounty.fips} onMapSelect={this.props.selectCounty} sufficiency={this.getMapSufficiencyPercents()} />
               </div>
             </div>
         )
