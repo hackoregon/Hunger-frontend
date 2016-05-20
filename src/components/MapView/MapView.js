@@ -4,6 +4,7 @@ import React from "react";
 import _ from "lodash";
 
 require('./MapView.css')
+require('leaflet/dist/leaflet.css')
 
 let MapView = React.createClass({
 

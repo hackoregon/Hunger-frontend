@@ -27,6 +27,10 @@ module.exports = {
             {
               test: /\.(eot|ttf|woff|woff2)$/,
               loader: 'file?name=src/styles/fonts/[name].[ext]'
+            },
+            {
+              test: /(layers.*|marker-.*)\.png$/,
+              loader: 'file?name=node_modules/leaflet/dist/images/[name].[ext]'
             }
         ]
     }
