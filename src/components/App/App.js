@@ -163,7 +163,7 @@ export default class App extends React.Component {
           </div>
         </div>
         </section>
-        <section className="lunch-section" style={this.isSingleAdult() ? { display: "none" } : {}}>
+        <section className="lunch-section container-fluid" style={this.isSingleAdult() ? { display: "none" } : {}}>
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
@@ -182,7 +182,7 @@ export default class App extends React.Component {
             sections={4}
           />
         </section>
-        <section className="housing">
+        <section className="housing container-fluid">
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
@@ -195,7 +195,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
-        <section className="map-view-section">
+        <section className="map-view-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
               <h2 className="text-center">
