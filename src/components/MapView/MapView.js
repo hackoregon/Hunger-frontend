@@ -3,8 +3,8 @@ import Counties from "../../fixtures/countiesGeoJSON.js";
 import React from "react";
 import _ from "lodash";
 
-require('./MapView.css')
 require('leaflet/dist/leaflet.css')
+require('./MapView.css')
 
 let MapView = React.createClass({
 
