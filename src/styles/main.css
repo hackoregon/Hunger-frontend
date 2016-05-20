@@ -60,45 +60,6 @@ footer {
   padding: 0.5em;
 }
 
-/* SECTION 1: SELECT FAMILY AND COUNTY */
-.select-county-p,
-.select-family-type-p {
-  font-weight: bold;
-}
-
-.county-dropdown {
-  margin-top: 1em;
-}
-
-.county-dropdown-toggle {
-  margin-left: 0.5em;
-}
-
-.family-types-wrapper {
-  margin-top: 1.5em;
-}
-
-.family-type-div {
-  margin-bottom: 1.5em;
-}
-
-.family-type-radio {
-  display: none;
-}
-
-.family-type-radio:checked + .family-type-label {
-  background-color: #f0edc8;
-}
-
-.family-type-label img {
-  max-height: 235px;
-}
-/* TODO: Do something less hacky to override Bootstrap styles ? */
-#label-single-adult,
-#label-single-parent,
-#label-two-parents {
-  padding: 1em;
-}
 
 /* SECTION 2: DAY-TO-DAY */
 /* SECTION 3: FREE AND REDUCED LUNCH */

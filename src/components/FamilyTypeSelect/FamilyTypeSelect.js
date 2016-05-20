@@ -26,7 +26,7 @@ export default class FamilyTypeSelect extends React.Component {
           <div className="text-center">
             <input ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
             <label id="label-single-adult" htmlFor="single-adult" className="family-type-label">
-              <img className="img-responsive center-block"
+              <img className="center-block"
                 src="src/assets/person_single.png" alt="a single adult" />
             </label>
             <p>Single Adult</p>
@@ -36,7 +36,7 @@ export default class FamilyTypeSelect extends React.Component {
           <div className="text-center">
             <input ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-single-parent" htmlFor="single-parent" className="family-type-label">
-              <img className="img-responsive center-block"
+              <img className="center-block"
               src="src/assets/HO_familyType_parent_twoKids_color.png" alt="a single parent with two children" />
             </label>
             <p>Single Parent, Two Children</p>
@@ -46,7 +46,7 @@ export default class FamilyTypeSelect extends React.Component {
           <div className="text-center">
             <input ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-two-parents" htmlFor="two-parents" className="family-type-label">
-              <img className="img-responsive center-block"
+              <img className="center-block"
               src="src/assets/HO_familyType_2_parent_twoKids_color.png" alt="two parents with two children" />
             </label>
             <p>Two Parents, Two Children</p>
