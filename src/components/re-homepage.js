@@ -39,7 +39,6 @@ let marriedParentFamilyTypes = [
 let HomePage = React.createClass({
     getInitialState: function() {
         return {
-            sliderWage: 9.25,
             selectedCounty: {fips: "41", name: "Oregon"},
             census: {},
             weight: {},
@@ -150,11 +149,11 @@ let HomePage = React.createClass({
           };
       return data;
     },
-    handleSliderWageChange: function(value) {
-      this.setState({
-        sliderWage: value
-      });
-    },
+    // handleSliderWageChange: function(value) {
+    //   this.setState({
+    //     sliderWage: value
+    //   });
+    // },
     selectCounty: function(county) {
       this.setState({
         selectedCounty: county
@@ -177,7 +176,7 @@ let HomePage = React.createClass({
     },
     getMapSufficiencyPercents: function() {
       if (!this.state.census[41]) return;
-      var selectedAnnualWage = this.state.sliderWage * 8 * 22 * 12;
+      var selectedAnnualWage = this.props.sliderWage * 8 * 22 * 12;
       var set = _(this.state.weight).map((weight, key) => {
         var {
           lowIncomeSingleAdults,
@@ -244,7 +243,7 @@ let HomePage = React.createClass({
     },
 
     getAnnualIncome: function() {
-      var selectedAnnualWage = this.state.sliderWage * 8 * 22 * 12;
+      var selectedAnnualWage = this.props.sliderWage * 8 * 22 * 12;
 
       return {
         singleAdult: selectedAnnualWage,
