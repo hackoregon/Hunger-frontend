@@ -1,3 +1,31 @@
+/* from Raise Effect base.scss */
+body {
+  line-height: 1.8;
+}
+
+.component {
+    text-align: center;
+}
+
+.map {
+  padding: 0 2.5%;
+}
+
+// under 100% self-sufficient
+.under {
+  background-color: #a8e0d8;
+}
+
+// under 100% self-sufficient
+.sufficient {
+  background-color: #1c8677;
+}
+
+// above 100% self-sufficient
+.over {
+  background-color: #ffc928;
+}
+
 /* copied from Raise Effect map.scss */
 #map {
     height: auto;
