@@ -105,7 +105,7 @@ export default class App extends React.Component {
         </header>
         <section className="mission-statement container-fluid">
           <h1 className="main-title">Oregon Hunger Equation</h1>
-          <div className="row">
+          <div className="row ">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
