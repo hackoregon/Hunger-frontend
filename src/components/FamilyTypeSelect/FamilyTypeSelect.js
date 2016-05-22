@@ -19,12 +19,14 @@ export default class FamilyTypeSelect extends React.Component {
   }
 
   render() {
+    let { selectedType } = this.props
+
     return (
       <div className="row family-types-wrapper" onClick={this._onSelect}>
         <p className="select-family-type-p text-center">Select a Family Type:</p>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
+            <input checked={selectedType === 'single-adult'} ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
             <label id="label-single-adult" htmlFor="single-adult" className="family-type-label">
               <img className="center-block"
                 src="src/assets/person_single.png" alt="a single adult" />
@@ -34,7 +36,7 @@ export default class FamilyTypeSelect extends React.Component {
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
+            <input checked={selectedType === 'single-parent'} ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-single-parent" htmlFor="single-parent" className="family-type-label">
               <img className="center-block"
               src="src/assets/HO_familyType_parent_twoKids_color.png" alt="a single parent with two children" />
@@ -44,7 +46,7 @@ export default class FamilyTypeSelect extends React.Component {
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
+            <input checked={selectedType === 'two-parents'} ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-two-parents" htmlFor="two-parents" className="family-type-label">
               <img className="center-block"
               src="src/assets/HO_familyType_2_parent_twoKids_color.png" alt="two parents with two children" />
