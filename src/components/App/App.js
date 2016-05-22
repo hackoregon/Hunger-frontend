@@ -105,16 +105,10 @@ export default class App extends React.Component {
         </header>
         <section className="mission-statement container-fluid">
           <h1 className="main-title">Oregon Hunger Equation</h1>
-          <div className="row">
-          <div className="col-xs-4">
-            <img className="img-responsive placeholder" />
-          </div>
-            <div className="col-xs-8">
-              <h2>Project Mission Statement:</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
+          <div className="row ">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
           </div>
         </section>
         <section className="family-and-county-section container-fluid">
