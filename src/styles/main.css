@@ -1,7 +1,7 @@
 /* GLOBAL STYLES */
 body {
   font-family: 'TTChocolates', sans-serif;
-  font-weight: 300;
+  /*font-weight: 300;*/
   background-color: #fbfaf0;
 }
 
@@ -10,16 +10,22 @@ section {
 }
 
 p {
+  font-size: 2.0em;
+  font-weight: lightest;
   margin: 0;
   text-indent: 1em;
+  color: #656565;
 }
 
 /* HEADER */
 .main-title {
-  font-size: 1.5em;
+  font-size: 3.0em;
+  color: #656565;
+  font-weight: bold;
   max-width: 100%;
   white-space: nowrap;
   margin: 0;
+  font-family: 'Darwin', sans-serif;
 }
 
 .navbar {
