@@ -20,7 +20,7 @@ export default class App extends React.Component {
     this.state = {
       sliderWage: 0,
       selectedFamilyType: "none",
-      selectedCounty: {fips: "41", name: "Oregon"}
+      selectedCounty: { fips: "41", name: "Oregon" }
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
@@ -34,7 +34,7 @@ export default class App extends React.Component {
   }
 
   _setSelectedFamilyType(fam) {
-    this.setState({ selectedFamilyType: fam})
+    this.setState({ selectedFamilyType: fam })
   }
 
   _onSliderChange(value) {
