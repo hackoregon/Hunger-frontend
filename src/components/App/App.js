@@ -20,7 +20,7 @@ export default class App extends React.Component {
     super()
     this.state = {
       sliderWage: 0,
-      selectedFamilyType: "none",
+      selectedFamilyType: "single-adult",
       individuals: 1,
       selectedCounty: { fips: "41013", name: "Multnomah" }
     }
@@ -133,7 +133,7 @@ export default class App extends React.Component {
                 options={options}
                 onChange={this._onDropdownSelect}
               />
-              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} />
+              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.selectedFamilyType} />
               <div className="slider-wrapper center-block">
                 <Slider
                   max={this.props.sliderMax}
