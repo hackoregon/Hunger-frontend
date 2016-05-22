@@ -149,4 +149,4 @@ let counties = [
   }
 ]
 
-export default counties;
+export default counties

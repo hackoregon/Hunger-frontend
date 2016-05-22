@@ -1,6 +1,6 @@
-import $ from "jquery";
+import $ from "jquery"
 
-const BASE_URL = 'http://raiseeffect.org/api/v1/counties/';
+const BASE_URL = 'http://raiseeffect.org/api/v1/counties/'
 
 let api = {
   getCounties: (fips) => {
@@ -10,12 +10,12 @@ let api = {
   },
   getLaborStats: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/laborstats' : 'laborstats' )
+      url: BASE_URL + (fips ? fips + '/laborstats' : 'laborstats')
     })
   },
   getPopulation: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/populations' : 'populations' )
+      url: BASE_URL + (fips ? fips + '/populations' : 'populations')
     })
   },
   getFamilyType: (fips) => {
@@ -24,13 +24,13 @@ let api = {
     })
   },
   getWageStats: (fips, year) => {
-    let url = BASE_URL;
+    let url = BASE_URL
     if (!fips) {
-      url += 'wagestats';
-    } else{
-      url += fips + '/wagestats';
+      url += 'wagestats'
+    } else {
+      url += fips + '/wagestats'
       if (year) {
-        url += '/' + year;
+        url += '/' + year
       }
     }
     return $.ajax({
@@ -39,37 +39,37 @@ let api = {
   },
   getCalculatedStats: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/calculatedstats' : 'calculatedstats' )
+      url: BASE_URL + (fips ? fips + '/calculatedstats' : 'calculatedstats')
     })
   },
   getSSSBudget: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/sssbudgets' : 'sssbudgets' )
+      url: BASE_URL + (fips ? fips + '/sssbudgets' : 'sssbudgets')
     })
   },
   getSSSCredits: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/ssscredits' : 'ssscredits' )
+      url: BASE_URL + (fips ? fips + '/ssscredits' : 'ssscredits')
     })
   },
   getSSSWages: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/ssswages' : 'ssswages' )
+      url: BASE_URL + (fips ? fips + '/ssswages' : 'ssswages')
     })
   },
   getPuma: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/pumas' : 'pumas' )
+      url: BASE_URL + (fips ? fips + '/pumas' : 'pumas')
     })
   },
   getCensusHousehold: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/censushouseholds' : 'censushouseholds' )
+      url: BASE_URL + (fips ? fips + '/censushouseholds' : 'censushouseholds')
     })
   },
   getWeights: (fips) => {
     return $.ajax({
-      url: BASE_URL + ( fips ? fips + '/familycodeweights' : 'familycodeweights' )
+      url: BASE_URL + (fips ? fips + '/familycodeweights' : 'familycodeweights')
     })
   },
 }
