@@ -42,7 +42,7 @@ function moneyAfterHousing(individuals, income, fips) {
   if (individuals === 1) {
     result = income - housing[fips].median_housing_one
   } else if (individuals === 3) {
-    result = income - housing[fips].median_housing_two
+    result = income - housing[fips].median_housing_three
   } else if (individuals === 4) {
     result = income - housing[fips].median_housing_four
   } else {
@@ -73,19 +73,19 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
   // let schoolMeals = schoolMeals
   // let costOfMeals = costOfMeals
-  let monthlyMealCost
-  let schoolMealBenefit
-  let incomeAfterHousingCost
+  let monthlyMealCost = 0
+  let schoolMealBenefit = 0
+  let incomeAfterHousingCost = 0
 
   if (individuals === 1) {
     monthlyMealCost = costOfMeals[fips].monthly_cost_one
     schoolMealBenefit = 0
   } else if (individuals === 3) {
     monthlyMealCost = costOfMeals[fips].monthly_cost_three
-    schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar
+    schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar_2014
   } else if (individuals === 4) {
     monthlyMealCost = costOfMeals[fips].monthly_cost_four
-    schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar
+    schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar_2014
   }
 
   if (!bestCase) {
