@@ -7,6 +7,7 @@ import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import counties from '../../fixtures/counties'
 import REHomepageMap from '../re-homepage'
+import { calcMealGap } from './calculators'
 
 require('../../styles/fonts/Darwin.css')
 require('../../styles/fonts/TTChocolates.css')
@@ -20,7 +21,8 @@ export default class App extends React.Component {
     this.state = {
       sliderWage: 0,
       selectedFamilyType: "none",
-      selectedCounty: { fips: "41", name: "Oregon" }
+      individuals: 1,
+      selectedCounty: { fips: "41013", name: "Multnomah" }
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
@@ -42,32 +44,44 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus() {
-    let status;
-    let wage = this.state.sliderWage;
+    let wage = this.state.sliderWage
     if (wage < 500) {
       return "moderately insecure"
-    }
-    else if (wage < 1000) {
+    } else if (wage < 1000) {
       return "very insecure"
-    }
-    else if (wage < 1500) {
+    } else if (wage < 1500) {
       return "moderately secure"
-    }
-    else {
+    } else {
       return "very secure"
     }
   }
+
+  getMissingMeals() {
+    let { selectedCounty, sliderWage, individuals } = this.state
+    const FIPS = selectedCounty.fips
+    return calcMealGap(individuals, sliderWage, FIPS)
+  }
+
+  getDayToDayPercent() {
+    let { individuals } = this.state
+
+    const gap = this.getMissingMeals()
+    const totalMeals = individuals * 3 * 30
+    const missingPercentage = 1 - (gap / totalMeals)
+    return missingPercentage * 100
+  }
+
   getIndicatorValue() {
     const sliderPercent = this.props.sliderMax / 100
     return this.state.sliderWage / sliderPercent
   }
 
   isSingleAdult() {
-      return this.state.selectedFamilyType === "single-adult"
+    return this.state.selectedFamilyType === "single-adult"
   }
 
   render() {
-    console.log("state:", this.state)
+
     const marks = {
       0: '$0',
       200: '$200',
@@ -145,11 +159,11 @@ export default class App extends React.Component {
             </h2>
 
             <IndicatorSlider
-              value={this.getIndicatorValue()}
+              value={this.getDayToDayPercent()}
               sections={4}
             />
 
-            <DayToDaySnugget securityStatus={this.getFoodSecurityStatus()} mealsMissed={5}/>
+            <DayToDaySnugget securityStatus={this.getFoodSecurityStatus()} mealsMissed={this.getMissingMeals()}/>
 
           </div>
         </div>
