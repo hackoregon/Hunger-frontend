@@ -74,3 +74,5 @@ node_modules/
 # Notes
 todos.md
 worklog.md
+index.js
+index.js.map
