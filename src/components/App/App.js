@@ -117,12 +117,10 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
-        <HorizontalRule>
-          <h2 className="hr-content">Select a County</h2>
-        </HorizontalRule>
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
+              <h2 className="select-county-header">Select a County</h2>
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
