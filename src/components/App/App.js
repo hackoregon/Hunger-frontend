@@ -36,7 +36,16 @@ export default class App extends React.Component {
   }
 
   _setSelectedFamilyType(fam) {
-    this.setState({ selectedFamilyType: fam })
+    const familyTypeCountMap = {
+      'single-adult': 1,
+      'single-parent': 3,
+      'two-parents': 4,
+    }
+
+    this.setState({
+      selectedFamilyType: fam,
+      individuals: familyTypeCountMap[fam],
+    })
   }
 
   _onSliderChange(value) {
