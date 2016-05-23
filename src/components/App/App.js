@@ -5,6 +5,7 @@ import IndicatorSlider from '../IndicatorSlider/IndicatorSlider'
 import HorizontalRule from '../HorizontalRule/HorizontalRule'
 import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
+import DonutChart from '../DonutChart/DonutChart'
 import counties from '../../fixtures/counties'
 import REHomepageMap from '../re-homepage'
 import { calcMealGap } from './calculators'
@@ -137,7 +138,7 @@ export default class App extends React.Component {
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="select-county-header">Select a County</h2>
+              <h2 className="header select-county-header">Select a County</h2>
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
@@ -163,10 +164,10 @@ export default class App extends React.Component {
         <section className="day-to-day-section container-fluid">
         <div className="row">
           <div className="col-xs-12">
-            <h2 className="text-center">
-            What’s your day-to-day experience putting food on the table?
+            <h2 className="header food-security-header">
+              Food Security Status
             </h2>
-
+            <DonutChart values={[75]}  total={100} labels={["missing meals"]}/>
             <IndicatorSlider
               value={this.getDayToDayPercent()}
               sections={4}
