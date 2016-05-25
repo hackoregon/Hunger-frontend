@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
+import HorizontalRule from '../HorizontalRule/HorizontalRule'
 
 require('./FamilyTypeSelect.css')
 
@@ -23,7 +24,9 @@ export default class FamilyTypeSelect extends React.Component {
 
     return (
       <div className="row family-types-wrapper" onClick={this._onSelect}>
-        <p className="select-family-type-p text-center">Select a Family Type:</p>
+      <HorizontalRule>
+        <span className="hr-content family-type-hr">Select a Family Type</span>
+      </HorizontalRule>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
             <input readOnly checked={selectedType === 'single-adult'} ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
