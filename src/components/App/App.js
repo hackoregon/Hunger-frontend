@@ -30,6 +30,7 @@ export default class App extends React.Component {
     this._onSliderChange = this._onSliderChange.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
+    this.getMapFipsColors = this.getMapFipsColors.bind(this)
   }
 
   _onDropdownSelect(county) {
@@ -53,6 +54,20 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
+  getMapFipsColors() {
+    const randInt = (min, max) => {
+      return Math.floor(Math.random() * (max - min)) + min
+    }
+    const colors = ['#a0f', '#f0a', '#0af', '#a05']
+    const fipsColors = counties
+      .map(c => c.fips)
+      .map(fips => {
+        let obj = {}
+        obj[fips] = randInt(0, colors.length)
+        return obj
+      })
+    return fipsColors
+  }
   getFoodSecurityStatus() {
     let wage = this.state.sliderWage
     if (wage < 500) {
