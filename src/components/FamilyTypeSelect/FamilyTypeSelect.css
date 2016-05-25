@@ -30,6 +30,14 @@
 .family-type-label img {
   max-height: 235px;
 }
+
+.family-type-hr {
+  font-size: 2em;
+  font-weight: lighter;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 /* TODO: Do something less hacky to override Bootstrap styles ? */
 #label-single-adult,
 #label-single-parent,
