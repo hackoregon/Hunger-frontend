@@ -6,8 +6,9 @@ import {
 } from 'diffract';
 
 const colors = [
-    '#E91E63'
-];
+  'rgba(200, 75, 150, 1)',
+  'rgba(200, 75, 150, 0.1)'
+]
 const width = 240;
 const height = 240;
 
@@ -26,11 +27,21 @@ class DonutChart extends Component {
     }
 
     componentWillMount() {
+      const labels = this.props.labels || []
         this.setState({
             total: this.props.total,
             values: [...this.props.values],
             currValue: this.props.values[0],
-            labels: [...this.props.labels]
+            labels: [...labels]
+        });
+    }
+    componentWillReceiveProps(nextProps) {
+      const labels = nextProps.labels || []
+        this.setState({
+            total: nextProps.total,
+            values: [...nextProps.values],
+            currValue: nextProps.values[0],
+            labels: [...labels]
         });
     }
 
@@ -53,10 +64,6 @@ class DonutChart extends Component {
     }
 
     render() {
-        let percent = null || Math.round((this.state.currValue / this.state.total) * 100);
-        let labelPercent = percent
-            ? `${percent}%`
-            : 'by %';
 
         return (
             <div style={{
@@ -67,12 +74,7 @@ class DonutChart extends Component {
                 <Chart width={width} height={height}>
                     <DataSeries data={this.state.values}>
                         <Pie innerRadius={75} outerRadius={80} style={(d, i) => ({fill: this.getColors(i)})}>
-                            <text className="donut-title" textAnchor="middle" x={0} y={0} fontSize={14}>
-                                {this.state.currLabel}
-                            </text>
-                            <text className="donut-subtitle" textAnchor="middle" x={0} y={18} fontSize={10}>
-                                {`${labelPercent}`}
-                            </text>
+                          {this.props.children}
                         </Pie>
                     </DataSeries>
                 </Chart>

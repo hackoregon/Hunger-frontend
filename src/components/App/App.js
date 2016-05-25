@@ -76,8 +76,8 @@ export default class App extends React.Component {
     let { individuals } = this.state
 
     const gap = this.getMissingMeals()
-    const totalMeals = individuals * 3 * 30
-    const missingPercentage = 1 - (gap / totalMeals)
+    const totalMealsGoal = individuals * 3 * 30
+    const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
   }
 
@@ -102,6 +102,8 @@ export default class App extends React.Component {
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
     const dollarFormatter = (val) => ("$" + val)
+    const totalMealsGoal = this.state.individuals * 3 * 30
+    const mealValues = [this.getMissingMeals(), totalMealsGoal]
 
     return (
       <div>
@@ -167,7 +169,9 @@ export default class App extends React.Component {
             <h2 className="header food-security-header">
               Food Security Status
             </h2>
-            <DonutChart values={[75]}  total={100} labels={["missing meals"]}/>
+            <DonutChart values={mealValues}  total={totalMealsGoal}>
+              <image xlinkHref="src/assets/applecropped.png" height="76" width="76" x="-38" y="-42" />
+            </DonutChart>
             <IndicatorSlider
               value={this.getDayToDayPercent()}
               sections={4}
