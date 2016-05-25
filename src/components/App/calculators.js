@@ -52,10 +52,6 @@ function moneyAfterHousing(individuals, income, fips) {
   return result
 }
 
-function housingSecurity() {
-
-}
-
 function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
   /*
@@ -71,8 +67,6 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
   // return best and worst case scenarios
 
-  // let schoolMeals = schoolMeals
-  // let costOfMeals = costOfMeals
   let monthlyMealCost = 0
   let schoolMealBenefit = 0
   let incomeAfterHousingCost = 0
@@ -94,7 +88,6 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
   incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips))
   let snap = snapCalculator(individuals, income, fips)
-  // let cost_of_meal = costOfMeals[costOfMeals['fips'] === fips].cost_per_meal
 
   let incomeRemainder = monthlyMealCost - (incomeAfterHousingCost + snap + schoolMealBenefit)
 
@@ -117,4 +110,3 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 export {
   calcMealGap,
 }
-
