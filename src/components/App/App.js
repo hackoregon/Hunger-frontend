@@ -7,7 +7,7 @@ import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import counties from '../../fixtures/counties'
-import REHomepageMap from '../re-homepage'
+import MapView from '../MapView/MapView'
 import { calcMealGap } from './calculators'
 
 require('../../styles/fonts/Darwin.css')
@@ -220,14 +220,8 @@ export default class App extends React.Component {
                 The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
               </p>
               <div className="row map-row">
-                <REHomepageMap
-                selectCounty={this.state._onDropdownSelect}
-                selectedCounty={this.state.selectedCounty}
-                sliderWage={this.state.sliderWage}
-                />
-                <div className="col-xs-12 col-sm-6 map-wrapper housing-map-wrapper">
-                  <h3 className="text-center">Housing Map</h3>
-                  <img src="src/assets/HO_map_color.svg" className="img-responsive center-block" alt="map of statewide housing access" />
+                <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
+                  <MapView defaultColor={["#a0f"]} />
                 </div>
               </div>
               <p>
