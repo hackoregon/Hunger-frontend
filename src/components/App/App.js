@@ -58,14 +58,15 @@ export default class App extends React.Component {
     const randInt = (min, max) => {
       return Math.floor(Math.random() * (max - min)) + min
     }
+    const randomColor = () => colors[randInt(0, colors.length)]
     const colors = ['#a0f', '#f0a', '#0af', '#a05']
     const fipsColors = counties
       .map(c => c.fips)
-      .map(fips => {
-        let obj = {}
-        obj[fips] = randInt(0, colors.length)
-        return obj
-      })
+      .reduce((colorObj, fips) => {
+        colorObj[fips] = randomColor()
+        return colorObj
+      }, {})
+      console.log(fipsColors)
     return fipsColors
   }
   getFoodSecurityStatus() {
@@ -240,7 +241,11 @@ export default class App extends React.Component {
               </p>
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
-                  <MapView defaultColor={["#a0f"]} />
+                  <MapView
+                    defaultColor={["#a0f"]}
+                    fipsColors={this.getMapFipsColors()}
+                    selectedCounty={this.state.selectedCounty}
+                  />
                 </div>
               </div>
               <p>
