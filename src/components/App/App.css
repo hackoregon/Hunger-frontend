@@ -1,0 +1,19 @@
+/* SLIDER (main styles in rc-slider.scss) */
+.slider-section {
+  margin-bottom: 1.5em;
+}
+.slider-with-header {
+  margin: 0 auto;
+  width: 90%;
+}
+.slider-self-wrapper {
+  width: 100%;
+  background-color: #fff;
+  padding: 8em 3em;
+  border: 1px solid #000;
+}
+
+/* FOOD SECURITY STATUS */
+.food-security-header {
+  font-size: 3.4em;
+}
