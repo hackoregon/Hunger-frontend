@@ -12,3 +12,8 @@
   padding: 8em 3em;
   border: 1px solid #000;
 }
+
+/* FOOD SECURITY STATUS */
+.food-security-header {
+  font-size: 3.4em;
+}

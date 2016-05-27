@@ -186,9 +186,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
-        <HorizontalRule>
-          <img className="hr-content hr-image" src="src/assets/applecropped.png" />
-        </HorizontalRule>
+        <HorizontalRule small={true} />
         <section className="day-to-day-section container-fluid">
         <div className="row">
           <div className="col-xs-12">
