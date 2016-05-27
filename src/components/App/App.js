@@ -13,6 +13,7 @@ import { calcMealGap } from './calculators'
 require('../../styles/fonts/Darwin.css')
 require('../../styles/fonts/TTChocolates.css')
 require('../../styles/main.css')
+require('./App.css')
 require('../../styles/rc-slider.css')
 require('../../styles/react-dropdown.css')
 
@@ -162,8 +163,16 @@ export default class App extends React.Component {
                 onChange={this._onDropdownSelect}
               />
               <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.selectedFamilyType} />
-              <div className="slider-wrapper center-block">
-                <Slider
+            </div>
+          </div>
+        </section>
+        <section className="slider-section container-fluid">
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="slider-with-header">
+                <h2 className="header slider-header">Slide to select monthly income</h2>
+                <div className="slider-self-wrapper">
+                  <Slider
                   max={this.props.sliderMax}
                   tipTransitionName="rc-slider-tooltip-zoom-down"
                   tipFormatter={dollarFormatter}
@@ -171,7 +180,8 @@ export default class App extends React.Component {
                   step={2}
                   dots={false}
                   onChange={this._onSliderChange}
-                />
+                  />
+                </div>
               </div>
             </div>
           </div>

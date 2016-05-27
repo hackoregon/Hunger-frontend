@@ -182,9 +182,3 @@ footer {
   margin-top: -0.15em;
   border-bottom: 8px solid black;
 }
-
-/* SLIDER (main styles in rc-slider.scss) */
-.slider-wrapper {
-  width: 90%;
-  margin-bottom: 1.5em;
-}
