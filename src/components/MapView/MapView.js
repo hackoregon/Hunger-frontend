@@ -5,31 +5,37 @@ class MapView extends React.Component {
     super()
     this.applyColors = this.applyColors.bind(this)
   }
-  applyColors(colors) {
-    let svg = document.getElementById('or-counties-svg')
-    console.log(svg.contentDocument)
-    let counties = svg.contentDocument.getElementsByClassName('map-county')
-    counties = [].slice.call(counties)
-    const isDefault = colors.length === 1
-    const setFill = isDefault ?
-      (c) => { c.setAttribute("fill", colors[0]) } :
-      (c) => { c.setAttribute("fill", colors[c.id]) }
-    for (let c of counties) {
-      setFill(c)
+
+  applyColors(props) {
+    const { selectedCounty, fipsColors, defaultColor } = props
+    const originalColor = "#669776"
+    const colors = fipsColors || defaultColor
+    console.log("colors: ", colors)
+    if (colors) {
+      let svg = this.refs['map-svg']
+      let counties = svg.contentDocument.getElementsByClassName('map-county')
+      // convert HTML Collection to Array
+      counties = [].slice.call(counties)
+      const isDefault = colors.length === 1
+      const setFill = isDefault ?
+        (c) => { c.setAttribute("fill", colors[0]) } :
+        (c) => { c.setAttribute("fill", colors[c.id]) }
+      for (let c of counties) {
+        setFill(c)
+      }
     }
   }
 
-  componentDidMount() {
-    let colors = this.props.fipsColors || this.props.defaultColor
-    if (colors) {
-      this.applyColors(colors)
-    }
+  componentWillReceiveProps(nextProps) {
+    this.applyColors(nextProps)
   }
 
   render() {
     return (
       <div className="mapview-root">
       <object
+        onLoad={() => { this.applyColors(this.props) }}
+        ref="map-svg"
         id="or-counties-svg"
         type="image/svg+xml"
         data="src/assets/OR_Counties.svg"
@@ -40,10 +46,7 @@ class MapView extends React.Component {
 
 }
 MapView.propTypes = {
-  fipsColors: PropTypes.arrayOf(PropTypes.shape({
-    // fips: color string
-    fips: PropTypes.string.isRequired
-  })),
+  fipsColors: PropTypes.object,
   defaultColor: PropTypes.arrayOf(
     (arr, key, componentName, location, propFullName) => {
       if (!(arr.length === 1 && typeof arr[0] === 'string')) {
