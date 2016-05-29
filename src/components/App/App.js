@@ -10,8 +10,9 @@ import counties from '../../fixtures/counties'
 import MapView from '../MapView/MapView'
 import { calcMealGap } from './calculators'
 
-require('../../styles/fonts/Darwin.css')
-require('../../styles/fonts/TTChocolates.css')
+// require('../../styles/fonts/Darwin.css')
+// require('../../styles/fonts/TTChocolates.css')
+require('bootstrap/dist/css/bootstrap.css')
 require('../../styles/main.css')
 require('./App.css')
 require('../../styles/rc-slider.css')
