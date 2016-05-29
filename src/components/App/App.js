@@ -110,13 +110,14 @@ export default class App extends React.Component {
 
   render() {
 
-    const marks = {
+    const sliderMarks = {
       0: '$0',
       200: '$200',
       700: '$700',
       1200: '$1200',
       2000: '$2000'
     }
+
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const defaultOption = options[0]
     const dollarFormatter = (val) => ("$" + val)
@@ -177,7 +178,7 @@ export default class App extends React.Component {
                   max={this.props.sliderMax}
                   tipTransitionName="rc-slider-tooltip-zoom-down"
                   tipFormatter={dollarFormatter}
-                  marks={marks}
+                  marks={sliderMarks}
                   step={2}
                   dots={false}
                   onChange={this._onSliderChange}
@@ -197,11 +198,12 @@ export default class App extends React.Component {
             <DonutChart values={mealValues}  total={totalMealsGoal}>
               <image xlinkHref="src/assets/applecropped.png" height="76" width="76" x="-38" y="-42" />
             </DonutChart>
-            <IndicatorSlider
-              value={this.getDayToDayPercent()}
-              sections={4}
-            />
-
+            <div className="indicator-wrapper">
+              <IndicatorSlider
+                value={this.getDayToDayPercent()}
+                sections={4}
+              />
+            </div>
             <DayToDaySnugget securityStatus={this.getFoodSecurityStatus()} mealsMissed={this.getMissingMeals()}/>
 
           </div>
@@ -221,10 +223,12 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
-          <IndicatorSlider
-            value={this.getIndicatorValue()}
-            sections={4}
-          />
+          <div className="indicator-wrapper">
+            <IndicatorSlider
+              value={this.getIndicatorValue()}
+              sections={4}
+            />
+          </div>
         </section>
         <section className="housing container-fluid">
           <div className="row">
