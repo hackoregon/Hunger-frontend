@@ -1,4 +1,4 @@
-const schoolMeals = {
+export const schoolMeals = {
   "41001": {
     "meal_supplement_in_dollar_2014": 257.84
   },
@@ -109,7 +109,7 @@ const schoolMeals = {
   }
 }
 
-const costOfMeals = {
+export const costOfMeals = {
   "41001": {
     "cost_per_meal": 2.93,
     "monthly_cost_one": 263.7,
@@ -328,7 +328,7 @@ const costOfMeals = {
   }
 }
 
-const housing = {
+export const housing = {
   "41001": {
     "median_housing_one": 514,
     "median_housing_three": 654,
@@ -510,7 +510,7 @@ const housing = {
     "median_housing_four": 864.81
   }
 }
-export {
+export default {
   schoolMeals,
   costOfMeals,
   housing,
