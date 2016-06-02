@@ -7,8 +7,9 @@ import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import counties from '../../fixtures/counties'
+import data from '../../fixtures/data'
 import MapView from '../MapView/MapView'
-import { calcMealGap } from './calculators'
+import { calcMealGap, getRemainingIncome } from './calculators'
 
 // require('../../styles/fonts/Darwin.css')
 // require('../../styles/fonts/TTChocolates.css')
@@ -57,30 +58,65 @@ export default class App extends React.Component {
   }
 
   getMapFipsColors() {
-    const randInt = (min, max) => {
-      return Math.floor(Math.random() * (max - min)) + min
-    }
-    const randomColor = () => colors[randInt(0, colors.length)]
-    const colors = ['#a0f', '#f0a', '#0af', '#a05']
+    const colors = ['#0af', '#a0f', '#f0a', '#a05']
     const fipsColors = counties
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
-        colorObj[fips] = randomColor()
+        console.log("getFoodSecurityStatus", this.getFoodSecurityStatus())
+        colorObj[fips] = colors[this.getFoodSecurityStatus() - 1]
         return colorObj
       }, {})
       console.log(fipsColors)
     return fipsColors
   }
   getFoodSecurityStatus() {
-    let wage = this.state.sliderWage
-    if (wage < 500) {
-      return "moderately insecure"
-    } else if (wage < 1000) {
-      return "very insecure"
-    } else if (wage < 1500) {
-      return "moderately secure"
-    } else {
-      return "very secure"
+    const RATINGS = {
+      "secure": 4,
+      "moderately insecure": 3,
+      "highly insecure": 2,
+      "extremely insecure": 1
+    }
+    const { individuals, sliderWage, selectedCounty } = this.state
+    const mealCost = data.costOfMeals[selectedCounty.fips].cost_per_meal
+    const income = getRemainingIncome(individuals, sliderWage, selectedCounty.fips)
+    const canAfford = Math.round(income / mealCost)
+    switch (individuals) {
+      case 1:
+        if (canAfford > 105) {
+          return RATINGS['secure']
+        } else if (canAfford > 73.5 && canAfford <= 105) {
+          return RATINGS['moderately insecure']
+        } else if (canAfford > 42 && canAfford <= 73.5) {
+          return RATINGS['highly insecure']
+        } else if (canAfford <= 42) {
+          return RATINGS['extremely insecure']
+        } else {
+          throw new Error('oops')
+        }
+      case 3:
+        if (canAfford > 315) {
+          return RATINGS['secure']
+        } else if (canAfford >= 220.5 && canAfford <= 315) {
+          return RATINGS['moderately insecure']
+        } else if (canAfford >= 126 && canAfford < 220.5) {
+          return RATINGS['highly insecure']
+        } else if (canAfford < 126) {
+          return RATINGS['extremely insecure']
+        }
+        break
+      case 4:
+        if (canAfford > 420) {
+          return RATINGS['secure']
+        } else if (canAfford >= 294 && canAfford <= 420) {
+          return RATINGS['moderately insecure']
+        } else if (canAfford >= 168 && canAfford < 294) {
+          return RATINGS['highly insecure']
+        } else if (canAfford < 168) {
+          return RATINGS['extremely insecure']
+        }
+        break
+      default:
+        throw new Error('invalid number of individuals')
     }
   }
 
