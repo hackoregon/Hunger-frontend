@@ -52,21 +52,7 @@ function moneyAfterHousing(individuals, income, fips) {
   return result
 }
 
-function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
-
-  /*
-  User inputs family type (1,3,4), income, a fips.
-  Currently, I have bestCase=True set as the default. This means the algorithm will return the number of
-  'meals short' during the school year. It still accounts for whether or not a county offers a third meal.
-  If bestCase is set to True, the algorithm returns the number of 'meals short' without any supplemental
-  programming at all.
-
-  If you would prefer to see the dollar amount short instead of the meals short then set meal=False in the
-  arguments. This will return the amount of money you would need to cover a monthly food bill.
-  */
-
-  // return best and worst case scenarios
-
+function getRemainingIncome(individuals, income, fips, bestCase = true) {
   let monthlyMealCost = 0
   let schoolMealBenefit = 0
   let incomeAfterHousingCost = 0
@@ -91,13 +77,29 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
   let incomeRemainder = monthlyMealCost - (incomeAfterHousingCost + snap + schoolMealBenefit)
 
-  if (!meal) {
-    if (incomeRemainder >= 0) {
-      return incomeRemainder
-    }
-
+  if (incomeRemainder >= 0) {
+    return incomeRemainder
+  }
+  else {
     return 0
   }
+}
+function calcMealGap(individuals, income, fips) {
+
+  /*
+  User inputs family type (1,3,4), income, a fips.
+  Currently, I have bestCase=True set as the default. This means the algorithm will return the number of
+  'meals short' during the school year. It still accounts for whether or not a county offers a third meal.
+  If bestCase is set to True, the algorithm returns the number of 'meals short' without any supplemental
+  programming at all.
+
+  If you would prefer to see the dollar amount short instead of the meals short then set meal=false in the
+  arguments. This will return the amount of money you would need to cover a monthly food bill.
+  */
+
+  // return best and worst case scenarios
+
+  const incomeRemainder = getRemainingIncome(individuals, income, fips)
 
   if (incomeRemainder > 0) {
     let mealGap = individuals * 3 * 30  - incomeRemainder / costOfMeals[fips].cost_per_meal
@@ -109,4 +111,5 @@ function calcMealGap(individuals, income, fips, bestCase = true, meal = true) {
 
 export {
   calcMealGap,
+  getRemainingIncome
 }
