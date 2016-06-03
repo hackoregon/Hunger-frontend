@@ -58,27 +58,29 @@ export default class App extends React.Component {
   }
 
   getMapFipsColors() {
+    let status
     const colors = ['#0af', '#a0f', '#f0a', '#a05']
     const fipsColors = counties
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
-        console.log("getFoodSecurityStatus", this.getFoodSecurityStatus())
-        colorObj[fips] = colors[this.getFoodSecurityStatus() - 1]
+        if (fips !== 41) {
+          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips)
+          colorObj[fips] = colors[status - 1]
+        }
         return colorObj
       }, {})
-      console.log(fipsColors)
     return fipsColors
   }
-  getFoodSecurityStatus() {
+
+  getFoodSecurityStatus(individuals, wage, fips) {
     const RATINGS = {
       "secure": 4,
       "moderately insecure": 3,
       "highly insecure": 2,
       "extremely insecure": 1
     }
-    const { individuals, sliderWage, selectedCounty } = this.state
-    const mealCost = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const income = getRemainingIncome(individuals, sliderWage, selectedCounty.fips)
+    const mealCost = data.costOfMeals[fips].cost_per_meal
+    const income = getRemainingIncome(individuals, wage, fips)
     const canAfford = Math.round(income / mealCost)
     switch (individuals) {
       case 1:
@@ -159,7 +161,7 @@ export default class App extends React.Component {
     const dollarFormatter = (val) => ("$" + val)
     const totalMealsGoal = this.state.individuals * 3 * 30
     const mealValues = [this.getMissingMeals(), totalMealsGoal]
-
+    const { individuals, sliderWage, selectedCounty } = this.state
     return (
       <div>
         <header>
@@ -240,7 +242,9 @@ export default class App extends React.Component {
                 sections={4}
               />
             </div>
-            <DayToDaySnugget securityStatus={this.getFoodSecurityStatus()} mealsMissed={this.getMissingMeals()}/>
+            <DayToDaySnugget
+            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips)}
+            mealsMissed={this.getMissingMeals()}/>
 
           </div>
         </div>

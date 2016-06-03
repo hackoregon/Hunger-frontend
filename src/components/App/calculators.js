@@ -75,14 +75,10 @@ function getRemainingIncome(individuals, income, fips, bestCase = true) {
   incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips))
   let snap = snapCalculator(individuals, income, fips)
 
-  let incomeRemainder = monthlyMealCost - (incomeAfterHousingCost + snap + schoolMealBenefit)
+  let incomeRemainder = Math.round(monthlyMealCost - (incomeAfterHousingCost + snap + schoolMealBenefit))
 
-  if (incomeRemainder >= 0) {
-    return incomeRemainder
-  }
-  else {
-    return 0
-  }
+return Math.max(0, incomeRemainder)
+
 }
 function calcMealGap(individuals, income, fips) {
 
