@@ -1,3 +1,11 @@
+/* HEADER */
+.ho-logo-gray {
+  max-height: 50px;
+}
+.ho-logo-wrapper {
+  padding: 10px 10px 10px 30px;
+}
+
 /* SLIDER (main styles in rc-slider.scss) */
 .slider-section {
   margin-bottom: 1.5em;
