@@ -165,6 +165,7 @@ export default class App extends React.Component {
     return (
       <div>
         <header>
+
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
@@ -174,7 +175,11 @@ export default class App extends React.Component {
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="#">Hack Oregon Logo Here</a>
+                <div className="ho-logo-wrapper pull-left">
+                  <a href="http://www.hackoregon.org/">
+                    <img className="img-responsive ho-logo-gray" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
+                  </a>
+                </div>
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
@@ -315,7 +320,7 @@ export default class App extends React.Component {
           </div>
         </section>
         <footer>
-          <img src="src/assets/HO_logo.png" className="img-responsive center-block ho-logo" alt="The Hack Oregon logo" />
+          <img src="src/assets/HO_logo_gray.png" className="img-responsive center-block ho-logo-gray" alt="The Hack Oregon logo" />
         </footer>
       </div>
     )
