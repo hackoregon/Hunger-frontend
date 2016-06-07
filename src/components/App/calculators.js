@@ -53,9 +53,9 @@ function moneyAfterHousing(individuals, income, fips) {
 }
 
 function getRemainingIncome(individuals, income, fips, bestCase = true) {
-  let monthlyMealCost = 0
-  let schoolMealBenefit = 0
-  let incomeAfterHousingCost = 0
+  let monthlyMealCost
+  let schoolMealBenefit
+  let incomeAfterHousingCost
 
   if (individuals === 1) {
     monthlyMealCost = costOfMeals[fips].monthly_cost_one
@@ -75,11 +75,14 @@ function getRemainingIncome(individuals, income, fips, bestCase = true) {
   incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips))
   let snap = snapCalculator(individuals, income, fips)
 
-  let incomeRemainder = Math.round(monthlyMealCost - (incomeAfterHousingCost + snap + schoolMealBenefit))
+  let incomeRemainder = Math.round(incomeAfterHousingCost + snap + schoolMealBenefit - monthlyMealCost)
 
-return Math.max(0, incomeRemainder)
+  const incomeRemaining = Math.max(0, incomeRemainder)
+  // console.log("remaining income for", fips, incomeRemaining)
 
+  return incomeRemaining
 }
+
 function calcMealGap(individuals, income, fips) {
 
   /*
@@ -98,7 +101,7 @@ function calcMealGap(individuals, income, fips) {
   const incomeRemainder = getRemainingIncome(individuals, income, fips)
 
   if (incomeRemainder > 0) {
-    let mealGap = individuals * 3 * 30  - incomeRemainder / costOfMeals[fips].cost_per_meal
+    let mealGap = individuals * 3 * 37 - incomeRemainder / costOfMeals[fips].cost_per_meal
     return Math.round(mealGap)
   }
 
