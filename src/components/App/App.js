@@ -158,7 +158,7 @@ export default class App extends React.Component {
     }
 
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
-    const defaultOption = options[0]
+    const dropdownCounty = { value: this.state.selectedCounty.fips, label: this.state.selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
     const mealValues = [this.getMissingMeals(), totalMealsGoal]
@@ -207,6 +207,7 @@ export default class App extends React.Component {
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
+                value={dropdownCounty}
               />
               <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.selectedFamilyType} />
             </div>
