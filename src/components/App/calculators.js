@@ -1,4 +1,5 @@
 import { schoolMeals, costOfMeals, housing } from '../../fixtures/data'
+import { MEAL_PERIOD_DAYS } from '../../fixtures/constants'
 
 function snapCalculator(individuals, income, fips) {
   let limit, shelter, maxBenefit
@@ -30,10 +31,8 @@ function snapCalculator(individuals, income, fips) {
   let netIncome = adjustedIncome - excessShelterDeduction
   let snapLoss = netIncome * 0.3
   let snapBenefit = maxBenefit - snapLoss
-  if (snapBenefit <= 0) {
-    snapBenefit = 0
-  }
-  return snapBenefit
+
+  return Math.max(0, snapBenefit)
 }
 
 function moneyAfterHousing(individuals, income, fips) {
@@ -49,7 +48,7 @@ function moneyAfterHousing(individuals, income, fips) {
     throw new Error("Invalid number of individuals")
   }
 
-  return result
+  return Math.max(0, result)
 }
 
 function getRemainingIncome(individuals, income, fips, bestCase = true) {
@@ -78,12 +77,11 @@ function getRemainingIncome(individuals, income, fips, bestCase = true) {
   let incomeRemainder = Math.round(incomeAfterHousingCost + snap + schoolMealBenefit - monthlyMealCost)
 
   const incomeRemaining = Math.max(0, incomeRemainder)
-  // console.log("remaining income for", fips, incomeRemaining)
 
   return incomeRemaining
 }
 
-function calcMealGap(individuals, income, fips) {
+function calcMealGap(individuals, income, fips, meal = true) {
 
   /*
   User inputs family type (1,3,4), income, a fips.
@@ -100,12 +98,12 @@ function calcMealGap(individuals, income, fips) {
 
   const incomeRemainder = getRemainingIncome(individuals, income, fips)
 
-  if (incomeRemainder > 0) {
-    let mealGap = individuals * 3 * 37 - incomeRemainder / costOfMeals[fips].cost_per_meal
+  if (!meal) {
+    let mealGap = (individuals * 3 * MEAL_PERIOD_DAYS) - (incomeRemainder / costOfMeals[fips].cost_per_meal)
     return Math.round(mealGap)
+  } else {
+    return incomeRemainder
   }
-
-  return 0
 }
 
 export {
