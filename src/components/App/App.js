@@ -184,7 +184,6 @@ export default class App extends React.Component {
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
                     <li><a href="#">See Our Research</a></li>
-                    <li className="hidden-xs" role="separator"><span className="glyphicon glyphicon-stop" aria-hidden="true"></span></li>
                     <li><a href="#">Do Something</a></li>
                   </ul>
                </div>
@@ -192,11 +191,13 @@ export default class App extends React.Component {
           </nav>
         </header>
         <section className="mission-statement container-fluid">
-          <h1 className="main-title">Oregon Hunger Equation</h1>
-          <div className="row ">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+          <div className="row">
+            <div className="col-xs-12">
+              <h1 className="main-title">Oregon Hunger Equation</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
           </div>
         </section>
         <section className="family-and-county-section container-fluid">

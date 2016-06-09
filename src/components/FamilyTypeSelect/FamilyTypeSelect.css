@@ -31,6 +31,18 @@
   max-height: 235px;
 }
 
+@media only screen and (max-width: 480px) {
+  .family-type-div {
+    margin-bottom: 0;
+  }
+  .family-type-div p {
+    font-size: 1.25em;
+  }
+  .family-type-label img {
+    max-height: 100px;
+  }
+}
+
 .family-type-hr {
   font-size: 2em;
   font-weight: lighter;
