@@ -6,7 +6,7 @@
   padding: 10px 10px 10px 30px;
 }
 
-/* SLIDER (main styles in rc-slider.scss) */
+/* SLIDER (main styles in rc-slider.css) */
 .slider-section {
   margin-bottom: 1.5em;
 }
@@ -21,7 +21,19 @@
   border: 1px solid #000;
 }
 
+@media only screen and (max-width: 480px) {
+  .slider-self-wrapper {
+    padding: 2em 1em;
+  }
+}
+
 /* FOOD SECURITY STATUS */
 .food-security-header {
   font-size: 3.4em;
+}
+
+@media only screen and (max-width: 480px) {
+  .food-security-header {
+    font-size: 2.4em;
+  }
 }
