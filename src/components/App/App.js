@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
   getMapFipsColors() {
     let status
-    const colors = ['#0af', '#a0f', '#f0a', '#a05']
+    const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
