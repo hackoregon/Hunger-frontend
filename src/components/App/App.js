@@ -11,7 +11,10 @@ import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
+import jQuery from 'jquery'
 
+window.jQuery = jQuery
+require('bootstrap')
 require('bootstrap/dist/css/bootstrap.css')
 require('../../styles/main.css')
 require('./App.css')
@@ -178,7 +181,7 @@ export default class App extends React.Component {
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
                     <li className="nav-item"><a href="#">See Our Research</a></li>
-                    <li className="nav-item-separator"><span></span></li>
+                    <li className="nav-item-separator hidden-xs"><span></span></li>
                     <li className="nav-item"><a href="#">Do Something</a></li>
                   </ul>
                </div>
