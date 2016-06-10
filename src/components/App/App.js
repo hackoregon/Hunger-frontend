@@ -8,7 +8,7 @@ import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
-import { MEAL_PERIOD_DAYS } from '../../fixtures/constants'
+import { RATINGS, MEAL_PERIOD_DAYS } from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 
@@ -74,12 +74,6 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(individuals, wage, fips) {
-    const RATINGS = {
-      "secure": 4,
-      "moderately insecure": 3,
-      "highly insecure": 2,
-      "extremely insecure": 1
-    }
     const mealCost = data.costOfMeals[fips].cost_per_meal
     const income = getRemainingIncome(individuals, wage, fips)
     const canAfford = Math.round(income / mealCost)
@@ -302,7 +296,6 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    defaultColor={["#a0f"]}
                     fipsColors={this.getMapFipsColors()}
                     selectedCounty={this.state.selectedCounty}
                   />
