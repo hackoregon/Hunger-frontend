@@ -1,7 +1,6 @@
 /* GLOBAL STYLES */
 body {
-  font-family: 'TTChocolates', sans-serif;
-  /*font-weight: 300;*/
+  font-family: 'Raleway', sans-serif;
   background-color: #fbfaf0;
 }
 
@@ -12,7 +11,6 @@ section {
 
 p {
   font-size: 2.0em;
-  font-weight: lightest;
   margin: 0;
   text-indent: 1em;
   color: #656565;
@@ -26,7 +24,7 @@ p {
   max-width: 100%;
   margin-top: 15px;
   margin-bottom: 10px;
-  font-family: 'Darwin', sans-serif;
+  font-family: 'Signika', sans-serif;
 }
 
 @media only screen and (max-width: 480px) {

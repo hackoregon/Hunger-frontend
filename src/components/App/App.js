@@ -12,8 +12,6 @@ import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 
-// require('../../styles/fonts/Darwin.css')
-// require('../../styles/fonts/TTChocolates.css')
 require('bootstrap/dist/css/bootstrap.css')
 require('../../styles/main.css')
 require('./App.css')
@@ -298,7 +296,6 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    defaultColor={["#a0f"]}
                     fipsColors={this.getMapFipsColors()}
                     selectedCounty={this.state.selectedCounty}
                   />
