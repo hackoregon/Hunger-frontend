@@ -7,7 +7,9 @@ const RATINGS = {
   "extremely insecure": 1
 }
 
-export default {
-  RATINGS,
+const exports = {
   MEAL_PERIOD_DAYS,
+  RATINGS
 }
+
+export default exports

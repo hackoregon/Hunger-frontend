@@ -8,7 +8,7 @@ import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
-import { RATINGS, MEAL_PERIOD_DAYS } from '../../fixtures/constants'
+import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 
@@ -74,6 +74,7 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(individuals, wage, fips) {
+    const { RATINGS } = constants
     const mealCost = data.costOfMeals[fips].cost_per_meal
     const income = getRemainingIncome(individuals, wage, fips)
     const canAfford = Math.round(income / mealCost)
@@ -154,6 +155,7 @@ export default class App extends React.Component {
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const dropdownCounty = { value: this.state.selectedCounty.fips, label: this.state.selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
+    const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
     const mealValues = [this.getMissingMeals(), totalMealsGoal]
     const { individuals, sliderWage, selectedCounty } = this.state

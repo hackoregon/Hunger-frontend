@@ -1,5 +1,7 @@
 import { schoolMeals, costOfMeals, housing } from '../../fixtures/data'
-import { MEAL_PERIOD_DAYS } from '../../fixtures/constants'
+import constants from '../../fixtures/constants'
+
+const { MEAL_PERIOD_DAYS } = constants
 
 function snapCalculator(individuals, income, fips) {
   let limit, shelter, maxBenefit
