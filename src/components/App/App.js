@@ -12,8 +12,6 @@ import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 
-// require('../../styles/fonts/Darwin.css')
-// require('../../styles/fonts/TTChocolates.css')
 require('bootstrap/dist/css/bootstrap.css')
 require('../../styles/main.css')
 require('./App.css')
