@@ -177,8 +177,9 @@ export default class App extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li><a href="#">See Our Research</a></li>
-                    <li><a href="#">Do Something</a></li>
+                    <li className="nav-item"><a href="#">See Our Research</a></li>
+                    <li className="nav-item-separator"><span></span></li>
+                    <li className="nav-item"><a href="#">Do Something</a></li>
                   </ul>
                </div>
              </div>

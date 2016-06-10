@@ -6,6 +6,9 @@
   padding: 10px 10px 10px 30px;
 }
 
+.nav-item {
+  font-size: 1.4em;
+}
 /* SLIDER (main styles in rc-slider.css) */
 .slider-section {
   margin-bottom: 1.5em;
