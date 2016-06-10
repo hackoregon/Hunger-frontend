@@ -39,8 +39,17 @@ p {
   z-index: 1;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-nav > li > a {
   color: #5b5b5b;
+  line-height: normal;
+}
+
+.nav-item-separator span {
+  display: inline-block;
+  height: 10px;
+  width: 9px;
+  margin-bottom: -17px;
+  background-color: #5b5b5b;
 }
 
 .navbar-default .glyphicon-stop {
