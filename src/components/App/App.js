@@ -158,7 +158,7 @@ export default class App extends React.Component {
     const dollarFormatter = (val) => ("$" + val)
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const mealValues = [this.getMissingMeals(), totalMealsGoal]
+    const mealValues = [Math.max(0, this.getMissingMeals()), totalMealsGoal]
     const { individuals, sliderWage, selectedCounty } = this.state
     return (
       <div>
