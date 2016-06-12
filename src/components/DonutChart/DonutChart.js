@@ -5,6 +5,8 @@ import {
     Pie
 } from 'diffract'
 
+require('./DonutChart.css')
+
 const colors = [
   'rgba(200, 75, 150, 1)',
   'rgba(200, 75, 150, 0.2)'
@@ -64,15 +66,17 @@ class DonutChart extends Component {
   }
 
   render() {
+    let { costPerMeal, mealsShort } = this.props
     return (
-      <div style={{
+      <div className="donut-chart-root" style={{
         display: 'flex',
         flexFlow: 'row nowrap',
         justifyContent: 'space-around'
       }}>
         <p className="donut-cost-of-meal-text">
-          The cost of a meal in your county is
-          <span className="donut-cost-of-meal-cost">{this.props.costPerMeal}</span>
+          The cost of a meal in your county is <span className="donut-dynamic-text donut-cost-of-meal-cost">
+          ${costPerMeal}
+          </span>
         </p>
         <Chart width={width} height={height}>
           <DataSeries data={this.state.values}>
@@ -82,21 +86,24 @@ class DonutChart extends Component {
           </DataSeries>
         </Chart>
         <p className="donut-meals-short-text">
-          You are <span className="donut-meals-short-meals">{this.props.mealsShort}</span>
-          meals short this month
+          You are <span className="donut-dynamic-text donut-meals-short-meals">{mealsShort}</span> meals short this month
         </p>
       </div>
     )
   }
 }
-
+DonutChart.defaultProps = {
+  costPerMeal: '???',
+  mealsShort: '??'
+}
 DonutChart.propTypes = {
   total: PropTypes.number.isRequired,
   values: PropTypes.array.isRequired,
   currValue: PropTypes.number,
   labels: PropTypes.array,
-  mealsShort: PropTypes.number.isRequired,
-  costPerMeal: PropTypes.number.isRequired,
+  mealsShort: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  costPerMeal: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  children: PropTypes.element,
 }
 
 export default DonutChart
