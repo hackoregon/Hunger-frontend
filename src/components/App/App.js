@@ -12,6 +12,7 @@ import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 import jQuery from 'jquery'
+import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
@@ -121,8 +122,13 @@ export default class App extends React.Component {
 
   getMissingMeals() {
     let { selectedCounty, sliderWage, individuals } = this.state
+    const { MEAL_PERIOD_DAYS } = constants
     const FIPS = selectedCounty.fips
-    return calcMealGap(individuals, sliderWage, FIPS)
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const missingMeals = calcMealGap(individuals, sliderWage, FIPS)
+    chai.assert(
+      missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
+    return missingMeals
   }
 
   getDayToDayPercent() {
