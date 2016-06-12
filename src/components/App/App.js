@@ -12,6 +12,7 @@ import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { calcMealGap, getRemainingIncome } from './calculators'
 import jQuery from 'jquery'
+import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
@@ -121,8 +122,13 @@ export default class App extends React.Component {
 
   getMissingMeals() {
     let { selectedCounty, sliderWage, individuals } = this.state
+    const { MEAL_PERIOD_DAYS } = constants
     const FIPS = selectedCounty.fips
-    return calcMealGap(individuals, sliderWage, FIPS)
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const missingMeals = calcMealGap(individuals, sliderWage, FIPS)
+    chai.assert(
+      missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
+    return missingMeals
   }
 
   getDayToDayPercent() {
@@ -153,13 +159,15 @@ export default class App extends React.Component {
       2000: '$2000'
     }
 
+    const { individuals, sliderWage, selectedCounty } = this.state
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
-    const dropdownCounty = { value: this.state.selectedCounty.fips, label: this.state.selectedCounty.name }
+    const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
     const { MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const mealValues = [this.getMissingMeals(), totalMealsGoal]
-    const { individuals, sliderWage, selectedCounty } = this.state
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const missingMeals = this.getMissingMeals()
+    const mealValues = [missingMeals, totalMealsGoal - missingMeals]
+    const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     return (
       <div>
         <header>
@@ -238,7 +246,12 @@ export default class App extends React.Component {
             <h2 className="header food-security-header">
               Food Security Status
             </h2>
-            <DonutChart values={mealValues}  total={totalMealsGoal}>
+            <DonutChart
+              values={mealValues}
+              total={totalMealsGoal}
+              mealsShort={missingMeals}
+              costPerMeal={costPerMeal}
+            >
               <image xlinkHref="src/assets/applecropped.png" height="76" width="76" x="-38" y="-42" />
             </DonutChart>
             <div className="indicator-wrapper">
