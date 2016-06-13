@@ -1,9 +1,5 @@
 let counties = [
   {
-    "fips": 41,
-    "name": "Oregon"
-  },
-  {
     "fips": 41001,
     "name": "Baker"
   },
