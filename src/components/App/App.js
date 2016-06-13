@@ -6,6 +6,7 @@ import HorizontalRule from '../HorizontalRule/HorizontalRule'
 import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
+import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
@@ -158,6 +159,13 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
+    const barChartData = [
+      { label: "corn", value: 45000 },
+      { label: "carrots", value: 33000 },
+      { label: "rutabegas", value: 25000 },
+      { label: "potatoes", value: 20000 },
+      { label: "asparagus", value: 5000 },
+    ]
 
     const { individuals, sliderWage, selectedCounty } = this.state
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
@@ -168,6 +176,7 @@ export default class App extends React.Component {
     const missingMeals = this.getMissingMeals()
     const mealValues = [missingMeals, totalMealsGoal - missingMeals]
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
+    const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
     return (
       <div>
         <header>
@@ -297,7 +306,7 @@ export default class App extends React.Component {
               <p>
                 At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
               </p>
-              <div className="placeholder"></div>
+              <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
             </div>
           </div>
         </section>
