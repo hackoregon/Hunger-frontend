@@ -65,8 +65,17 @@ function moneyAfterHousing(individuals, income, fips) {
   return Math.max(0, result)
 }
 
-function getRemainingIncome(individuals, income, fips, bestCase = true) {
-  let monthlyMealCost = getMonthlyMealCost(individuals, fips)
+function calcMealGap(individuals, income, fips, bestCase = true) {
+
+  /*
+  User inputs family type (1,3,4), income, a fips.
+  Currently, I have bestCase=True set as the default. This means the algorithm will return the number of
+  'meals short' during the school year. It still accounts for whether or not a county offers a third meal.
+  If bestCase is set to True, the algorithm returns the number of 'meals short' without any supplemental
+  programming at all.
+  */
+
+  // return best and worst case scenarios
   let schoolMealBenefit
 
   if (individuals === 1) {
@@ -80,45 +89,24 @@ function getRemainingIncome(individuals, income, fips, bestCase = true) {
   if (!bestCase) {
     schoolMealBenefit = 0
   }
+  /* These are expressed in terms of income */
+  // 25% taken off for misc
+  const incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips) * 0.75)
+  const snap = snapCalculator(individuals, income, fips)
+  const incomePlusBenefits = Math.max(
+    0, Math.round(incomeAfterHousingCost + snap + schoolMealBenefit))
 
-  let incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips))
-  let snap = snapCalculator(individuals, income, fips)
+  /* convert income to meals */
+  const mealsCanAfford = Math.round(incomePlusBenefits / costOfMeals[fips].cost_per_meal)
 
-  let incomeRemainder = Math.round(incomeAfterHousingCost + snap + schoolMealBenefit - monthlyMealCost)
+  /* These are expressed in terms of meals */
+  const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+  const mealGap = totalMealsGoal - mealsCanAfford
 
-  // const incomeRemaining = Math.max(0, incomeRemainder)
-
-  // if negative, this is the money needed to cover the remaining food bill (i.e. you're short on meals)
-  // if positive, this represents free cash after covering the food bill
-  return incomeRemainder
-}
-
-function calcMealGap(individuals, income, fips, meal = true) {
-
-  /*
-  User inputs family type (1,3,4), income, a fips.
-  Currently, I have bestCase=True set as the default. This means the algorithm will return the number of
-  'meals short' during the school year. It still accounts for whether or not a county offers a third meal.
-  If bestCase is set to True, the algorithm returns the number of 'meals short' without any supplemental
-  programming at all.
-
-  If you would prefer to see the dollar amount short instead of the meals short then set meal=false in the
-  arguments. This will return the amount of money you would need to cover a monthly food bill.
-  */
-
-  // return best and worst case scenarios
-
-  const incomeRemainder = getRemainingIncome(individuals, income, fips)
-  const monthlyMealCost = getMonthlyMealCost(individuals, fips)
-  if (!meal) {
-    let mealGap = (individuals * 3 * MEAL_PERIOD_DAYS) - (incomeRemainder / costOfMeals[fips].cost_per_meal)
-    return Math.round(mealGap)
-  } else {
-    return incomeRemainder
-  }
+  return Math.max(0, Math.round(mealGap))
 }
 
 export {
   calcMealGap,
-  getRemainingIncome
+  moneyAfterHousing
 }
