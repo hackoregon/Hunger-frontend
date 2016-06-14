@@ -140,4 +140,5 @@ export {
   getMonthlyMealCost,
   getHousingCost,
   incomePlusBenefits,
+  getSchoolMealBenefit,
 }

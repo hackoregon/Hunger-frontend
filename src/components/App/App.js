@@ -17,7 +17,8 @@ import {
   getMonthlyMealCost,
   snapCalculator,
   getHousingCost,
-  incomePlusBenefits } from './calculators'
+  incomePlusBenefits,
+  getSchoolMealBenefit } from './calculators'
 import jQuery from 'jquery'
 import chai from 'chai'
 
@@ -261,8 +262,10 @@ export default class App extends React.Component {
         <div className="row">
           <div className="col-xs-12">
           <div className="test-stats">
+            <p>Food cost: {getMonthlyMealCost(individuals, selectedCounty.fips)}</p>
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
-            <p>Snap benefit received: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
+            <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
             <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
