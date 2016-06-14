@@ -3,6 +3,18 @@ import constants from '../../fixtures/constants'
 
 const { MEAL_PERIOD_DAYS } = constants
 
+function getMonthlyMealCost(individuals, fips) {
+  if (individuals === 1) {
+    return costOfMeals[fips].monthly_cost_one
+  } else if (individuals === 3) {
+    return costOfMeals[fips].monthly_cost_three
+  } else if (individuals === 4) {
+    return costOfMeals[fips].monthly_cost_four
+  } else {
+    throw new Error('invalid number of individuals')
+  }
+}
+
 function snapCalculator(individuals, income, fips) {
   let limit, shelter, maxBenefit
   if (individuals === 1) {
@@ -30,11 +42,23 @@ function snapCalculator(individuals, income, fips) {
     adjustedIncome = 0
   }
   let excessShelterDeduction = shelter - adjustedIncome / 2
-  let netIncome = adjustedIncome - excessShelterDeduction
+  let netIncome = Math.max((adjustedIncome - excessShelterDeduction), 0)
   let snapLoss = netIncome * 0.3
-  let snapBenefit = maxBenefit - snapLoss
+  let snapBenefit = Number((maxBenefit - snapLoss).toFixed(2))
 
   return Math.max(0, snapBenefit)
+}
+
+function getHousingCost(individuals, fips) {
+  if (individuals === 1) {
+    return housing[fips].median_housing_one
+  } else if (individuals === 3) {
+    return housing[fips].median_housing_three
+  } else if (individuals === 4) {
+    return housing[fips].median_housing_four
+  } else {
+    throw new Error("Invalid number of individuals")
+  }
 }
 
 function moneyAfterHousing(individuals, income, fips) {
@@ -50,40 +74,32 @@ function moneyAfterHousing(individuals, income, fips) {
     throw new Error("Invalid number of individuals")
   }
 
-  return Math.max(0, result)
+  return Math.max(0, Number(result.toFixed(2)))
 }
 
-function getRemainingIncome(individuals, income, fips, bestCase = true) {
-  let monthlyMealCost
+function getSchoolMealBenefit(individuals, fips) {
   let schoolMealBenefit
-  let incomeAfterHousingCost
-
   if (individuals === 1) {
-    monthlyMealCost = costOfMeals[fips].monthly_cost_one
     schoolMealBenefit = 0
   } else if (individuals === 3) {
-    monthlyMealCost = costOfMeals[fips].monthly_cost_three
     schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar_2014
   } else if (individuals === 4) {
-    monthlyMealCost = costOfMeals[fips].monthly_cost_four
     schoolMealBenefit = schoolMeals[fips].meal_supplement_in_dollar_2014
+  } else {
+    throw new Error('invalid number of individuals')
   }
-
-  if (!bestCase) {
-    schoolMealBenefit = 0
-  }
-
-  incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips))
-  let snap = snapCalculator(individuals, income, fips)
-
-  let incomeRemainder = Math.round(incomeAfterHousingCost + snap + schoolMealBenefit - monthlyMealCost)
-
-  const incomeRemaining = Math.max(0, incomeRemainder)
-
-  return incomeRemaining
+  return schoolMealBenefit
 }
 
-function calcMealGap(individuals, income, fips, meal = true) {
+function incomePlusBenefits(individuals, income, fips) {
+  const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, income, fips) * 0.75)
+  const snapBenefit = snapCalculator(individuals, income, fips)
+  const schoolMealBenefit = getSchoolMealBenefit(individuals, fips)
+
+  return Math.max(0, Number((moneyAfterMisc + snapBenefit + schoolMealBenefit).toFixed(2)))
+}
+
+function calcMealGap(individuals, income, fips, bestCase = true) {
 
   /*
   User inputs family type (1,3,4), income, a fips.
@@ -91,24 +107,38 @@ function calcMealGap(individuals, income, fips, meal = true) {
   'meals short' during the school year. It still accounts for whether or not a county offers a third meal.
   If bestCase is set to True, the algorithm returns the number of 'meals short' without any supplemental
   programming at all.
-
-  If you would prefer to see the dollar amount short instead of the meals short then set meal=false in the
-  arguments. This will return the amount of money you would need to cover a monthly food bill.
   */
 
   // return best and worst case scenarios
+  let schoolMealBenefit = getSchoolMealBenefit(individuals, fips)
 
-  const incomeRemainder = getRemainingIncome(individuals, income, fips)
-
-  if (!meal) {
-    let mealGap = (individuals * 3 * MEAL_PERIOD_DAYS) - (incomeRemainder / costOfMeals[fips].cost_per_meal)
-    return Math.round(mealGap)
-  } else {
-    return incomeRemainder
+  if (!bestCase) {
+    schoolMealBenefit = 0
   }
+  /* These are expressed in terms of income */
+  // 25% taken off for misc
+  const incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips) * 0.75)
+  const snap = snapCalculator(individuals, income, fips)
+  const incomePlusBenefits = Math.max(
+    0, Math.round(incomeAfterHousingCost + snap + schoolMealBenefit))
+
+  /* convert income to meals */
+  const mealsCanAfford = Math.round(incomePlusBenefits / costOfMeals[fips].cost_per_meal)
+
+  /* These are expressed in terms of meals */
+  const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+  const mealGap = totalMealsGoal - mealsCanAfford
+
+  return Math.max(0, Math.round(mealGap))
 }
+
 
 export {
   calcMealGap,
-  getRemainingIncome
+  moneyAfterHousing,
+  snapCalculator,
+  getMonthlyMealCost,
+  getHousingCost,
+  incomePlusBenefits,
+  getSchoolMealBenefit,
 }
