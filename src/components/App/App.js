@@ -23,7 +23,6 @@ import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
-require('bootstrap/dist/css/bootstrap.css')
 require('../../styles/main.css')
 require('./App.css')
 require('../../styles/rc-slider.css')
