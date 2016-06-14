@@ -108,5 +108,7 @@ function calcMealGap(individuals, income, fips, bestCase = true) {
 
 export {
   calcMealGap,
-  moneyAfterHousing
+  moneyAfterHousing,
+  snapCalculator,
+  getMonthlyMealCost,
 }

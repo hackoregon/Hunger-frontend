@@ -11,7 +11,7 @@ import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
-import { calcMealGap, getRemainingIncome } from './calculators'
+import { calcMealGap, moneyAfterHousing } from './calculators'
 import jQuery from 'jquery'
 import chai from 'chai'
 
@@ -77,10 +77,10 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(individuals, wage, fips) {
-    const { RATINGS } = constants
+    const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const mealCost = data.costOfMeals[fips].cost_per_meal
-    const income = getRemainingIncome(individuals, wage, fips)
-    const canAfford = Math.round(income / mealCost)
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips)
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
@@ -168,6 +168,7 @@ export default class App extends React.Component {
     ]
 
     const { individuals, sliderWage, selectedCounty } = this.state
+    const moneyAfterMisc = moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
