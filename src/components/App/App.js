@@ -278,7 +278,7 @@ export default class App extends React.Component {
               mealsShort={missingMeals}
               costPerMeal={costPerMeal}
             >
-              <image xlinkHref="src/assets/applecropped.png" height="76" width="76" x="-38" y="-42" />
+              <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
             <div className="indicator-wrapper">
               <IndicatorSlider
