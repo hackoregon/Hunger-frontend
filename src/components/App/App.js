@@ -11,7 +11,14 @@ import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
-import { calcMealGap, getRemainingIncome } from './calculators'
+import {
+  calcMealGap,
+  moneyAfterHousing,
+  getMonthlyMealCost,
+  snapCalculator,
+  getHousingCost,
+  incomePlusBenefits,
+  getSchoolMealBenefit } from './calculators'
 import jQuery from 'jquery'
 import chai from 'chai'
 
@@ -29,7 +36,7 @@ export default class App extends React.Component {
       sliderWage: 0,
       selectedFamilyType: "single-adult",
       individuals: 1,
-      selectedCounty: { fips: "41013", name: "Multnomah" }
+      selectedCounty: { fips: "41051", name: "Multnomah" }
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
@@ -76,10 +83,10 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(individuals, wage, fips) {
-    const { RATINGS } = constants
+    const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const mealCost = data.costOfMeals[fips].cost_per_meal
-    const income = getRemainingIncome(individuals, wage, fips)
-    const canAfford = Math.round(income / mealCost)
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips)
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
@@ -165,17 +172,20 @@ export default class App extends React.Component {
       { label: "potatoes", value: 20000 },
       { label: "asparagus", value: 5000 },
     ]
+    const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
 
     const { individuals, sliderWage, selectedCounty } = this.state
+    const { MEAL_PERIOD_DAYS } = constants
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
-    const { MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+
+    const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const missingMeals = this.getMissingMeals()
     const mealValues = [missingMeals, totalMealsGoal - missingMeals]
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
     return (
       <div>
         <header>
@@ -251,6 +261,14 @@ export default class App extends React.Component {
         <section className="day-to-day-section container-fluid">
         <div className="row">
           <div className="col-xs-12">
+          <div className="test-stats">
+            <p>Food cost: {getMonthlyMealCost(individuals, selectedCounty.fips)}</p>
+            <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
+            <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
+            <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
+          </div>
             <h2 className="header food-security-header">
               Food Security Status
             </h2>

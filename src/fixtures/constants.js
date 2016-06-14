@@ -1,4 +1,4 @@
-const MEAL_PERIOD_DAYS = 37
+const MEAL_PERIOD_DAYS = 30
 
 const RATINGS = {
   "secure": 4,
