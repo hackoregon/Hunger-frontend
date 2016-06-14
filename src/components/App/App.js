@@ -30,7 +30,7 @@ export default class App extends React.Component {
       sliderWage: 0,
       selectedFamilyType: "single-adult",
       individuals: 1,
-      selectedCounty: { fips: "41013", name: "Multnomah" }
+      selectedCounty: { fips: "41051", name: "Multnomah" }
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
