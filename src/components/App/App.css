@@ -8,6 +8,18 @@
     font-size: 1.8em;
   }
 }
+
+/* TEST STATS */
+.test-stats {
+  max-width: 90%;
+  margin: 10px auto;
+}
+.test-stats p {
+  display: inline;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
+
 /* HEADER */
 .ho-logo-gray {
   max-height: 50px;
