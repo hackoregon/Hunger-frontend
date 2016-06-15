@@ -9,15 +9,23 @@ if git checkout develop; then
   echo -e "\e[32mchecked out branch 'develop'\e[0m"
 else
   echo -e "\e[31merror: couldn't checkout 'develop'."
-  echo -e "Are you in the Hunger-frontend repo? Is you current branch clean?\e[0m"
+  echo -e "Are you in Hunger-frontend? Is you current branch clean?\e[0m"
   exit 1
 fi
 
+echo "pulling from origin 'develop' (in favor of their version)..."
 if git pull --rebase -X theirs origin develop; then
   echo -e "\e[32mpulled most recent changes from 'develop'\e[0m"
 else
   echo -e "\e[31merror: couldn't pull from 'develop'\e[0m"
   exit 1
+fi
+
+echo "checking out branch 'gh-pages'..."
+if git checkout gh-pages; then
+  echo -e "\e[32mchecked out 'gh-pages'\e[0m"
+else
+  echo -e "\e[31merror: couldn't checkout 'gh-pages'\e[0m"
 fi
 
 echo "pulling from origin 'gh-pages'..."
@@ -28,6 +36,7 @@ else
   exit 1
 fi
 
+echo "running webpack build..."
 if npm run build; then
   echo -e "\e[32mbuild successful\e[0m"
 else
