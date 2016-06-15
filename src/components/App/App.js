@@ -242,7 +242,7 @@ export default class App extends React.Component {
           <div className="row">
             <div className="col-xs-12">
               <div className="slider-with-header">
-                <h2 className="header slider-header">Slide to select monthly income</h2>
+                <h2 className="header slider-header">Slide to select monthly household income</h2>
                 <div className="slider-self-wrapper">
                   <Sticky>
                     <Slider
