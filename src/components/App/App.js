@@ -68,14 +68,14 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
-  getMapFipsColors() {
+  getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips)
+          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
           colorObj[fips] = colors[status - 1]
         }
         return colorObj
@@ -83,11 +83,11 @@ export default class App extends React.Component {
     return fipsColors
   }
 
-  getFoodSecurityStatus(individuals, wage, fips) {
+  getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const mealCost = data.costOfMeals[fips].cost_per_meal
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips)
+    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips, bestCase)
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
@@ -290,7 +290,7 @@ export default class App extends React.Component {
               />
             </div>
             <DayToDaySnugget
-            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips)}
+            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
             mealsMissed={this.getMissingMeals(true)}/>
 
           </div>
@@ -350,7 +350,7 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    fipsColors={this.getMapFipsColors()}
+                    fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
                     selectedCounty={this.state.selectedCounty}
                   />
                 </div>
