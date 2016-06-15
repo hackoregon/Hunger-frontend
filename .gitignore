@@ -77,3 +77,6 @@ todos.md
 worklog.md
 index.js
 index.js.map
+
+# Deploy script
+deploy-hunger-ghpages.sh
