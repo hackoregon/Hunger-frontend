@@ -36,7 +36,8 @@ export default class App extends React.Component {
       sliderWage: 0,
       selectedFamilyType: "single-adult",
       individuals: 1,
-      selectedCounty: { fips: "41051", name: "Multnomah" }
+      selectedCounty: { fips: "41051", name: "Multnomah" },
+      bestCaseMap: true
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
@@ -67,14 +68,14 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
-  getMapFipsColors() {
+  getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips)
+          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
           colorObj[fips] = colors[status - 1]
         }
         return colorObj
@@ -82,11 +83,11 @@ export default class App extends React.Component {
     return fipsColors
   }
 
-  getFoodSecurityStatus(individuals, wage, fips) {
+  getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const mealCost = data.costOfMeals[fips].cost_per_meal
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips)
+    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips, bestCase)
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
@@ -127,29 +128,24 @@ export default class App extends React.Component {
     }
   }
 
-  getMissingMeals() {
+  getMissingMeals(bestCase = true) {
     let { selectedCounty, sliderWage, individuals } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const FIPS = selectedCounty.fips
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const missingMeals = calcMealGap(individuals, sliderWage, FIPS)
+    const missingMeals = calcMealGap(individuals, sliderWage, FIPS, bestCase)
     chai.assert(
       missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
     return missingMeals
   }
 
-  getDayToDayPercent() {
+  getIndicatorValue(bestCase = true) {
     let { individuals } = this.state
 
-    const gap = this.getMissingMeals()
+    const gap = this.getMissingMeals(bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
-  }
-
-  getIndicatorValue() {
-    const sliderPercent = this.props.sliderMax / 100
-    return this.state.sliderWage / sliderPercent
   }
 
   isSingleAdult() {
@@ -183,9 +179,11 @@ export default class App extends React.Component {
     const dollarFormatter = (val) => ("$" + val)
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
-    const missingMeals = this.getMissingMeals()
-    const mealValues = [missingMeals, totalMealsGoal - missingMeals]
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
+    const bestCaseMissingMeals = this.getMissingMeals(true)
+    const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
+    const worstCaseMissingMeals = this.getMissingMeals(false)
+    const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     return (
       <div>
         <header>
@@ -273,22 +271,22 @@ export default class App extends React.Component {
               Food Security Status
             </h2>
             <DonutChart
-              values={mealValues}
+              values={bestCaseMealValues}
               total={totalMealsGoal}
-              mealsShort={missingMeals}
+              mealsShort={bestCaseMissingMeals}
               costPerMeal={costPerMeal}
             >
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
             <div className="indicator-wrapper">
               <IndicatorSlider
-                value={this.getDayToDayPercent()}
+                value={this.getIndicatorValue(true)}
                 sections={4}
               />
             </div>
             <DayToDaySnugget
-            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips)}
-            mealsMissed={this.getMissingMeals()}/>
+            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
+            mealsMissed={this.getMissingMeals(true)}/>
 
           </div>
         </div>
@@ -307,9 +305,25 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
+          <div className="test-stats">
+            <p>Food cost: {getMonthlyMealCost(individuals, selectedCounty.fips)}</p>
+            <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
+            <p>School meal benefit: {0}</p>
+            <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
+          </div>
+          <DonutChart
+          values={worstCaseMealValues}
+          total={totalMealsGoal}
+          mealsShort={worstCaseMissingMeals}
+          costPerMeal={costPerMeal}
+          >
+          <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
+          </DonutChart>
           <div className="indicator-wrapper">
             <IndicatorSlider
-              value={this.getIndicatorValue()}
+              value={this.getIndicatorValue(false)}
               sections={4}
             />
           </div>
@@ -339,7 +353,7 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    fipsColors={this.getMapFipsColors()}
+                    fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
                     selectedCounty={this.state.selectedCounty}
                   />
                 </div>
