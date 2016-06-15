@@ -9,28 +9,34 @@ if git checkout develop; then
   echo -e "\e[32mchecked out branch 'develop'\e[0m"
 else
   echo -e "\e[31merror: couldn't checkout 'develop'."
-  echo -e "Are you in the Hunger-frontend repo? Is you current branch clean?\e[0m"
+  echo -e "Are you in Hunger-frontend? Is you current branch clean?\e[0m"
   exit 1
 fi
 
+echo "pulling from origin 'develop' (in favor of their version)..."
 if git pull --rebase -X theirs origin develop; then
   echo -e "\e[32mpulled most recent changes from 'develop'\e[0m"
 else
-  echo -e "\e[31merror: couldn't pull from origin 'develop'\e[0m"
+  echo -e "\e[31merror: couldn't pull from 'develop'\e[0m"
   exit 1
 fi
 
-echo "creating fresh 'gh-pages' branch..."
-git branch -D gh-pages && git checkout -b gh-pages;
+echo "checking out branch 'gh-pages'..."
+if git checkout gh-pages; then
+  echo -e "\e[32mchecked out 'gh-pages'\e[0m"
+else
+  echo -e "\e[31merror: couldn't checkout 'gh-pages'\e[0m"
+fi
 
 echo "pulling from origin 'gh-pages'..."
 if git pull --rebase -X ours origin gh-pages; then
-  echo -e "\e[32mgit pulled most recent 'gh-pages'\e[0m"
+  echo -e "\e[32mpulled from origin 'gh-pages' (in favor of our version)\e[0m"
 else
   echo -e "\e[31merror: couldn't pull most recent changes\e[0m"
   exit 1
 fi
 
+echo "running webpack build..."
 if npm run build; then
   echo -e "\e[32mbuild successful\e[0m"
 else
@@ -38,9 +44,8 @@ else
   exit 1
 fi
 
-git rm index.js.map
 echo "adding build files...";
-if git add -f index.js; then
+if git add -f index.js index.js.map; then
   echo -e "\e[32mgit added build files\e[0m"
 else
   echo -e "\e[31merror: adding build files failed.\e[0m"
