@@ -55,7 +55,12 @@ else
 fi
 
 echo "committing changes..."
-git commit -m "add latest build at $(date +%c)";
+if git commit -m "add latest build at $(date +%c)"; then
+  echo -e "\e[32committed\e[0m"
+else
+  echo -e "\e[31merror: commit failed\e[0m"
+  exit 1
+fi
 
 
 echo "pushing changes..."
