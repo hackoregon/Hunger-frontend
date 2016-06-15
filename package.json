@@ -29,7 +29,8 @@
     "rc-slider": "^3.6.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-dropdown": "^1.0.4"
+    "react-dropdown": "^1.0.4",
+    "react-sticky": "^5.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
