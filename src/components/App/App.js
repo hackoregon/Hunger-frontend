@@ -360,7 +360,7 @@ export default class App extends React.Component {
           <div className="row">
             <div className="col-xs-12">
               <h2 className="section-heading text-center">
-                Would my situation be different if I live in another area in Oregon?
+                How would my experience be different if I lived in another county in Oregon?
               </h2>
               <p>
                 The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
