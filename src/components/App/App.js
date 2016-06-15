@@ -226,7 +226,7 @@ export default class App extends React.Component {
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="header select-county-header">Select a County</h2>
+              <h2 className="select-county-heading">Select a County</h2>
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
@@ -241,8 +241,8 @@ export default class App extends React.Component {
         <section className="slider-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <div className="slider-with-header">
-                <h2 className="header slider-header">Slide to select monthly household income</h2>
+              <div className="slider-with-heading">
+                <h2 className="slider-heading">Slide to select monthly household income</h2>
                 <div className="slider-self-wrapper">
                   <Sticky>
                     <Slider
@@ -272,7 +272,7 @@ export default class App extends React.Component {
             <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
-            <h2 className="header food-security-header">
+            <h2 className="section-heading food-security-heading text-center">
               What’s your day-to-day experience putting food on the table?
             </h2>
             <DonutChart
@@ -299,7 +299,7 @@ export default class App extends React.Component {
         <section className="lunch-section container-fluid" style={this.isSingleAdult() ? { display: "none" } : {}}>
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
+              <h2 className="text-center section-heading">
                 How does free and reduced lunch affect your family?
               </h2>
               <p>
@@ -336,7 +336,7 @@ export default class App extends React.Component {
         <section className="housing container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
+              <h2 className="section-heading text-center">
                 Are you able to afford stable housing?
               </h2>
               <p>
@@ -349,7 +349,7 @@ export default class App extends React.Component {
         <section className="map-view-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
+              <h2 className="section-heading text-center">
                 Would my situation be different if I live in another area in Oregon?
               </h2>
               <p>
