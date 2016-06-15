@@ -185,6 +185,7 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
+
     return (
       <div>
         <header>
@@ -339,9 +340,18 @@ export default class App extends React.Component {
               <h2 className="section-heading text-center">
                 Are you able to afford stable housing?
               </h2>
-              <p>
-                At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
-              </p>
+              <div className="can-afford-housing afford-housing-yes">
+                <h3>Yes</h3>
+                <p>
+                  At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
+                </p>
+              </div>
+              <div className="can-afford-housing afford-housing-no">
+                <h3>No</h3>
+                <p>
+                  At your income, you are not able to afford housing in your county.
+                </p>
+              </div>
               <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
             </div>
           </div>

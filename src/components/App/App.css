@@ -71,4 +71,7 @@
   }
 }
 
-/* FOOD SECURITY STATUS */
+/* HOUSING */
+.can-afford-housing h3 {
+  font-weight: bold;
+}
