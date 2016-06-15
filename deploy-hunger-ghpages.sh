@@ -41,6 +41,7 @@ if git merge develop; then
 else
   echo -e "\e[31merror: rebase failed\e[0m"
   exit 1
+fi
 
 echo "running webpack build..."
 if npm run build; then
