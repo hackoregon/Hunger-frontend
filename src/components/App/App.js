@@ -292,7 +292,8 @@ export default class App extends React.Component {
             </div>
             <DayToDaySnugget
             securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
-            mealsMissed={this.getMissingMeals(true)}/>
+            individuals={individuals}
+            />
 
           </div>
         </div>

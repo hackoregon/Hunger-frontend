@@ -34,7 +34,8 @@ const DayToDayHungerSnugget = (props) => {
 }
 
 DayToDayHungerSnugget.propTypes = {
-  securityStatus: PropTypes.number.isRequired
+  securityStatus: PropTypes.number.isRequired,
+  individuals: PropTypes.number.isRequired,
 }
 
 export default DayToDayHungerSnugget
