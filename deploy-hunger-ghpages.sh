@@ -36,12 +36,11 @@ else
   exit 1
 fi
 
-if git merge develop; then
+if git rebase develop; then
   echo -e "\e[32mrebased 'develop' onto 'gh-pages'\e[0m"
 else
   echo -e "\e[31merror: rebase failed\e[0m"
   exit 1
-fi
 
 echo "running webpack build..."
 if npm run build; then
@@ -52,7 +51,7 @@ else
 fi
 
 echo "adding build files...";
-if git add -f index.js index.js.map; then
+if git add -f index.js; then
   echo -e "\e[32mgit added build files\e[0m"
 else
   echo -e "\e[31merror: adding build files failed.\e[0m"
