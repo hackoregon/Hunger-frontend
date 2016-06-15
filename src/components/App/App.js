@@ -374,9 +374,9 @@ export default class App extends React.Component {
                 </div>
               </div>
               <div className="text-center">
-                <p>Conclusion:</p>
+                <h2 className="section-heading">Conclusion:</h2>
                 <p className="conclusion-text">
-                  Lorem ipsum dolor sit amet, con mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus.
+                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <a style={{ color: "#669776" }} href="#data-deep-dive">data deep dive.</a>
                 </p>
               </div>
             </div>
