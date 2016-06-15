@@ -11,6 +11,7 @@ import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
+import { StickyContainer, Sticky } from 'react-sticky'
 import {
   calcMealGap,
   moneyAfterHousing,
@@ -235,21 +236,25 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
+
+        <StickyContainer>
         <section className="slider-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
               <div className="slider-with-header">
                 <h2 className="header slider-header">Slide to select monthly income</h2>
                 <div className="slider-self-wrapper">
-                  <Slider
-                  max={this.props.sliderMax}
-                  tipTransitionName="rc-slider-tooltip-zoom-down"
-                  tipFormatter={dollarFormatter}
-                  marks={sliderMarks}
-                  step={2}
-                  dots={false}
-                  onChange={this._onSliderChange}
-                  />
+                  <Sticky>
+                    <Slider
+                    max={this.props.sliderMax}
+                    tipTransitionName="rc-slider-tooltip-zoom-down"
+                    tipFormatter={dollarFormatter}
+                    marks={sliderMarks}
+                    step={2}
+                    dots={false}
+                    onChange={this._onSliderChange}
+                    />
+                  </Sticky>
                 </div>
               </div>
             </div>
@@ -371,6 +376,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </section>
+        </StickyContainer>
         <footer>
           <img src="src/assets/HO_logo_gray.png" className="img-responsive center-block ho-logo-gray" alt="The Hack Oregon logo" />
         </footer>
