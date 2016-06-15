@@ -11,6 +11,7 @@
 
 /* TEST STATS */
 .test-stats {
+  display: none;
   max-width: 90%;
   margin: 10px auto;
 }
