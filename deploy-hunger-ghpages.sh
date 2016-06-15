@@ -13,7 +13,7 @@ else
   exit 1
 fi
 
-if git pull --rebase -X their origin develop; then
+if git pull --rebase -X theirs origin develop; then
   echo -e "\e[32mpulled most recent changes from 'develop'\e[0m"
 else
   echo -e "\e[31merror: couldn't pull from origin 'develop'\e[0m"
