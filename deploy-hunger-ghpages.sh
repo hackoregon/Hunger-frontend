@@ -55,7 +55,7 @@ else
 fi
 
 echo "committing changes..."
-git commit -m "add latest build";
+git commit -m "add latest build at $(date +%c)";
 
 
 echo "pushing changes..."
