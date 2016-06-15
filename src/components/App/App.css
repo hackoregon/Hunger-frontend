@@ -9,6 +9,15 @@
 .nav-item {
   font-size: 1.4em;
 }
+
+/* STICKY STYLE MODIFICATIONS */
+.sticky {
+  background-color: #fff;
+  padding: 15px 30px 40px 14px;
+  border: 1px solid #000;
+  z-index: 100;
+}
+
 /* SLIDER (main styles in rc-slider.css) */
 .slider-section {
   margin-bottom: 1.5em;
