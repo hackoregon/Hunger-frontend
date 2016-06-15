@@ -185,7 +185,7 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-
+    const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     return (
       <div>
         <header>
@@ -340,13 +340,17 @@ export default class App extends React.Component {
               <h2 className="section-heading text-center">
                 Are you able to afford stable housing?
               </h2>
-              <div className="can-afford-housing afford-housing-yes">
+              <div
+                className="can-afford-housing afford-housing-yes"
+                style={ housingSufficient ? {} : { display: "none" } }>
                 <h3>Yes</h3>
                 <p>
                   At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
                 </p>
               </div>
-              <div className="can-afford-housing afford-housing-no">
+              <div
+                className="can-afford-housing afford-housing-no"
+                style={ housingSufficient ? { display: "none" } : {} }>
                 <h3>No</h3>
                 <p>
                   At your income, you are not able to afford housing in your county.
