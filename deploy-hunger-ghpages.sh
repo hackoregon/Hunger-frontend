@@ -36,15 +36,12 @@ else
   exit 1
 fi
 
-<<<<<<< a69f9b9a5509d0ac270b81eb9d8360b3baea2f76
-=======
 if git rebase develop; then
   echo -e "\e[32mrebased 'develop' onto 'gh-pages'\e[0m"
 else
   echo -e "\e[31merror: rebase failed\e[0m"
   exit 1
 
->>>>>>> add deploy script reluctantly
 echo "running webpack build..."
 if npm run build; then
   echo -e "\e[32mbuild successful\e[0m"
