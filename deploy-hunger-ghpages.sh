@@ -36,7 +36,7 @@ else
   exit 1
 fi
 
-if git rebase develop; then
+if git merge develop; then
   echo -e "\e[32mrebased 'develop' onto 'gh-pages'\e[0m"
 else
   echo -e "\e[31merror: rebase failed\e[0m"
