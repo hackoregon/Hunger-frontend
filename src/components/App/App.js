@@ -139,18 +139,13 @@ export default class App extends React.Component {
     return missingMeals
   }
 
-  getDayToDayPercent() {
+  getIndicatorValue(bestCase = true) {
     let { individuals } = this.state
 
-    const gap = this.getMissingMeals(true)
+    const gap = this.getMissingMeals(bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
-  }
-
-  getIndicatorValue() {
-    const sliderPercent = this.props.sliderMax / 100
-    return this.state.sliderWage / sliderPercent
   }
 
   isSingleAdult() {
@@ -285,7 +280,7 @@ export default class App extends React.Component {
             </DonutChart>
             <div className="indicator-wrapper">
               <IndicatorSlider
-                value={this.getDayToDayPercent()}
+                value={this.getIndicatorValue(true)}
                 sections={4}
               />
             </div>
@@ -302,14 +297,6 @@ export default class App extends React.Component {
               <h2 className="text-center">
                 How does free and reduced lunch affect your family?
               </h2>
-              <DonutChart
-                values={worstCaseMealValues}
-                total={totalMealsGoal}
-                mealsShort={worstCaseMissingMeals}
-                costPerMeal={costPerMeal}
-              >
-                <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
-              </DonutChart>
               <p>
                 Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
               </p>
@@ -318,9 +305,17 @@ export default class App extends React.Component {
               </p>
             </div>
           </div>
+          <DonutChart
+          values={worstCaseMealValues}
+          total={totalMealsGoal}
+          mealsShort={worstCaseMissingMeals}
+          costPerMeal={costPerMeal}
+          >
+          <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
+          </DonutChart>
           <div className="indicator-wrapper">
             <IndicatorSlider
-              value={this.getIndicatorValue()}
+              value={this.getIndicatorValue(false)}
               sections={4}
             />
           </div>
