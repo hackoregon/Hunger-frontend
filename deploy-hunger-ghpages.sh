@@ -35,9 +35,8 @@ else
   exit 1
 fi
 
-git rm index.js.map
 echo "adding build files...";
-if git add -f index.js; then
+if git add -f index.js index.js.map; then
   echo -e "\e[32mgit added build files\e[0m"
 else
   echo -e "\e[31merror: adding build files failed.\e[0m"
