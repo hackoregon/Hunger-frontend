@@ -1,3 +1,199 @@
+/* GLOBAL STYLES */
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #fbfaf0;
+}
+
+section {
+  padding: 2em;
+}
+
+
+p {
+  font-size: 2.0em;
+  margin: 0;
+  text-indent: 1em;
+  color: #656565;
+}
+
+/* HEADER */
+.main-title {
+  font-size: 3.0em;
+  color: #656565;
+  font-weight: bold;
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-family: 'Signika', sans-serif;
+}
+
+@media only screen and (max-width: 480px) {
+  .main-title {
+    text-align: center;
+  }
+}
+
+.navbar {
+  z-index: 1;
+}
+
+.navbar-nav > li > a {
+  color: #5b5b5b;
+  line-height: normal;
+}
+
+.nav-item-separator span {
+  display: inline-block;
+  height: 10px;
+  width: 9px;
+  margin-bottom: -17px;
+  background-color: #5b5b5b;
+}
+
+.navbar-default .glyphicon-stop {
+  position: relative;
+  top: 1.2em;
+  background-color: #5b5b5b;
+  font-size: 0.4em;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+header {
+  height: 3em;
+  font-size: 2rem;
+  color: #5b5b5b;
+  background-color: #c9dacf;
+  box-shadow: 0 12px 2px 0 #999;
+}
+
+footer {
+  font-size: 2rem;
+  padding: 1em;
+  color: #5b5b5b;
+  background-color: #c9dacf;
+}
+
+.navbar-default {
+  border: none;
+  background-color: #c9dacf;
+  padding: 0.5em;
+}
+
+
+/* SECTION 2: DAY-TO-DAY */
+/* SECTION 3: FREE AND REDUCED LUNCH */
+/* SECTION 4: HOUSING */
+
+/* SECTION 5: STATE MAP VIEW */
+.map-row {
+  margin-top: 1em;
+}
+
+.map-wrapper {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* FOOTER */
+footer {
+  padding: 1em;
+}
+
+.ho-logo {
+  max-height: 3em;
+}
+
+/* INDICATOR */
+.indicator-root {
+  margin: 10px auto;
+}
+
+.indicator-outer-wrapper,
+.indicator-blocks-wrapper {
+  min-width: 250px;
+}
+
+.indicator-outer-wrapper {
+  position: relative;
+  padding: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.indicator-blocks-wrapper {
+  position: relative;
+}
+
+.indicator-line-wrapper {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 4px;
+}
+
+.indicator-line {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 2px;
+  height: 1.8em;
+  z-index: 5;
+  background-color: black;
+}
+
+.indicator-arrow {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.ind-block {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1.6em;
+  width: 25%;
+}
+
+.block-1 {
+  background-color: #eee597;
+}
+
+.block-2 {
+  background-color: #eadd69;
+}
+
+.block-3 {
+  background-color: #dc6632;
+}
+
+.block-4 {
+  background-color: #b5441d;
+}
+
+.indicator-line,
+.indicator-arrow {
+  top: 0;
+  left: 0;
+}
+
+.top-arrow {
+  /* triangle pointing down */
+  margin-bottom: -0.15em;
+  border-top: 8px solid black;
+}
+
+.bottom-arrow {
+  /* triangle pointing up */
+  margin-top: -0.15em;
+  border-bottom: 8px solid black;
+}
+
+
+
+
 /* GENERAL */
 .section-heading {
   font-size: 2.4em;
