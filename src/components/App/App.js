@@ -373,10 +373,6 @@ export default class App extends React.Component {
                   />
                 </div>
               </div>
-              <p>
-                The average minimum cost of housing in your county is X, which is above average for the
-                state of Oregon. See how your county compares to the rest of the state:
-              </p>
               <div className="text-center">
                 <p>Conclusion:</p>
                 <p className="conclusion-text">
