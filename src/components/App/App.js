@@ -127,12 +127,12 @@ export default class App extends React.Component {
     }
   }
 
-  getMissingMeals() {
+  getMissingMeals(bestCase = true) {
     let { selectedCounty, sliderWage, individuals } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const FIPS = selectedCounty.fips
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const missingMeals = calcMealGap(individuals, sliderWage, FIPS)
+    const missingMeals = calcMealGap(individuals, sliderWage, FIPS, bestCase)
     chai.assert(
       missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
     return missingMeals
@@ -141,7 +141,7 @@ export default class App extends React.Component {
   getDayToDayPercent() {
     let { individuals } = this.state
 
-    const gap = this.getMissingMeals()
+    const gap = this.getMissingMeals(true)
     const totalMealsGoal = individuals * 3 * 30
     const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
@@ -183,9 +183,11 @@ export default class App extends React.Component {
     const dollarFormatter = (val) => ("$" + val)
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
-    const missingMeals = this.getMissingMeals()
-    const mealValues = [missingMeals, totalMealsGoal - missingMeals]
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
+    const bestCaseMissingMeals = this.getMissingMeals(true)
+    const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
+    const worstCaseMissingMeals = this.getMissingMeals(false)
+    const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     return (
       <div>
         <header>
@@ -273,9 +275,9 @@ export default class App extends React.Component {
               Food Security Status
             </h2>
             <DonutChart
-              values={mealValues}
+              values={bestCaseMealValues}
               total={totalMealsGoal}
-              mealsShort={missingMeals}
+              mealsShort={bestCaseMissingMeals}
               costPerMeal={costPerMeal}
             >
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
@@ -288,7 +290,7 @@ export default class App extends React.Component {
             </div>
             <DayToDaySnugget
             securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips)}
-            mealsMissed={this.getMissingMeals()}/>
+            mealsMissed={this.getMissingMeals(true)}/>
 
           </div>
         </div>
@@ -299,6 +301,14 @@ export default class App extends React.Component {
               <h2 className="text-center">
                 How does free and reduced lunch affect your family?
               </h2>
+              <DonutChart
+                values={worstCaseMealValues}
+                total={totalMealsGoal}
+                mealsShort={worstCaseMissingMeals}
+                costPerMeal={costPerMeal}
+              >
+                <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
+              </DonutChart>
               <p>
                 Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
               </p>
