@@ -12,7 +12,7 @@ else
   echo -e "Are you in the Hunger-frontend repo? Is you current branch clean?\e[0m"
   exit 1
 fi
-exit 0
+
 if git pull --rebase -X their origin develop; then
   echo -e "\e[32mpulled most recent changes from 'develop'\e[0m"
 else
