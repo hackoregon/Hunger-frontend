@@ -20399,13 +20399,15 @@
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _calculators = __webpack_require__(279);
+	var _reactSticky = __webpack_require__(279);
 	
-	var _jquery = __webpack_require__(280);
+	var _calculators = __webpack_require__(283);
+	
+	var _jquery = __webpack_require__(284);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _chai = __webpack_require__(281);
+	var _chai = __webpack_require__(285);
 	
 	var _chai2 = _interopRequireDefault(_chai);
 	
@@ -20418,11 +20420,11 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	window.jQuery = _jquery2.default;
-	__webpack_require__(321);
-	__webpack_require__(334);
-	__webpack_require__(336);
+	__webpack_require__(325);
 	__webpack_require__(338);
 	__webpack_require__(340);
+	__webpack_require__(342);
+	__webpack_require__(344);
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -20727,274 +20729,282 @@
 	          )
 	        ),
 	        _react2.default.createElement(
-	          'section',
-	          { className: 'slider-section container-fluid' },
+	          _reactSticky.StickyContainer,
+	          null,
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
+	            'section',
+	            { className: 'slider-section container-fluid' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'col-xs-12' },
+	              { className: 'row' },
 	              _react2.default.createElement(
 	                'div',
-	                { className: 'slider-with-header' },
+	                { className: 'col-xs-12' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'slider-with-header' },
+	                  _react2.default.createElement(
+	                    'h2',
+	                    { className: 'header slider-header' },
+	                    'Slide to select monthly income'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'slider-self-wrapper' },
+	                    _react2.default.createElement(
+	                      _reactSticky.Sticky,
+	                      null,
+	                      _react2.default.createElement(_rcSlider2.default, {
+	                        max: this.props.sliderMax,
+	                        tipTransitionName: 'rc-slider-tooltip-zoom-down',
+	                        tipFormatter: dollarFormatter,
+	                        marks: sliderMarks,
+	                        step: 2,
+	                        dots: false,
+	                        onChange: this._onSliderChange
+	                      })
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(_HorizontalRule2.default, { small: true }),
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'day-to-day-section container-fluid' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'test-stats' },
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Food cost: ',
+	                    (0, _calculators.getMonthlyMealCost)(individuals, selectedCounty.fips)
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Housing cost: ',
+	                    (0, _calculators.getHousingCost)(individuals, selectedCounty.fips)
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'School meal benefit: ',
+	                    (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips)
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Snap benefit: ',
+	                    (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Income plus benefits: ',
+	                    (0, _calculators.incomePlusBenefits)(individuals, sliderWage, selectedCounty.fips)
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Money after housing: ',
+	                    (0, _calculators.moneyAfterHousing)(individuals, sliderWage, selectedCounty.fips)
+	                  )
+	                ),
 	                _react2.default.createElement(
 	                  'h2',
-	                  { className: 'header slider-header' },
-	                  'Slide to select monthly income'
+	                  { className: 'header food-security-header' },
+	                  'Food Security Status'
+	                ),
+	                _react2.default.createElement(
+	                  _DonutChart2.default,
+	                  {
+	                    values: bestCaseMealValues,
+	                    total: totalMealsGoal,
+	                    mealsShort: bestCaseMissingMeals,
+	                    costPerMeal: costPerMeal
+	                  },
+	                  _react2.default.createElement('image', { xlinkHref: 'src/assets/apple.svg', height: '76', width: '76', x: '-36', y: '-42' })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
-	                  { className: 'slider-self-wrapper' },
-	                  _react2.default.createElement(_rcSlider2.default, {
-	                    max: this.props.sliderMax,
-	                    tipTransitionName: 'rc-slider-tooltip-zoom-down',
-	                    tipFormatter: dollarFormatter,
-	                    marks: sliderMarks,
-	                    step: 2,
-	                    dots: false,
-	                    onChange: this._onSliderChange
+	                  { className: 'indicator-wrapper' },
+	                  _react2.default.createElement(_IndicatorSlider2.default, {
+	                    value: this.getIndicatorValue(true),
+	                    sections: 4
 	                  })
-	                )
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(_HorizontalRule2.default, { small: true }),
-	        _react2.default.createElement(
-	          'section',
-	          { className: 'day-to-day-section container-fluid' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-xs-12' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'test-stats' },
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Food cost: ',
-	                  (0, _calculators.getMonthlyMealCost)(individuals, selectedCounty.fips)
 	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Housing cost: ',
-	                  (0, _calculators.getHousingCost)(individuals, selectedCounty.fips)
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'School meal benefit: ',
-	                  (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips)
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Snap benefit: ',
-	                  (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Income plus benefits: ',
-	                  (0, _calculators.incomePlusBenefits)(individuals, sliderWage, selectedCounty.fips)
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Money after housing: ',
-	                  (0, _calculators.moneyAfterHousing)(individuals, sliderWage, selectedCounty.fips)
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'h2',
-	                { className: 'header food-security-header' },
-	                'Food Security Status'
-	              ),
-	              _react2.default.createElement(
-	                _DonutChart2.default,
-	                {
-	                  values: bestCaseMealValues,
-	                  total: totalMealsGoal,
-	                  mealsShort: bestCaseMissingMeals,
-	                  costPerMeal: costPerMeal
-	                },
-	                _react2.default.createElement('image', { xlinkHref: 'src/assets/apple.svg', height: '76', width: '76', x: '-36', y: '-42' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'indicator-wrapper' },
-	                _react2.default.createElement(_IndicatorSlider2.default, {
-	                  value: this.getIndicatorValue(true),
-	                  sections: 4
-	                })
-	              ),
-	              _react2.default.createElement(_DayToDayHungerSnugget2.default, {
-	                securityStatus: this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true),
-	                mealsMissed: this.getMissingMeals(true) })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'section',
-	          { className: 'lunch-section container-fluid', style: this.isSingleAdult() ? { display: "none" } : {} },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-xs-12' },
-	              _react2.default.createElement(
-	                'h2',
-	                { className: 'text-center' },
-	                'How does free and reduced lunch affect your family?'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'However, many school districts in the state do not have these expanded programs and face new hardships during summer when school is out. This is what your scenario would look like without the help of free and reduced price lunch programs.'
+	                _react2.default.createElement(_DayToDayHungerSnugget2.default, {
+	                  securityStatus: this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true),
+	                  mealsMissed: this.getMissingMeals(true) })
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'test-stats' },
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Food cost: ',
-	              (0, _calculators.getMonthlyMealCost)(individuals, selectedCounty.fips)
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Housing cost: ',
-	              (0, _calculators.getHousingCost)(individuals, selectedCounty.fips)
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'School meal benefit: ',
-	              0
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Snap benefit: ',
-	              (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Income plus benefits: ',
-	              (0, _calculators.incomePlusBenefits)(individuals, sliderWage, selectedCounty.fips)
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Money after housing: ',
-	              (0, _calculators.moneyAfterHousing)(individuals, sliderWage, selectedCounty.fips)
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _DonutChart2.default,
-	            {
-	              values: worstCaseMealValues,
-	              total: totalMealsGoal,
-	              mealsShort: worstCaseMissingMeals,
-	              costPerMeal: costPerMeal
-	            },
-	            _react2.default.createElement('image', { xlinkHref: 'src/assets/apple.svg', height: '76', width: '76', x: '-36', y: '-42' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'indicator-wrapper' },
-	            _react2.default.createElement(_IndicatorSlider2.default, {
-	              value: this.getIndicatorValue(false),
-	              sections: 4
-	            })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'section',
-	          { className: 'housing container-fluid' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
+	            'section',
+	            { className: 'lunch-section container-fluid', style: this.isSingleAdult() ? { display: "none" } : {} },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'col-xs-12' },
-	              _react2.default.createElement(
-	                'h2',
-	                { className: 'text-center' },
-	                'Are you able to afford stable housing?'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.'
-	              ),
-	              _react2.default.createElement(_CCHorizontalBarChart2.default, { title: 'Bart Chart Success!', data: barChartData, colors: barColors })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'section',
-	          { className: 'map-view-section container-fluid' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'row' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-xs-12' },
-	              _react2.default.createElement(
-	                'h2',
-	                { className: 'text-center' },
-	                'Would my situation be different if I live in another area in Oregon?'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:'
-	              ),
+	              { className: 'row' },
 	              _react2.default.createElement(
 	                'div',
-	                { className: 'row map-row' },
+	                { className: 'col-xs-12' },
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper' },
-	                  _react2.default.createElement(_MapView2.default, {
-	                    fipsColors: this.getMapFipsColors(this.state.bestCaseMap),
-	                    selectedCounty: this.state.selectedCounty
-	                  })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'The average minimum cost of housing in your county is X, which is above average for the state of Oregon. See how your county compares to the rest of the state:'
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'text-center' },
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  'Conclusion:'
+	                  'h2',
+	                  { className: 'text-center' },
+	                  'How does free and reduced lunch affect your family?'
 	                ),
 	                _react2.default.createElement(
 	                  'p',
-	                  { className: 'conclusion-text' },
-	                  'Lorem ipsum dolor sit amet, con mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus.'
+	                  null,
+	                  'Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.'
+	                ),
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'However, many school districts in the state do not have these expanded programs and face new hardships during summer when school is out. This is what your scenario would look like without the help of free and reduced price lunch programs.'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'test-stats' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Food cost: ',
+	                (0, _calculators.getMonthlyMealCost)(individuals, selectedCounty.fips)
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Housing cost: ',
+	                (0, _calculators.getHousingCost)(individuals, selectedCounty.fips)
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'School meal benefit: ',
+	                0
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Snap benefit: ',
+	                (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Income plus benefits: ',
+	                (0, _calculators.incomePlusBenefits)(individuals, sliderWage, selectedCounty.fips)
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Money after housing: ',
+	                (0, _calculators.moneyAfterHousing)(individuals, sliderWage, selectedCounty.fips)
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _DonutChart2.default,
+	              {
+	                values: worstCaseMealValues,
+	                total: totalMealsGoal,
+	                mealsShort: worstCaseMissingMeals,
+	                costPerMeal: costPerMeal
+	              },
+	              _react2.default.createElement('image', { xlinkHref: 'src/assets/apple.svg', height: '76', width: '76', x: '-36', y: '-42' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'indicator-wrapper' },
+	              _react2.default.createElement(_IndicatorSlider2.default, {
+	                value: this.getIndicatorValue(false),
+	                sections: 4
+	              })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'housing container-fluid' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                _react2.default.createElement(
+	                  'h2',
+	                  { className: 'text-center' },
+	                  'Are you able to afford stable housing?'
+	                ),
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.'
+	                ),
+	                _react2.default.createElement(_CCHorizontalBarChart2.default, { title: 'Bart Chart Success!', data: barChartData, colors: barColors })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'map-view-section container-fluid' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'row' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                _react2.default.createElement(
+	                  'h2',
+	                  { className: 'text-center' },
+	                  'Would my situation be different if I live in another area in Oregon?'
+	                ),
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'row map-row' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper' },
+	                    _react2.default.createElement(_MapView2.default, {
+	                      fipsColors: this.getMapFipsColors(this.state.bestCaseMap),
+	                      selectedCounty: this.state.selectedCounty
+	                    })
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'The average minimum cost of housing in your county is X, which is above average for the state of Oregon. See how your county compares to the rest of the state:'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'text-center' },
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Conclusion:'
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'conclusion-text' },
+	                    'Lorem ipsum dolor sit amet, con mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus.'
+	                  )
 	                )
 	              )
 	            )
@@ -42182,6 +42192,432 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Channel = exports.StickyContainer = exports.Sticky = undefined;
+	
+	var _sticky = __webpack_require__(280);
+	
+	var _sticky2 = _interopRequireDefault(_sticky);
+	
+	var _container = __webpack_require__(281);
+	
+	var _container2 = _interopRequireDefault(_container);
+	
+	var _channel = __webpack_require__(282);
+	
+	var _channel2 = _interopRequireDefault(_channel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.Sticky = _sticky2.default;
+	exports.StickyContainer = _container2.default;
+	exports.Channel = _channel2.default;
+	exports.default = _sticky2.default;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(38);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Sticky = function (_React$Component) {
+	  _inherits(Sticky, _React$Component);
+	
+	  function Sticky(props) {
+	    _classCallCheck(this, Sticky);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Sticky).call(this, props));
+	
+	    _this.updateContext = function (_ref) {
+	      var inherited = _ref.inherited;
+	      var node = _ref.node;
+	
+	      _this.containerNode = node;
+	      _this.setState({
+	        containerOffset: inherited,
+	        distanceFromBottom: _this.getDistanceFromBottom()
+	      });
+	    };
+	
+	    _this.recomputeState = function () {
+	      var isSticky = _this.isSticky();
+	      var height = _this.getHeight();
+	      var width = _this.getWidth();
+	      var xOffset = _this.getXOffset();
+	      var distanceFromBottom = _this.getDistanceFromBottom();
+	      var hasChanged = _this.state.isSticky !== isSticky;
+	
+	      _this.setState({ isSticky: isSticky, height: height, width: width, xOffset: xOffset, distanceFromBottom: distanceFromBottom });
+	
+	      if (hasChanged) {
+	        if (_this.channel) {
+	          _this.channel.update(function (data) {
+	            data.offset = isSticky ? _this.state.height : 0;
+	          });
+	        }
+	
+	        _this.props.onStickyStateChange(isSticky);
+	      }
+	    };
+	
+	    _this.state = {};
+	    return _this;
+	  }
+	
+	  _createClass(Sticky, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.channel = this.context['sticky-channel'];
+	      this.channel.subscribe(this.updateContext);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.on(['resize', 'scroll', 'touchstart', 'touchmove', 'touchend', 'pageshow', 'load'], this.recomputeState);
+	      this.recomputeState();
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps() {
+	      this.recomputeState();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.off(['resize', 'scroll', 'touchstart', 'touchmove', 'touchend', 'pageshow', 'load'], this.recomputeState);
+	      this.channel.unsubscribe(this.updateContext);
+	    }
+	  }, {
+	    key: 'getXOffset',
+	    value: function getXOffset() {
+	      return this.refs.placeholder.getBoundingClientRect().left;
+	    }
+	  }, {
+	    key: 'getWidth',
+	    value: function getWidth() {
+	      return this.refs.placeholder.getBoundingClientRect().width;
+	    }
+	  }, {
+	    key: 'getHeight',
+	    value: function getHeight() {
+	      return _reactDom2.default.findDOMNode(this).getBoundingClientRect().height;
+	    }
+	  }, {
+	    key: 'getDistanceFromTop',
+	    value: function getDistanceFromTop() {
+	      return this.refs.placeholder.getBoundingClientRect().top;
+	    }
+	  }, {
+	    key: 'getDistanceFromBottom',
+	    value: function getDistanceFromBottom() {
+	      if (!this.containerNode) return 0;
+	      return this.containerNode.getBoundingClientRect().bottom;
+	    }
+	  }, {
+	    key: 'isSticky',
+	    value: function isSticky() {
+	      if (!this.props.isActive) return false;
+	
+	      var fromTop = this.getDistanceFromTop();
+	      var fromBottom = this.getDistanceFromBottom();
+	
+	      var topBreakpoint = this.state.containerOffset - this.props.topOffset;
+	      var bottomBreakpoint = this.state.containerOffset + this.props.bottomOffset;
+	
+	      return fromTop <= topBreakpoint && fromBottom >= bottomBreakpoint;
+	    }
+	  }, {
+	    key: 'on',
+	    value: function on(events, callback) {
+	      events.forEach(function (evt) {
+	        window.addEventListener(evt, callback);
+	      });
+	    }
+	  }, {
+	    key: 'off',
+	    value: function off(events, callback) {
+	      events.forEach(function (evt) {
+	        window.removeEventListener(evt, callback);
+	      });
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(newProps, newState) {
+	      var _this2 = this;
+	
+	      // Have we changed the number of props?
+	      var propNames = Object.keys(this.props);
+	      if (Object.keys(newProps).length != propNames.length) return true;
+	
+	      // Have we changed any prop values?
+	      var valuesMatch = propNames.every(function (key) {
+	        return newProps.hasOwnProperty(key) && newProps[key] === _this2.props[key];
+	      });
+	      if (!valuesMatch) return true;
+	
+	      // Have we changed any state that will always impact rendering?
+	      var state = this.state;
+	      if (newState.isSticky !== state.isSticky) return true;
+	
+	      // If we are sticky, have we changed any state that will impact rendering?
+	      if (state.isSticky) {
+	        if (newState.height !== state.height) return true;
+	        if (newState.width !== state.width) return true;
+	        if (newState.xOffset !== state.xOffset) return true;
+	        if (newState.containerOffset !== state.containerOffset) return true;
+	        if (newState.distanceFromBottom !== state.distanceFromBottom) return true;
+	      }
+	
+	      return false;
+	    }
+	
+	    /*
+	     * The special sauce.
+	     */
+	
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var placeholderStyle = { paddingBottom: 0 };
+	      var className = this.props.className;
+	      var style = this.props.style;
+	
+	      if (this.state.isSticky) {
+	        var stickyStyle = {
+	          position: 'fixed',
+	          top: this.state.containerOffset,
+	          left: this.state.xOffset,
+	          width: this.state.width
+	        };
+	
+	        var bottomLimit = this.state.distanceFromBottom - this.state.height - this.props.bottomOffset;
+	        if (this.state.containerOffset > bottomLimit) {
+	          stickyStyle.top = bottomLimit;
+	        }
+	
+	        placeholderStyle.paddingBottom = this.state.height;
+	
+	        className += ' ' + this.props.stickyClassName;
+	        style = _extends({}, style, stickyStyle, this.props.stickyStyle);
+	      }
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('div', { ref: 'placeholder', style: placeholderStyle }),
+	        _react2.default.createElement(
+	          'div',
+	          _extends({}, this.props, { className: className, style: style }),
+	          this.props.children
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Sticky;
+	}(_react2.default.Component);
+	
+	Sticky.propTypes = {
+	  isActive: _react2.default.PropTypes.bool,
+	  className: _react2.default.PropTypes.string,
+	  style: _react2.default.PropTypes.object,
+	  stickyClassName: _react2.default.PropTypes.string,
+	  stickyStyle: _react2.default.PropTypes.object,
+	  topOffset: _react2.default.PropTypes.number,
+	  bottomOffset: _react2.default.PropTypes.number,
+	  onStickyStateChange: _react2.default.PropTypes.func
+	};
+	Sticky.defaultProps = {
+	  isActive: true,
+	  className: '',
+	  style: {},
+	  stickyClassName: 'sticky',
+	  stickyStyle: {},
+	  topOffset: 0,
+	  bottomOffset: 0,
+	  onStickyStateChange: function onStickyStateChange() {}
+	};
+	Sticky.contextTypes = {
+	  'sticky-channel': _react2.default.PropTypes.any
+	};
+	exports.default = Sticky;
+	module.exports = exports['default'];
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(38);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _channel = __webpack_require__(282);
+	
+	var _channel2 = _interopRequireDefault(_channel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Container = function (_React$Component) {
+	  _inherits(Container, _React$Component);
+	
+	  function Container(props) {
+	    _classCallCheck(this, Container);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Container).call(this, props));
+	
+	    _this.updateOffset = function (_ref) {
+	      var inherited = _ref.inherited;
+	      var offset = _ref.offset;
+	
+	      _this.channel.update(function (data) {
+	        data.inherited = inherited + offset;
+	      });
+	    };
+	
+	    _this.channel = new _channel2.default({ inherited: 0, offset: 0, node: null });
+	    return _this;
+	  }
+	
+	  _createClass(Container, [{
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      return { 'sticky-channel': this.channel };
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var parentChannel = this.context['sticky-channel'];
+	      if (parentChannel) parentChannel.subscribe(this.updateOffset);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var node = _reactDom2.default.findDOMNode(this);
+	      this.channel.update(function (data) {
+	        data.node = node;
+	      });
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.channel.update(function (data) {
+	        data.node = null;
+	      });
+	
+	      var parentChannel = this.context['sticky-channel'];
+	      if (parentChannel) parentChannel.unsubscribe(this.updateOffset);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        this.props,
+	        this.props.children
+	      );
+	    }
+	  }]);
+	
+	  return Container;
+	}(_react2.default.Component);
+	
+	Container.contextTypes = {
+	  'sticky-channel': _react2.default.PropTypes.any
+	};
+	Container.childContextTypes = {
+	  'sticky-channel': _react2.default.PropTypes.any
+	};
+	exports.default = Container;
+	module.exports = exports['default'];
+
+/***/ },
+/* 282 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Channel = function Channel(data) {
+	  _classCallCheck(this, Channel);
+	
+	  var listeners = [];
+	  data = data || {};
+	
+	  this.subscribe = function (fn) {
+	    listeners.push(fn);
+	  };
+	
+	  this.unsubscribe = function (fn) {
+	    var idx = listeners.indexOf(fn);
+	    if (idx !== -1) listeners.splice(idx, 1);
+	  };
+	
+	  this.update = function (fn) {
+	    if (fn) fn(data);
+	    listeners.forEach(function (l) {
+	      return l(data);
+	    });
+	  };
+	};
+	
+	exports.default = Channel;
+	module.exports = exports['default'];
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.getSchoolMealBenefit = exports.incomePlusBenefits = exports.getHousingCost = exports.getMonthlyMealCost = exports.snapCalculator = exports.moneyAfterHousing = exports.calcMealGap = undefined;
 	
 	var _data = __webpack_require__(277);
@@ -42336,7 +42772,7 @@
 	exports.getSchoolMealBenefit = getSchoolMealBenefit;
 
 /***/ },
-/* 280 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -52184,14 +52620,14 @@
 
 
 /***/ },
-/* 281 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(282);
+	module.exports = __webpack_require__(286);
 
 
 /***/ },
-/* 282 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -52213,13 +52649,13 @@
 	 * Assertion Error
 	 */
 	
-	exports.AssertionError = __webpack_require__(283);
+	exports.AssertionError = __webpack_require__(287);
 	
 	/*!
 	 * Utils for plugins (not exported)
 	 */
 	
-	var util = __webpack_require__(284);
+	var util = __webpack_require__(288);
 	
 	/**
 	 * # .use(function)
@@ -52250,47 +52686,47 @@
 	 * Configuration
 	 */
 	
-	var config = __webpack_require__(297);
+	var config = __webpack_require__(301);
 	exports.config = config;
 	
 	/*!
 	 * Primary `Assertion` prototype
 	 */
 	
-	var assertion = __webpack_require__(316);
+	var assertion = __webpack_require__(320);
 	exports.use(assertion);
 	
 	/*!
 	 * Core Assertions
 	 */
 	
-	var core = __webpack_require__(317);
+	var core = __webpack_require__(321);
 	exports.use(core);
 	
 	/*!
 	 * Expect interface
 	 */
 	
-	var expect = __webpack_require__(318);
+	var expect = __webpack_require__(322);
 	exports.use(expect);
 	
 	/*!
 	 * Should interface
 	 */
 	
-	var should = __webpack_require__(319);
+	var should = __webpack_require__(323);
 	exports.use(should);
 	
 	/*!
 	 * Assert interface
 	 */
 	
-	var assert = __webpack_require__(320);
+	var assert = __webpack_require__(324);
 	exports.use(assert);
 
 
 /***/ },
-/* 283 */
+/* 287 */
 /***/ function(module, exports) {
 
 	/*!
@@ -52412,7 +52848,7 @@
 
 
 /***/ },
-/* 284 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -52431,124 +52867,124 @@
 	 * test utility
 	 */
 	
-	exports.test = __webpack_require__(285);
+	exports.test = __webpack_require__(289);
 	
 	/*!
 	 * type utility
 	 */
 	
-	exports.type = __webpack_require__(287);
+	exports.type = __webpack_require__(291);
 	
 	/*!
 	 * expectTypes utility
 	 */
-	exports.expectTypes = __webpack_require__(289);
+	exports.expectTypes = __webpack_require__(293);
 	
 	/*!
 	 * message utility
 	 */
 	
-	exports.getMessage = __webpack_require__(290);
+	exports.getMessage = __webpack_require__(294);
 	
 	/*!
 	 * actual utility
 	 */
 	
-	exports.getActual = __webpack_require__(291);
+	exports.getActual = __webpack_require__(295);
 	
 	/*!
 	 * Inspect util
 	 */
 	
-	exports.inspect = __webpack_require__(292);
+	exports.inspect = __webpack_require__(296);
 	
 	/*!
 	 * Object Display util
 	 */
 	
-	exports.objDisplay = __webpack_require__(296);
+	exports.objDisplay = __webpack_require__(300);
 	
 	/*!
 	 * Flag utility
 	 */
 	
-	exports.flag = __webpack_require__(286);
+	exports.flag = __webpack_require__(290);
 	
 	/*!
 	 * Flag transferring utility
 	 */
 	
-	exports.transferFlags = __webpack_require__(298);
+	exports.transferFlags = __webpack_require__(302);
 	
 	/*!
 	 * Deep equal utility
 	 */
 	
-	exports.eql = __webpack_require__(299);
+	exports.eql = __webpack_require__(303);
 	
 	/*!
 	 * Deep path value
 	 */
 	
-	exports.getPathValue = __webpack_require__(307);
+	exports.getPathValue = __webpack_require__(311);
 	
 	/*!
 	 * Deep path info
 	 */
 	
-	exports.getPathInfo = __webpack_require__(308);
+	exports.getPathInfo = __webpack_require__(312);
 	
 	/*!
 	 * Check if a property exists
 	 */
 	
-	exports.hasProperty = __webpack_require__(309);
+	exports.hasProperty = __webpack_require__(313);
 	
 	/*!
 	 * Function name
 	 */
 	
-	exports.getName = __webpack_require__(293);
+	exports.getName = __webpack_require__(297);
 	
 	/*!
 	 * add Property
 	 */
 	
-	exports.addProperty = __webpack_require__(310);
+	exports.addProperty = __webpack_require__(314);
 	
 	/*!
 	 * add Method
 	 */
 	
-	exports.addMethod = __webpack_require__(311);
+	exports.addMethod = __webpack_require__(315);
 	
 	/*!
 	 * overwrite Property
 	 */
 	
-	exports.overwriteProperty = __webpack_require__(312);
+	exports.overwriteProperty = __webpack_require__(316);
 	
 	/*!
 	 * overwrite Method
 	 */
 	
-	exports.overwriteMethod = __webpack_require__(313);
+	exports.overwriteMethod = __webpack_require__(317);
 	
 	/*!
 	 * Add a chainable method
 	 */
 	
-	exports.addChainableMethod = __webpack_require__(314);
+	exports.addChainableMethod = __webpack_require__(318);
 	
 	/*!
 	 * Overwrite chainable method
 	 */
 	
-	exports.overwriteChainableMethod = __webpack_require__(315);
+	exports.overwriteChainableMethod = __webpack_require__(319);
 
 
 /***/ },
-/* 285 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -52561,7 +52997,7 @@
 	 * Module dependancies
 	 */
 	
-	var flag = __webpack_require__(286);
+	var flag = __webpack_require__(290);
 	
 	/**
 	 * # test(object, expression)
@@ -52582,7 +53018,7 @@
 
 
 /***/ },
-/* 286 */
+/* 290 */
 /***/ function(module, exports) {
 
 	/*!
@@ -52621,14 +53057,14 @@
 
 
 /***/ },
-/* 287 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(288);
+	module.exports = __webpack_require__(292);
 
 
 /***/ },
-/* 288 */
+/* 292 */
 /***/ function(module, exports) {
 
 	/*!
@@ -52768,7 +53204,7 @@
 
 
 /***/ },
-/* 289 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -52791,9 +53227,9 @@
 	 * @api public
 	 */
 	
-	var AssertionError = __webpack_require__(283);
-	var flag = __webpack_require__(286);
-	var type = __webpack_require__(287);
+	var AssertionError = __webpack_require__(287);
+	var flag = __webpack_require__(290);
+	var type = __webpack_require__(291);
 	
 	module.exports = function (obj, types) {
 	  var obj = flag(obj, 'object');
@@ -52816,7 +53252,7 @@
 
 
 /***/ },
-/* 290 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -52829,10 +53265,10 @@
 	 * Module dependancies
 	 */
 	
-	var flag = __webpack_require__(286)
-	  , getActual = __webpack_require__(291)
-	  , inspect = __webpack_require__(292)
-	  , objDisplay = __webpack_require__(296);
+	var flag = __webpack_require__(290)
+	  , getActual = __webpack_require__(295)
+	  , inspect = __webpack_require__(296)
+	  , objDisplay = __webpack_require__(300);
 	
 	/**
 	 * ### .getMessage(object, message, negateMessage)
@@ -52873,7 +53309,7 @@
 
 
 /***/ },
-/* 291 */
+/* 295 */
 /***/ function(module, exports) {
 
 	/*!
@@ -52899,15 +53335,15 @@
 
 
 /***/ },
-/* 292 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This is (almost) directly from Node.js utils
 	// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js
 	
-	var getName = __webpack_require__(293);
-	var getProperties = __webpack_require__(294);
-	var getEnumerableProperties = __webpack_require__(295);
+	var getName = __webpack_require__(297);
+	var getProperties = __webpack_require__(298);
+	var getEnumerableProperties = __webpack_require__(299);
 	
 	module.exports = inspect;
 	
@@ -53240,7 +53676,7 @@
 
 
 /***/ },
-/* 293 */
+/* 297 */
 /***/ function(module, exports) {
 
 	/*!
@@ -53268,7 +53704,7 @@
 
 
 /***/ },
-/* 294 */
+/* 298 */
 /***/ function(module, exports) {
 
 	/*!
@@ -53310,7 +53746,7 @@
 
 
 /***/ },
-/* 295 */
+/* 299 */
 /***/ function(module, exports) {
 
 	/*!
@@ -53342,7 +53778,7 @@
 
 
 /***/ },
-/* 296 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -53355,8 +53791,8 @@
 	 * Module dependancies
 	 */
 	
-	var inspect = __webpack_require__(292);
-	var config = __webpack_require__(297);
+	var inspect = __webpack_require__(296);
+	var config = __webpack_require__(301);
 	
 	/**
 	 * ### .objDisplay (object)
@@ -53398,7 +53834,7 @@
 
 
 /***/ },
-/* 297 */
+/* 301 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -53459,7 +53895,7 @@
 
 
 /***/ },
-/* 298 */
+/* 302 */
 /***/ function(module, exports) {
 
 	/*!
@@ -53510,14 +53946,14 @@
 
 
 /***/ },
-/* 299 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(300);
+	module.exports = __webpack_require__(304);
 
 
 /***/ },
-/* 300 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -53530,14 +53966,14 @@
 	 * Module dependencies
 	 */
 	
-	var type = __webpack_require__(301);
+	var type = __webpack_require__(305);
 	
 	/*!
 	 * Buffer.isBuffer browser shim
 	 */
 	
 	var Buffer;
-	try { Buffer = __webpack_require__(303).Buffer; }
+	try { Buffer = __webpack_require__(307).Buffer; }
 	catch(ex) {
 	  Buffer = {};
 	  Buffer.isBuffer = function() { return false; }
@@ -53780,14 +54216,14 @@
 
 
 /***/ },
-/* 301 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(302);
+	module.exports = __webpack_require__(306);
 
 
 /***/ },
-/* 302 */
+/* 306 */
 /***/ function(module, exports) {
 
 	/*!
@@ -53935,7 +54371,7 @@
 
 
 /***/ },
-/* 303 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -53948,9 +54384,9 @@
 	
 	'use strict'
 	
-	var base64 = __webpack_require__(304)
-	var ieee754 = __webpack_require__(305)
-	var isArray = __webpack_require__(306)
+	var base64 = __webpack_require__(308)
+	var ieee754 = __webpack_require__(309)
+	var isArray = __webpack_require__(310)
 	
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -55487,10 +55923,10 @@
 	  return i
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(303).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(307).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 304 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
@@ -55620,7 +56056,7 @@
 
 
 /***/ },
-/* 305 */
+/* 309 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -55710,7 +56146,7 @@
 
 
 /***/ },
-/* 306 */
+/* 310 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -55721,7 +56157,7 @@
 
 
 /***/ },
-/* 307 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -55731,7 +56167,7 @@
 	 * MIT Licensed
 	 */
 	
-	var getPathInfo = __webpack_require__(308);
+	var getPathInfo = __webpack_require__(312);
 	
 	/**
 	 * ### .getPathValue(path, object)
@@ -55770,7 +56206,7 @@
 
 
 /***/ },
-/* 308 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -55779,7 +56215,7 @@
 	 * MIT Licensed
 	 */
 	
-	var hasProperty = __webpack_require__(309);
+	var hasProperty = __webpack_require__(313);
 	
 	/**
 	 * ### .getPathInfo(path, object)
@@ -55887,7 +56323,7 @@
 
 
 /***/ },
-/* 309 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -55896,7 +56332,7 @@
 	 * MIT Licensed
 	 */
 	
-	var type = __webpack_require__(287);
+	var type = __webpack_require__(291);
 	
 	/**
 	 * ### .hasProperty(object, name)
@@ -55957,7 +56393,7 @@
 
 
 /***/ },
-/* 310 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -55966,8 +56402,8 @@
 	 * MIT Licensed
 	 */
 	
-	var config = __webpack_require__(297);
-	var flag = __webpack_require__(286);
+	var config = __webpack_require__(301);
+	var flag = __webpack_require__(290);
 	
 	/**
 	 * ### addProperty (ctx, name, getter)
@@ -56011,7 +56447,7 @@
 
 
 /***/ },
-/* 311 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -56020,7 +56456,7 @@
 	 * MIT Licensed
 	 */
 	
-	var config = __webpack_require__(297);
+	var config = __webpack_require__(301);
 	
 	/**
 	 * ### .addMethod (ctx, name, method)
@@ -56047,7 +56483,7 @@
 	 * @name addMethod
 	 * @api public
 	 */
-	var flag = __webpack_require__(286);
+	var flag = __webpack_require__(290);
 	
 	module.exports = function (ctx, name, method) {
 	  ctx[name] = function () {
@@ -56061,7 +56497,7 @@
 
 
 /***/ },
-/* 312 */
+/* 316 */
 /***/ function(module, exports) {
 
 	/*!
@@ -56122,7 +56558,7 @@
 
 
 /***/ },
-/* 313 */
+/* 317 */
 /***/ function(module, exports) {
 
 	/*!
@@ -56180,7 +56616,7 @@
 
 
 /***/ },
-/* 314 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -56193,9 +56629,9 @@
 	 * Module dependencies
 	 */
 	
-	var transferFlags = __webpack_require__(298);
-	var flag = __webpack_require__(286);
-	var config = __webpack_require__(297);
+	var transferFlags = __webpack_require__(302);
+	var flag = __webpack_require__(290);
+	var config = __webpack_require__(301);
 	
 	/*!
 	 * Module variables
@@ -56298,7 +56734,7 @@
 
 
 /***/ },
-/* 315 */
+/* 319 */
 /***/ function(module, exports) {
 
 	/*!
@@ -56358,7 +56794,7 @@
 
 
 /***/ },
-/* 316 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -56368,7 +56804,7 @@
 	 * MIT Licensed
 	 */
 	
-	var config = __webpack_require__(297);
+	var config = __webpack_require__(301);
 	
 	module.exports = function (_chai, util) {
 	  /*!
@@ -56495,7 +56931,7 @@
 
 
 /***/ },
-/* 317 */
+/* 321 */
 /***/ function(module, exports) {
 
 	/*!
@@ -58361,7 +58797,7 @@
 
 
 /***/ },
-/* 318 */
+/* 322 */
 /***/ function(module, exports) {
 
 	/*!
@@ -58401,7 +58837,7 @@
 
 
 /***/ },
-/* 319 */
+/* 323 */
 /***/ function(module, exports) {
 
 	/*!
@@ -58608,7 +59044,7 @@
 
 
 /***/ },
-/* 320 */
+/* 324 */
 /***/ function(module, exports) {
 
 	/*!
@@ -60259,14 +60695,10 @@
 
 
 /***/ },
-/* 321 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-	__webpack_require__(322)
-	__webpack_require__(323)
-	__webpack_require__(324)
-	__webpack_require__(325)
 	__webpack_require__(326)
 	__webpack_require__(327)
 	__webpack_require__(328)
@@ -60275,9 +60707,13 @@
 	__webpack_require__(331)
 	__webpack_require__(332)
 	__webpack_require__(333)
+	__webpack_require__(334)
+	__webpack_require__(335)
+	__webpack_require__(336)
+	__webpack_require__(337)
 
 /***/ },
-/* 322 */
+/* 326 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -60342,7 +60778,7 @@
 
 
 /***/ },
-/* 323 */
+/* 327 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -60442,7 +60878,7 @@
 
 
 /***/ },
-/* 324 */
+/* 328 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -60568,7 +61004,7 @@
 
 
 /***/ },
-/* 325 */
+/* 329 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -60811,7 +61247,7 @@
 
 
 /***/ },
-/* 326 */
+/* 330 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -61028,7 +61464,7 @@
 
 
 /***/ },
-/* 327 */
+/* 331 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -61199,7 +61635,7 @@
 
 
 /***/ },
-/* 328 */
+/* 332 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -61542,7 +61978,7 @@
 
 
 /***/ },
-/* 329 */
+/* 333 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -62062,7 +62498,7 @@
 
 
 /***/ },
-/* 330 */
+/* 334 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -62176,7 +62612,7 @@
 
 
 /***/ },
-/* 331 */
+/* 335 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -62354,7 +62790,7 @@
 
 
 /***/ },
-/* 332 */
+/* 336 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -62515,7 +62951,7 @@
 
 
 /***/ },
-/* 333 */
+/* 337 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -62683,13 +63119,13 @@
 
 
 /***/ },
-/* 334 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(335);
+	var content = __webpack_require__(339);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(231)(content, {});
@@ -62709,86 +63145,6 @@
 	}
 
 /***/ },
-/* 335 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(230)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Raleway', sans-serif;\n  background-color: #fbfaf0;\n}\n\nsection {\n  padding: 2em;\n}\n\n\np {\n  font-size: 2.0em;\n  margin: 0;\n  text-indent: 1em;\n  color: #656565;\n}\n\n/* HEADER */\n.main-title {\n  font-size: 3.0em;\n  color: #656565;\n  font-weight: bold;\n  max-width: 100%;\n  margin-top: 15px;\n  margin-bottom: 10px;\n  font-family: 'Signika', sans-serif;\n}\n\n@media only screen and (max-width: 480px) {\n  .main-title {\n    text-align: center;\n  }\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n\n/* SECTION 2: DAY-TO-DAY */\n/* SECTION 3: FREE AND REDUCED LUNCH */\n/* SECTION 4: HOUSING */\n.placeholder {\n  margin: 20px auto;\n  border: 1px solid #ddd;\n  height: 6em;\n  width: 80%;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  padding: 1em;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n/* INDICATOR */\n.indicator-root {\n  margin: 10px auto;\n}\n\n.indicator-outer-wrapper,\n.indicator-blocks-wrapper {\n  min-width: 250px;\n}\n\n.indicator-outer-wrapper {\n  position: relative;\n  padding: 8px;\n  max-width: 500px;\n  margin: 0 auto;\n}\n\n.indicator-blocks-wrapper {\n  position: relative;\n}\n\n.indicator-line-wrapper {\n  position: absolute;\n  display: inline-block;\n  top: 0;\n  left: 4px;\n}\n\n.indicator-line {\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  width: 2px;\n  height: 1.8em;\n  z-index: 5;\n  background-color: black;\n}\n\n.indicator-arrow {\n  position: relative;\n  width: 0;\n  height: 0;\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n}\n\n.ind-block {\n  box-sizing: border-box;\n  display: inline-block;\n  height: 1.6em;\n  width: 25%;\n}\n\n.block-1 {\n  background-color: #eee597;\n}\n\n.block-2 {\n  background-color: #eadd69;\n}\n\n.block-3 {\n  background-color: #dc6632;\n}\n\n.block-4 {\n  background-color: #b5441d;\n}\n\n.indicator-line,\n.indicator-arrow {\n  top: 0;\n  left: 0;\n}\n\n.top-arrow {\n  /* triangle pointing down */\n  margin-bottom: -0.15em;\n  border-top: 8px solid black;\n}\n\n.bottom-arrow {\n  /* triangle pointing up */\n  margin-top: -0.15em;\n  border-bottom: 8px solid black;\n}\n", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 336 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(337);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(231)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./App.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./App.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 337 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(230)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "/* HEADER */\n.ho-logo-gray {\n  max-height: 50px;\n}\n.ho-logo-wrapper {\n  padding: 10px 10px 10px 30px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-header {\n  margin: 0 auto;\n  width: 90%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-header {\n    margin: 0;\n    width: 100%;\n  }\n}\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  border: 1px solid #000;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 2em 1em;\n  }\n}\n\n/* FOOD SECURITY STATUS */\n.food-security-header {\n  font-size: 3.4em;\n}\n\n@media only screen and (max-width: 480px) {\n  .food-security-header {\n    font-size: 2.4em;\n  }\n}\n", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 338 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(339);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(231)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./rc-slider.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./rc-slider.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -62797,7 +63153,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".rc-slider {\n  position: relative;\n  height: 2px;\n  width: 100%;\n  border-radius: 6px;\n  background-color: #000;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 2px;\n  border-radius: 6px;\n  background-color: #000;\n  z-index: 1;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -6px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  border-radius: 50%;\n  border: solid 1px #000;\n  background-color: #c9dacf;\n  z-index: 2;\n}\n.rc-slider-handle:hover {\n  border-color: #fff;\n}\n.rc-slider-handle-active:active {\n  border-color: #fff;\n  box-shadow: 0 0 5px #000;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 10px;\n  left: 0;\n  width: 100%;\n  font-size: 18px;\n  z-index: 3;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #333;\n}\n\n.rc-slider-mark-text-active {\n  color: #000;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: none; /* disable dots */\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 4px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-track {\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  position: absolute;\n  margin-left: -5px;\n  margin-bottom: -7px;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 10px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 4;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip-hidden {\n  display: none;\n}\n.rc-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-tooltip-placement-top .rc-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", ""]);
+	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Raleway', sans-serif;\n  background-color: #fbfaf0;\n}\n\nsection {\n  padding: 2em;\n}\n\n\np {\n  font-size: 2.0em;\n  margin: 0;\n  text-indent: 1em;\n  color: #656565;\n}\n\n/* HEADER */\n.main-title {\n  font-size: 3.0em;\n  color: #656565;\n  font-weight: bold;\n  max-width: 100%;\n  margin-top: 15px;\n  margin-bottom: 10px;\n  font-family: 'Signika', sans-serif;\n}\n\n@media only screen and (max-width: 480px) {\n  .main-title {\n    text-align: center;\n  }\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n\n/* SECTION 2: DAY-TO-DAY */\n/* SECTION 3: FREE AND REDUCED LUNCH */\n/* SECTION 4: HOUSING */\n.placeholder {\n  margin: 20px auto;\n  border: 1px solid #ddd;\n  height: 6em;\n  width: 80%;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  padding: 1em;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n/* INDICATOR */\n.indicator-root {\n  margin: 10px auto;\n}\n\n.indicator-outer-wrapper,\n.indicator-blocks-wrapper {\n  min-width: 250px;\n}\n\n.indicator-outer-wrapper {\n  position: relative;\n  padding: 8px;\n  max-width: 500px;\n  margin: 0 auto;\n}\n\n.indicator-blocks-wrapper {\n  position: relative;\n}\n\n.indicator-line-wrapper {\n  position: absolute;\n  display: inline-block;\n  top: 0;\n  left: 4px;\n}\n\n.indicator-line {\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  width: 2px;\n  height: 1.8em;\n  z-index: 5;\n  background-color: black;\n}\n\n.indicator-arrow {\n  position: relative;\n  width: 0;\n  height: 0;\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n}\n\n.ind-block {\n  box-sizing: border-box;\n  display: inline-block;\n  height: 1.6em;\n  width: 25%;\n}\n\n.block-1 {\n  background-color: #eee597;\n}\n\n.block-2 {\n  background-color: #eadd69;\n}\n\n.block-3 {\n  background-color: #dc6632;\n}\n\n.block-4 {\n  background-color: #b5441d;\n}\n\n.indicator-line,\n.indicator-arrow {\n  top: 0;\n  left: 0;\n}\n\n.top-arrow {\n  /* triangle pointing down */\n  margin-bottom: -0.15em;\n  border-top: 8px solid black;\n}\n\n.bottom-arrow {\n  /* triangle pointing up */\n  margin-top: -0.15em;\n  border-bottom: 8px solid black;\n}\n", ""]);
 	
 	// exports
 
@@ -62818,6 +63174,86 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./App.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./App.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(230)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "/* HEADER */\n.ho-logo-gray {\n  max-height: 50px;\n}\n.ho-logo-wrapper {\n  padding: 10px 10px 10px 30px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 15px 30px 40px 14px;\n  border: 1px solid #000;\n  z-index: 100;\n}\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-header {\n  margin: 0 auto;\n  width: 90%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-header {\n    margin: 0;\n    width: 100%;\n  }\n}\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  border: 1px solid #000;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 2em 1em;\n  }\n}\n\n/* FOOD SECURITY STATUS */\n.food-security-header {\n  font-size: 3.4em;\n}\n\n@media only screen and (max-width: 480px) {\n  .food-security-header {\n    font-size: 2.4em;\n  }\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(343);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(231)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./rc-slider.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./rc-slider.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 343 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(230)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".rc-slider {\n  position: relative;\n  height: 2px;\n  width: 100%;\n  border-radius: 6px;\n  background-color: #000;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 2px;\n  border-radius: 6px;\n  background-color: #000;\n  z-index: 1;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -6px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  border-radius: 50%;\n  border: solid 1px #000;\n  background-color: #c9dacf;\n  z-index: 2;\n}\n.rc-slider-handle:hover {\n  border-color: #fff;\n}\n.rc-slider-handle-active:active {\n  border-color: #fff;\n  box-shadow: 0 0 5px #000;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 10px;\n  left: 0;\n  width: 100%;\n  font-size: 18px;\n  z-index: 3;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #333;\n}\n\n.rc-slider-mark-text-active {\n  color: #000;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: none; /* disable dots */\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 4px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-track {\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  position: absolute;\n  margin-left: -5px;\n  margin-bottom: -7px;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 10px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 4;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip-hidden {\n  display: none;\n}\n.rc-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-tooltip-placement-top .rc-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(345);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(231)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
 			module.hot.accept("!!./../../node_modules/css-loader/index.js!./react-dropdown.css", function() {
 				var newContent = require("!!./../../node_modules/css-loader/index.js!./react-dropdown.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
@@ -62829,7 +63265,7 @@
 	}
 
 /***/ },
-/* 341 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(230)();
