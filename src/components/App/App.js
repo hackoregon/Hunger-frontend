@@ -218,7 +218,7 @@ export default class App extends React.Component {
             <div className="col-xs-12">
               <h1 className="main-title">Oregon Hunger Equation</h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
               </p>
             </div>
           </div>
