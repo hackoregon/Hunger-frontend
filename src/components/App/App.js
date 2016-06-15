@@ -77,7 +77,7 @@ export default class App extends React.Component {
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
           status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
-          colorObj[fips] = colors[status - 1]
+          colorObj[fips] = colors[status]
         }
         return colorObj
       }, {})
@@ -92,36 +92,36 @@ export default class App extends React.Component {
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford > 73.5 && canAfford <= 105) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford > 42 && canAfford <= 73.5) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford <= 42) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         } else {
           throw new Error('oops')
         }
       case 3:
         if (canAfford > 315) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford >= 220.5 && canAfford <= 315) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford >= 126 && canAfford < 220.5) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford < 126) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         }
         break
       case 4:
         if (canAfford > 420) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford >= 294 && canAfford <= 420) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford >= 168 && canAfford < 294) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford < 168) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         }
         break
       default:
@@ -185,6 +185,7 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
+    const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     return (
       <div>
         <header>
@@ -218,7 +219,7 @@ export default class App extends React.Component {
             <div className="col-xs-12">
               <h1 className="main-title">Oregon Hunger Equation</h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
               </p>
             </div>
           </div>
@@ -226,7 +227,7 @@ export default class App extends React.Component {
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="header select-county-header">Select a County</h2>
+              <h2 className="select-county-heading">Select a County</h2>
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
@@ -241,8 +242,8 @@ export default class App extends React.Component {
         <section className="slider-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <div className="slider-with-header">
-                <h2 className="header slider-header">Slide to select monthly income</h2>
+              <div className="slider-with-heading">
+                <h2 className="slider-heading">Slide to select monthly household income</h2>
                 <div className="slider-self-wrapper">
                   <Sticky>
                     <Slider
@@ -272,8 +273,8 @@ export default class App extends React.Component {
             <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
-            <h2 className="header food-security-header">
-              Food Security Status
+            <h2 className="section-heading food-security-heading text-center">
+              What’s your day-to-day experience putting food on the table?
             </h2>
             <DonutChart
               values={bestCaseMealValues}
@@ -291,7 +292,8 @@ export default class App extends React.Component {
             </div>
             <DayToDaySnugget
             securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
-            mealsMissed={this.getMissingMeals(true)}/>
+            individuals={individuals}
+            />
 
           </div>
         </div>
@@ -299,14 +301,14 @@ export default class App extends React.Component {
         <section className="lunch-section container-fluid" style={this.isSingleAdult() ? { display: "none" } : {}}>
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
+              <h2 className="text-center section-heading">
                 How does free and reduced lunch affect your family?
               </h2>
               <p>
-                Thankfully, much of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
+                Thankfully, some of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
               </p>
               <p>
-                However, many school districts in the state do not have these expanded programs and face new hardships during summer when school is out. This is what your scenario would look like without the help of free and reduced price lunch programs.
+                However, during the summer, your children lose these benefits when school is out, and many school districts in the state do not have these expanded programs. <strong>This is how your experience changes without the help of free and reduced price lunch programs:</strong>
               </p>
             </div>
           </div>
@@ -336,12 +338,25 @@ export default class App extends React.Component {
         <section className="housing container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
+              <h2 className="section-heading text-center">
                 Are you able to afford stable housing?
               </h2>
-              <p>
-                At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
-              </p>
+              <div
+                className="can-afford-housing afford-housing-yes"
+                style={ housingSufficient ? {} : { display: "none" } }>
+                <h3>Yes</h3>
+                <p>
+                  At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
+                </p>
+              </div>
+              <div
+                className="can-afford-housing afford-housing-no"
+                style={ housingSufficient ? { display: "none" } : {} }>
+                <h3>No</h3>
+                <p>
+                  At your income, you are not able to afford housing in your county.
+                </p>
+              </div>
               <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
             </div>
           </div>
@@ -349,8 +364,8 @@ export default class App extends React.Component {
         <section className="map-view-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="text-center">
-                Would my situation be different if I live in another area in Oregon?
+              <h2 className="section-heading text-center">
+                How would my experience be different if I lived in another county in Oregon?
               </h2>
               <p>
                 The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
@@ -363,14 +378,10 @@ export default class App extends React.Component {
                   />
                 </div>
               </div>
-              <p>
-                The average minimum cost of housing in your county is X, which is above average for the
-                state of Oregon. See how your county compares to the rest of the state:
-              </p>
               <div className="text-center">
-                <p>Conclusion:</p>
+                <h2 className="section-heading">Conclusion:</h2>
                 <p className="conclusion-text">
-                  Lorem ipsum dolor sit amet, con mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus mus malesuada leo nec venenatis. In pulvinar faucibus.
+                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <a style={{ color: "#669776" }} href="#data-deep-dive">data deep dive.</a>
                 </p>
               </div>
             </div>

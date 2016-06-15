@@ -1,3 +1,26 @@
+/* GENERAL */
+.section-heading {
+  font-size: 2.4em;
+}
+
+@media only screen and (max-width: 480px) {
+  .section-heading {
+    font-size: 1.8em;
+  }
+}
+
+/* TEST STATS */
+.test-stats {
+  display: none;
+  max-width: 90%;
+  margin: 10px auto;
+}
+.test-stats p {
+  display: inline;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
+
 /* HEADER */
 .ho-logo-gray {
   max-height: 50px;
@@ -22,7 +45,7 @@
 .slider-section {
   margin-bottom: 1.5em;
 }
-.slider-with-header {
+.slider-with-heading {
   margin: 0 auto;
   width: 90%;
 }
@@ -31,7 +54,7 @@
   .slider-section {
     margin-bottom: 0;
   }
-  .slider-with-header {
+  .slider-with-heading {
     margin: 0;
     width: 100%;
   }
@@ -49,13 +72,7 @@
   }
 }
 
-/* FOOD SECURITY STATUS */
-.food-security-header {
-  font-size: 3.4em;
-}
-
-@media only screen and (max-width: 480px) {
-  .food-security-header {
-    font-size: 2.4em;
-  }
+/* HOUSING */
+.can-afford-housing h3 {
+  font-weight: bold;
 }

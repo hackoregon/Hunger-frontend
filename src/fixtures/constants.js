@@ -1,10 +1,10 @@
 const MEAL_PERIOD_DAYS = 30
 
 const RATINGS = {
-  "secure": 4,
-  "moderately insecure": 3,
-  "highly insecure": 2,
-  "extremely insecure": 1
+  sufficient: 3,
+  moderatelySufficient: 2,
+  vulnerable: 1,
+  extremelyVulnerable: 0
 }
 
 const exports = {
