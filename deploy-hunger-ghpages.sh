@@ -16,16 +16,13 @@ fi
 if git pull --rebase -X theirs origin develop; then
   echo -e "\e[32mpulled most recent changes from 'develop'\e[0m"
 else
-  echo -e "\e[31merror: couldn't pull from origin 'develop'\e[0m"
+  echo -e "\e[31merror: couldn't pull from 'develop'\e[0m"
   exit 1
 fi
 
-echo "creating fresh 'gh-pages' branch..."
-git branch -D gh-pages && git checkout -b gh-pages;
-
 echo "pulling from origin 'gh-pages'..."
 if git pull --rebase -X ours origin gh-pages; then
-  echo -e "\e[32mgit pulled most recent 'gh-pages'\e[0m"
+  echo -e "\e[32mpulled from origin 'gh-pages' (in favor of our version)\e[0m"
 else
   echo -e "\e[31merror: couldn't pull most recent changes\e[0m"
   exit 1
