@@ -77,7 +77,7 @@ export default class App extends React.Component {
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
           status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
-          colorObj[fips] = colors[status - 1]
+          colorObj[fips] = colors[status]
         }
         return colorObj
       }, {})
@@ -92,36 +92,36 @@ export default class App extends React.Component {
     switch (individuals) {
       case 1:
         if (canAfford > 105) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford > 73.5 && canAfford <= 105) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford > 42 && canAfford <= 73.5) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford <= 42) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         } else {
           throw new Error('oops')
         }
       case 3:
         if (canAfford > 315) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford >= 220.5 && canAfford <= 315) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford >= 126 && canAfford < 220.5) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford < 126) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         }
         break
       case 4:
         if (canAfford > 420) {
-          return RATINGS['secure']
+          return RATINGS['sufficient']
         } else if (canAfford >= 294 && canAfford <= 420) {
-          return RATINGS['moderately insecure']
+          return RATINGS['moderatelySufficient']
         } else if (canAfford >= 168 && canAfford < 294) {
-          return RATINGS['highly insecure']
+          return RATINGS['vulnerable']
         } else if (canAfford < 168) {
-          return RATINGS['extremely insecure']
+          return RATINGS['extremelyVulnerable']
         }
         break
       default:

@@ -9,7 +9,7 @@ const DayToDayHungerSnugget = (props) => {
   console.log("RATINGS:", RATINGS)
   console.log("snugget securityStatus:", props.securityStatus)
   switch (props.securityStatus) {
-    case RATINGS['extremely insecure']:
+    case RATINGS['extremelyVulnerable']:
       switch (props.individuals) {
         case 1:
           content = (<p className="day-to-day-hunger-snugget">
@@ -28,7 +28,7 @@ const DayToDayHungerSnugget = (props) => {
           break
       }
       break
-    case RATINGS['highly insecure']:
+    case RATINGS['vulnerable']:
       switch (props.individuals) {
         case 1:
           content = (<p className="day-to-day-hunger-snugget">
@@ -47,7 +47,7 @@ const DayToDayHungerSnugget = (props) => {
           break
       }
       break
-    case RATINGS['moderately insecure']:
+    case RATINGS['moderatelySufficient']:
       switch (props.individuals) {
         case 1:
           content = (<p className="day-to-day-hunger-snugget">
@@ -66,7 +66,7 @@ const DayToDayHungerSnugget = (props) => {
           break
       }
       break
-    case RATINGS['secure']:
+    case RATINGS['sufficient']:
       switch (props.individuals) {
         case 1:
           content = (<p className="day-to-day-hunger-snugget">
