@@ -343,7 +343,7 @@ export default class App extends React.Component {
               <div className="can-afford-housing afford-housing-yes">
                 <h3>Yes</h3>
                 <p>
-                  At your income, you are able to afford housing in X county, which has an average minimum cost of housing of X. However, because about 2/3 of your income is going to pay for housing, this makes your ability to pay for food that much more difficult.
+                  At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
                 </p>
               </div>
               <div className="can-afford-housing afford-housing-no">
