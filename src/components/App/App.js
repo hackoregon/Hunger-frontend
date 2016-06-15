@@ -273,7 +273,7 @@ export default class App extends React.Component {
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="header food-security-header">
-              Food Security Status
+              What’s your day-to-day experience putting food on the table?
             </h2>
             <DonutChart
               values={bestCaseMealValues}
