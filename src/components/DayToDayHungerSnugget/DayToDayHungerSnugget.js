@@ -10,23 +10,83 @@ const DayToDayHungerSnugget = (props) => {
   console.log("snugget securityStatus:", props.securityStatus)
   switch (props.securityStatus) {
     case RATINGS['extremely insecure']:
-      content = (<p className="day-to-day-hunger-snugget">
+      switch (props.individuals) {
+        case 1:
+          content = (<p className="day-to-day-hunger-snugget">
           You are extremely insecure. You're missing <span className="meals-missed">{props.mealsMissed}</span> meals.</p>)
+          break
+        case 3:
+          content = (<p>You're an extremely insecure family of 3.</p>)
+          break
+        case 4:
+          content = (<p>You're an extremely insecure family of 4.</p>)
+          break
+        default:
+          content = (<p className="day-to-day-hunger-snugget">
+          We couldn't determine your household size. Sorry.
+          </p>)
+          break
+      }
       break
     case RATINGS['highly insecure']:
-      content = (<p className="day-to-day-hunger-snugget">
-          You are highly insecure. You're missing <span className="meals-missed">{props.mealsMissed}</span> meals.</p>)
+      switch (props.individuals) {
+        case 1:
+          content = (<p className="day-to-day-hunger-snugget">
+          You are highly insecure. You're missing meals.</p>)
+          break
+        case 3:
+          content = (<p>You're a highly insecure family of 3.</p>)
+          break
+        case 4:
+          content = (<p>You're a highly insecure family of 4.</p>)
+          break
+        default:
+          content = (<p className="day-to-day-hunger-snugget">
+          We couldn't determine your household size. Sorry.
+          </p>)
+          break
+      }
       break
     case RATINGS['moderately insecure']:
-      content = (<p className="day-to-day-hunger-snugget">
-        You are moderately insecure. You're not missing meals, but you might struggle if you have unexpected expenses.</p>)
+      switch (props.individuals) {
+        case 1:
+          content = (<p className="day-to-day-hunger-snugget">
+          You are moderately insecure. You're missing meals.</p>)
+          break
+        case 3:
+          content = (<p>You're a moderately insecure family of 3.</p>)
+          break
+        case 4:
+          content = (<p>You're a moderately insecure family of 4.</p>)
+          break
+        default:
+          content = (<p className="day-to-day-hunger-snugget">
+          We couldn't determine your household size. Sorry.
+          </p>)
+          break
+      }
       break
     case RATINGS['secure']:
-      content = (<p className="day-to-day-hunger-snugget">
-        You are secure. You're not missing meals, and can consistently afford to buy the food you need.</p>)
+      switch (props.individuals) {
+        case 1:
+          content = (<p className="day-to-day-hunger-snugget">
+          You are a secure individual.</p>)
+          break
+        case 3:
+          content = (<p>You're a secure family of 3.</p>)
+          break
+        case 4:
+          content = (<p>You're a secure family of 4.</p>)
+          break
+        default:
+          content = (<p className="day-to-day-hunger-snugget">
+          We couldn't determine your household size. Sorry.
+          </p>)
+          break
+      }
       break
     default:
-      content = (<p>Unknown security rating.</p>)
+      content = (<p>We couldn't determine your status. Sorry.</p>)
   }
   return (
     <div className="snugget-root">{content}</div>
