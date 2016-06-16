@@ -74,6 +74,7 @@ export default class App extends React.Component {
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
+          console.log("fips:", fips)
           status = this.getFoodSecurityStatus(fips, bestCase)
           colorObj[fips] = colors[status]
         }
