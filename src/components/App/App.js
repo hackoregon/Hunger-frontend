@@ -354,6 +354,13 @@ export default class App extends React.Component {
                     fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
                     selectedCounty={this.state.selectedCounty}
                   />
+                  <button
+                    className="map-toggle-btn"
+                    onClick={() => {
+                      this.setState({ bestCaseMap: !this.state.bestCaseMap })
+                    }}
+                  >
+                  </button>
                 </div>
               </div>
               <div className="text-center">
