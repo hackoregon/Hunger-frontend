@@ -356,6 +356,7 @@ export default class App extends React.Component {
                     onClick={() => {
                       this.setState({ bestCaseMap: !this.state.bestCaseMap })
                     }}
+                    style={this.isSingleAdult() ? { display: "none" } : {}}
                   >
                   Show { this.state.bestCaseMap ? "worst case map" : "best case map" }
                   </button>
