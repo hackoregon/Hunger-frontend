@@ -46,6 +46,8 @@ export default class App extends React.Component {
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
     this.getMapFipsColors = this.getMapFipsColors.bind(this)
+    this.getMissingMeals = this.getMissingMeals.bind(this)
+    this.isSingleAdult = this.isSingleAdult.bind(this)
   }
 
   _onDropdownSelect(county) {
