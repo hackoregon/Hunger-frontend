@@ -360,6 +360,7 @@ export default class App extends React.Component {
                       this.setState({ bestCaseMap: !this.state.bestCaseMap })
                     }}
                   >
+                  Show { this.state.bestCaseMap ? "worst case map" : "best case map" }
                   </button>
                 </div>
               </div>
