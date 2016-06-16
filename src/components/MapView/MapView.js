@@ -7,9 +7,7 @@ class MapView extends React.Component {
   }
 
   applyColors(props) {
-    const { selectedCounty, fipsColors, defaultColor } = props
-    const originalColor = "#669776"
-    const colors = fipsColors || defaultColor
+    const colors = props.fipsColors
     if (colors) {
       let svg = this.refs['map-svg']
       let counties = svg.contentDocument.getElementsByClassName('map-county')

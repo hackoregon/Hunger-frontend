@@ -46,6 +46,8 @@ export default class App extends React.Component {
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
     this.getMapFipsColors = this.getMapFipsColors.bind(this)
+    this.getMissingMeals = this.getMissingMeals.bind(this)
+    this.isSingleAdult = this.isSingleAdult.bind(this)
   }
 
   _onDropdownSelect(county) {
@@ -72,11 +74,11 @@ export default class App extends React.Component {
   getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
-    const fipsColors = counties
+    const fipsColors = counties // from fixture data
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
+          status = this.getFoodSecurityStatus(fips, bestCase)
           colorObj[fips] = colors[status]
         }
         return colorObj
@@ -84,10 +86,10 @@ export default class App extends React.Component {
     return fipsColors
   }
 
-  getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
+  getFoodSecurityStatus(fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips, bestCase)
+    const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
+    const canAfford = totalMealsGoal - this.getMissingMeals(fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -97,24 +99,22 @@ export default class App extends React.Component {
     } else if (canAfford < (totalMealsGoal * 0.5)) {
       return RATINGS['extremelyVulnerable']
     }
-
   }
 
-  getMissingMeals(bestCase = true) {
+  getMissingMeals(fips, bestCase = true) {
     let { selectedCounty, sliderWage, individuals } = this.state
     const { MEAL_PERIOD_DAYS } = constants
-    const FIPS = selectedCounty.fips
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const missingMeals = calcMealGap(individuals, sliderWage, FIPS, bestCase)
+    const missingMeals = calcMealGap(individuals, sliderWage, fips, bestCase)
     chai.assert(
       missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
     return missingMeals
   }
 
   getIndicatorValue(bestCase = true) {
-    let { individuals } = this.state
+    let { individuals, selectedCounty } = this.state
 
-    const gap = this.getMissingMeals(bestCase)
+    const gap = this.getMissingMeals(selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
@@ -141,7 +141,7 @@ export default class App extends React.Component {
       { label: "asparagus", value: 5000 },
     ]
     const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
-
+    const BEST_CASE = true
     const { individuals, sliderWage, selectedCounty } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
@@ -152,12 +152,12 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.getMissingMeals(true)
+    const bestCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.getMissingMeals(false)
+    const worstCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-    const bestCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)
-    const worstCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
@@ -242,7 +242,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, true)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, BEST_CASE)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="section-heading food-security-heading text-center">
@@ -350,8 +350,15 @@ export default class App extends React.Component {
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
                     fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
-                    selectedCounty={this.state.selectedCounty}
                   />
+                  <button
+                    className="map-toggle-btn"
+                    onClick={() => {
+                      this.setState({ bestCaseMap: !this.state.bestCaseMap })
+                    }}
+                  >
+                  Show { this.state.bestCaseMap ? "worst case map" : "best case map" }
+                  </button>
                 </div>
               </div>
               <div className="text-center">
