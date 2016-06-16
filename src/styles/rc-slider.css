@@ -55,6 +55,16 @@
   color: #333;
 }
 
+@media only screen and (max-width: 480px) {
+  .rc-slider-mark-text {
+    visibility: hidden;
+  }
+  .rc-slider-mark-text:first-child,
+  .rc-slider-mark-text:last-child {
+    visibility: visible;
+  }
+}
+
 .rc-slider-mark-text-active {
   color: #000;
 }
