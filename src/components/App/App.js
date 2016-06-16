@@ -173,9 +173,7 @@ export default class App extends React.Component {
                   <span className="icon-bar"></span>
                 </button>
                 <div className="ho-logo-wrapper pull-left">
-                  <a href="http://www.hackoregon.org/">
-                    <img className="img-responsive ho-logo-gray" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
-                  </a>
+                    <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
                 </div>
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
