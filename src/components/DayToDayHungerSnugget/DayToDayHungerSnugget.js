@@ -5,9 +5,10 @@ require('./DayToDayHungerSnugget.css')
 
 const DayToDayHungerSnugget = (props) => {
   const { RATINGS } = constants
-  let content
+  let content, heading
   switch (props.securityStatus) {
     case RATINGS['extremelyVulnerable']:
+      heading = "Extremely Vulnerable"
       switch (props.individuals) {
         case 1:
           content = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough to eat."
@@ -24,6 +25,7 @@ const DayToDayHungerSnugget = (props) => {
       }
       break
     case RATINGS['vulnerable']:
+      heading = "Vulnerable"
       switch (props.individuals) {
         case 1:
           content = "In general, you are struggling to put food on the table. It’s likely that you are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
@@ -40,6 +42,7 @@ const DayToDayHungerSnugget = (props) => {
       }
       break
     case RATINGS['moderatelySufficient']:
+      heading = "Moderately Sufficient"
       switch (props.individuals) {
         case 1:
           content = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not receive benefits."
@@ -56,6 +59,7 @@ const DayToDayHungerSnugget = (props) => {
       }
       break
     case RATINGS['sufficient']:
+      heading = "Sufficient"
       switch (props.individuals) {
         case 1:
           content = "You do not have trouble putting food on the table. Your meals are complete and you generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently."
@@ -76,7 +80,8 @@ const DayToDayHungerSnugget = (props) => {
   }
   return (
     <div className="snugget-root">
-      <p className="day-to-day-hunger-snugget">{content}</p>
+      <h3 className="hunger-snugget-heading">{heading}</h3>
+      <p className="hunger-snugget-text">{content}</p>
     </div>
   )
 }
