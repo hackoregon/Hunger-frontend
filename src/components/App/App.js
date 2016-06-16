@@ -21,7 +21,6 @@ import {
   incomePlusBenefits,
   getSchoolMealBenefit } from './calculators'
 import jQuery from 'jquery'
-import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
