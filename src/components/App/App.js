@@ -72,7 +72,7 @@ export default class App extends React.Component {
   getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
-    const fipsColors = counties
+    const fipsColors = counties // from fixture data
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
@@ -87,7 +87,7 @@ export default class App extends React.Component {
   getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips, bestCase)
+    const canAfford = totalMealsGoal - this.getMissingMeals(bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -97,7 +97,6 @@ export default class App extends React.Component {
     } else if (canAfford < (totalMealsGoal * 0.5)) {
       return RATINGS['extremelyVulnerable']
     }
-
   }
 
   getMissingMeals(bestCase = true) {
