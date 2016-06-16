@@ -218,12 +218,10 @@ footer {
 }
 
 /* HEADER */
-.ho-logo-gray {
-  max-height: 50px;
+.OHE-logo {
+  max-height: 80px;
 }
-.ho-logo-wrapper {
-  padding: 10px 10px 10px 30px;
-}
+
 
 .nav-item {
   font-size: 1.4em;
