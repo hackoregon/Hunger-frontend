@@ -87,7 +87,7 @@ export default class App extends React.Component {
     const { individuals, sliderWage, selectedCounty } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
+    const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -102,7 +102,7 @@ export default class App extends React.Component {
   getIndicatorValue(bestCase = true) {
     let { individuals, selectedCounty, sliderWage } = this.state
 
-    const gap = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
+    const gap = calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const canAfford = totalMealsGoal - gap
     return canAfford
@@ -140,9 +140,9 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
+    const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
+    const worstCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
