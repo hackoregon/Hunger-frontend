@@ -6,7 +6,6 @@ require('./DayToDayHungerSnugget.css')
 const DayToDayHungerSnugget = (props) => {
   const { RATINGS } = constants
   let content
-  console.log("RATINGS:", RATINGS)
   console.log("snugget securityStatus:", props.securityStatus)
   switch (props.securityStatus) {
     case RATINGS['extremelyVulnerable']:

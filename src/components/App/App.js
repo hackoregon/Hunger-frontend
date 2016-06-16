@@ -334,6 +334,10 @@ export default class App extends React.Component {
               sections={4}
             />
           </div>
+          <DayToDaySnugget
+          securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)}
+          individuals={individuals}
+          />
         </section>
         <section className="housing container-fluid">
           <div className="row">
