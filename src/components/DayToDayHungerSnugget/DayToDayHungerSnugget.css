@@ -5,6 +5,7 @@
 }
 
 .hunger-snugget-heading {
+  padding-left: 1em; /* matching p text-indent */
   font-size: 2.3em;
   font-weight: bold;
   color: #b5441d;
