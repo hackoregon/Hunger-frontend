@@ -86,47 +86,18 @@ export default class App extends React.Component {
 
   getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
-    const mealCost = data.costOfMeals[fips].cost_per_meal
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
     const canAfford = totalMealsGoal - this.getMissingMeals(individuals, wage, fips, bestCase)
-    switch (individuals) {
-      case 1:
-        if (canAfford > 105) {
-          return RATINGS['sufficient']
-        } else if (canAfford > 73.5 && canAfford <= 105) {
-          return RATINGS['moderatelySufficient']
-        } else if (canAfford > 42 && canAfford <= 73.5) {
-          return RATINGS['vulnerable']
-        } else if (canAfford <= 42) {
-          return RATINGS['extremelyVulnerable']
-        } else {
-          throw new Error('oops')
-        }
-      case 3:
-        if (canAfford > 315) {
-          return RATINGS['sufficient']
-        } else if (canAfford >= 220.5 && canAfford <= 315) {
-          return RATINGS['moderatelySufficient']
-        } else if (canAfford >= 126 && canAfford < 220.5) {
-          return RATINGS['vulnerable']
-        } else if (canAfford < 126) {
-          return RATINGS['extremelyVulnerable']
-        }
-        break
-      case 4:
-        if (canAfford > 420) {
-          return RATINGS['sufficient']
-        } else if (canAfford >= 294 && canAfford <= 420) {
-          return RATINGS['moderatelySufficient']
-        } else if (canAfford >= 168 && canAfford < 294) {
-          return RATINGS['vulnerable']
-        } else if (canAfford < 168) {
-          return RATINGS['extremelyVulnerable']
-        }
-        break
-      default:
-        throw new Error('invalid number of individuals')
+    if (canAfford >= totalMealsGoal) {
+      return RATINGS['sufficient']
+    } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
+      return RATINGS['moderatelySufficient']
+    } else if (canAfford >= (totalMealsGoal * 0.5) && canAfford < (totalMealsGoal * 0.75)) {
+      return RATINGS['vulnerable']
+    } else if (canAfford < (totalMealsGoal * 0.5)) {
+      return RATINGS['extremelyVulnerable']
     }
+
   }
 
   getMissingMeals(bestCase = true) {
@@ -185,7 +156,10 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
+    // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
       <div>
         <header>
@@ -270,7 +244,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, true)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="section-heading food-security-heading text-center">
@@ -291,7 +265,7 @@ export default class App extends React.Component {
               />
             </div>
             <DayToDaySnugget
-            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
+            securityStatus={bestCaseFoodStatus}
             individuals={individuals}
             />
 
@@ -317,7 +291,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {0}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, false)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
           <DonutChart
@@ -334,6 +308,10 @@ export default class App extends React.Component {
               sections={4}
             />
           </div>
+          <DayToDaySnugget
+          securityStatus={worstCaseFoodStatus}
+          individuals={individuals}
+          />
         </section>
         <section className="housing container-fluid">
           <div className="row">

@@ -91,10 +91,10 @@ function getSchoolMealBenefit(individuals, fips) {
   return schoolMealBenefit
 }
 
-function incomePlusBenefits(individuals, income, fips) {
+function incomePlusBenefits(individuals, income, fips, bestCase = true) {
   const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, income, fips) * 0.75)
   const snapBenefit = snapCalculator(individuals, income, fips)
-  const schoolMealBenefit = getSchoolMealBenefit(individuals, fips)
+  const schoolMealBenefit = bestCase ? getSchoolMealBenefit(individuals, fips) : 0
 
   return Math.max(0, Number((moneyAfterMisc + snapBenefit + schoolMealBenefit).toFixed(2)))
 }
