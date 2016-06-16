@@ -74,7 +74,6 @@ export default class App extends React.Component {
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          console.log("fips:", fips)
           status = this.getFoodSecurityStatus(fips, bestCase)
           colorObj[fips] = colors[status]
         }
@@ -84,7 +83,7 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(fips, bestCase = true) {
-    const { individuals, sliderWage, selectedCounty } = this.state
+    const { individuals, sliderWage } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
     const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, fips, bestCase)
