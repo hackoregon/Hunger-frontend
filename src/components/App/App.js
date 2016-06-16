@@ -21,7 +21,6 @@ import {
   incomePlusBenefits,
   getSchoolMealBenefit } from './calculators'
 import jQuery from 'jquery'
-import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
@@ -35,13 +34,12 @@ export default class App extends React.Component {
     super()
     this.state = {
       sliderWage: 0,
-      selectedFamilyType: "single-adult",
       individuals: 1,
       selectedCounty: { fips: "41051", name: "Multnomah" },
       bestCaseMap: true
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
-    this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
+    this._setFamilyType = this._setFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
@@ -53,7 +51,7 @@ export default class App extends React.Component {
     this.setState({ selectedCounty: { fips: county.value, name: county.label } })
   }
 
-  _setSelectedFamilyType(fam) {
+  _setFamilyType(fam) {
     const familyTypeCountMap = {
       'single-adult': 1,
       'single-parent': 3,
@@ -61,7 +59,6 @@ export default class App extends React.Component {
     }
 
     this.setState({
-      selectedFamilyType: fam,
       individuals: familyTypeCountMap[fam],
     })
   }
@@ -89,7 +86,7 @@ export default class App extends React.Component {
     const { individuals, sliderWage, selectedCounty } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
+    const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -104,14 +101,14 @@ export default class App extends React.Component {
   getIndicatorValue(bestCase = true) {
     let { individuals, selectedCounty, sliderWage } = this.state
 
-    const gap = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
+    const gap = calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const canAfford = totalMealsGoal - gap
     return canAfford
   }
 
   isSingleAdult() {
-    return this.state.selectedFamilyType === "single-adult"
+    return this.state.individuals === 1
   }
 
   render() {
@@ -142,9 +139,9 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
+    const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
+    const worstCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
@@ -195,7 +192,7 @@ export default class App extends React.Component {
                 onChange={this._onDropdownSelect}
                 value={dropdownCounty}
               />
-              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.selectedFamilyType} />
+              <FamilyTypeSelect onSelect={this._setFamilyType} selectedType={this.state.individuals} />
             </div>
           </div>
         </section>
