@@ -116,8 +116,8 @@ export default class App extends React.Component {
 
     const gap = this.getMissingMeals(selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
-    const missingPercentage = 1 - (gap / totalMealsGoal)
-    return missingPercentage * 100
+    const canAfford = totalMealsGoal - gap
+    return canAfford
   }
 
   isSingleAdult() {
@@ -260,6 +260,7 @@ export default class App extends React.Component {
               <IndicatorSlider
                 value={this.getIndicatorValue(true)}
                 sections={4}
+                max={totalMealsGoal}
               />
             </div>
             <DayToDaySnugget
@@ -304,6 +305,7 @@ export default class App extends React.Component {
             <IndicatorSlider
               value={this.getIndicatorValue(false)}
               sections={4}
+              max={totalMealsGoal}
             />
           </div>
           <DayToDaySnugget
