@@ -68,11 +68,7 @@ class DonutChart extends Component {
   render() {
     let { costPerMeal, mealsShort } = this.props
     return (
-      <div className="donut-chart-root" style={{
-        display: 'flex',
-        flexFlow: 'row nowrap',
-        justifyContent: 'space-around'
-      }}>
+      <div className="donut-chart-root">
         <p className="donut-cost-of-meal-text">
           The cost of a meal in your county is <span className="donut-dynamic-text donut-cost-of-meal-cost">
           ${costPerMeal}

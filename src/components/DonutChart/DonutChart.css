@@ -4,3 +4,22 @@
   font-weight: bold;
   color: #669776;
 }
+
+.donut-chart-root {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.donut-chart-root p {
+  text-align: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .donut-chart-root {
+    flex-wrap: wrap;
+  }
+  .donut-chart-root p {
+    text-align: center;
+  }
+}
