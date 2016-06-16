@@ -104,6 +104,10 @@ footer {
   max-height: 3em;
 }
 
+.ho-logo-gray {
+  max-height: 50px;
+}
+
 /* INDICATOR */
 .indicator-root {
   margin: 10px auto;
