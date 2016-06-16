@@ -156,7 +156,10 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
+    // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
       <div>
         <header>
@@ -241,7 +244,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, true)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="section-heading food-security-heading text-center">
@@ -262,7 +265,7 @@ export default class App extends React.Component {
               />
             </div>
             <DayToDaySnugget
-            securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)}
+            securityStatus={bestCaseFoodStatus}
             individuals={individuals}
             />
 
@@ -288,7 +291,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {0}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, false)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
           <DonutChart
@@ -306,7 +309,7 @@ export default class App extends React.Component {
             />
           </div>
           <DayToDaySnugget
-          securityStatus={this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)}
+          securityStatus={worstCaseFoodStatus}
           individuals={individuals}
           />
         </section>
