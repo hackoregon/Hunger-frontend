@@ -46,7 +46,6 @@ export default class App extends React.Component {
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
     this.getMapFipsColors = this.getMapFipsColors.bind(this)
-    this.getMissingMeals = this.getMissingMeals.bind(this)
     this.isSingleAdult = this.isSingleAdult.bind(this)
   }
 
@@ -87,9 +86,10 @@ export default class App extends React.Component {
   }
 
   getFoodSecurityStatus(fips, bestCase = true) {
+    const { individuals, sliderWage, selectedCounty } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(fips, bestCase)
+    const canAfford = totalMealsGoal - this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -101,20 +101,10 @@ export default class App extends React.Component {
     }
   }
 
-  getMissingMeals(fips, bestCase = true) {
-    let { selectedCounty, sliderWage, individuals } = this.state
-    const { MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const missingMeals = calcMealGap(individuals, sliderWage, fips, bestCase)
-    chai.assert(
-      missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
-    return missingMeals
-  }
-
   getIndicatorValue(bestCase = true) {
-    let { individuals, selectedCounty } = this.state
+    let { individuals, selectedCounty, sliderWage } = this.state
 
-    const gap = this.getMissingMeals(selectedCounty.fips, bestCase)
+    const gap = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const canAfford = totalMealsGoal - gap
     return canAfford
@@ -152,9 +142,9 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, BEST_CASE)
+    const bestCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, !BEST_CASE)
+    const worstCaseMissingMeals = this.calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
