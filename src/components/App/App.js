@@ -142,7 +142,7 @@ export default class App extends React.Component {
       { label: "asparagus", value: 5000 },
     ]
     const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
-
+    const BEST_CASE = true
     const { individuals, sliderWage, selectedCounty } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
@@ -153,12 +153,12 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.getMissingMeals(true)
+    const bestCaseMissingMeals = this.getMissingMeals(BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.getMissingMeals(false)
+    const worstCaseMissingMeals = this.getMissingMeals(!BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-    const bestCaseFoodStatus = this.getFoodSecurityStatus(true)
-    const worstCaseFoodStatus = this.getFoodSecurityStatus(false)
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(BEST_CASE)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(!BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
@@ -245,7 +245,7 @@ export default class App extends React.Component {
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
             <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, true)}</p>
+            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, BEST_CASE)}</p>
             <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="section-heading food-security-heading text-center">
