@@ -78,7 +78,7 @@ export default class App extends React.Component {
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          status = this.getFoodSecurityStatus(bestCase)
+          status = this.getFoodSecurityStatus(fips, bestCase)
           colorObj[fips] = colors[status]
         }
         return colorObj
@@ -86,10 +86,10 @@ export default class App extends React.Component {
     return fipsColors
   }
 
-  getFoodSecurityStatus(bestCase = true) {
+  getFoodSecurityStatus(fips, bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - this.getMissingMeals(bestCase)
+    const canAfford = totalMealsGoal - this.getMissingMeals(fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -101,21 +101,20 @@ export default class App extends React.Component {
     }
   }
 
-  getMissingMeals(bestCase = true) {
+  getMissingMeals(fips, bestCase = true) {
     let { selectedCounty, sliderWage, individuals } = this.state
     const { MEAL_PERIOD_DAYS } = constants
-    const FIPS = selectedCounty.fips
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-    const missingMeals = calcMealGap(individuals, sliderWage, FIPS, bestCase)
+    const missingMeals = calcMealGap(individuals, sliderWage, fips, bestCase)
     chai.assert(
       missingMeals <= totalMealsGoal, 'missingMeals is greater than totalMealsGoal')
     return missingMeals
   }
 
   getIndicatorValue(bestCase = true) {
-    let { individuals } = this.state
+    let { individuals, selectedCounty } = this.state
 
-    const gap = this.getMissingMeals(bestCase)
+    const gap = this.getMissingMeals(selectedCounty.fips, bestCase)
     const totalMealsGoal = individuals * 3 * 30
     const missingPercentage = 1 - (gap / totalMealsGoal)
     return missingPercentage * 100
@@ -153,12 +152,12 @@ export default class App extends React.Component {
 
     const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = this.getMissingMeals(BEST_CASE)
+    const bestCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = this.getMissingMeals(!BEST_CASE)
+    const worstCaseMissingMeals = this.getMissingMeals(selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-    const bestCaseFoodStatus = this.getFoodSecurityStatus(BEST_CASE)
-    const worstCaseFoodStatus = this.getFoodSecurityStatus(!BEST_CASE)
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
