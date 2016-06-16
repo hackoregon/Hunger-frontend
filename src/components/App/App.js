@@ -25,7 +25,7 @@ import chai from 'chai'
 
 window.jQuery = jQuery
 require('bootstrap')
-require('../../styles/main.css')
+//require('../../styles/main.css')
 require('./App.css')
 require('../../styles/rc-slider.css')
 require('../../styles/react-dropdown.css')
