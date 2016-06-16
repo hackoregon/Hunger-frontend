@@ -352,7 +352,6 @@ export default class App extends React.Component {
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
                     fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
-                    selectedCounty={this.state.selectedCounty}
                   />
                   <button
                     className="map-toggle-btn"
