@@ -61,7 +61,6 @@ export default class App extends React.Component {
     }
 
     this.setState({
-      selectedFamilyType: fam,
       individuals: familyTypeCountMap[fam],
     })
   }
@@ -111,7 +110,7 @@ export default class App extends React.Component {
   }
 
   isSingleAdult() {
-    return this.state.selectedFamilyType === "single-adult"
+    return this.state.individuals === 1
   }
 
   render() {
@@ -195,7 +194,7 @@ export default class App extends React.Component {
                 onChange={this._onDropdownSelect}
                 value={dropdownCounty}
               />
-              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.selectedFamilyType} />
+              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.individuals} />
             </div>
           </div>
         </section>

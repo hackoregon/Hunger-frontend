@@ -29,7 +29,7 @@ export default class FamilyTypeSelect extends React.Component {
       </HorizontalRule>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input readOnly checked={selectedType === 'single-adult'} ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
+            <input readOnly checked={selectedType === 1} ref="single-adult" type="radio" id="single-adult" name="family-type" className="family-type-radio" />
             <label id="label-single-adult" htmlFor="single-adult" className="family-type-label">
               <img className="center-block"
                 src="src/assets/person_single.png" alt="a single adult" />
@@ -39,7 +39,7 @@ export default class FamilyTypeSelect extends React.Component {
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input readOnly checked={selectedType === 'single-parent'} ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
+            <input readOnly checked={selectedType === 3} ref="single-parent" id="single-parent" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-single-parent" htmlFor="single-parent" className="family-type-label">
               <img className="center-block"
               src="src/assets/HO_familyType_parent_twoKids_color.png" alt="a single parent with two children" />
@@ -49,7 +49,7 @@ export default class FamilyTypeSelect extends React.Component {
         </div>
         <div className="col-xs-12 col-sm-4 family-type-div">
           <div className="text-center">
-            <input readOnly checked={selectedType === 'two-parents'} ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
+            <input readOnly checked={selectedType === 4} ref="two-parents" id="two-parents" type="radio" name="family-type" className="family-type-radio" />
             <label id="label-two-parents" htmlFor="two-parents" className="family-type-label">
               <img className="center-block"
               src="src/assets/HO_familyType_2_parent_twoKids_color.png" alt="two parents with two children" />
