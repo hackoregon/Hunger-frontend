@@ -78,7 +78,7 @@ export default class App extends React.Component {
       .map(c => c.fips)
       .reduce((colorObj, fips) => {
         if (fips !== 41) {
-          status = this.getFoodSecurityStatus(this.state.individuals, this.state.sliderWage, fips, bestCase)
+          status = this.getFoodSecurityStatus(bestCase)
           colorObj[fips] = colors[status]
         }
         return colorObj
@@ -86,9 +86,9 @@ export default class App extends React.Component {
     return fipsColors
   }
 
-  getFoodSecurityStatus(individuals, wage, fips, bestCase = true) {
+  getFoodSecurityStatus(bestCase = true) {
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
+    const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
     const canAfford = totalMealsGoal - this.getMissingMeals(bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
@@ -157,8 +157,8 @@ export default class App extends React.Component {
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const worstCaseMissingMeals = this.getMissingMeals(false)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-    const bestCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, true)
-    const worstCaseFoodStatus = this.getFoodSecurityStatus(individuals, sliderWage, selectedCounty.fips, false)
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(true)
+    const worstCaseFoodStatus = this.getFoodSecurityStatus(false)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
     // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
     return (
