@@ -35,13 +35,12 @@ export default class App extends React.Component {
     super()
     this.state = {
       sliderWage: 0,
-      selectedFamilyType: "single-adult",
       individuals: 1,
       selectedCounty: { fips: "41051", name: "Multnomah" },
       bestCaseMap: true
     }
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
-    this._setSelectedFamilyType = this._setSelectedFamilyType.bind(this)
+    this._setFamilyType = this._setFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
     this.getIndicatorValue = this.getIndicatorValue.bind(this)
@@ -53,7 +52,7 @@ export default class App extends React.Component {
     this.setState({ selectedCounty: { fips: county.value, name: county.label } })
   }
 
-  _setSelectedFamilyType(fam) {
+  _setFamilyType(fam) {
     const familyTypeCountMap = {
       'single-adult': 1,
       'single-parent': 3,
@@ -194,7 +193,7 @@ export default class App extends React.Component {
                 onChange={this._onDropdownSelect}
                 value={dropdownCounty}
               />
-              <FamilyTypeSelect onSelect={this._setSelectedFamilyType} selectedType={this.state.individuals} />
+              <FamilyTypeSelect onSelect={this._setFamilyType} selectedType={this.state.individuals} />
             </div>
           </div>
         </section>
