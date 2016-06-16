@@ -84,6 +84,25 @@ footer {
 /* SECTION 2: DAY-TO-DAY */
 /* SECTION 3: FREE AND REDUCED LUNCH */
 /* SECTION 4: HOUSING */
+.can-afford-housing {
+  border: 1px solid #5b5b5b;
+  background-color: #fff;
+  padding: 0.5em;
+}
+
+.can-afford-housing h3 {
+  padding-left: 1em; /* matching p text-indent */
+  font-size: 2.3em;
+  font-weight: bold;
+}
+
+.afford-housing-yes h3 {
+  color: #669776;
+}
+
+.afford-housing-no h3 {
+  color: #b5441d;
+}
 
 /* SECTION 5: STATE MAP VIEW */
 .map-row {
