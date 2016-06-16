@@ -86,7 +86,7 @@ export default class App extends React.Component {
     const { individuals, sliderWage, selectedCounty } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
+    const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
