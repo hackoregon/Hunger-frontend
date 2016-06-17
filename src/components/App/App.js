@@ -268,6 +268,7 @@ export default class App extends React.Component {
               total={totalMealsGoal}
               mealsShort={bestCaseMissingMeals}
               costPerMeal={costPerMeal}
+              extraMeals={extraMeals}
             >
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
@@ -313,6 +314,7 @@ export default class App extends React.Component {
           total={totalMealsGoal}
           mealsShort={worstCaseMissingMeals}
           costPerMeal={costPerMeal}
+          extraMeals={extraMeals}
           >
           <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>

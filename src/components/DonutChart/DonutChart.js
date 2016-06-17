@@ -66,7 +66,7 @@ class DonutChart extends Component {
   }
 
   render() {
-    let { costPerMeal, mealsShort } = this.props
+    let { costPerMeal, mealsShort, extraMeals } = this.props
     return (
       <div className="donut-chart-root">
         <p className="donut-cost-of-meal-text">
@@ -82,7 +82,12 @@ class DonutChart extends Component {
           </DataSeries>
         </Chart>
         <p className="donut-meals-short-text">
-          You are <span className="donut-dynamic-text donut-meals-short-meals">{mealsShort}</span> meals short this month
+          <span className="donut-meals-short-text" style={extraMeals === 0 ? {} : { display: "none" }}>
+          You are <span className="dynamic-text">{mealsShort}</span> meals short this month
+          </span>
+          <span className="afford-extra-meals" style={extraMeals > 0 ? {} : { display: "none" }}>
+          You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals this month
+          </span>
         </p>
       </div>
     )
@@ -90,7 +95,7 @@ class DonutChart extends Component {
 }
 DonutChart.defaultProps = {
   costPerMeal: '???',
-  mealsShort: '??'
+  mealsShort: '??',
 }
 DonutChart.propTypes = {
   total: PropTypes.number.isRequired,
@@ -99,6 +104,7 @@ DonutChart.propTypes = {
   labels: PropTypes.array,
   mealsShort: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   costPerMeal: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  extraMeals: PropTypes.number,
   children: PropTypes.element,
 }
 
