@@ -8,9 +8,6 @@ export default class Bar extends React.Component {
     const percentage = value / longestBar * 100
     let barStyle = {
       color: "black",
-      background: "",
-      borderRadius: "10px",
-      height: "3em",
       width: `${percentage}%`,
       backgroundColor: `${backgroundColor}`
     }
@@ -23,7 +20,7 @@ export default class Bar extends React.Component {
             <p className={`bar-chart-label label-${label}`}>{label}</p>
           </div>
           <div className="col-xs-10">
-            <div style={barStyle}></div>
+            <div className="bar-chart-bar" style={barStyle}></div>
             <span className="bar-value">{value}</span>
           </div>
         </div>
