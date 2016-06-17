@@ -1,3 +1,8 @@
 .bar-chart-label {
   font-size: 1em;
 }
+
+.bar-chart-bar {
+  border-radius: 10px;
+  height: 3em;
+}
