@@ -10,7 +10,7 @@ export default class IndicatorSlider extends React.Component {
   }
   render() {
     let numSections = 0
-    const { prefixCls, value, colors, sections, max, labels } = this.props
+    const { prefixCls, value, colors, sections, labels } = this.props
     if (colors && colors.length > 0) {
       numSections = colors.length
     } else if (sections) {
@@ -50,7 +50,6 @@ export default class IndicatorSlider extends React.Component {
           prefixCls={prefixCls}
           tipFormatter={null}
           value={value}
-          max={max}
         >
           {sectionList}
         </Slider>

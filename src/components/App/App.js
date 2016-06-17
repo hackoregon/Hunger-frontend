@@ -100,11 +100,9 @@ export default class App extends React.Component {
 
   getIndicatorValue(bestCase = true) {
     let { individuals, selectedCounty, sliderWage } = this.state
-
-    const gap = calcMealGap(individuals, sliderWage, selectedCounty.fips, bestCase)
-    const totalMealsGoal = individuals * 3 * 30
-    const canAfford = totalMealsGoal - gap
-    return canAfford
+    const statusPositions = [12.5, 37.5, 62.5, 87.5]
+    const status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase)
+    return statusPositions[status]
   }
 
   isSingleAdult() {
@@ -250,7 +248,6 @@ export default class App extends React.Component {
               <IndicatorSlider
                 value={this.getIndicatorValue(true)}
                 sections={4}
-                max={totalMealsGoal}
                 labels={indicatorLabels}
               />
             </div>
@@ -296,7 +293,6 @@ export default class App extends React.Component {
             <IndicatorSlider
               value={this.getIndicatorValue(false)}
               sections={4}
-              max={totalMealsGoal}
               labels={indicatorLabels}
             />
           </div>
