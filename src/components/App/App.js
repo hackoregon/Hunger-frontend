@@ -128,6 +128,7 @@ export default class App extends React.Component {
       { label: "asparagus", value: 5000 },
     ]
     const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
+    const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
     const BEST_CASE = true
     const { individuals, sliderWage, selectedCounty } = this.state
     const { MEAL_PERIOD_DAYS } = constants
@@ -248,6 +249,7 @@ export default class App extends React.Component {
                 value={this.getIndicatorValue(true)}
                 sections={4}
                 max={totalMealsGoal}
+                labels={indicatorLabels}
               />
             </div>
             <DayToDaySnugget
@@ -293,6 +295,7 @@ export default class App extends React.Component {
               value={this.getIndicatorValue(false)}
               sections={4}
               max={totalMealsGoal}
+              labels={indicatorLabels}
             />
           </div>
           <DayToDaySnugget

@@ -10,7 +10,7 @@ export default class IndicatorSlider extends React.Component {
   }
   render() {
     let numSections = 0
-    const { prefixCls, value, colors, sections, max } = this.props
+    const { prefixCls, value, colors, sections, max, labels } = this.props
     if (colors && colors.length > 0) {
       numSections = colors.length
     } else if (sections) {
@@ -32,15 +32,30 @@ export default class IndicatorSlider extends React.Component {
         }
       }
     )
+    const labelStyle = {
+      width: `${100 / numSections}%`,
+      textAlign: "center"
+    }
+    const labelsList = labels.map((label, i) => {
+      return (<span key={i} className={`${prefixCls}-label`} style={labelStyle}>{label}</span>)
+    })
+    const labelContainerStyle = {
+      display: "flex",
+      justifyContent: "space-around",
+      marginTop: "1em"
+    }
     return (
-      <Slider
-        prefixCls={prefixCls}
-        tipFormatter={null}
-        value={value}
-        max={max}
-      >
-        {sectionList}
-      </Slider>
+      <div>
+        <Slider
+          prefixCls={prefixCls}
+          tipFormatter={null}
+          value={value}
+          max={max}
+        >
+          {sectionList}
+        </Slider>
+        <div className={`${prefixCls}-labels`} style={labelContainerStyle}>{labelsList}</div>
+      </div>
     )
   }
 }
@@ -49,7 +64,8 @@ IndicatorSlider.propTypes = {
   prefixCls: PropTypes.string,
   sections: PropTypes.number,
   colors: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.number.isRequired
+  labels: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.number.isRequired,
 }
 
 IndicatorSlider.defaultProps = {
