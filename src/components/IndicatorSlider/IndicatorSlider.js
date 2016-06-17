@@ -32,8 +32,12 @@ export default class IndicatorSlider extends React.Component {
         }
       }
     )
-    const labelsList = labels.map(label => {
-      return (<span className={`${prefixCls}-label`}>{label}</span>)
+    const labelStyle = {
+      width: `${100 / numSections}%`,
+      textAlign: "center"
+    }
+    const labelsList = labels.map((label, i) => {
+      return (<span key={i} className={`${prefixCls}-label`} style={labelStyle}>{label}</span>)
     })
     const labelContainerStyle = {
       display: "flex",
