@@ -21,7 +21,9 @@ import {
   snapCalculator,
   getHousingCost,
   incomePlusBenefits,
-  getSchoolMealBenefit } from './calculators'
+  getSchoolMealBenefit,
+  getSSSTransportation,
+  getSSSMiscellaneous } from './calculators'
 import jQuery from 'jquery'
 
 window.jQuery = jQuery
@@ -121,12 +123,8 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
-    const sssBudgetTranspo = Number(
-      sssTransportation[selectedCounty.fips][`transportation_${individuals}`].toFixed(2)
-    )
-    const sssBudgetMisc = Number(
-      sssMiscellaneous[selectedCounty.fips][`miscellaneous_${individuals}`].toFixed(2)
-    )
+    const sssBudgetTranspo = getSSSTransportation(individuals, selectedCounty.fips)
+    const sssBudgetMisc = getSSSMiscellaneous(individuals, selectedCounty.fips)
     const barChartData = [
       {
         label: "transportation",

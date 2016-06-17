@@ -1,7 +1,16 @@
 import { schoolMeals, costOfMeals, housing } from '../../fixtures/data'
+import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
+import { sssTransportation } from '../../fixtures/sssTransportation'
 import constants from '../../fixtures/constants'
 
 const { MEAL_PERIOD_DAYS } = constants
+
+const getSSSMiscellaneous = (individuals, fips) => Number(
+  sssMiscellaneous[fips][`miscellaneous_${individuals}`].toFixed(2)
+)
+const getSSSTransportation = (individuals, fips) => Number(
+  sssTransportation[fips][`transportation_${individuals}`].toFixed(2)
+)
 
 function getMonthlyMealCost(individuals, fips) {
   if (individuals === 1) {
@@ -141,4 +150,6 @@ export {
   getHousingCost,
   incomePlusBenefits,
   getSchoolMealBenefit,
+  getSSSMiscellaneous,
+  getSSSTransportation,
 }
