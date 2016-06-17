@@ -9,6 +9,8 @@ import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
+import { sssTransportation } from '../../fixtures/sssTransportation'
+import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { StickyContainer, Sticky } from 'react-sticky'
@@ -113,6 +115,7 @@ export default class App extends React.Component {
 
   render() {
 
+    const { individuals, sliderWage, selectedCounty } = this.state
     const sliderMarks = {
       0: '$0',
       200: '$200',
@@ -120,16 +123,33 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
+    const sssBudgetTranspo = Number(
+      sssTransportation[selectedCounty.fips][`transportation_${individuals}`].toFixed(2)
+    )
+    const sssBudgetMisc = Number(
+      sssMiscellaneous[selectedCounty.fips][`miscellaneous_${individuals}`].toFixed(2)
+    )
     const barChartData = [
-      { label: "transportation", value: 45000 },
-      { label: "transportation ss budget", value: 33000 },
-      { label: "miscellaneous", value: 25000 },
-      { label: "miscellaneous ss budget", value: 20000 },
+      {
+        label: "transportation",
+        value: 50
+      },
+      {
+        label: "transportation ss budget",
+        value: sssBudgetTranspo
+      },
+      {
+        label: "miscellaneous",
+        value: 0
+      },
+      {
+        label: "miscellaneous ss budget",
+        value: sssBudgetMisc
+      },
     ]
     const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
     const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
     const BEST_CASE = true
-    const { individuals, sliderWage, selectedCounty } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
 
