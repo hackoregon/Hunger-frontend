@@ -128,7 +128,10 @@ export default class App extends React.Component {
     const barChartData = [
       {
         label: "transportation",
-        value: 50
+        value: Math.min(
+                 Math.max(0, ((sliderWage - 200) / 2 + 50)),
+                 sssBudgetTranspo
+               )
       },
       {
         label: "transportation ss budget",
@@ -136,7 +139,10 @@ export default class App extends React.Component {
       },
       {
         label: "miscellaneous",
-        value: 0
+        value: Math.min(
+                 Math.max(0, (sliderWage - 200) / 2),
+                 sssBudgetMisc
+               )
       },
       {
         label: "miscellaneous ss budget",
