@@ -121,11 +121,10 @@ export default class App extends React.Component {
       2000: '$2000'
     }
     const barChartData = [
-      { label: "corn", value: 45000 },
-      { label: "carrots", value: 33000 },
-      { label: "rutabegas", value: 25000 },
-      { label: "potatoes", value: 20000 },
-      { label: "asparagus", value: 5000 },
+      { label: "transportation", value: 45000 },
+      { label: "transportation ss budget", value: 33000 },
+      { label: "miscellaneous", value: 25000 },
+      { label: "miscellaneous ss budget", value: 20000 },
     ]
     const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
     const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
