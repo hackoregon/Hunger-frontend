@@ -23,7 +23,8 @@ import {
   incomePlusBenefits,
   getSchoolMealBenefit,
   getSSSTransportation,
-  getSSSMiscellaneous } from './calculators'
+  getSSSMiscellaneous,
+  getBarChartValues } from './calculators'
 import jQuery from 'jquery'
 
 window.jQuery = jQuery
@@ -123,30 +124,22 @@ export default class App extends React.Component {
       1200: '$1200',
       2000: '$2000'
     }
-    const sssBudgetTranspo = getSSSTransportation(individuals, selectedCounty.fips)
-    const sssBudgetMisc = getSSSMiscellaneous(individuals, selectedCounty.fips)
     const barChartData = [
       {
         label: "transportation",
-        value: Math.min(
-                 Math.max(0, ((sliderWage - 200) / 2 + 50)),
-                 sssBudgetTranspo
-               )
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation")
       },
       {
         label: "transportation ss budget",
-        value: sssBudgetTranspo
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
       },
       {
         label: "miscellaneous",
-        value: Math.min(
-                 Math.max(0, (sliderWage - 200) / 2),
-                 sssBudgetMisc
-               )
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
       },
       {
         label: "miscellaneous ss budget",
-        value: sssBudgetMisc
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
       },
     ]
     const budgetColor = "#4e735a"
@@ -162,7 +155,6 @@ export default class App extends React.Component {
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
 
-    const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
@@ -204,7 +196,7 @@ export default class App extends React.Component {
         <section className="mission-statement container-fluid">
           <div className="row">
             <div className="col-xs-12">
-            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>              
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
                 <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
               </p>
             </div>
