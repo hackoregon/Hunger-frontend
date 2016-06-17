@@ -4,13 +4,9 @@ export default class HorizontalBarChart extends React.Component {
 
   render() {
     const { data, title, colors } = this.props
-    const sumOfDataValues = data.map(function(item) {
-      return item.value
-    }).reduce(function(last, current) {
-      return last + current
-    })
-    let bars = data.map(function(item, index) {
-      return (<Bar key={index} label={item.label} position={index} backgroundColor={colors[index]} value={item.value} sumOfDataValues={sumOfDataValues} />)
+    const longestBar = Math.max(...data.map(bar => bar.value))
+    const bars = data.map(function(item, index) {
+      return (<Bar key={index} label={item.label} position={index} backgroundColor={colors[index]} value={item.value} longestBar={longestBar} />)
     })
     return (
       <div className="barchart-root">

@@ -2,8 +2,8 @@ import { default as React, PropTypes } from 'react'
 
 export default class Bar extends React.Component {
   render() {
-    const { label, value, sumOfDataValues, position } = this.props
-    const percentage = ((value / sumOfDataValues) * 100)
+    const { label, value, longestBar, backgroundColor } = this.props
+    const percentage = value / longestBar * 100
     let barStyle = {
       color: "black",
       background: "",
@@ -34,6 +34,6 @@ Bar.propTypes = {
   label: PropTypes.string,
   value: PropTypes.number.isRequired,
   position: PropTypes.number.isRequired,
-  sumOfDataValues: PropTypes.number.isRequired,
+  longestBar: PropTypes.number.isRequired,
   backgroundColor: PropTypes.string,
 }
