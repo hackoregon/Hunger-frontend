@@ -1,5 +1,7 @@
 import { default as React, PropTypes } from 'react'
 
+require('./CCBarChart.css')
+
 export default class Bar extends React.Component {
   render() {
     const { label, value, longestBar, backgroundColor } = this.props
@@ -9,16 +11,16 @@ export default class Bar extends React.Component {
       background: "",
       borderRadius: "10px",
       height: "3em",
-      width: `${percentage}%`
+      width: `${percentage}%`,
+      backgroundColor: `${backgroundColor}`
     }
-    barStyle.background = this.props.backgroundColor
 
     // console.log("barStyle:", barStyle)
     return (
       <div>
         <div className="row">
           <div className="col-xs-2 text-right">
-            <h2>{label}</h2>
+            <p className={`bar-chart-label label-${label}`}>{label}</p>
           </div>
           <div className="col-xs-10">
             <div style={barStyle}></div>
