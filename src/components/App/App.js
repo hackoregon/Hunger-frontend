@@ -146,6 +146,15 @@ export default class App extends React.Component {
     const transportationColor = "#b8dfab"
     const miscColor = "#b8dfab"
     const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
+
+    const moneyForOtherStuff = moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.25
+    const transportationCost = getSSSTransportation(individuals, selectedCounty.fips)
+    const miscellaneousCost = getSSSMiscellaneous(individuals, selectedCounty.fips)
+    const excessTowardFood = Math.max(0, moneyForOtherStuff - (transportationCost + miscellaneousCost))
+    let extraMeals = 0
+    if (excessTowardFood) {
+      extraMeals = Math.floor(excessTowardFood / data.costOfMeals[selectedCounty.fips].cost_per_meal)
+    }
     const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
     const BEST_CASE = true
     const { MEAL_PERIOD_DAYS } = constants
@@ -163,7 +172,7 @@ export default class App extends React.Component {
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
-    // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
+
     return (
       <div>
         <header>
@@ -342,6 +351,12 @@ export default class App extends React.Component {
                 </p>
               </div>
               <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
+              <p
+                className="afford-extra-meals"
+                style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+              >
+              You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+              </p>
             </div>
           </div>
         </section>

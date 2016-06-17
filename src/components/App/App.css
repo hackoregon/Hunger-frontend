@@ -79,7 +79,12 @@ footer {
   padding: 0.5em;
 }
 
-
+.dynamic-text {
+  font-family: 'Signika', sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #669776;
+}
 /* SECTION 2: DAY-TO-DAY */
 /* SECTION 3: FREE AND REDUCED LUNCH */
 /* SECTION 4: HOUSING */
