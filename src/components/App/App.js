@@ -248,7 +248,6 @@ export default class App extends React.Component {
               <IndicatorSlider
                 value={this.getIndicatorValue(true)}
                 sections={4}
-                max={totalMealsGoal}
                 labels={indicatorLabels}
               />
             </div>
@@ -294,7 +293,6 @@ export default class App extends React.Component {
             <IndicatorSlider
               value={this.getIndicatorValue(false)}
               sections={4}
-              max={totalMealsGoal}
               labels={indicatorLabels}
             />
           </div>
