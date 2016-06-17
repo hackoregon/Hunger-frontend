@@ -147,7 +147,10 @@ export default class App extends React.Component {
         value: sssBudgetMisc
       },
     ]
-    const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
+    const budgetColor = "#4e735a"
+    const transportationColor = "#b8dfab"
+    const miscColor = "#b8dfab"
+    const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
     const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
     const BEST_CASE = true
     const { MEAL_PERIOD_DAYS } = constants
