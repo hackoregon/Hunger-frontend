@@ -160,7 +160,10 @@ export default class App extends React.Component {
                   <span className="icon-bar"></span>
                 </button>
                 <div className="ho-logo-wrapper pull-left">
-                    <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
+                  <p className="navbar-text navbar-left">Built by</p>
+                    <a href="http://www.hackoregon.org/">
+                        <img className="img-responsive ho-logo-gray navbar-left" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
+                    </a>
                 </div>
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -176,9 +179,8 @@ export default class App extends React.Component {
         <section className="mission-statement container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h1 className="main-title">Oregon Hunger Equation</h1>
-              <p>
-                Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>              
+                <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
               </p>
             </div>
           </div>
