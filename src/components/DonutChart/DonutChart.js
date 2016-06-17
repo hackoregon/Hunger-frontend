@@ -8,8 +8,8 @@ import {
 require('./DonutChart.css')
 
 const colors = [
-  'rgba(220, 102, 50, 1)',
-  'rgba(220, 102, 50, 0.2)'
+  'rgba(220, 102, 50, 0.2)',
+  'rgba(220, 102, 50, 1)'
 ]
 const width = 240
 const height = 240
