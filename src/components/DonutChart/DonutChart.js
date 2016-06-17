@@ -76,7 +76,7 @@ class DonutChart extends Component {
         </p>
         <Chart width={width} height={height}>
           <DataSeries data={this.state.values}>
-            <Pie innerRadius={75} outerRadius={80} style={(d, i) => ({ fill: this.getColors(i) })}>
+            <Pie innerRadius={72} outerRadius={80} style={(d, i) => ({ fill: this.getColors(i) })}>
               {this.props.children}
             </Pie>
           </DataSeries>
