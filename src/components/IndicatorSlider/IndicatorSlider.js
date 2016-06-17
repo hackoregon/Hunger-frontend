@@ -37,7 +37,8 @@ export default class IndicatorSlider extends React.Component {
     })
     const labelContainerStyle = {
       display: "flex",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      marginTop: "1em"
     }
     return (
       <div>
