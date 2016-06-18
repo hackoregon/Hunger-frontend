@@ -1,7 +1,58 @@
 import { schoolMeals, costOfMeals, housing } from '../../fixtures/data'
+import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
+import { sssTransportation } from '../../fixtures/sssTransportation'
 import constants from '../../fixtures/constants'
 
 const { MEAL_PERIOD_DAYS } = constants
+
+const getSSSMiscellaneous = (individuals, fips) => Number(
+  sssMiscellaneous[fips][`miscellaneous_${individuals}`].toFixed(2)
+)
+const getSSSTransportation = (individuals, fips) => Number(
+  sssTransportation[fips][`transportation_${individuals}`].toFixed(2)
+)
+
+function getBarChartValues(individuals, income, fips, bar = 'misc') {
+
+  const transportationCost = getSSSTransportation(individuals, fips)
+  const miscellaneousCost = getSSSMiscellaneous(individuals, fips)
+
+  if (bar === 'transportation_fixed') {
+    return transportationCost
+  } else if (bar === 'miscellaneous_fixed') {
+    return miscellaneousCost
+  } else {
+    // calculate the money our model set aside for spending on transportation and miscellaneous
+    const moneyForOtherStuff = moneyAfterHousing(individuals, income, fips) * 0.25
+    // calculate the overflow for each bar: if it's > 0, that cost is covered
+    // moneyForOtherStuff is split 50/50 between transportation and miscellaneous
+    const transportationExtra = Math.max(0, (moneyForOtherStuff * 0.5) - transportationCost)
+    const miscellaneousExtra = Math.max(0, (moneyForOtherStuff * 0.5) - miscellaneousCost)
+    // allocate money to each bar + any extra from the other bar
+    const moneyTowardTranspo = (moneyForOtherStuff * 0.5) + miscellaneousExtra
+    const moneyTowardMisc = (moneyForOtherStuff * 0.5) + transportationExtra
+
+    // limit the bar value to be, at most, the corresponding sss budget value
+    // (cost covered)
+    let barValue
+    if (bar === 'transportation') {
+      barValue = Number(Math.min(moneyTowardTranspo, transportationCost).toFixed(2))
+    } else if (bar === 'miscellaneous') {
+      barValue = Number(Math.min(moneyTowardMisc, miscellaneousCost).toFixed(2))
+    }
+    return barValue
+
+    // if both bars have extra money (all costs are met), that overflow goes toward food
+    // but we should calculate this in App because all of the needed functions are exported.
+    //   const moneyForOtherStuff = moneyAfterHousing(individuals, income, fips) * 0.25
+    //   const transportationCost = getSSSTransportation(individuals, fips)
+    //   const miscellaneousCost = getSSSMiscellaneous(individuals, fips)
+    //   const excessTowardFood = Math.max(0, moneyForOtherStuff - (transportationCost + miscellaneousCost))
+    //   if (excessTowardFood) {
+    //       const extraMeals = Math.floor(excessTowardFood / costOfMeals[fips].cost_per_meal)
+    //   }
+  }
+}
 
 function getMonthlyMealCost(individuals, fips) {
   if (individuals === 1) {
@@ -141,4 +192,7 @@ export {
   getHousingCost,
   incomePlusBenefits,
   getSchoolMealBenefit,
+  getSSSMiscellaneous,
+  getSSSTransportation,
+  getBarChartValues,
 }

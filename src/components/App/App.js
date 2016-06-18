@@ -9,6 +9,8 @@ import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
+import { sssTransportation } from '../../fixtures/sssTransportation'
+import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { StickyContainer, Sticky } from 'react-sticky'
@@ -19,7 +21,10 @@ import {
   snapCalculator,
   getHousingCost,
   incomePlusBenefits,
-  getSchoolMealBenefit } from './calculators'
+  getSchoolMealBenefit,
+  getSSSTransportation,
+  getSSSMiscellaneous,
+  getBarChartValues } from './calculators'
 import jQuery from 'jquery'
 
 window.jQuery = jQuery
@@ -111,6 +116,7 @@ export default class App extends React.Component {
 
   render() {
 
+    const { individuals, sliderWage, selectedCounty } = this.state
     const sliderMarks = {
       0: '$0',
       200: '$200',
@@ -119,16 +125,38 @@ export default class App extends React.Component {
       2000: '$2000'
     }
     const barChartData = [
-      { label: "corn", value: 45000 },
-      { label: "carrots", value: 33000 },
-      { label: "rutabegas", value: 25000 },
-      { label: "potatoes", value: 20000 },
-      { label: "asparagus", value: 5000 },
+      {
+        label: "transportation",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation")
+      },
+      {
+        label: "transportation ss budget",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
+      },
+      {
+        label: "miscellaneous",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
+      },
+      {
+        label: "miscellaneous ss budget",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
+      },
     ]
-    const barColors = ["#5c7b1e", "#7ba428", "#9acd32", "#aed75a", "#c2e184"]
+    const budgetColor = "#4e735a"
+    const transportationColor = "#b8dfab"
+    const miscColor = "#b8dfab"
+    const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
+
+    const moneyForOtherStuff = moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.25
+    const transportationCost = getSSSTransportation(individuals, selectedCounty.fips)
+    const miscellaneousCost = getSSSMiscellaneous(individuals, selectedCounty.fips)
+    const excessTowardFood = Math.max(0, moneyForOtherStuff - (transportationCost + miscellaneousCost))
+    let extraMeals = 0
+    if (excessTowardFood) {
+      extraMeals = Math.floor(excessTowardFood / data.costOfMeals[selectedCounty.fips].cost_per_meal)
+    }
     const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
     const BEST_CASE = true
-    const { individuals, sliderWage, selectedCounty } = this.state
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
 
@@ -136,7 +164,6 @@ export default class App extends React.Component {
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
     const dollarFormatter = (val) => ("$" + val)
 
-    const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.3)
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
@@ -145,7 +172,7 @@ export default class App extends React.Component {
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
-    // console.log("bestCaseFoodStatus:", bestCaseFoodStatus, " worstCaseFoodStatus:", worstCaseFoodStatus)
+
     return (
       <div>
         <header>
@@ -178,7 +205,7 @@ export default class App extends React.Component {
         <section className="mission-statement container-fluid">
           <div className="row">
             <div className="col-xs-12">
-            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>              
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
                 <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
               </p>
             </div>
@@ -241,6 +268,7 @@ export default class App extends React.Component {
               total={totalMealsGoal}
               mealsShort={bestCaseMissingMeals}
               costPerMeal={costPerMeal}
+              extraMeals={extraMeals}
             >
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
@@ -286,6 +314,7 @@ export default class App extends React.Component {
           total={totalMealsGoal}
           mealsShort={worstCaseMissingMeals}
           costPerMeal={costPerMeal}
+          extraMeals={extraMeals}
           >
           <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
@@ -324,6 +353,12 @@ export default class App extends React.Component {
                 </p>
               </div>
               <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
+              <p
+                className="afford-extra-meals"
+                style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+              >
+              You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+              </p>
             </div>
           </div>
         </section>
