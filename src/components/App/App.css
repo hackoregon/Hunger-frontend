@@ -151,14 +151,21 @@ footer {
 /* STICKY STYLE MODIFICATIONS */
 .sticky {
   background-color: #fff;
-  padding: 30px 30px 40px 14px;
+  padding: 10px 30px 40px 14px;
   border: none;
   z-index: 100;
 }
 
 .sticky .slider-self-wrapper {
   border: none;
-  padding: 0 1em 0 2em;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 1em;
+  padding-left: 2em;
+}
+
+.sticky .slider-wage-box {
+  margin-bottom: 10px;
 }
 
 .sticky-tooltip,
@@ -210,6 +217,18 @@ footer {
   width: 90%;
 }
 
+.slider-wage-box {
+  display: inline-block;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #669776;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
 @media only screen and (max-width: 480px) {
   .slider-section {
     margin-bottom: 0;
@@ -224,13 +243,18 @@ footer {
   width: 100%;
   background-color: #fff;
   padding: 8em 3em;
+  padding-top: 2em;
+  padding-bottom: 5em;
   border: 1px solid #000;
 
 }
 
 @media only screen and (max-width: 480px) {
   .slider-self-wrapper {
-    padding: 2em 2em 2.75em;
+    padding: 1em 2em 2.75em;
+  }
+  .slider-wage-box {
+    margin-bottom: 10px;
   }
 }
 

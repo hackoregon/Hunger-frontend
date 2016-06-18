@@ -240,22 +240,11 @@ export default class App extends React.Component {
                 <h2 className="slider-heading section-heading">Slide to select monthly household income</h2>
                 <Sticky topOffset={100}>
                 <div className="slider-self-wrapper">
-                  <div className="sticky-tooltip" style={{
-                    position: "relative",
-                    top: "-18px",
-                    left: tooltipXOffset,
-                  }}>
-                    <div className="sticky-tooltip-content">
-                      <div className="sticky-tooltip-arrow"></div>
-                      <div className="sticky-tooltip-inner">
-                        <span>{`$${this.state.sliderWage}`}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <div className="slider-wage-box">{`$${this.state.sliderWage}`}</div>
                   <Slider
                     max={this.props.sliderMax}
                     tipTransitionName="rc-slider-tooltip-zoom-down"
-                    tipFormatter={dollarFormatter}
+                    tipFormatter={null}
                     marks={sliderMarks}
                     step={2}
                     dots={false}
