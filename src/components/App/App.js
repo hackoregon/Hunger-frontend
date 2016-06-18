@@ -126,20 +126,22 @@ export default class App extends React.Component {
     }
     const barChartData = [
       {
-        label: "transportation",
+        label: "Your $ for transportation",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation")
       },
       {
-        label: "transportation ss budget",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
+        label: "Average transportation costs",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed"),
+        description: "transportation is based on the local cost of a bus pass"
       },
       {
-        label: "miscellaneous",
+        label: "Your $ for miscellaneous",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
       },
       {
-        label: "miscellaneous ss budget",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
+        label: "Average miscellaneous costs",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed"),
+        description: "miscellaneous includes ... but does not include ..."
       },
     ]
     const budgetColor = "#4e735a"
@@ -352,13 +354,15 @@ export default class App extends React.Component {
                   At your income, you are not able to afford housing in your county.
                 </p>
               </div>
-              <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
-              <p
-                className="afford-extra-meals"
-                style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
-              >
-              You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
-              </p>
+              <section className="bar-chart-section container-fluid">
+                <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
+                <p
+                  className="afford-extra-meals"
+                  style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+                >
+                You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+                </p>
+              </section>
             </div>
           </div>
         </section>
