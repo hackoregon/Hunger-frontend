@@ -6,7 +6,7 @@ export default class HorizontalBarChart extends React.Component {
     const { data, title, colors } = this.props
     const longestBar = Math.max(...data.map(bar => bar.value))
     const bars = data.map(function(item, index) {
-      return (<Bar key={index} label={item.label} position={index} backgroundColor={colors[index]} value={item.value} longestBar={longestBar} />)
+      return (<Bar key={index} label={item.label} description={item.description} position={index} backgroundColor={colors[index]} value={item.value} longestBar={longestBar} />)
     })
     return (
       <div className="barchart-root">

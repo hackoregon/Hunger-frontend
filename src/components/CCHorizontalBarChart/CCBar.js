@@ -4,7 +4,7 @@ require('./CCBarChart.css')
 
 export default class Bar extends React.Component {
   render() {
-    const { label, value, longestBar, backgroundColor } = this.props
+    const { label, value, longestBar, backgroundColor, description } = this.props
     const percentage = value / longestBar * 100
     let barStyle = {
       color: "black",
@@ -18,7 +18,7 @@ export default class Bar extends React.Component {
       <div>
         <div className="row">
           <div className="col-xs-2 text-right">
-            <p className={`bar-chart-label label-${label}`}>{label}</p>
+            <p title={description || label} className={`bar-chart-label label-${label}`}>{label}</p>
           </div>
           <div className="col-xs-10">
             <div className="bar-chart-bar" style={barStyle}></div>

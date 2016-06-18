@@ -131,15 +131,17 @@ export default class App extends React.Component {
       },
       {
         label: "Average transportation costs",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed"),
+        description: "transportation is based on the local cost of a bus pass"
       },
       {
-        label: "Your $ for misc.",
+        label: "Your $ for miscellaneous",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
       },
       {
-        label: "Average misc. costs",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
+        label: "Average miscellaneous costs",
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed"),
+        description: "miscellaneous includes ... but does not include ..."
       },
     ]
     const budgetColor = "#4e735a"
