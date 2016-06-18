@@ -9,7 +9,8 @@ export default class Bar extends React.Component {
     let barStyle = {
       color: "black",
       width: `${percentage}%`,
-      backgroundColor: `${backgroundColor}`
+      backgroundColor: `${backgroundColor}`,
+      border: `1px solid ${backgroundColor}`
     }
 
     // console.log("barStyle:", barStyle)
