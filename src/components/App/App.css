@@ -247,6 +247,46 @@ footer {
   padding: 0 1em 0 2em;
 }
 
+.sticky-tooltip,
+.sticky-tooltip-arrow {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.sticky .sticky-tooltip {
+  display: inline-block;
+  opacity: 1;
+  box-sizing: border-box;
+  padding: 6px 2px;
+  min-width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #6c6c6c;
+  border-radius: 6px;
+  box-shadow: 0 0 4px #d9d9d9;
+}
+
+.sticky .sticky-tooltip-arrow {
+  position: absolute;
+  opacity: 1;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px 6px 0;
+  border-top-color: #6c6c6c;
+}
+
 /* SLIDER (main styles in rc-slider.css) */
 .slider-section {
   margin-bottom: 1.5em;
