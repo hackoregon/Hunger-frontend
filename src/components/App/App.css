@@ -237,7 +237,7 @@ footer {
 /* STICKY STYLE MODIFICATIONS */
 .sticky {
   background-color: #fff;
-  padding: 15px 30px 40px 14px;
+  padding: 30px 30px 40px 14px;
   border: 1px solid #000;
   z-index: 100;
 }
