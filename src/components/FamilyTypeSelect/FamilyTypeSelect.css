@@ -24,7 +24,7 @@
 }
 
 .family-type-radio:checked + .family-type-label {
-  background-color: #f0edc8;
+  background-color: #c9dacf;
 }
 
 .family-type-label img {
@@ -50,7 +50,6 @@
   padding-right: 1em;
 }
 
-/* TODO: Do something less hacky to override Bootstrap styles ? */
 #label-single-adult,
 #label-single-parent,
 #label-two-parents {

@@ -7,19 +7,31 @@
 
 .donut-chart-root {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .donut-chart-root p {
+  padding: 0;
   text-align: center;
+  max-width: 300px;
 }
 
+.diffract-chart {
+  margin: 10px;
+}
+
+.dffract-svg {
+   display: block;
+   margin: 0 auto;
+}
+
+.donut-cost-of-meal-text {
+  margin-right: 15px;
+}
 @media only screen and (max-width: 480px) {
   .donut-chart-root {
     flex-wrap: wrap;
-  }
-  .donut-chart-root p {
-    text-align: center;
   }
 }
