@@ -22,9 +22,9 @@
 .rc-slider-handle {
   position: absolute;
   margin-left: -7px;
-  margin-top: -6px;
-  width: 14px;
-  height: 14px;
+  margin-top: -9px;
+  width: 21px;
+  height: 21px;
   cursor: pointer;
   border-radius: 50%;
   border: solid 1px #000;
