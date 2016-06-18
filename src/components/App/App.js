@@ -352,13 +352,15 @@ export default class App extends React.Component {
                   At your income, you are not able to afford housing in your county.
                 </p>
               </div>
-              <BarChart title="Bart Chart Success!" data={barChartData} colors={barColors} />
-              <p
-                className="afford-extra-meals"
-                style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
-              >
-              You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
-              </p>
+              <section className="bar-chart-section container-fluid">
+                <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
+                <p
+                  className="afford-extra-meals"
+                  style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+                >
+                You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+                </p>
+              </section>
             </div>
           </div>
         </section>
