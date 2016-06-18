@@ -1,6 +1,7 @@
 /* GLOBAL STYLES */
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 300;
   background-color: #fbfaf0;
 }
 
@@ -8,30 +9,19 @@ section {
   padding: 2em;
 }
 
+.section-heading,
+.family-type-hr {
+  font-family: 'Oswald', 'Roboto', Arial, sans-serif;
+  font-weight: 300;
+}
 
 p {
-  font-size: 2.0em;
+  font-size: 1.6em;
   margin: 0;
   color: #656565;
 }
 
 /* HEADER */
-.main-title {
-  font-size: 3.0em;
-  color: #656565;
-  font-weight: bold;
-  max-width: 100%;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  font-family: 'Signika', sans-serif;
-}
-
-@media only screen and (max-width: 480px) {
-  .main-title {
-    text-align: center;
-  }
-}
-
 .navbar {
   z-index: 1;
 }
@@ -49,6 +39,12 @@ p {
   background-color: #5b5b5b;
 }
 
+.navbar-default {
+  border: none;
+  background-color: #c9dacf;
+  padding: 0.5em;
+}
+
 .navbar-default .glyphicon-stop {
   position: relative;
   top: 1.2em;
@@ -56,6 +52,10 @@ p {
   font-size: 0.4em;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.nav-item {
+  font-size: 1.4em;
 }
 
 header {
@@ -66,27 +66,17 @@ header {
   box-shadow: 0 12px 2px 0 #999;
 }
 
-footer {
-  font-size: 2rem;
-  padding: 1em;
-  color: #5b5b5b;
-  background-color: #c9dacf;
-}
-
-.navbar-default {
-  border: none;
-  background-color: #c9dacf;
-  padding: 0.5em;
+.ho-logo-wrapper p {
+  font-size: 1.1em;
 }
 
 .dynamic-text {
-  font-family: 'Signika', sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   color: #669776;
 }
-/* SECTION 2: DAY-TO-DAY */
-/* SECTION 3: FREE AND REDUCED LUNCH */
+
 /* SECTION 4: HOUSING */
 .can-afford-housing {
   border: 1px solid #5b5b5b;
@@ -120,7 +110,10 @@ footer {
 
 /* FOOTER */
 footer {
+  font-size: 2rem;
   padding: 1em;
+  color: #5b5b5b;
+  background-color: #c9dacf;
 }
 
 .ho-logo {
@@ -218,9 +211,6 @@ footer {
   border-bottom: 8px solid black;
 }
 
-
-
-
 /* GENERAL */
 .section-heading {
   font-size: 2.4em;
@@ -242,16 +232,6 @@ footer {
   display: inline;
   margin-left: 20px;
   font-size: 1.2em;
-}
-
-/* HEADER */
-
-.ho-logo-wrapper p {
-  font-size: 1.1em;
-}
-
-.nav-item {
-  font-size: 1.4em;
 }
 
 /* STICKY STYLE MODIFICATIONS */

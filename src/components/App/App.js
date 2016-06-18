@@ -214,7 +214,7 @@ export default class App extends React.Component {
         <section className="family-and-county-section container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <h2 className="select-county-heading">Select a County</h2>
+              <h2 className="select-county-heading section-heading">Select a County</h2>
               <Dropdown
                 options={options}
                 onChange={this._onDropdownSelect}
@@ -230,7 +230,7 @@ export default class App extends React.Component {
           <div className="row">
             <div className="col-xs-12">
               <div className="slider-with-heading">
-                <h2 className="slider-heading">Slide to select monthly household income</h2>
+                <h2 className="slider-heading section-heading">Slide to select monthly household income</h2>
                 <div className="slider-self-wrapper">
                   <Sticky>
                     <Slider
