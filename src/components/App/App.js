@@ -126,19 +126,19 @@ export default class App extends React.Component {
     }
     const barChartData = [
       {
-        label: "transportation",
+        label: "Your $ for transportation",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation")
       },
       {
-        label: "transportation ss budget",
+        label: "Average transportation costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
       },
       {
-        label: "miscellaneous",
+        label: "Your $ for misc.",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
       },
       {
-        label: "miscellaneous ss budget",
+        label: "Average misc. costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
       },
     ]
