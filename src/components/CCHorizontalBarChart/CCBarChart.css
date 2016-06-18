@@ -1,8 +1,17 @@
+.bar-root {
+  margin-bottom: 1em;
+}
+
 .bar-chart-label {
-  font-size: 1em;
+  font-size: 1.3em;
+  margin-bottom: 5px;
 }
 
 .bar-chart-bar {
   border-radius: 8px;
   height: 2em;
+}
+
+.bar-value {
+  font-weight: bold;
 }
