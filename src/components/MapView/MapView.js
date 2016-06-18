@@ -1,5 +1,7 @@
 import React, { PropTypes } from "react"
 
+require('./MapView.css')
+
 class MapView extends React.Component {
   constructor() {
     super()
@@ -30,6 +32,20 @@ class MapView extends React.Component {
   render() {
     return (
       <div className="mapview-root">
+      <div className="mapview-legend">
+        <div className="mapview-legend-row">
+          <div className="mapview-color mapview-color-1"></div><div className="mapview-label">Sufficient</div>
+        </div>
+        <div className="mapview-legend-row">
+          <div className="mapview-color mapview-color-2"></div><div className="mapview-label">Moderately Sufficient</div>
+        </div>
+        <div className="mapview-legend-row">
+          <div className="mapview-color mapview-color-3"></div><div className="mapview-label">Vulnerable</div>
+        </div>
+        <div className="mapview-legend-row">
+          <div className="mapview-color mapview-color-4"></div><div className="mapview-label">Extremely Vulnerable</div>
+        </div>
+      </div>
       <object
         onLoad={() => { this.applyColors(this.props) }}
         ref="map-svg"

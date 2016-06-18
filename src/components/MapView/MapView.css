@@ -1,0 +1,38 @@
+.mapview-legend {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  /*border: 1px solid red;*/
+}
+
+.mapview-legend-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  min-width: 175px;
+  margin-bottom: 5px;
+}
+
+.mapview-color {
+  width: 1em;
+  height: 1em;
+  background-color: #fff;
+  margin-right: 5px;
+}
+
+.mapview-label {
+  font-size: 0.9em;
+}
+
+.mapview-color-1 {
+  background-color: #eee597;
+}
+.mapview-color-2 {
+  background-color: #eadd69;
+}
+.mapview-color-3 {
+  background-color: #dc6632;
+}
+.mapview-color-4 {
+  background-color: #b5441d;
+}
