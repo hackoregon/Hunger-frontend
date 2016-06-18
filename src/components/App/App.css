@@ -151,55 +151,24 @@ footer {
 /* STICKY STYLE MODIFICATIONS */
 .sticky {
   background-color: #fff;
-  padding: 30px 30px 40px 14px;
+  padding: 10px 30px 40px 14px;
   border: none;
   z-index: 100;
 }
 
 .sticky .slider-self-wrapper {
   border: none;
-  padding: 0 1em 0 2em;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 1em;
+  padding-left: 2em;
 }
 
-.sticky-tooltip,
-.sticky-tooltip-arrow {
-  opacity: 0;
-  -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+.sticky .slider-wage-box {
+  margin-bottom: 10px;
 }
 
-.sticky .sticky-tooltip {
-  display: inline-block;
-  opacity: 1;
-  box-sizing: border-box;
-  padding: 6px 2px;
-  min-width: 24px;
-  height: 24px;
-  font-size: 14px;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  background-color: #6c6c6c;
-  border-radius: 6px;
-  box-shadow: 0 0 4px #d9d9d9;
-}
 
-.sticky .sticky-tooltip-arrow {
-  position: absolute;
-  opacity: 1;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  bottom: -5px;
-  left: 50%;
-  margin-left: -6px;
-  border-width: 6px 6px 0;
-  border-top-color: #6c6c6c;
-}
 
 /* SLIDER (main styles in rc-slider.css) */
 .slider-section {
@@ -208,6 +177,18 @@ footer {
 .slider-with-heading {
   margin: 0 auto;
   width: 90%;
+}
+
+.slider-wage-box {
+  display: inline-block;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #669776;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  width: 100%;
 }
 
 @media only screen and (max-width: 480px) {
@@ -224,13 +205,18 @@ footer {
   width: 100%;
   background-color: #fff;
   padding: 8em 3em;
+  padding-top: 2em;
+  padding-bottom: 5em;
   border: 1px solid #000;
 
 }
 
 @media only screen and (max-width: 480px) {
   .slider-self-wrapper {
-    padding: 2em 2em 2.75em;
+    padding: 1em 2em 2.75em;
+  }
+  .slider-wage-box {
+    margin-bottom: 10px;
   }
 }
 

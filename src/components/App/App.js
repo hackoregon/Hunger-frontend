@@ -162,7 +162,6 @@ export default class App extends React.Component {
 
     const options = counties.map(c => ({ value: c.fips, label: c.name }))
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
-    const dollarFormatter = (val) => ("$" + val)
 
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
@@ -172,13 +171,6 @@ export default class App extends React.Component {
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
-    // sticky tooltip math
-    const units = this.props.sliderMax / 2
-    const maxPercent = 92, minPercent = -4, percentRange = maxPercent - minPercent
-    const percentPerUnit = percentRange / units
-    const numUnitsSliderWage = this.state.sliderWage / 2
-    const offset = numUnitsSliderWage * percentPerUnit + minPercent
-    const tooltipXOffset = `${offset}%`
 
     return (
       <div>
@@ -240,22 +232,11 @@ export default class App extends React.Component {
                 <h2 className="slider-heading section-heading">Slide to select monthly household income</h2>
                 <Sticky topOffset={100}>
                 <div className="slider-self-wrapper">
-                  <div className="sticky-tooltip" style={{
-                    position: "relative",
-                    top: "-18px",
-                    left: tooltipXOffset,
-                  }}>
-                    <div className="sticky-tooltip-content">
-                      <div className="sticky-tooltip-arrow"></div>
-                      <div className="sticky-tooltip-inner">
-                        <span>{`$${this.state.sliderWage}`}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <div className="slider-wage-box">{`$${this.state.sliderWage}`}</div>
                   <Slider
                     max={this.props.sliderMax}
                     tipTransitionName="rc-slider-tooltip-zoom-down"
-                    tipFormatter={dollarFormatter}
+                    tipFormatter={null}
                     marks={sliderMarks}
                     step={2}
                     dots={false}
