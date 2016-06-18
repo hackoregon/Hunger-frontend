@@ -383,7 +383,7 @@ export default class App extends React.Component {
                     }}
                     style={this.isSingleAdult() ? { display: "none" } : {}}
                   >
-                  Show { this.state.bestCaseMap ? "worst case map" : "best case map" }
+                  Show { this.state.bestCaseMap ? "with school meal benefits" : "without school meal benefits" }
                   </button>
                 </div>
               </div>
