@@ -11,7 +11,7 @@ const DayToDayHungerSnugget = (props) => {
       heading = "Extremely Vulnerable"
       switch (props.individuals) {
         case 1:
-          content = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough to eat."
+          content = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough food."
           break
         case 3:
           content = "Having enough food for yourself and your children is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits and yet you are still not getting enough food."
@@ -31,10 +31,10 @@ const DayToDayHungerSnugget = (props) => {
           content = "In general, you are struggling to put food on the table. It’s likely that you are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
           break
         case 3:
-          content = "In general, you are struggling to put food on the table. It’s likely that you and your children are skipping meals or watering down food. If you are eligible for benefits, you are still struggling to get enough to eat."
+          content = "In general, you are struggling to put food on the table. It’s likely that you and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
           break
         case 4:
-          content = "In general, you are struggling to put food on the table. It’s likely that you, your partner, and your children are skipping meals or watering down food. If you are eligible for benefits, you are still struggling."
+          content = "In general, you are struggling to put food on the table. It’s likely that you, your partner, and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
           break
         default:
           content = "We couldn't determine your household size. Sorry."
@@ -45,7 +45,7 @@ const DayToDayHungerSnugget = (props) => {
       heading = "Moderately Sufficient"
       switch (props.individuals) {
         case 1:
-          content = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not receive benefits."
+          content = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not be eligible for benefits."
           break
         case 3:
           content = "For the most part you are able to put food on the table. You may live month-to-month and you may skip the occasional meal in order to make sure your children have enough to eat. You may or may not be eligible for benefits."
@@ -76,7 +76,7 @@ const DayToDayHungerSnugget = (props) => {
       }
       break
     default:
-      content = "We couldn't determine your status. Sorry."
+      content = "We couldn't determine your food security status. Sorry."
   }
   return (
     <div className="snugget-root">
