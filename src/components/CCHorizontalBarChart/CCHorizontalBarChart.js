@@ -10,7 +10,7 @@ export default class HorizontalBarChart extends React.Component {
     })
     return (
       <div className="barchart-root">
-      <h1>{title}</h1>
+      <h1 className="section-heading text-center">{title}</h1>
       {bars}
       </div>
     )
