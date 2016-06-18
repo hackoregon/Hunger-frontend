@@ -1,3 +1,90 @@
+/* INDICATOR */
+.indicator-root {
+  margin: 10px auto;
+}
+
+.indicator-outer-wrapper,
+.indicator-blocks-wrapper {
+  min-width: 250px;
+}
+
+.indicator-outer-wrapper {
+  position: relative;
+  padding: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.indicator-blocks-wrapper {
+  position: relative;
+}
+
+.indicator-line-wrapper {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 4px;
+}
+
+.indicator-line {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 2px;
+  height: 1.8em;
+  z-index: 5;
+  background-color: black;
+}
+
+.indicator-arrow {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.ind-block {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1.6em;
+  width: 25%;
+}
+
+.block-1 {
+  background-color: #eee597;
+}
+
+.block-2 {
+  background-color: #eadd69;
+}
+
+.block-3 {
+  background-color: #dc6632;
+}
+
+.block-4 {
+  background-color: #b5441d;
+}
+
+.indicator-line,
+.indicator-arrow {
+  top: 0;
+  left: 0;
+}
+
+.top-arrow {
+  /* triangle pointing down */
+  margin-bottom: -0.15em;
+  border-top: 8px solid black;
+}
+
+.bottom-arrow {
+  /* triangle pointing up */
+  margin-top: -0.15em;
+  border-bottom: 8px solid black;
+}
+
 .slider-wrapper {
   margin: 0 auto;
   width: 600px;
@@ -9,6 +96,14 @@
   width: 950px;
   height: 100px;
   max-width: 80%;
+}
+
+@media only screen and (max-width: 480) {
+  .indicator-wrapper {
+    margin: 0;
+    margin-top: 10px;
+    max-width: 90%;
+  }
 }
 
 .rc-indicator-slider {
@@ -106,21 +201,37 @@
   content: "";
   position: relative;
   display: block;
-  left: -4px;
+  left: -8px;
   z-index: 5;
 }
 .rc-indicator-slider-handle::before {
-  border-top: 8px solid black;
-  border-left: 6.66667px solid transparent;
-  border-right: 6.66667px solid transparent;
-  top: -5px;
+  border-top: 10px solid black;
+  border-left: 10.66667px solid transparent;
+  border-right: 10.66667px solid transparent;
+  top: -7px;
 }
 .rc-indicator-slider-handle::after {
-  border-bottom: 8px solid black;
-  border-left: 6.66667px solid transparent;
-  border-right: 6.66667px solid transparent;
-  top: 40px;
+  border-bottom: 10px solid black;
+  border-left: 10.66667px solid transparent;
+  border-right: 10.66667px solid transparent;
+  top: 37px;
 }
+
+@media only screen and (max-width: 480px) {
+  .rc-indicator-slider,
+  .rc-indicator-slider-handle {
+    height: 35px;
+  }
+  .rc-indicator-slider-handle::before {
+    top: -7px;
+    left: -8px;
+  }
+  .rc-indicator-slider-handle::after {
+    top: 22px;
+    left: -8px;
+  }
+}
+
 .rc-indicator-slider-handle:hover {
   border-color: #1ca6e4;
 }
