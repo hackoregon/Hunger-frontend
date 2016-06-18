@@ -238,8 +238,13 @@ footer {
 .sticky {
   background-color: #fff;
   padding: 30px 30px 40px 14px;
-  border: 1px solid #000;
+  border: none;
   z-index: 100;
+}
+
+.sticky .slider-self-wrapper {
+  border: none;
+  padding: 0 1em 0 2em;
 }
 
 /* SLIDER (main styles in rc-slider.css) */

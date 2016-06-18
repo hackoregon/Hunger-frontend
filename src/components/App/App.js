@@ -231,9 +231,9 @@ export default class App extends React.Component {
             <div className="col-xs-12">
               <div className="slider-with-heading">
                 <h2 className="slider-heading section-heading">Slide to select monthly household income</h2>
+                <Sticky topOffset={100}>
                 <div className="slider-self-wrapper">
-                  <Sticky>
-                    <Slider
+                  <Slider
                     max={this.props.sliderMax}
                     tipTransitionName="rc-slider-tooltip-zoom-down"
                     tipFormatter={dollarFormatter}
@@ -242,8 +242,8 @@ export default class App extends React.Component {
                     dots={false}
                     onChange={this._onSliderChange}
                     />
-                  </Sticky>
                 </div>
+                </Sticky>
               </div>
             </div>
           </div>
