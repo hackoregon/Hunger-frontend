@@ -295,10 +295,10 @@ export default class App extends React.Component {
               <h2 className="text-center section-heading">
                 How does free and reduced lunch affect your family?
               </h2>
-              <p>
+              <p className="snugget-text">
                 Thankfully, some of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.
               </p>
-              <p>
+              <p className="snugget-text">
                 However, during the summer, your children lose these benefits when school is out, and many school districts in the state do not have these expanded programs. <strong>This is how your experience changes without the help of free and reduced price lunch programs:</strong>
               </p>
             </div>
@@ -342,7 +342,7 @@ export default class App extends React.Component {
                 className="can-afford-housing afford-housing-yes"
                 style={ housingSufficient ? {} : { display: "none" } }>
                 <h3>Yes</h3>
-                <p>
+                <p className="snugget-text">
                   At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
                 </p>
               </div>
@@ -350,7 +350,7 @@ export default class App extends React.Component {
                 className="can-afford-housing afford-housing-no"
                 style={ housingSufficient ? { display: "none" } : {} }>
                 <h3>No</h3>
-                <p>
+                <p className="snugget-text">
                   At your income, you are not able to afford housing in your county.
                 </p>
               </div>
@@ -372,7 +372,7 @@ export default class App extends React.Component {
               <h2 className="section-heading text-center">
                 How would my experience be different if I lived in another county in Oregon?
               </h2>
-              <p>
+              <p className="snugget-text">
                 The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:
               </p>
               <div className="row map-row">
@@ -391,9 +391,9 @@ export default class App extends React.Component {
                   </button>
                 </div>
               </div>
-              <div className="text-center">
-                <h2 className="section-heading">Conclusion:</h2>
-                <p className="conclusion-text">
+              <div>
+                <h2 className="section-heading text-center">Conclusion:</h2>
+                <p className="snugget-text conclusion-text">
                   The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <a style={{ color: "#669776" }} href="#data-deep-dive">data deep dive.</a>
                 </p>
               </div>

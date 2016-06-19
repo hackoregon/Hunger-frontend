@@ -5,7 +5,9 @@ require('./DayToDayHungerSnugget.css')
 
 const DayToDayHungerSnugget = (props) => {
   const { RATINGS } = constants
-  let content, heading
+  let content, heading, headingColor
+
+  headingColor = "#b5441d" // default to dark orange
   switch (props.securityStatus) {
     case RATINGS['extremelyVulnerable']:
       heading = "Extremely Vulnerable"
@@ -60,6 +62,7 @@ const DayToDayHungerSnugget = (props) => {
       break
     case RATINGS['sufficient']:
       heading = "Sufficient"
+      headingColor = "#669776" // sufficient gets dark green
       switch (props.individuals) {
         case 1:
           content = "You do not have trouble putting food on the table. Your meals are complete and you generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently."
@@ -80,8 +83,8 @@ const DayToDayHungerSnugget = (props) => {
   }
   return (
     <div className="snugget-root">
-      <h3 className="hunger-snugget-heading">{heading}</h3>
-      <p className="hunger-snugget-text">{content}</p>
+      <h3 className="snugget-heading" style={{ color: headingColor }}>{heading}</h3>
+      <p className="snugget-text">{content}</p>
     </div>
   )
 }
