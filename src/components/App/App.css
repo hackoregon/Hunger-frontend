@@ -21,6 +21,11 @@ p {
   color: #656565;
 }
 
+p.hunger-data-hint {
+  font-size: 1em;
+  font-weight: normal;
+}
+
 /* HEADER */
 .navbar {
   z-index: 1;
