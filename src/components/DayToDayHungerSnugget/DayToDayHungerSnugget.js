@@ -80,8 +80,8 @@ const DayToDayHungerSnugget = (props) => {
   }
   return (
     <div className="snugget-root">
-      <h3 className="hunger-snugget-heading">{heading}</h3>
-      <p className="hunger-snugget-text">{content}</p>
+      <h3 className="snugget-heading">{heading}</h3>
+      <p className="snugget-text">{content}</p>
     </div>
   )
 }
