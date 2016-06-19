@@ -274,6 +274,16 @@ export default class App extends React.Component {
             >
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
+            <div className="benefits-row">
+              <p className="placeholder"></p>
+              <p className="snap-benefits-text">
+              Snap benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
+              </p>
+              <p className="school-benefits-text">
+              School meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips)}`}</span>
+              </p>
+              <p className="placeholder"></p>
+            </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
                 value={this.getIndicatorValue(true)}
