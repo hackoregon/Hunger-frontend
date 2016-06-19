@@ -339,30 +339,33 @@ export default class App extends React.Component {
                 Are you able to afford stable housing?
               </h2>
               <div
-                className="can-afford-housing afford-housing-yes"
-                style={ housingSufficient ? {} : { display: "none" } }>
-                <h3>Yes</h3>
-                <p className="snugget-text">
-                  At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
-                </p>
+                className="can-afford-housing">
+                <div
+                  className="afford-housing-yes"
+                  style={ housingSufficient ? {} : { display: "none" } }>
+                  <h3>Yes</h3>
+                  <p className="snugget-text">
+                    At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
+                  </p>
+                </div>
+                <div
+                  className="afford-housing-no"
+                  style={ housingSufficient ? { display: "none" } : {} }>
+                  <h3>No</h3>
+                  <p className="snugget-text">
+                    At your income, you are not able to afford housing in your county.
+                  </p>
+                </div>
+                <section className="bar-chart-section container-fluid">
+                  <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
+                  <p
+                    className="afford-extra-meals"
+                    style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+                    >
+                    You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+                    </p>
+                    </section>
               </div>
-              <div
-                className="can-afford-housing afford-housing-no"
-                style={ housingSufficient ? { display: "none" } : {} }>
-                <h3>No</h3>
-                <p className="snugget-text">
-                  At your income, you are not able to afford housing in your county.
-                </p>
-              </div>
-              <section className="bar-chart-section container-fluid">
-                <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
-                <p
-                  className="afford-extra-meals"
-                  style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
-                >
-                You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
-                </p>
-              </section>
             </div>
           </div>
         </section>
