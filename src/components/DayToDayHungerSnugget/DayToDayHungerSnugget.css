@@ -14,3 +14,31 @@
 .snugget-text {
   text-indent: 1.5em;
 }
+
+.housing .snugget-text {
+  min-height: 62px;
+}
+
+.snugget-root .snugget-text {
+  min-height: 93px;
+}
+
+@media only screen and (max-width: 480px) {
+  .housing .snugget-text {
+    min-height: 124px;
+  }
+
+  .snugget-root .snugget-text {
+    min-height: 186px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .housing .snugget-text {
+    min-height: 217px;
+  }
+
+  .snugget-root {
+    min-height: 279px;
+  }
+}
