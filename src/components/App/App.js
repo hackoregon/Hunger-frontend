@@ -117,13 +117,6 @@ export default class App extends React.Component {
   render() {
 
     const { individuals, sliderWage, selectedCounty } = this.state
-    const sliderMarks = {
-      0: '$0',
-      200: '$200',
-      700: '$700',
-      1200: '$1200',
-      2000: '$2000'
-    }
     const barChartData = [
       {
         label: "Your $ for transportation",
@@ -144,6 +137,19 @@ export default class App extends React.Component {
         description: "miscellaneous includes ... but does not include ..."
       },
     ]
+    const getSliderMax = () => {
+      return (individuals === 4 ? 2500 : 2000) // 4-person family gets $2500 max
+    }
+    let sliderMarks = {
+      0: '$0',
+      200: '$200',
+      700: '$700',
+      1200: '$1200',
+      2000: '$2000'
+    }
+    if (individuals === 4) {
+      sliderMarks['2500'] = '$2500'
+    }
     const budgetColor = "#4e735a"
     const transportationColor = "#b8dfab"
     const miscColor = "#b8dfab"
@@ -236,7 +242,7 @@ export default class App extends React.Component {
                 <div className="slider-self-wrapper">
                   <div className="slider-wage-box">{`$${this.state.sliderWage}`}</div>
                   <Slider
-                    max={this.props.sliderMax}
+                    max={getSliderMax()}
                     tipTransitionName="rc-slider-tooltip-zoom-down"
                     tipFormatter={null}
                     marks={sliderMarks}
