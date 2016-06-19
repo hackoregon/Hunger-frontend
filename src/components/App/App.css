@@ -77,6 +77,30 @@ header {
   color: #669776;
 }
 
+.benefits-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 3em;
+}
+
+.benefits-row .school-benefits-text {
+  padding-right: 1em;
+}
+
+.benefits-row .snap-benefits-text {
+  margin-left: 1em;
+}
+
+@media only screen and (max-width: 480px) {
+  p.placeholder {
+    display: none;
+  }
+  .benefits-row p {
+    margin: 0;
+    padding: 0;
+  }
+}
 /* SECTION 4: HOUSING */
 .can-afford-housing {
   border: 1px solid #5b5b5b;
