@@ -9,6 +9,10 @@ section {
   padding: 2em;
 }
 
+.select-county-heading {
+  padding-left:1.5em;
+}
+
 .section-heading,
 .family-type-hr {
   font-family: 'Oswald', 'Roboto', Arial, sans-serif;
@@ -159,6 +163,8 @@ footer {
 /* GENERAL */
 .section-heading {
   font-size: 2.4em;
+  padding-bottom:.25em;
+  padding-top:1em;
 }
 
 @media only screen and (max-width: 480px) {
@@ -183,7 +189,9 @@ footer {
 .sticky {
   background-color: #fff;
   padding: 10px 30px 40px 14px;
-  border: none;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   z-index: 100;
 }
 
@@ -236,8 +244,8 @@ footer {
   width: 100%;
   background-color: #fff;
   padding: 8em 3em;
-  padding-top: 2em;
-  padding-bottom: 5em;
+  padding-top: 5em;
+  padding-bottom: 9em;
   border: 1px solid #000;
 
 }
@@ -277,4 +285,15 @@ footer {
 
 .mission-statement p {
   padding-left:30px;
+}
+
+
+/* BarChart*/
+.bar-chart-section {
+  border: 1px solid #656565;
+    background-color: #eee;
+    padding: 1.5em;
+    margin: 25px auto;
+    width: 95%;
+    border-radius:3px;
 }
