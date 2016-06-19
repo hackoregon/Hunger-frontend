@@ -60,7 +60,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { sliderMax: 2000 }), document.getElementById('app-container'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app-container'));
 
 /***/ },
 /* 1 */
@@ -20403,11 +20403,11 @@
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _reactSticky = __webpack_require__(283);
+	var _reactSticky = __webpack_require__(285);
 	
-	var _calculators = __webpack_require__(287);
+	var _calculators = __webpack_require__(289);
 	
-	var _jquery = __webpack_require__(288);
+	var _jquery = __webpack_require__(290);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -20420,11 +20420,11 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	window.jQuery = _jquery2.default;
-	__webpack_require__(289);
+	__webpack_require__(291);
 	//require('../../styles/main.css')
-	__webpack_require__(302);
 	__webpack_require__(304);
 	__webpack_require__(306);
+	__webpack_require__(308);
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -20544,6 +20544,24 @@
 	      var sliderWage = _state3.sliderWage;
 	      var selectedCounty = _state3.selectedCounty;
 	
+	      var barChartData = [{
+	        label: "Your $ for transportation",
+	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "transportation")
+	      }, {
+	        label: "Average transportation costs",
+	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "transportation_fixed"),
+	        description: "transportation is based on the local cost of a bus pass"
+	      }, {
+	        label: "Your $ for miscellaneous",
+	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
+	      }, {
+	        label: "Average miscellaneous costs",
+	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed"),
+	        description: "miscellaneous includes ... but does not include ..."
+	      }];
+	      var getSliderMax = function getSliderMax() {
+	        return individuals === 4 ? 2500 : 2000; // 4-person family gets $2500 max
+	      };
 	      var sliderMarks = {
 	        0: '$0',
 	        200: '$200',
@@ -20551,19 +20569,9 @@
 	        1200: '$1200',
 	        2000: '$2000'
 	      };
-	      var barChartData = [{
-	        label: "transportation",
-	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "transportation")
-	      }, {
-	        label: "transportation ss budget",
-	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "transportation_fixed")
-	      }, {
-	        label: "miscellaneous",
-	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
-	      }, {
-	        label: "miscellaneous ss budget",
-	        value: (0, _calculators.getBarChartValues)(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed")
-	      }];
+	      if (individuals === 4) {
+	        sliderMarks['2500'] = '$2500';
+	      }
 	      var budgetColor = "#4e735a";
 	      var transportationColor = "#b8dfab";
 	      var miscColor = "#b8dfab";
@@ -20587,9 +20595,6 @@
 	        return { value: c.fips, label: c.name };
 	      });
 	      var dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name };
-	      var dollarFormatter = function dollarFormatter(val) {
-	        return "$" + val;
-	      };
 	
 	      var costPerMeal = _data2.default.costOfMeals[selectedCounty.fips].cost_per_meal;
 	      var bestCaseMissingMeals = (0, _calculators.calcMealGap)(individuals, sliderWage, selectedCounty.fips, BEST_CASE);
@@ -20705,7 +20710,7 @@
 	              { className: 'col-xs-12' },
 	              _react2.default.createElement(
 	                'h2',
-	                { className: 'select-county-heading' },
+	                { className: 'select-county-heading section-heading' },
 	                'Select a County'
 	              ),
 	              _react2.default.createElement(_reactDropdown2.default, {
@@ -20734,19 +20739,24 @@
 	                  { className: 'slider-with-heading' },
 	                  _react2.default.createElement(
 	                    'h2',
-	                    { className: 'slider-heading' },
+	                    { className: 'slider-heading section-heading' },
 	                    'Slide to select monthly household income'
 	                  ),
 	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'slider-self-wrapper' },
+	                    _reactSticky.Sticky,
+	                    { topOffset: 100 },
 	                    _react2.default.createElement(
-	                      _reactSticky.Sticky,
-	                      null,
+	                      'div',
+	                      { className: 'slider-self-wrapper' },
+	                      _react2.default.createElement(
+	                        'div',
+	                        { className: 'slider-wage-box' },
+	                        '$' + this.state.sliderWage
+	                      ),
 	                      _react2.default.createElement(_rcSlider2.default, {
-	                        max: this.props.sliderMax,
+	                        max: getSliderMax(),
 	                        tipTransitionName: 'rc-slider-tooltip-zoom-down',
-	                        tipFormatter: dollarFormatter,
+	                        tipFormatter: null,
 	                        marks: sliderMarks,
 	                        step: 2,
 	                        dots: false,
@@ -20826,12 +20836,48 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
+	                  { className: 'benefits-row' },
+	                  _react2.default.createElement('p', { className: 'placeholder' }),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'snap-benefits-text' },
+	                    'Snap benefits: ',
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'dynamic-text' },
+	                      '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'school-benefits-text' },
+	                    'School meal benefits: ',
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'dynamic-text' },
+	                      '$' + (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips)
+	                    )
+	                  ),
+	                  _react2.default.createElement('p', { className: 'placeholder' })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
 	                  { className: 'indicator-wrapper' },
 	                  _react2.default.createElement(_IndicatorSlider2.default, {
 	                    value: this.getIndicatorValue(true),
 	                    sections: 4,
 	                    labels: indicatorLabels
 	                  })
+	                ),
+	                _react2.default.createElement(
+	                  'p',
+	                  { className: 'hunger-data-hint' },
+	                  _react2.default.createElement(
+	                    'strong',
+	                    null,
+	                    'DATA HINT:'
+	                  ),
+	                  ' Check below to see if you are covering your other expenses.'
 	                ),
 	                _react2.default.createElement(_DayToDayHungerSnugget2.default, {
 	                  securityStatus: bestCaseFoodStatus,
@@ -20856,12 +20902,12 @@
 	                ),
 	                _react2.default.createElement(
 	                  'p',
-	                  null,
+	                  { className: 'snugget-text' },
 	                  'Thankfully, some of your county has free and reduced lunch programs available so we have accounted for that in this equation. These programs provide 10 meals per week for your children.'
 	                ),
 	                _react2.default.createElement(
 	                  'p',
-	                  null,
+	                  { className: 'snugget-text' },
 	                  'However, during the summer, your children lose these benefits when school is out, and many school districts in the state do not have these expanded programs. ',
 	                  _react2.default.createElement(
 	                    'strong',
@@ -20924,6 +20970,32 @@
 	            ),
 	            _react2.default.createElement(
 	              'div',
+	              { className: 'benefits-row' },
+	              _react2.default.createElement('p', { className: 'placeholder' }),
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'snap-benefits-text' },
+	                'Snap benefits: ',
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'dynamic-text' },
+	                  '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'school-benefits-text' },
+	                'School meal benefits: ',
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'dynamic-text', style: { color: "#b5441d" } },
+	                  '$0'
+	                )
+	              ),
+	              _react2.default.createElement('p', { className: 'placeholder' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
 	              { className: 'indicator-wrapper' },
 	              _react2.default.createElement(_IndicatorSlider2.default, {
 	                value: this.getIndicatorValue(false),
@@ -20962,7 +21034,7 @@
 	                  ),
 	                  _react2.default.createElement(
 	                    'p',
-	                    null,
+	                    { className: 'snugget-text' },
 	                    'At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.'
 	                  )
 	                ),
@@ -20978,24 +21050,28 @@
 	                  ),
 	                  _react2.default.createElement(
 	                    'p',
-	                    null,
+	                    { className: 'snugget-text' },
 	                    'At your income, you are not able to afford housing in your county.'
 	                  )
 	                ),
-	                _react2.default.createElement(_CCHorizontalBarChart2.default, { title: 'Bart Chart Success!', data: barChartData, colors: barColors }),
 	                _react2.default.createElement(
-	                  'p',
-	                  {
-	                    className: 'afford-extra-meals',
-	                    style: extraMeals <= 0 ? { visibility: "hidden" } : {}
-	                  },
-	                  'You can now afford ',
+	                  'section',
+	                  { className: 'bar-chart-section container-fluid' },
+	                  _react2.default.createElement(_CCHorizontalBarChart2.default, { title: 'Other Expenses', data: barChartData, colors: barColors }),
 	                  _react2.default.createElement(
-	                    'span',
-	                    { className: 'dynamic-text' },
-	                    extraMeals
-	                  ),
-	                  ' extra meals.'
+	                    'p',
+	                    {
+	                      className: 'afford-extra-meals',
+	                      style: extraMeals <= 0 ? { visibility: "hidden" } : {}
+	                    },
+	                    'You can now afford ',
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'dynamic-text' },
+	                      extraMeals
+	                    ),
+	                    ' extra meals.'
+	                  )
 	                )
 	              )
 	            )
@@ -21016,7 +21092,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  'p',
-	                  null,
+	                  { className: 'snugget-text' },
 	                  'The reality of your situation could be different if you lived in a different county, based on the cost of housing, the availability of free and reduced lunch programs, and what other benefits are available. This map shows what your category might be if you lived in a different county in Oregon:'
 	                ),
 	                _react2.default.createElement(
@@ -21038,21 +21114,21 @@
 	                        style: this.isSingleAdult() ? { display: "none" } : {}
 	                      },
 	                      'Show ',
-	                      this.state.bestCaseMap ? "worst case map" : "best case map"
+	                      this.state.bestCaseMap ? "without school meal benefits" : "with school meal benefits"
 	                    )
 	                  )
 	                ),
 	                _react2.default.createElement(
 	                  'div',
-	                  { className: 'text-center' },
+	                  null,
 	                  _react2.default.createElement(
 	                    'h2',
-	                    { className: 'section-heading' },
+	                    { className: 'section-heading text-center' },
 	                    'Conclusion:'
 	                  ),
 	                  _react2.default.createElement(
 	                    'p',
-	                    { className: 'conclusion-text' },
+	                    { className: 'snugget-text conclusion-text' },
 	                    'The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the ',
 	                    _react2.default.createElement(
 	                      'a',
@@ -27782,10 +27858,11 @@
 	        width: 100 / numSections + '%',
 	        textAlign: "center"
 	      };
+	      var labelClasses = prefixCls + '-label hidden-xs';
 	      var labelsList = labels.map(function (label, i) {
 	        return _react2.default.createElement(
 	          'span',
-	          { key: i, className: prefixCls + '-label', style: labelStyle },
+	          { key: i, className: labelClasses, style: labelStyle },
 	          label
 	        );
 	      });
@@ -27868,7 +27945,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".slider-wrapper {\n  margin: 0 auto;\n  width: 600px;\n  max-width: 90%;\n}\n\n.indicator-wrapper {\n  margin: 10px auto;\n  width: 950px;\n  height: 100px;\n  max-width: 80%;\n}\n\n.rc-indicator-slider {\n  position: relative;\n  width: 100%;\n  border-radius: 6px;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: transparent;\n}\n.rc-indicator-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: transparent;\n}\n.rc-indicator-slider-track {\n  position: absolute;\n  left: 0;\n  border-radius: 6px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-indicator-slider-mark {\n  position: absolute;\n  top: 75px;\n  left: 0;\n  width: 100%;\n  font-size: 2em;\n  z-index: 3;\n}\n.rc-indicator-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n\n.rc-indicator-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n/*.rc-indicator-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n}\n.rc-indicator-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-indicator-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-indicator-slider-dot-active {\n  border-color: #1ca6e4;\n}\n.rc-indicator-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-indicator-slider-disabled  {\n  background-color: #ccc;\n}\n.rc-indicator-slider-disabled .rc-indicator-slider-handle, .rc-indicator-slider-disabled .rc-indicator-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-indicator-slider-disabled .rc-indicator-slider-mark-text, .rc-indicator-slider-disabled .rc-indicator-slider-dot {\n  cursor: not-allowed !important;\n}\n*/\n.rc-indicator-slider {\n  height: 50px;\n}\n.rc-indicator-slider-track {\n  height: 58px;\n}\n.rc-indicator-slider-handle {\n  position: absolute;\n  background-color: black;\n  width: 3px;\n  height: 50px;\n  cursor: default;\n  z-index: 5;\n}\n.rc-indicator-slider-handle::before, .rc-indicator-slider-handle::after {\n  content: \"\";\n  position: relative;\n  display: block;\n  left: -4px;\n  z-index: 5;\n}\n.rc-indicator-slider-handle::before {\n  border-top: 8px solid black;\n  border-left: 6.66667px solid transparent;\n  border-right: 6.66667px solid transparent;\n  top: -5px;\n}\n.rc-indicator-slider-handle::after {\n  border-bottom: 8px solid black;\n  border-left: 6.66667px solid transparent;\n  border-right: 6.66667px solid transparent;\n  top: 40px;\n}\n.rc-indicator-slider-handle:hover {\n  border-color: #1ca6e4;\n}\n.rc-indicator-slider-handle-active:active {\n  border-color: #1ca6e4;\n  box-shadow: 0 0 5px #1ca6e4;\n}\n.rc-indicator-slider-section {\n  display: inline-block;\n  height: 100%;\n  width: 25%;\n}\n.rc-indicator-slider-section-1 {\n  background-color: #b5441d;\n}\n.rc-indicator-slider-section-2 {\n  background-color: #dc6632;\n}\n.rc-indicator-slider-section-3 {\n  background-color: #eadd69;\n}\n.rc-indicator-slider-section-4 {\n  background-color: #eee597;\n}\n", ""]);
+	exports.push([module.id, "/* INDICATOR */\n.indicator-root {\n  margin: 10px auto;\n}\n\n.indicator-outer-wrapper,\n.indicator-blocks-wrapper {\n  min-width: 250px;\n}\n\n.indicator-outer-wrapper {\n  position: relative;\n  padding: 8px;\n  max-width: 500px;\n  margin: 0 auto;\n}\n\n.indicator-blocks-wrapper {\n  position: relative;\n}\n\n.indicator-line-wrapper {\n  position: absolute;\n  display: inline-block;\n  top: 0;\n  left: 4px;\n}\n\n.indicator-line {\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  width: 2px;\n  height: 1.8em;\n  z-index: 5;\n  background-color: black;\n}\n\n.indicator-arrow {\n  position: relative;\n  width: 0;\n  height: 0;\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n}\n\n.ind-block {\n  box-sizing: border-box;\n  display: inline-block;\n  height: 1.6em;\n  width: 25%;\n}\n\n.block-1 {\n  background-color: #eee597;\n}\n\n.block-2 {\n  background-color: #eadd69;\n}\n\n.block-3 {\n  background-color: #dc6632;\n}\n\n.block-4 {\n  background-color: #b5441d;\n}\n\n.indicator-line,\n.indicator-arrow {\n  top: 0;\n  left: 0;\n}\n\n.top-arrow {\n  /* triangle pointing down */\n  margin-bottom: -0.15em;\n  border-top: 8px solid black;\n}\n\n.bottom-arrow {\n  /* triangle pointing up */\n  margin-top: -0.15em;\n  border-bottom: 8px solid black;\n}\n\n.slider-wrapper {\n  margin: 0 auto;\n  width: 600px;\n  max-width: 90%;\n}\n\n.indicator-wrapper {\n  margin: 10px auto;\n  width: 950px;\n  height: 100px;\n  max-width: 80%;\n}\n\n@media only screen and (max-width: 480) {\n  .indicator-wrapper {\n    margin: 0;\n    margin-top: 10px;\n    max-width: 90%;\n  }\n}\n\n.rc-indicator-slider {\n  position: relative;\n  width: 100%;\n  border-radius: 6px;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: transparent;\n}\n.rc-indicator-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: transparent;\n}\n.rc-indicator-slider-track {\n  position: absolute;\n  left: 0;\n  border-radius: 6px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-indicator-slider-mark {\n  position: absolute;\n  top: 75px;\n  left: 0;\n  width: 100%;\n  font-size: 2em;\n  z-index: 3;\n}\n.rc-indicator-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n\n.rc-indicator-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n/*.rc-indicator-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n}\n.rc-indicator-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-indicator-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-indicator-slider-dot-active {\n  border-color: #1ca6e4;\n}\n.rc-indicator-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-indicator-slider-disabled  {\n  background-color: #ccc;\n}\n.rc-indicator-slider-disabled .rc-indicator-slider-handle, .rc-indicator-slider-disabled .rc-indicator-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-indicator-slider-disabled .rc-indicator-slider-mark-text, .rc-indicator-slider-disabled .rc-indicator-slider-dot {\n  cursor: not-allowed !important;\n}\n*/\n.rc-indicator-slider {\n  height: 50px;\n}\n.rc-indicator-slider-track {\n  height: 58px;\n}\n.rc-indicator-slider-handle {\n  position: absolute;\n  background-color: black;\n  width: 3px;\n  height: 50px;\n  cursor: default;\n  z-index: 5;\n}\n.rc-indicator-slider-handle::before, .rc-indicator-slider-handle::after {\n  content: \"\";\n  position: relative;\n  display: block;\n  left: -8px;\n  z-index: 5;\n}\n.rc-indicator-slider-handle::before {\n  border-top: 10px solid black;\n  border-left: 10.66667px solid transparent;\n  border-right: 10.66667px solid transparent;\n  top: -7px;\n}\n.rc-indicator-slider-handle::after {\n  border-bottom: 10px solid black;\n  border-left: 10.66667px solid transparent;\n  border-right: 10.66667px solid transparent;\n  top: 37px;\n}\n\n@media only screen and (max-width: 480px) {\n  .rc-indicator-slider,\n  .rc-indicator-slider-handle {\n    height: 35px;\n  }\n  .rc-indicator-slider-handle::before {\n    top: -7px;\n    left: -8px;\n  }\n  .rc-indicator-slider-handle::after {\n    top: 22px;\n    left: -8px;\n  }\n}\n\n.rc-indicator-slider-handle:hover {\n  border-color: #1ca6e4;\n}\n.rc-indicator-slider-handle-active:active {\n  border-color: #1ca6e4;\n  box-shadow: 0 0 5px #1ca6e4;\n}\n.rc-indicator-slider-section {\n  display: inline-block;\n  height: 100%;\n  width: 25%;\n}\n.rc-indicator-slider-section-1 {\n  background-color: #b5441d;\n}\n.rc-indicator-slider-section-2 {\n  background-color: #dc6632;\n}\n.rc-indicator-slider-section-3 {\n  background-color: #eadd69;\n}\n.rc-indicator-slider-section-4 {\n  background-color: #eee597;\n}\n", ""]);
 	
 	// exports
 
@@ -28435,7 +28512,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".select-county-p,\n.select-family-type-p {\n  font-weight: bold;\n}\n\n.county-dropdown {\n  margin-top: 1em;\n}\n\n.county-dropdown-toggle {\n  margin-left: 0.5em;\n}\n\n.family-types-wrapper {\n  margin-top: 1.5em;\n}\n\n.family-type-div {\n  margin-bottom: 1.5em;\n}\n\n.family-type-radio {\n  display: none;\n}\n\n.family-type-radio:checked + .family-type-label {\n  background-color: #f0edc8;\n}\n\n.family-type-label img {\n  max-height: 235px;\n}\n\n@media only screen and (max-width: 480px) {\n  .family-type-div {\n    margin-bottom: 0;\n  }\n  .family-type-div p {\n    font-size: 1.25em;\n  }\n  .family-type-label img {\n    max-height: 100px;\n  }\n}\n\n.family-type-hr {\n  font-size: 2em;\n  font-weight: lighter;\n  padding-left: 1em;\n  padding-right: 1em;\n}\n\n/* TODO: Do something less hacky to override Bootstrap styles ? */\n#label-single-adult,\n#label-single-parent,\n#label-two-parents {\n  padding: 1em;\n}\n", ""]);
+	exports.push([module.id, ".select-county-p,\n.select-family-type-p {\n  font-weight: bold;\n}\n\n.county-dropdown {\n  margin-top: 1em;\n}\n\n.county-dropdown-toggle {\n  margin-left: 0.5em;\n}\n\n.family-types-wrapper {\n  margin-top: 1.5em;\n}\n\n.family-type-div {\n  margin-bottom: 1.5em;\n}\n\n.family-type-radio {\n  display: none;\n}\n\n.family-type-radio:checked + .family-type-label {\n  background-color: #c9dacf;\n}\n\n.family-type-label img {\n  max-height: 235px;\n}\n\n@media only screen and (max-width: 480px) {\n  .family-type-div {\n    margin-bottom: 0;\n  }\n  .family-type-div p {\n    font-size: 1.25em;\n  }\n  .family-type-label img {\n    max-height: 100px;\n  }\n}\n\n.family-type-hr {\n  font-size: 2em;\n  font-weight: normal;\n  padding-left: 1em;\n  padding-right: 1em;\n}\n\n#label-single-adult,\n#label-single-parent,\n#label-two-parents {\n  padding: 1em;\n}\n", ""]);
 	
 	// exports
 
@@ -28466,13 +28543,16 @@
 	  var RATINGS = _constants2.default.RATINGS;
 	
 	  var content = void 0,
-	      heading = void 0;
+	      heading = void 0,
+	      headingColor = void 0;
+	
+	  headingColor = "#b5441d"; // default to dark orange
 	  switch (props.securityStatus) {
 	    case RATINGS['extremelyVulnerable']:
 	      heading = "Extremely Vulnerable";
 	      switch (props.individuals) {
 	        case 1:
-	          content = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough to eat.";
+	          content = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough food.";
 	          break;
 	        case 3:
 	          content = "Having enough food for yourself and your children is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits and yet you are still not getting enough food.";
@@ -28492,10 +28572,10 @@
 	          content = "In general, you are struggling to put food on the table. It’s likely that you are skipping meals or watering down food. If you are receiving benefits, you are still struggling.";
 	          break;
 	        case 3:
-	          content = "In general, you are struggling to put food on the table. It’s likely that you and your children are skipping meals or watering down food. If you are eligible for benefits, you are still struggling to get enough to eat.";
+	          content = "In general, you are struggling to put food on the table. It’s likely that you and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling.";
 	          break;
 	        case 4:
-	          content = "In general, you are struggling to put food on the table. It’s likely that you, your partner, and your children are skipping meals or watering down food. If you are eligible for benefits, you are still struggling.";
+	          content = "In general, you are struggling to put food on the table. It’s likely that you, your partner, and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling.";
 	          break;
 	        default:
 	          content = "We couldn't determine your household size. Sorry.";
@@ -28506,7 +28586,7 @@
 	      heading = "Moderately Sufficient";
 	      switch (props.individuals) {
 	        case 1:
-	          content = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not receive benefits.";
+	          content = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not be eligible for benefits.";
 	          break;
 	        case 3:
 	          content = "For the most part you are able to put food on the table. You may live month-to-month and you may skip the occasional meal in order to make sure your children have enough to eat. You may or may not be eligible for benefits.";
@@ -28521,6 +28601,7 @@
 	      break;
 	    case RATINGS['sufficient']:
 	      heading = "Sufficient";
+	      headingColor = "#669776"; // sufficient gets dark green
 	      switch (props.individuals) {
 	        case 1:
 	          content = "You do not have trouble putting food on the table. Your meals are complete and you generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently.";
@@ -28537,19 +28618,19 @@
 	      }
 	      break;
 	    default:
-	      content = "We couldn't determine your status. Sorry.";
+	      content = "We couldn't determine your food security status. Sorry.";
 	  }
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'snugget-root' },
 	    _react2.default.createElement(
 	      'h3',
-	      { className: 'hunger-snugget-heading' },
+	      { className: 'snugget-heading', style: { color: headingColor } },
 	      heading
 	    ),
 	    _react2.default.createElement(
 	      'p',
-	      { className: 'hunger-snugget-text' },
+	      { className: 'snugget-text' },
 	      content
 	    )
 	  );
@@ -28622,7 +28703,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".snugget-root {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n}\n\n.hunger-snugget-heading {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n  color: #b5441d;\n}\n", ""]);
+	exports.push([module.id, ".snugget-root {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width:90%;\n}\n\n.snugget-heading {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n  color: #b5441d;\n}\n\n.snugget-text {\n  text-indent: 1.5em;\n}\n\n.housing .snugget-text {\n  min-height: 62px;\n}\n\n.snugget-root .snugget-text {\n  min-height: 93px;\n}\n\n@media only screen and (max-width: 480px) {\n  .housing .snugget-text {\n    min-height: 124px;\n  }\n\n  .snugget-root .snugget-text {\n    min-height: 186px;\n  }\n}\n\n@media only screen and (max-width: 320px) {\n  .housing .snugget-text {\n    min-height: 217px;\n  }\n\n  .snugget-root {\n    min-height: 279px;\n  }\n}\n", ""]);
 	
 	// exports
 
@@ -41355,7 +41436,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".donut-dynamic-text {\n  font-family: 'Signika', sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.donut-chart-root {\n  display: flex;\n  flex-flow: row nowrap;\n  justify-content: space-around;\n}\n\n.donut-chart-root p {\n  text-align: center;\n}\n\n@media only screen and (max-width: 480px) {\n  .donut-chart-root {\n    flex-wrap: wrap;\n  }\n  .donut-chart-root p {\n    text-align: center;\n  }\n}\n", ""]);
+	exports.push([module.id, ".donut-dynamic-text {\n  font-family: 'Signika', sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.donut-chart-root {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n  align-items: center;\n}\n\n.donut-chart-root p {\n  padding: 0;\n  text-align: center;\n  max-width: 300px;\n}\n\n.diffract-chart {\n  margin: 10px;\n}\n\n.dffract-svg {\n   display: block;\n   margin: 0 auto;\n}\n\n.donut-cost-of-meal-text {\n  margin-right: 15px;\n}\n@media only screen and (max-width: 480px) {\n  .donut-chart-root {\n    flex-wrap: wrap;\n  }\n}\n", ""]);
 	
 	// exports
 
@@ -41411,14 +41492,14 @@
 	        return bar.value;
 	      })));
 	      var bars = data.map(function (item, index) {
-	        return _react2.default.createElement(_CCBar2.default, { key: index, label: item.label, position: index, backgroundColor: colors[index], value: item.value, longestBar: longestBar });
+	        return _react2.default.createElement(_CCBar2.default, { key: index, label: item.label, description: item.description, position: index, backgroundColor: colors[index], value: item.value, longestBar: longestBar });
 	      });
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'barchart-root' },
 	        _react2.default.createElement(
 	          'h1',
-	          null,
+	          { className: 'section-heading text-center' },
 	          title
 	        ),
 	        bars
@@ -41488,40 +41569,37 @@
 	      var value = _props.value;
 	      var longestBar = _props.longestBar;
 	      var backgroundColor = _props.backgroundColor;
+	      var description = _props.description;
 	
 	      var percentage = value / longestBar * 100;
 	      var barStyle = {
 	        color: "black",
 	        width: percentage + '%',
-	        backgroundColor: '' + backgroundColor
+	        backgroundColor: '' + backgroundColor,
+	        border: '1px solid ' + backgroundColor
 	      };
-	
+	      var labelNoWhitespace = label.replace(/[\s]/g, '');
 	      // console.log("barStyle:", barStyle)
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'bar-root' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row' },
+	          { className: 'bar-row' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-xs-2 text-right' },
-	            _react2.default.createElement(
-	              'p',
-	              { className: 'bar-chart-label label-' + label },
-	              label
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col-xs-10' },
-	            _react2.default.createElement('div', { className: 'bar-chart-bar', style: barStyle }),
+	            'p',
+	            {
+	              title: description || label,
+	              className: 'bar-chart-label label-' + labelNoWhitespace },
+	            '' + label,
+	            ": ",
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'bar-value' },
-	              value
+	              '$' + value
 	            )
-	          )
+	          ),
+	          _react2.default.createElement('div', { className: 'bar-chart-bar', style: barStyle })
 	        )
 	      );
 	    }
@@ -41535,6 +41613,7 @@
 	
 	Bar.propTypes = {
 	  label: _react.PropTypes.string,
+	  description: _react.PropTypes.string,
 	  value: _react.PropTypes.number.isRequired,
 	  position: _react.PropTypes.number.isRequired,
 	  longestBar: _react.PropTypes.number.isRequired,
@@ -41576,7 +41655,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".bar-chart-label {\n  font-size: 1em;\n}\n\n.bar-chart-bar {\n  border-radius: 10px;\n  height: 3em;\n}\n", ""]);
+	exports.push([module.id, ".bar-root {\n  margin-bottom: 1em;\n}\n\n.bar-chart-label {\n  font-size: 1.3em;\n  margin-bottom: 5px;\n}\n\n.bar-chart-bar {\n  border-radius: 8px;\n  height: 2em;\n}\n\n.bar-value {\n  font-weight: bold;\n}\n", ""]);
 	
 	// exports
 
@@ -42641,6 +42720,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	__webpack_require__(283);
+	
 	var MapView = function (_React$Component) {
 	  _inherits(MapView, _React$Component);
 	
@@ -42707,6 +42788,50 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'mapview-root' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'mapview-legend' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'mapview-legend-row' },
+	            _react2.default.createElement('div', { className: 'mapview-color mapview-color-1' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'mapview-label' },
+	              'Sufficient'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'mapview-legend-row' },
+	            _react2.default.createElement('div', { className: 'mapview-color mapview-color-2' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'mapview-label' },
+	              'Moderately Sufficient'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'mapview-legend-row' },
+	            _react2.default.createElement('div', { className: 'mapview-color mapview-color-3' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'mapview-label' },
+	              'Vulnerable'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'mapview-legend-row' },
+	            _react2.default.createElement('div', { className: 'mapview-color mapview-color-4' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'mapview-label' },
+	              'Extremely Vulnerable'
+	            )
+	          )
+	        ),
 	        _react2.default.createElement('object', {
 	          onLoad: function onLoad() {
 	            _this2.applyColors(_this2.props);
@@ -42738,6 +42863,46 @@
 /* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(284);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(231)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./MapView.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./MapView.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 284 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(230)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".mapview-legend {\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  /*border: 1px solid red;*/\n}\n\n.mapview-legend-row {\n  display: flex;\n  flex-flow: row nowrap;\n  align-items: center;\n  min-width: 175px;\n  margin-bottom: 5px;\n}\n\n.mapview-color {\n  width: 1em;\n  height: 1em;\n  background-color: #fff;\n  margin-right: 5px;\n}\n\n.mapview-label {\n  font-size: 0.9em;\n}\n\n.mapview-color-1 {\n  background-color: #eee597;\n}\n.mapview-color-2 {\n  background-color: #eadd69;\n}\n.mapview-color-3 {\n  background-color: #dc6632;\n}\n.mapview-color-4 {\n  background-color: #b5441d;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -42745,15 +42910,15 @@
 	});
 	exports.Channel = exports.StickyContainer = exports.Sticky = undefined;
 	
-	var _sticky = __webpack_require__(284);
+	var _sticky = __webpack_require__(286);
 	
 	var _sticky2 = _interopRequireDefault(_sticky);
 	
-	var _container = __webpack_require__(285);
+	var _container = __webpack_require__(287);
 	
 	var _container2 = _interopRequireDefault(_container);
 	
-	var _channel = __webpack_require__(286);
+	var _channel = __webpack_require__(288);
 	
 	var _channel2 = _interopRequireDefault(_channel);
 	
@@ -42765,7 +42930,7 @@
 	exports.default = _sticky2.default;
 
 /***/ },
-/* 284 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43018,7 +43183,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 285 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43037,7 +43202,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _channel = __webpack_require__(286);
+	var _channel = __webpack_require__(288);
 	
 	var _channel2 = _interopRequireDefault(_channel);
 	
@@ -43123,7 +43288,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 286 */
+/* 288 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43161,7 +43326,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 287 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43383,7 +43548,7 @@
 	exports.getBarChartValues = getBarChartValues;
 
 /***/ },
-/* 288 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -53231,12 +53396,10 @@
 
 
 /***/ },
-/* 289 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-	__webpack_require__(290)
-	__webpack_require__(291)
 	__webpack_require__(292)
 	__webpack_require__(293)
 	__webpack_require__(294)
@@ -53247,9 +53410,11 @@
 	__webpack_require__(299)
 	__webpack_require__(300)
 	__webpack_require__(301)
+	__webpack_require__(302)
+	__webpack_require__(303)
 
 /***/ },
-/* 290 */
+/* 292 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -53314,7 +53479,7 @@
 
 
 /***/ },
-/* 291 */
+/* 293 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -53414,7 +53579,7 @@
 
 
 /***/ },
-/* 292 */
+/* 294 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -53540,7 +53705,7 @@
 
 
 /***/ },
-/* 293 */
+/* 295 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -53783,7 +53948,7 @@
 
 
 /***/ },
-/* 294 */
+/* 296 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -54000,7 +54165,7 @@
 
 
 /***/ },
-/* 295 */
+/* 297 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -54171,7 +54336,7 @@
 
 
 /***/ },
-/* 296 */
+/* 298 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -54514,7 +54679,7 @@
 
 
 /***/ },
-/* 297 */
+/* 299 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -55034,7 +55199,7 @@
 
 
 /***/ },
-/* 298 */
+/* 300 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -55148,7 +55313,7 @@
 
 
 /***/ },
-/* 299 */
+/* 301 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -55326,7 +55491,7 @@
 
 
 /***/ },
-/* 300 */
+/* 302 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -55487,7 +55652,7 @@
 
 
 /***/ },
-/* 301 */
+/* 303 */
 /***/ function(module, exports) {
 
 	/* ========================================================================
@@ -55655,13 +55820,13 @@
 
 
 /***/ },
-/* 302 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(303);
+	var content = __webpack_require__(305);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(231)(content, {});
@@ -55681,46 +55846,6 @@
 	}
 
 /***/ },
-/* 303 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(230)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Raleway', sans-serif;\n  background-color: #fbfaf0;\n}\n\nsection {\n  padding: 2em;\n}\n\n\np {\n  font-size: 2.0em;\n  margin: 0;\n  color: #656565;\n}\n\n/* HEADER */\n.main-title {\n  font-size: 3.0em;\n  color: #656565;\n  font-weight: bold;\n  max-width: 100%;\n  margin-top: 15px;\n  margin-bottom: 10px;\n  font-family: 'Signika', sans-serif;\n}\n\n@media only screen and (max-width: 480px) {\n  .main-title {\n    text-align: center;\n  }\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.dynamic-text {\n  font-family: 'Signika', sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n/* SECTION 2: DAY-TO-DAY */\n/* SECTION 3: FREE AND REDUCED LUNCH */\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  padding: 1em;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n/* INDICATOR */\n.indicator-root {\n  margin: 10px auto;\n}\n\n.indicator-outer-wrapper,\n.indicator-blocks-wrapper {\n  min-width: 250px;\n}\n\n.indicator-outer-wrapper {\n  position: relative;\n  padding: 8px;\n  max-width: 500px;\n  margin: 0 auto;\n}\n\n.indicator-blocks-wrapper {\n  position: relative;\n}\n\n.indicator-line-wrapper {\n  position: absolute;\n  display: inline-block;\n  top: 0;\n  left: 4px;\n}\n\n.indicator-line {\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  width: 2px;\n  height: 1.8em;\n  z-index: 5;\n  background-color: black;\n}\n\n.indicator-arrow {\n  position: relative;\n  width: 0;\n  height: 0;\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n}\n\n.ind-block {\n  box-sizing: border-box;\n  display: inline-block;\n  height: 1.6em;\n  width: 25%;\n}\n\n.block-1 {\n  background-color: #eee597;\n}\n\n.block-2 {\n  background-color: #eadd69;\n}\n\n.block-3 {\n  background-color: #dc6632;\n}\n\n.block-4 {\n  background-color: #b5441d;\n}\n\n.indicator-line,\n.indicator-arrow {\n  top: 0;\n  left: 0;\n}\n\n.top-arrow {\n  /* triangle pointing down */\n  margin-bottom: -0.15em;\n  border-top: 8px solid black;\n}\n\n.bottom-arrow {\n  /* triangle pointing up */\n  margin-top: -0.15em;\n  border-bottom: 8px solid black;\n}\n\n\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* HEADER */\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 15px 30px 40px 14px;\n  border: 1px solid #000;\n  z-index: 100;\n}\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 2em 2em 2.75em;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 200px;\n  padding-top:20px;\n  padding-bottom:20px;\n  padding-left:10px;\n}\n\n.mission-statement {\n  background-color: #fff;\n  border-bottom: 1px solid #5b5b5b;\n}\n\n.mission-statement p {\n  padding-left:30px;\n}\n", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 304 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(305);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(231)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./rc-slider.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./rc-slider.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -55729,7 +55854,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".rc-slider {\n  position: relative;\n  height: 2px;\n  width: 100%;\n  border-radius: 6px;\n  background-color: #000;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 2px;\n  border-radius: 6px;\n  background-color: #000;\n  z-index: 1;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -6px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  border-radius: 50%;\n  border: solid 1px #000;\n  background-color: #c9dacf;\n  z-index: 2;\n}\n.rc-slider-handle:hover {\n  border-color: #fff;\n}\n.rc-slider-handle-active:active {\n  border-color: #fff;\n  box-shadow: 0 0 5px #000;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 10px;\n  left: 0;\n  width: 100%;\n  font-size: 18px;\n  z-index: 3;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #333;\n}\n\n@media only screen and (max-width: 480px) {\n  .rc-slider-mark-text {\n    visibility: hidden;\n  }\n  .rc-slider-mark-text:first-child,\n  .rc-slider-mark-text:last-child {\n    visibility: visible;\n  }\n}\n\n.rc-slider-mark-text-active {\n  color: #000;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: none; /* disable dots */\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 4px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-track {\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  position: absolute;\n  margin-left: -5px;\n  margin-bottom: -7px;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 10px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 4;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip-hidden {\n  display: none;\n}\n.rc-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-tooltip-placement-top .rc-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", ""]);
+	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n  background-color: #fbfaf0;\n}\n\nsection {\n  padding: 2em;\n}\n\n.section-heading,\n.family-type-hr {\n  font-family: 'Oswald', 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n}\n\np {\n  font-size: 1.6em;\n  margin: 0;\n  color: #656565;\n}\n\np.hunger-data-hint {\n  font-size: 1em;\n  font-weight: normal;\n}\n\n/* HEADER */\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n}\n\n.dynamic-text {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.benefits-row {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-around;\n  margin-bottom: 3em;\n}\n\n.benefits-row .school-benefits-text {\n  padding-right: 1em;\n}\n\n.benefits-row .snap-benefits-text {\n  margin-left: 1em;\n}\n\n@media only screen and (max-width: 480px) {\n  p.placeholder {\n    display: none;\n  }\n  .benefits-row p {\n    margin: 0;\n    padding: 0;\n  }\n}\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width: 90%;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 10px 30px 40px 14px;\n  border: none;\n  z-index: 100;\n}\n\n.sticky .slider-self-wrapper {\n  border: none;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-right: 1em;\n  padding-left: 2em;\n}\n\n.sticky .slider-wage-box {\n  margin-bottom: 10px;\n}\n\n\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n.slider-wage-box {\n  display: inline-block;\n  text-align: center;\n  font-size: 2em;\n  font-weight: bold;\n  color: #669776;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 1em;\n  width: 100%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  padding-top: 2em;\n  padding-bottom: 5em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 1em 2em 2.75em;\n  }\n  .slider-wage-box {\n    margin-bottom: 10px;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 200px;\n  padding-top:20px;\n  padding-bottom:20px;\n  padding-left:10px;\n}\n\n.mission-statement {\n  background-color: #fff;\n  border-bottom: 1px solid #5b5b5b;\n}\n\n.mission-statement p {\n  padding-left:30px;\n}\n", ""]);
 	
 	// exports
 
@@ -55750,6 +55875,46 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./rc-slider.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./rc-slider.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(230)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".rc-slider {\n  position: relative;\n  height: 2px;\n  width: 100%;\n  border-radius: 6px;\n  background-color: #000;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 2px;\n  border-radius: 6px;\n  background-color: #000;\n  z-index: 1;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -9px;\n  width: 21px;\n  height: 21px;\n  cursor: pointer;\n  border-radius: 50%;\n  border: solid 1px #000;\n  background-color: #c9dacf;\n  z-index: 2;\n}\n.rc-slider-handle:hover {\n  border-color: #fff;\n}\n.rc-slider-handle-active:active {\n  border-color: #fff;\n  box-shadow: 0 0 5px #000;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 10px;\n  left: 0;\n  width: 100%;\n  font-size: 18px;\n  z-index: 3;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #333;\n}\n\n@media only screen and (max-width: 480px) {\n  .rc-slider-mark-text {\n    visibility: hidden;\n  }\n  .rc-slider-mark-text:first-child,\n  .rc-slider-mark-text:last-child {\n    visibility: visible;\n  }\n}\n\n.rc-slider-mark-text-active {\n  color: #000;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n  z-index: 1;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n  display: none; /* disable dots */\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 4px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-track {\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  position: absolute;\n  margin-left: -5px;\n  margin-bottom: -7px;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 10px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 4;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-tooltip-hidden {\n  display: none;\n}\n.rc-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 14px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-tooltip-placement-top .rc-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(309);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(231)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
 			module.hot.accept("!!./../../node_modules/css-loader/index.js!./react-dropdown.css", function() {
 				var newContent = require("!!./../../node_modules/css-loader/index.js!./react-dropdown.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
@@ -55761,7 +55926,7 @@
 	}
 
 /***/ },
-/* 307 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(230)();
