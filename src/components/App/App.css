@@ -28,6 +28,8 @@ p {
 p.hunger-data-hint {
   font-size: 1em;
   font-weight: normal;
+  width: 90%; /* matches snugget */
+  margin: 0 auto; /* matches snugget */
 }
 
 /* HEADER */
