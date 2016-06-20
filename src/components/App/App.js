@@ -76,11 +76,10 @@ export default class App extends React.Component {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties // from fixture data
-      .map(c => c.fips)
-      .reduce((colorObj, fips) => {
-        if (fips !== 41) {
-          status = this.getFoodSecurityStatus(fips, bestCase)
-          colorObj[fips] = colors[status]
+      .reduce((colorObj, county) => {
+        if (county.fips !== 41) {
+          status = this.getFoodSecurityStatus(county.fips, bestCase)
+          colorObj[county.fips] = colors[status]
         }
         return colorObj
       }, {})
