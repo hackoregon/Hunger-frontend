@@ -280,7 +280,7 @@ footer {
 
 .mission-statement {
   background-color: #fff;
-  border-bottom: 1px solid #5b5b5b;
+  box-shadow: 0 0 5px 0 #000;
 }
 
 .mission-statement p {
