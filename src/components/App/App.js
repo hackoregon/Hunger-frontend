@@ -182,42 +182,17 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <header>
-          <nav className="navbar navbar-default navbar-static-top">
-            <div className="container-fluid">
-              <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
-                <div className="ho-logo-wrapper pull-left">
-                  <span className="navbar-text navbar-left">Built by</span>
-                    <a href="http://www.hackoregon.org/">
-                        <img className="img-responsive ho-logo-gray navbar-left" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
-                    </a>
-                </div>
-              </div>
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul className="nav navbar-nav navbar-right">
-                    <li className="nav-item"><Link to="/about">About</Link></li>
-                    <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><Link to="/data-deep-dive">Data Deep Dive</Link></li>
-                    <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><Link to="/team">Team</Link></li>
-                  </ul>
-               </div>
-             </div>
-          </nav>
-        </header>
         <section className="mission-statement container-fluid">
           <div className="row">
-            <div className="col-xs-12">
-            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
-                <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
-              </p>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive apple-girl" src="src/assets/apple-girl.jpg" alt="Young Girl Eating Apple"/>
             </div>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
+              <p className="cover-text">Year after year, Oregon has one of the highest reported rates of food insecurity in the country. At the same time, we have a robust food stamp program and over 900 food relief agencies statewide.<br></br><br></br>
+                  The data is clear, but the reality is hard.  What's not working?<br></br><br></br>
+                  We've made a dynamic program to explore systemic causes of hunger at home.</p>
+              </div>
           </div>
         </section>
         <section className="family-and-county-section container-fluid">
