@@ -27,7 +27,7 @@ const Team = () => (
         <span className="name">Cat Nikolovski</span>-<span className="role">Producer</span>
       </li>
       <li>
-        <span className="name">Megan McKissack</span>-<span className="role">Program Director</span>
+        <span className="name">Megan McKissack</span>-<span className="role">Program Director, Software Engineer</span>
       </li>
       <li>
         <span className="name">Tiffany DeVine</span>-<span className="role">Data Scientist</span>
