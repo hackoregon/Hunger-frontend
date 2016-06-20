@@ -363,3 +363,7 @@ footer {
 .team-list span {
   margin: 12px;
 }
+
+.deep-dive-source-list {
+  list-style: none;
+}
