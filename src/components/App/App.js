@@ -178,7 +178,7 @@ export default class App extends React.Component {
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
-    const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
+    const housingSufficient = ((2 / 3) * sliderWage > getHousingCost(individuals, selectedCounty.fips))
 
     return (
       <div>
