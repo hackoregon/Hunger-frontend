@@ -64,23 +64,27 @@
 	
 	var _Team2 = _interopRequireDefault(_Team);
 	
-	var _About = __webpack_require__(371);
-	
-	var _About2 = _interopRequireDefault(_About);
-	
-	var _DataDeepDive = __webpack_require__(372);
+	var _DataDeepDive = __webpack_require__(371);
 	
 	var _DataDeepDive2 = _interopRequireDefault(_DataDeepDive);
+	
+	var _CoreLayout = __webpack_require__(372);
+	
+	var _CoreLayout2 = _interopRequireDefault(_CoreLayout);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
-	  { history: _reactRouter.browserHistory },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _About2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: 'team', component: _Team2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: 'data-deep-dive', component: _DataDeepDive2.default })
+	  { history: _reactRouter.hashHistory },
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: _CoreLayout2.default },
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _App2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _App2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'team', component: _Team2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'data-deep-dive', component: _DataDeepDive2.default })
+	  )
 	), document.getElementById('app-container'));
 
 /***/ },
@@ -20630,93 +20634,6 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'header',
-	          null,
-	          _react2.default.createElement(
-	            'nav',
-	            { className: 'navbar navbar-default navbar-static-top' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'container-fluid' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'navbar-header' },
-	                _react2.default.createElement(
-	                  'button',
-	                  { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
-	                  _react2.default.createElement(
-	                    'span',
-	                    { className: 'sr-only' },
-	                    'Toggle navigation'
-	                  ),
-	                  _react2.default.createElement('span', { className: 'icon-bar' }),
-	                  _react2.default.createElement('span', { className: 'icon-bar' }),
-	                  _react2.default.createElement('span', { className: 'icon-bar' })
-	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'ho-logo-wrapper pull-left' },
-	                  _react2.default.createElement(
-	                    'span',
-	                    { className: 'navbar-text navbar-left' },
-	                    'Built by'
-	                  ),
-	                  _react2.default.createElement(
-	                    'a',
-	                    { href: 'http://www.hackoregon.org/' },
-	                    _react2.default.createElement('img', { className: 'img-responsive ho-logo-gray navbar-left', src: 'src/assets/HO_logo_gray.png', alt: 'Hack  Oregon logo' })
-	                  )
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-	                _react2.default.createElement(
-	                  'ul',
-	                  { className: 'nav navbar-nav navbar-right' },
-	                  _react2.default.createElement(
-	                    'li',
-	                    { className: 'nav-item' },
-	                    _react2.default.createElement(
-	                      _reactRouter.Link,
-	                      { to: '/about' },
-	                      'About'
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'li',
-	                    { className: 'nav-item-separator hidden-xs' },
-	                    _react2.default.createElement('span', null)
-	                  ),
-	                  _react2.default.createElement(
-	                    'li',
-	                    { className: 'nav-item' },
-	                    _react2.default.createElement(
-	                      _reactRouter.Link,
-	                      { to: '/data-deep-dive' },
-	                      'Data Deep Dive'
-	                    )
-	                  ),
-	                  _react2.default.createElement(
-	                    'li',
-	                    { className: 'nav-item-separator hidden-xs' },
-	                    _react2.default.createElement('span', null)
-	                  ),
-	                  _react2.default.createElement(
-	                    'li',
-	                    { className: 'nav-item' },
-	                    _react2.default.createElement(
-	                      _reactRouter.Link,
-	                      { to: '/team' },
-	                      'Team'
-	                    )
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
 	          'section',
 	          { className: 'mission-statement container-fluid' },
 	          _react2.default.createElement(
@@ -20724,12 +20641,23 @@
 	            { className: 'row' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'col-xs-12' },
+	              { className: 'col-xs-12 col-md-6' },
+	              _react2.default.createElement('img', { className: 'img-responsive apple-girl', src: 'src/assets/apple-girl.jpg', alt: 'Young Girl Eating Apple' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-12 col-md-6' },
 	              _react2.default.createElement('img', { className: 'img-responsive OHE-logo', src: 'src/assets/OHE_logo3.png', alt: 'Oregon Hunger Equation logo' }),
 	              _react2.default.createElement(
 	                'p',
-	                null,
-	                'Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.'
+	                { className: 'cover-text' },
+	                'Year after year, Oregon has one of the highest reported rates of food insecurity in the country. At the same time, we have a robust food stamp program and over 900 food relief agencies statewide.',
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('br', null),
+	                'The data is clear, but the reality is hard.  What\'s not working?',
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('br', null),
+	                'We\'ve made a dynamic program to explore systemic causes of hunger at home.'
 	              )
 	            )
 	          )
@@ -61350,7 +61278,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n  background-color: #fbfaf0;\n}\n\nsection {\n  padding: 2em;\n}\n\n.select-county-heading {\n  padding-left:1.5em;\n}\n\n.section-heading,\n.family-type-hr {\n  font-family: 'Oswald', 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n}\n\np {\n  font-size: 1.6em;\n  margin: 0;\n  color: #656565;\n}\n\np.hunger-data-hint {\n  font-size: 1em;\n  font-weight: normal;\n  width: 90%; /* matches snugget */\n  margin: 0 auto; /* matches snugget */\n}\n\n/* HEADER */\nnav .container-fluid {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav {\n  margin-right: 0.3em;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n@media only screen and (max-width: 825px) {\n  .nav-item {\n    font-size: 1.1em;\n  }\n  .nav-item-separator {\n    visibility: hidden;\n  }\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\n.ho-logo-wrapper {\n  display: flex;\n  flex-wrap: nowrap;\n}\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n  padding-top: 5px;\n}\n\n@media only screen and (max-width: 768px) {\n  .navbar-text {\n    display: none;\n  }\n  .ho-logo-wrapper {\n    margin-left: 5px;\n  }\n}\n.dynamic-text {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.benefits-row {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-around;\n  margin-bottom: 3em;\n}\n\n.benefits-row .school-benefits-text {\n  padding-right: 1em;\n}\n\n.benefits-row .snap-benefits-text {\n  margin-left: 1em;\n}\n\n@media only screen and (max-width: 480px) {\n  p.placeholder {\n    display: none;\n  }\n  .benefits-row p {\n    margin: 0;\n    padding: 0;\n  }\n}\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width: 90%;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n  padding-bottom:.25em;\n  padding-top:1em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 10px 30px 40px 14px;\n  border-bottom: 1px solid black;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  z-index: 100;\n}\n\n.sticky .slider-self-wrapper {\n  border: none;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-right: 1em;\n  padding-left: 2em;\n}\n\n.sticky .slider-wage-box {\n  margin-bottom: 10px;\n}\n\n\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n.slider-wage-box {\n  display: inline-block;\n  text-align: center;\n  font-size: 2em;\n  font-weight: bold;\n  color: #669776;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 1em;\n  width: 100%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  padding-top: 5em;\n  padding-bottom: 9em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 1em 2em 2.75em;\n  }\n  .slider-wage-box {\n    margin-bottom: 10px;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 200px;\n  padding-top:20px;\n  padding-bottom:20px;\n  padding-left:10px;\n}\n\n.mission-statement {\n  background-color: #fff;\n  box-shadow: 0 0 5px 0 #000;\n}\n\n.mission-statement p {\n  padding-left:30px;\n}\n\n\n/* BarChart*/\n.bar-chart-section {\n  border: 1px solid #656565;\n    background-color: #eee;\n    padding: 1.5em;\n    margin: 25px auto;\n    width: 95%;\n    border-radius:3px;\n}\n", ""]);
+	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n  background-color: #fbfaf0;\n  min-height: 100vh;\n}\n\nsection {\n  padding: 2em;\n}\n\n.select-county-heading {\n  padding-left:1.5em;\n}\n\n.section-heading,\n.family-type-hr {\n  font-family: 'Oswald', 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n}\n\n\n\np {\n  font-size: 1.6em;\n  margin: 0;\n  color: #656565;\n}\n\np.hunger-data-hint {\n  font-size: 1em;\n  font-weight: normal;\n  width: 90%; /* matches snugget */\n  margin: 0 auto; /* matches snugget */\n}\n\n/* HEADER */\nnav .container-fluid {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav {\n  margin-right: 0.3em;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n@media only screen and (max-width: 825px) {\n  .nav-item {\n    font-size: 1.1em;\n  }\n  .nav-item-separator {\n    visibility: hidden;\n  }\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\n.ho-logo-wrapper {\n  display: flex;\n  flex-wrap: nowrap;\n}\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n  padding-top: 5px;\n}\n\n@media only screen and (max-width: 768px) {\n  .navbar-text {\n    display: none;\n  }\n  .ho-logo-wrapper {\n    margin-left: 5px;\n  }\n}\n.dynamic-text {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.benefits-row {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-around;\n  margin-bottom: 3em;\n}\n\n.benefits-row .school-benefits-text {\n  padding-right: 1em;\n}\n\n.benefits-row .snap-benefits-text {\n  margin-left: 1em;\n}\n\n@media only screen and (max-width: 480px) {\n  p.placeholder {\n    display: none;\n  }\n  .benefits-row p {\n    margin: 0;\n    padding: 0;\n  }\n}\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width: 90%;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n  padding-bottom:.25em;\n  padding-top:1em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 10px 30px 40px 14px;\n  border-bottom: 1px solid black;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  z-index: 100;\n}\n\n.sticky .slider-self-wrapper {\n  border: none;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-right: 1em;\n  padding-left: 2em;\n}\n\n.sticky .slider-wage-box {\n  margin-bottom: 10px;\n}\n\n\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n.slider-wage-box {\n  display: inline-block;\n  text-align: center;\n  font-size: 2em;\n  font-weight: bold;\n  color: #669776;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 1em;\n  width: 100%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  padding-top: 5em;\n  padding-bottom: 9em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 1em 2em 2.75em;\n  }\n  .slider-wage-box {\n    margin-bottom: 10px;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 20em;\n  padding-top:2em;\n  padding-bottom:2em;\n}\n\n.mission-statement {\n  background-color: #fff;\n  box-shadow: 0 0 5px 0 #000;\n}\n\n.cover-text {\n  text-align:justify;\n  padding-right:3.75em;\n  font-size:1.25em;\n  border:none;\n}\n\n.apple-girl {\n  max-height: 35em;\n}\n\n\n\n/* BarChart*/\n.bar-chart-section {\n  border: 1px solid #656565;\n    background-color: #eee;\n    padding: 1.5em;\n    margin: 25px auto;\n    width: 95%;\n    border-radius:3px;\n}\n\n/* OTHER PAGES */\n.hunger-page-root {\n  margin: 60px auto 0 auto;\n  max-width: 95%;\n}\n\n.hunger-page-root p {\n  margin-bottom: 1em;\n}\n\n.team-list {\n  list-style: none;\n}\n.team-list li {\n  font-size: 1.25em;\n  margin: 12px 0 12px 0;\n}\n.team-list span {\n  margin: 12px;\n}\n\n.deep-dive-source-list {\n  list-style: none;\n}\n", ""]);
 	
 	// exports
 
@@ -61439,7 +61367,7 @@
 /* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -61453,9 +61381,262 @@
 	
 	var Team = function Team() {
 	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'This is the Team page.'
+	    "div",
+	    { className: "hunger-page-root container-fluid" },
+	    _react2.default.createElement(
+	      "h1",
+	      null,
+	      "This Project was Built by 100% Volunteers"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Hack Oregon is a community-powered non-profit building civic data projects on different themes to promote engagement, awareness, and quality of life."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "All Hack Oregon projects are open source, built entirely by volunteers from our local community. That means that if you live in the Oregon area, or would like to contribute remotely, you can work with us!"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Although each of our projects require a slightly different blend of talents and resources, our teams are always interdisciplinary and always have roles available for people at all levels of experience. We place our team members by balancing the skills they want to contribute with the skill they want to learn — and by operating outside of normal bureaucratic, client-based, or venture funded restrictions — we're free to move fast and innovate faster."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "It's not always easy, but we think it's pretty worth it."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Find out more at ",
+	      _react2.default.createElement(
+	        "a",
+	        { href: "hackoregon.org" },
+	        "hackoregon.org"
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "h2",
+	      null,
+	      "Oregon Hunger Equation Team"
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      { className: "team-list" },
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Cat Nikolovski"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Producer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Megan McKissack"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Program Director"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Tiffany Devine"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Data Scientist"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Jeanette Hardiman"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Data Scientist"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "John David Smith"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Data Scientist"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Mary Anne Thygesen"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Data Scientist"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Kari Goin"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "UX/UI Design"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Aaron DeVore"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Software Engineer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Vivek Mano"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Software Engineer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Evan Palmer"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Software Engineer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Dan Schuman"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Software Engineer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Dan Carr"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "DevOps Engineer"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Aurelia Moran"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Researcher, Modeler"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
+	          "Emily Logan"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "Writer"
+	        )
+	      )
+	    )
 	  );
 	};
 	
@@ -61465,7 +61646,7 @@
 /* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -61477,15 +61658,34 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var About = function About() {
+	var DataDeepDive = function DataDeepDive() {
 	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'This is the About page.'
+	    "div",
+	    { className: "hunger-page-root" },
+	    _react2.default.createElement(
+	      "h1",
+	      null,
+	      "Data Deep Dive"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "More content coming soon..."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "In the meantime, here is a partial list of data sources used in the project:"
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      { className: "deep-dive-source-list" },
+	      _react2.default.createElement("li", null)
+	    )
 	  );
 	};
 	
-	exports.default = About;
+	exports.default = DataDeepDive;
 
 /***/ },
 /* 372 */
@@ -61501,17 +61701,106 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(291);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var DataDeepDive = function DataDeepDive() {
+	var CoreLayout = function CoreLayout(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    'This is the Data Deep Dive page.'
+	    { className: 'core-layout-root' },
+	    _react2.default.createElement(
+	      'header',
+	      null,
+	      _react2.default.createElement(
+	        'nav',
+	        { className: 'navbar navbar-default navbar-static-top' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'navbar-header' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'sr-only' },
+	                'Toggle navigation'
+	              ),
+	              _react2.default.createElement('span', { className: 'icon-bar' }),
+	              _react2.default.createElement('span', { className: 'icon-bar' }),
+	              _react2.default.createElement('span', { className: 'icon-bar' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'ho-logo-wrapper pull-left' },
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'navbar-text navbar-left' },
+	                'Built by'
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { href: 'http://www.hackoregon.org/' },
+	                _react2.default.createElement('img', { className: 'img-responsive ho-logo-gray navbar-left', src: 'src/assets/HO_logo_gray.png', alt: 'Hack  Oregon logo' })
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'nav navbar-nav navbar-right' },
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'nav-item' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/home' },
+	                  'Home'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'nav-item-separator hidden-xs' },
+	                _react2.default.createElement('span', null)
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'nav-item' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/data-deep-dive' },
+	                  'Data Deep Dive'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'nav-item-separator hidden-xs' },
+	                _react2.default.createElement('span', null)
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'nav-item' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/team' },
+	                  'Team'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    ),
+	    props.children
 	  );
 	};
 	
-	exports.default = DataDeepDive;
+	exports.default = CoreLayout;
 
 /***/ }
 /******/ ]);
