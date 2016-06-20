@@ -260,10 +260,10 @@ export default class App extends React.Component {
             <div className="benefits-row">
               <p className="placeholder"></p>
               <p className="snap-benefits-text">
-              Snap benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
+              Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
               </p>
               <p className="school-benefits-text">
-              School meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips)}`}</span>
+              Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips)}`}</span>
               </p>
               <p className="placeholder"></p>
             </div>
@@ -321,10 +321,10 @@ export default class App extends React.Component {
           <div className="benefits-row">
             <p className="placeholder"></p>
             <p className="snap-benefits-text">
-            Snap benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
+            Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
             </p>
             <p className="school-benefits-text">
-            School meal benefits: <span className="dynamic-text" style={{ color: "#b5441d" }}>$0</span>
+            Estimated school meal benefits: <span className="dynamic-text" style={{ color: "#b5441d" }}>$0</span>
             </p>
             <p className="placeholder"></p>
           </div>
