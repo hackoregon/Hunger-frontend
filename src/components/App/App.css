@@ -335,5 +335,21 @@ footer {
 
 /* OTHER PAGES */
 .hunger-page-root {
-  margin-top: 60px;
+  margin: 60px auto 0 auto;
+  max-width: 95%;
+}
+
+.hunger-page-root p {
+  margin-bottom: 1em;
+}
+
+.team-list {
+  list-style: none;
+}
+.team-list li {
+  font-size: 1.25em;
+  margin: 12px 0 12px 0;
+}
+.team-list span {
+  margin: 12px;
 }
