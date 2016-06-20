@@ -184,11 +184,15 @@ export default class App extends React.Component {
       <div>
         <section className="mission-statement container-fluid">
           <div className="row">
-            <div className="col-xs-12">
-            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
-                <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
-              </p>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive apple-girl" src="src/assets/apple-girl.jpg" alt="Young Girl Eating Apple"/>
             </div>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
+              <p className="cover-text">Year after year, Oregon has one of the highest reported rates of food insecurity in the country. At the same time, we have a robust food stamp program and over 900 food relief agencies statewide.<br></br><br></br>
+                  The data is clear, but the reality is hard.  What's not working?<br></br><br></br>
+                  We've made a dynamic program to explore systemic causes of hunger at home.</p>
+              </div>
           </div>
         </section>
         <section className="family-and-county-section container-fluid">
