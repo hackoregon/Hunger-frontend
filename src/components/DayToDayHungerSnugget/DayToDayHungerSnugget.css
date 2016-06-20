@@ -15,6 +15,7 @@
 
 .snugget-text {
   padding: 1.5em;
+  box-sizing: content-box;
 }
 
 .housing .snugget-text {
