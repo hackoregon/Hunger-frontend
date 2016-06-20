@@ -26,6 +26,7 @@ import {
   getSSSMiscellaneous,
   getBarChartValues } from './calculators'
 import jQuery from 'jquery'
+import { Link } from 'react-router'
 
 window.jQuery = jQuery
 require('bootstrap')
@@ -200,11 +201,11 @@ export default class App extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="nav-item"><a href="#">About</a></li>
+                    <li className="nav-item"><Link to="/about">About</Link></li>
                     <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><a href="#">Data Deep Dive</a></li>
+                    <li className="nav-item"><Link to="/data-deep-dive">Data Deep Dive</Link></li>
                     <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><a href="#">Team</a></li>
+                    <li className="nav-item"><Link to="/team">Team</Link></li>
                   </ul>
                </div>
              </div>
