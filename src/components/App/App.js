@@ -192,7 +192,7 @@ export default class App extends React.Component {
                   <span className="icon-bar"></span>
                 </button>
                 <div className="ho-logo-wrapper pull-left">
-                  <p className="navbar-text navbar-left">Built by</p>
+                  <span className="navbar-text navbar-left">Built by</span>
                     <a href="http://www.hackoregon.org/">
                         <img className="img-responsive ho-logo-gray navbar-left" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
                     </a>
@@ -200,9 +200,11 @@ export default class App extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="nav-item"><a href="#">See Our Research</a></li>
+                    <li className="nav-item"><a href="#">About</a></li>
                     <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><a href="#">Do Something</a></li>
+                    <li className="nav-item"><a href="#">Data Deep Dive</a></li>
+                    <li className="nav-item-separator hidden-xs"><span></span></li>
+                    <li className="nav-item"><a href="#">Team</a></li>
                   </ul>
                </div>
              </div>
