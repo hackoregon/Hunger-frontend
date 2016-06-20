@@ -92,7 +92,7 @@
 }
 
 .indicator-wrapper {
-  margin: 10px auto;
+  margin: 1em auto 4em auto;
   width: 950px;
   height: 100px;
   max-width: 80%;
@@ -100,8 +100,7 @@
 
 @media only screen and (max-width: 480) {
   .indicator-wrapper {
-    margin: 0;
-    margin-top: 10px;
+    margin: 1em 0 2em 0;
     max-width: 90%;
   }
 }

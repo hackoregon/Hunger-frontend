@@ -296,13 +296,15 @@ export default class App extends React.Component {
                 labels={indicatorLabels}
               />
             </div>
-            <p className="hunger-data-hint">
-                <strong>DATA HINT:</strong> Check below to see if you are covering your other expenses.
-            </p>
-            <DayToDaySnugget
-            securityStatus={bestCaseFoodStatus}
-            individuals={individuals}
-            />
+            <div className="data-hint-snugget-wrapper">
+              <p className="hunger-data-hint">
+                  <strong>DATA HINT:</strong> Check below to see if you are covering your other expenses.
+              </p>
+              <DayToDaySnugget
+              securityStatus={bestCaseFoodStatus}
+              individuals={individuals}
+              />
+            </div>
 
           </div>
         </div>
