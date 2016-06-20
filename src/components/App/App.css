@@ -180,6 +180,11 @@ header {
   margin-bottom: 1em;
 }
 
+.fine-print {
+  max-width: 90%;
+  margin: 0 auto;
+  font-size: 0.9em;
+}
 /* FOOTER */
 footer {
   font-size: 2rem;
@@ -195,7 +200,6 @@ footer {
 .ho-logo-gray {
   max-height: 50px;
 }
-
 
 
 /* GENERAL */
@@ -330,8 +334,6 @@ footer {
 .apple-girl {
   max-height: 35em;
 }
-
-
 
 /* BarChart*/
 .bar-chart-section {
