@@ -15,10 +15,11 @@ class MapView extends React.Component {
       let counties = svg.contentDocument.getElementsByClassName('map-county')
       // convert HTML Collection to Array
       counties = [].slice.call(counties)
-      const isDefault = colors.length === 1
-      const setFill = isDefault ?
-        (c) => { c.setAttribute("fill", colors[0]) } :
-        (c) => { c.setAttribute("fill", colors[c.id]) }
+      const setFill = (c) => {
+        // remove 'fip-' prefix from id, leaving just the fips number
+        const fips = c.id.substring(5)
+        c.setAttribute("fill", colors[fips])
+      }
       for (let c of counties) {
         setFill(c)
       }
@@ -26,6 +27,7 @@ class MapView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // console.log("receiveProps", nextProps.fipsColors)
     this.applyColors(nextProps)
   }
 
