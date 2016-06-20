@@ -143,7 +143,7 @@ header {
 }
 
 .school-benefits-text {
-
+  margin-left: 3em;
 }
 
 @media only screen and (max-width: 480px) {
