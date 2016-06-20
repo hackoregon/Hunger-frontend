@@ -218,7 +218,7 @@ export default class App extends React.Component {
             </div>
             <div className="col-xs-12 col-md-6">
             <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
-              <p className="mission-statement">Year after year, Oregon has one of the highest reported rates of food insecurity in the country. At the same time, we have a robust food stamp program and over 900 food relief agencies statewide.<br></br><br></br>
+              <p className="cover-text">Year after year, Oregon has one of the highest reported rates of food insecurity in the country. At the same time, we have a robust food stamp program and over 900 food relief agencies statewide.<br></br><br></br>
                   The data is clear, but the reality is hard.  What's not working?<br></br><br></br>
                   We've made a dynamic program to explore systemic causes of hunger at home.</p>
               </div>
