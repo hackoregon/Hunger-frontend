@@ -24,7 +24,7 @@
 }
 
 .family-type-radio:checked + .family-type-label {
-  background-color: #c9dacf;
+  background-color: #e4ece7;
 }
 
 .family-type-label img {
