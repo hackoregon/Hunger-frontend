@@ -257,12 +257,17 @@ footer {
 }
 
 .mission-statement p {
-  padding-left:30px;
+  text-align:justify;
+  padding-right:3.75em;
+  font-size:1.25em;
+  border:none;
 }
 
 .apple-girl {
   max-height: 35em;
 }
+
+
 
 /* BarChart*/
 .bar-chart-section {
