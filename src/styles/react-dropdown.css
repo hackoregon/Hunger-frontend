@@ -5,6 +5,7 @@
   width: 33%;
   min-width: 250px;
   font-size: 1.8em;
+  padding-left:2em;
 }
 
 @media only screen and (max-width: 480px) {
@@ -20,9 +21,9 @@
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 2px;
-  -moz-box-shadow:    inset 0 0 8px #b8dfab;
-  -webkit-box-shadow: inset 0 0 8px #b8dfab;
-  box-shadow:         inset 0 0 8px #b8dfab;
+  -moz-box-shadow:    inset 0 0 5px #000;
+  -webkit-box-shadow: inset 0 0 5px #000;
+  box-shadow:         inset 0 0 5px #000;
   color: #5b5b5b;
   cursor: default;
   outline: none;

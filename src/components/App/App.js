@@ -76,11 +76,10 @@ export default class App extends React.Component {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties // from fixture data
-      .map(c => c.fips)
-      .reduce((colorObj, fips) => {
-        if (fips !== 41) {
-          status = this.getFoodSecurityStatus(fips, bestCase)
-          colorObj[fips] = colors[status]
+      .reduce((colorObj, county) => {
+        if (county.fips !== 41) {
+          status = this.getFoodSecurityStatus(county.fips, bestCase)
+          colorObj[county.fips] = colors[status]
         }
         return colorObj
       }, {})
@@ -297,13 +296,15 @@ export default class App extends React.Component {
                 labels={indicatorLabels}
               />
             </div>
-            <p className="hunger-data-hint">
-                <strong>DATA HINT:</strong> Check below to see if you are covering your other expenses.
-            </p>
-            <DayToDaySnugget
-            securityStatus={bestCaseFoodStatus}
-            individuals={individuals}
-            />
+            <div className="data-hint-snugget-wrapper">
+              <p className="hunger-data-hint">
+                  <strong>DATA HINT:</strong> Check below to see if you are covering your other expenses.
+              </p>
+              <DayToDaySnugget
+              securityStatus={bestCaseFoodStatus}
+              individuals={individuals}
+              />
+            </div>
 
           </div>
         </div>
@@ -368,30 +369,33 @@ export default class App extends React.Component {
                 Are you able to afford stable housing?
               </h2>
               <div
-                className="can-afford-housing afford-housing-yes"
-                style={ housingSufficient ? {} : { display: "none" } }>
-                <h3>Yes</h3>
-                <p className="snugget-text">
-                  At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
-                </p>
+                className="can-afford-housing">
+                <div
+                  className="afford-housing-yes"
+                  style={ housingSufficient ? {} : { display: "none" } }>
+                  <h3>Yes</h3>
+                  <p className="snugget-text">
+                    At your income, you are able to afford housing in your county. However, the more of your income that goes toward housing, the more difficult it becomes to pay for food.
+                  </p>
+                </div>
+                <div
+                  className="afford-housing-no"
+                  style={ housingSufficient ? { display: "none" } : {} }>
+                  <h3>No</h3>
+                  <p className="snugget-text">
+                    At your income, you are not able to afford housing in your county.
+                  </p>
+                </div>
+                <section className="bar-chart-section container-fluid">
+                  <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
+                  <p
+                    className="afford-extra-meals"
+                    style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
+                    >
+                    You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
+                    </p>
+                    </section>
               </div>
-              <div
-                className="can-afford-housing afford-housing-no"
-                style={ housingSufficient ? { display: "none" } : {} }>
-                <h3>No</h3>
-                <p className="snugget-text">
-                  At your income, you are not able to afford housing in your county.
-                </p>
-              </div>
-              <section className="bar-chart-section container-fluid">
-                <BarChart title="Other Expenses" data={barChartData} colors={barColors} />
-                <p
-                  className="afford-extra-meals"
-                  style={extraMeals <= 0 ? { visibility: "hidden" } : {}}
-                >
-                You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
-                </p>
-              </section>
             </div>
           </div>
         </section>

@@ -2,7 +2,7 @@
   border: 1px solid #5b5b5b;
   background-color: #fff;
   padding: 0.5em;
-  margin: 0 auto;
+  margin: 0 auto 1em auto;
   width:90%;
 }
 
@@ -14,7 +14,8 @@
 }
 
 .snugget-text {
-  text-indent: 1.5em;
+  padding: 1.5em;
+  box-sizing: content-box;
 }
 
 .housing .snugget-text {

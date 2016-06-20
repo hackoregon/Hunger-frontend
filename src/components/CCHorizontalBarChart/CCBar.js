@@ -15,14 +15,14 @@ export default class Bar extends React.Component {
     const labelNoWhitespace = label.replace(/[\s]/g, '')
     // console.log("barStyle:", barStyle)
     return (
-      <div className="bar-root">
-        <div className="bar-row">
-            <p
-              title={description || label}
-              className={`bar-chart-label label-${labelNoWhitespace}`}>{`${label}`}{": "}<span className="bar-value">{`$${value}`}</span></p>
+        <div className="bar-root">
+          <div className="bar-row">
+              <p
+                title={description || label}
+                className={`bar-chart-label label-${labelNoWhitespace}`}>{`${label}`}{": "}<span className="bar-value">{`$${value}`}</span></p>
             <div className="bar-chart-bar" style={barStyle}></div>
+          </div>
         </div>
-      </div>
     )
   }
 }
