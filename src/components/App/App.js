@@ -405,8 +405,9 @@ export default class App extends React.Component {
               <div>
                 <h2 className="section-heading text-center">Conclusion:</h2>
                 <p className="snugget-text conclusion-text">
-                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <a style={{ color: "#669776" }} href="#data-deep-dive">data deep dive.</a>
+                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <Link style={{ color: "#669776" }} to="/data-deep-dive">data deep dive.</Link>
                 </p>
+                <p className="fine-print">This website is intended to be used for informational purposes only, as a tool to better understand hunger throughout Oregon. It is not intended to be used to calculate actual SNAP or school meal benefits for an individual or family.</p>
               </div>
             </div>
           </div>
