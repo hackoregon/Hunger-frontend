@@ -126,16 +126,24 @@ header {
 .benefits-row {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 3em;
 }
 
-.benefits-row .school-benefits-text {
-  padding-right: 1em;
+.snap-benefits-text,
+.school-benefits-text {
+  font-size: 1em;
+  text-align: center;
 }
 
-.benefits-row .snap-benefits-text {
-  margin-left: 1em;
+.snap-benefits-text span {
+  display: inline-block;
+  min-width: 110px;
+  text-align: left;
+}
+
+.school-benefits-text {
+
 }
 
 @media only screen and (max-width: 480px) {
