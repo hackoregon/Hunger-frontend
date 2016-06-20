@@ -205,11 +205,12 @@ export default class App extends React.Component {
         </header>
         <section className="mission-statement container-fluid">
           <div className="row">
-            <div className="col-xs-12">
-            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
-                <p>Select a county, family type, and household income level below to see what the Oregon Hunger Equation hunger snapshot is for you and your family.
-              </p>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive apple-girl" src="src/assets/apple-girl.jpg" alt="Young Girl Eating Apple"/>
             </div>
+            <div className="col-xs-12 col-md-6">
+            <img className="img-responsive OHE-logo" src="src/assets/OHE_logo3.png" alt="Oregon Hunger Equation logo"/>
+          </div>
           </div>
         </section>
         <section className="family-and-county-section container-fluid">

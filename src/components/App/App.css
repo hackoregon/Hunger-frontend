@@ -19,6 +19,8 @@ section {
   font-weight: 300;
 }
 
+
+
 p {
   font-size: 1.6em;
   margin: 0;
@@ -129,6 +131,7 @@ footer {
 .ho-logo-gray {
   max-height: 50px;
 }
+
 
 
 /* GENERAL */
@@ -243,10 +246,9 @@ footer {
 
 /* LOGO-MISSION */
 .OHE-logo {
-  max-height: 200px;
-  padding-top:20px;
-  padding-bottom:20px;
-  padding-left:10px;
+  max-height: 20em;
+  padding-top:2em;
+  padding-bottom:2em;
 }
 
 .mission-statement {
@@ -258,6 +260,9 @@ footer {
   padding-left:30px;
 }
 
+.apple-girl {
+  max-height: 35em;
+}
 
 /* BarChart*/
 .bar-chart-section {
