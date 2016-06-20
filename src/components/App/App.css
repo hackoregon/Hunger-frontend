@@ -42,6 +42,10 @@ nav .container-fluid {
   z-index: 1;
 }
 
+.navbar-nav {
+  margin-right: 0.3em;
+}
+
 .navbar-nav > li > a {
   color: #5b5b5b;
   line-height: normal;
@@ -74,6 +78,15 @@ nav .container-fluid {
   font-size: 1.4em;
 }
 
+@media only screen and (max-width: 825px) {
+  .nav-item {
+    font-size: 1.1em;
+  }
+  .nav-item-separator {
+    visibility: hidden;
+  }
+}
+
 header {
   height: 3em;
   font-size: 2rem;
@@ -82,10 +95,24 @@ header {
   box-shadow: 0 12px 2px 0 #999;
 }
 
-.ho-logo-wrapper p {
-  font-size: 1.1em;
+.ho-logo-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
+.ho-logo-wrapper p {
+  font-size: 1.1em;
+  padding-top: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-text {
+    display: none;
+  }
+  .ho-logo-wrapper {
+    margin-left: 5px;
+  }
+}
 .dynamic-text {
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 1.3em;

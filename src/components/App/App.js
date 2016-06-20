@@ -26,6 +26,7 @@ import {
   getSSSMiscellaneous,
   getBarChartValues } from './calculators'
 import jQuery from 'jquery'
+import { Link } from 'react-router'
 
 window.jQuery = jQuery
 require('bootstrap')
@@ -177,7 +178,7 @@ export default class App extends React.Component {
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
-    const housingSufficient = (moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) > 0)
+    const housingSufficient = ((2 / 3) * sliderWage > getHousingCost(individuals, selectedCounty.fips))
 
     return (
       <div>
@@ -192,7 +193,7 @@ export default class App extends React.Component {
                   <span className="icon-bar"></span>
                 </button>
                 <div className="ho-logo-wrapper pull-left">
-                  <p className="navbar-text navbar-left">Built by</p>
+                  <span className="navbar-text navbar-left">Built by</span>
                     <a href="http://www.hackoregon.org/">
                         <img className="img-responsive ho-logo-gray navbar-left" src="src/assets/HO_logo_gray.png" alt="Hack  Oregon logo"/>
                     </a>
@@ -200,9 +201,11 @@ export default class App extends React.Component {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="nav-item"><a href="#">See Our Research</a></li>
+                    <li className="nav-item"><Link to="/about">About</Link></li>
                     <li className="nav-item-separator hidden-xs"><span></span></li>
-                    <li className="nav-item"><a href="#">Do Something</a></li>
+                    <li className="nav-item"><Link to="/data-deep-dive">Data Deep Dive</Link></li>
+                    <li className="nav-item-separator hidden-xs"><span></span></li>
+                    <li className="nav-item"><Link to="/team">Team</Link></li>
                   </ul>
                </div>
              </div>
