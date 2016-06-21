@@ -377,3 +377,7 @@ footer {
 .deep-dive-source-list {
   list-style: none;
 }
+
+.deep-dive-source-list li {
+  margin: 10px;
+}
