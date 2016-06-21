@@ -365,7 +365,7 @@ export default class App extends React.Component {
                   style={ housingSufficient ? { display: "none" } : {} }>
                   <h3>No</h3>
                   <p className="snugget-text">
-                    At your income, you are not able to afford housing in your county.
+                    At this income,  secure, stable and affordable housing is difficult to find.
                   </p>
                 </div>
                 <section className="bar-chart-section container-fluid">
