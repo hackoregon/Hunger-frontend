@@ -126,16 +126,24 @@ header {
 .benefits-row {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 3em;
 }
 
-.benefits-row .school-benefits-text {
-  padding-right: 1em;
+.snap-benefits-text,
+.school-benefits-text {
+  font-size: 1em;
+  text-align: center;
 }
 
-.benefits-row .snap-benefits-text {
-  margin-left: 1em;
+.snap-benefits-text span {
+  display: inline-block;
+  min-width: 110px;
+  text-align: left;
+}
+
+.school-benefits-text {
+  margin-left: 3em;
 }
 
 @media only screen and (max-width: 480px) {
@@ -180,6 +188,11 @@ header {
   margin-bottom: 1em;
 }
 
+.fine-print {
+  max-width: 90%;
+  margin: 0 auto;
+  font-size: 0.9em;
+}
 /* FOOTER */
 footer {
   font-size: 2rem;
@@ -195,7 +208,6 @@ footer {
 .ho-logo-gray {
   max-height: 50px;
 }
-
 
 
 /* GENERAL */
@@ -331,8 +343,6 @@ footer {
   max-height: 35em;
 }
 
-
-
 /* BarChart*/
 .bar-chart-section {
   border: 1px solid #656565;
@@ -366,4 +376,8 @@ footer {
 
 .deep-dive-source-list {
   list-style: none;
+}
+
+.deep-dive-source-list li {
+  margin: 10px;
 }

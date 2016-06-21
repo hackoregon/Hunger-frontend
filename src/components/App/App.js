@@ -258,14 +258,16 @@ export default class App extends React.Component {
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
             <div className="benefits-row">
-              <p className="placeholder"></p>
-              <p className="snap-benefits-text">
-              Snap benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
+              <p className="snap-benefits-text-wrapper">
+                <p className="snap-benefits-text">
+                Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
+                </p>
               </p>
-              <p className="school-benefits-text">
-              School meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips)}`}</span>
+              <p className="school-benefits-text-wrapper">
+                <p className="school-benefits-text">
+                Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
+                </p>
               </p>
-              <p className="placeholder"></p>
             </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
@@ -319,14 +321,16 @@ export default class App extends React.Component {
           <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
           <div className="benefits-row">
-            <p className="placeholder"></p>
-            <p className="snap-benefits-text">
-            Snap benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips)}`}</span>
+            <p className="snap-benefits-text-wrapper">
+              <p className="snap-benefits-text">
+              Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
+              </p>
             </p>
-            <p className="school-benefits-text">
-            School meal benefits: <span className="dynamic-text" style={{ color: "#b5441d" }}>$0</span>
+            <p className="school-benefits-text-wrapper">
+              <p className="school-benefits-text">
+              Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
+              </p>
             </p>
-            <p className="placeholder"></p>
           </div>
           <div className="indicator-wrapper">
             <IndicatorSlider
@@ -361,7 +365,7 @@ export default class App extends React.Component {
                   style={ housingSufficient ? { display: "none" } : {} }>
                   <h3>No</h3>
                   <p className="snugget-text">
-                    At your income, you are not able to afford housing in your county.
+                    At this income,  secure, stable and affordable housing is difficult to find.
                   </p>
                 </div>
                 <section className="bar-chart-section container-fluid">
@@ -405,8 +409,9 @@ export default class App extends React.Component {
               <div>
                 <h2 className="section-heading text-center">Conclusion:</h2>
                 <p className="snugget-text conclusion-text">
-                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <a style={{ color: "#669776" }} href="#data-deep-dive">data deep dive.</a>
+                  The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <Link style={{ color: "#669776" }} to="/data-deep-dive">data deep dive.</Link>
                 </p>
+                <p className="fine-print">This website is intended to be used for informational purposes only, as a tool to better understand hunger throughout Oregon. It is not intended to be used to calculate actual SNAP or school meal benefits for an individual or family.</p>
               </div>
             </div>
           </div>

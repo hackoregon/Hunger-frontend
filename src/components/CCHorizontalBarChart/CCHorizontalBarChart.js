@@ -12,6 +12,14 @@ export default class HorizontalBarChart extends React.Component {
       <div className="barchart-root">
       <h1 className="section-heading text-center">{title}</h1>
       {bars}
+      <div className="barchart-notes">
+        <p>
+        <strong>DATA HINT</strong>: Transportation expenses include car insurance, gas, oil, registration, repairs and monthly payments OR public transportation for commuting to and from work and day care plus a weekly shopping trip.
+        </p>
+        <p>
+        Miscellaneous expenses include clothing, shoes, paper products, diapers, nonprescription medications, cleaning products, household items, personal items and telephone service.
+        </p>
+      </div>
       </div>
     )
   }
