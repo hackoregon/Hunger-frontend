@@ -45,6 +45,9 @@ const Team = () => (
         <span className="name">Kari Goin</span>-<span className="role">UX/UI Design</span>
       </li>
       <li>
+        <span className="name">Emiluz Lopez</span>-<span className="role">UX/UI Design</span>
+      </li>
+      <li>
         <span className="name">Aaron DeVore</span>-<span className="role">Software Engineer</span>
       </li>
       <li>
