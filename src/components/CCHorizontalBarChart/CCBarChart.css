@@ -2,6 +2,14 @@
   margin-bottom: 1em;
 }
 
+.barchart-notes {
+  margin-top: 3em;
+}
+
+.barchart-notes p {
+  font-size: 1em;
+}
+
 .bar-chart-label {
   font-size: 1.3em;
   margin-bottom: 5px;
