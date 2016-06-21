@@ -61573,6 +61573,21 @@
 	        _react2.default.createElement(
 	          "span",
 	          { className: "name" },
+	          "Emiluz Lopez"
+	        ),
+	        "-",
+	        _react2.default.createElement(
+	          "span",
+	          { className: "role" },
+	          "UX/UI Design"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "span",
+	          { className: "name" },
 	          "Aaron DeVore"
 	        ),
 	        "-",
