@@ -20800,28 +20800,34 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'benefits-row' },
-	                  _react2.default.createElement('p', { className: 'placeholder' }),
 	                  _react2.default.createElement(
 	                    'p',
-	                    { className: 'snap-benefits-text' },
-	                    'Snap benefits: ',
+	                    { className: 'snap-benefits-text-wrapper' },
 	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'dynamic-text' },
-	                      '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	                      'p',
+	                      { className: 'snap-benefits-text' },
+	                      'Estimated SNAP benefits: ',
+	                      _react2.default.createElement(
+	                        'span',
+	                        { className: 'dynamic-text' },
+	                        '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips).toFixed(2)
+	                      )
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    'p',
-	                    { className: 'school-benefits-text' },
-	                    'School meal benefits: ',
+	                    { className: 'school-benefits-text-wrapper' },
 	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'dynamic-text' },
-	                      '$' + (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips)
+	                      'p',
+	                      { className: 'school-benefits-text' },
+	                      'Estimated school meal benefits: ',
+	                      _react2.default.createElement(
+	                        'span',
+	                        { className: 'dynamic-text' },
+	                        '$' + (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips).toFixed(2)
+	                      )
 	                    )
-	                  ),
-	                  _react2.default.createElement('p', { className: 'placeholder' })
+	                  )
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -20938,28 +20944,34 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'benefits-row' },
-	              _react2.default.createElement('p', { className: 'placeholder' }),
 	              _react2.default.createElement(
 	                'p',
-	                { className: 'snap-benefits-text' },
-	                'Snap benefits: ',
+	                { className: 'snap-benefits-text-wrapper' },
 	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'dynamic-text' },
-	                  '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips)
+	                  'p',
+	                  { className: 'snap-benefits-text' },
+	                  'Estimated SNAP benefits: ',
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'dynamic-text' },
+	                    '$' + (0, _calculators.snapCalculator)(individuals, sliderWage, selectedCounty.fips).toFixed(2)
+	                  )
 	                )
 	              ),
 	              _react2.default.createElement(
 	                'p',
-	                { className: 'school-benefits-text' },
-	                'School meal benefits: ',
+	                { className: 'school-benefits-text-wrapper' },
 	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'dynamic-text', style: { color: "#b5441d" } },
-	                  '$0'
+	                  'p',
+	                  { className: 'school-benefits-text' },
+	                  'Estimated school meal benefits: ',
+	                  _react2.default.createElement(
+	                    'span',
+	                    { className: 'dynamic-text' },
+	                    '$' + (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips).toFixed(2)
+	                  )
 	                )
-	              ),
-	              _react2.default.createElement('p', { className: 'placeholder' })
+	              )
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -21022,7 +21034,7 @@
 	                    _react2.default.createElement(
 	                      'p',
 	                      { className: 'snugget-text' },
-	                      'At your income, you are not able to afford housing in your county.'
+	                      'At this income,  secure, stable and affordable housing is difficult to find.'
 	                    )
 	                  ),
 	                  _react2.default.createElement(
@@ -21103,10 +21115,15 @@
 	                    { className: 'snugget-text conclusion-text' },
 	                    'The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the ',
 	                    _react2.default.createElement(
-	                      'a',
-	                      { style: { color: "#669776" }, href: '#data-deep-dive' },
+	                      _reactRouter.Link,
+	                      { style: { color: "#669776" }, to: '/data-deep-dive' },
 	                      'data deep dive.'
 	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { className: 'fine-print' },
+	                    'This website is intended to be used for informational purposes only, as a tool to better understand hunger throughout Oregon. It is not intended to be used to calculate actual SNAP or school meal benefits for an individual or family.'
 	                  )
 	                )
 	              )
@@ -41474,7 +41491,26 @@
 	          { className: 'section-heading text-center' },
 	          title
 	        ),
-	        bars
+	        bars,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'barchart-notes' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'DATA HINT'
+	            ),
+	            ': Transportation expenses include car insurance, gas, oil, registration, repairs and monthly payments OR public transportation for commuting to and from work and day care plus a weekly shopping trip.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Miscellaneous expenses include clothing, shoes, paper products, diapers, nonprescription medications, cleaning products, household items, personal items and telephone service.'
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -41627,7 +41663,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".bar-root {\n  margin-bottom: 1em;\n}\n\n.bar-chart-label {\n  font-size: 1.3em;\n  margin-bottom: 5px;\n}\n\n.bar-chart-bar {\n  border-radius: 2px;\n  height: 3em;\n}\n\n.bar-value {\n  font-weight: bold;\n}\n", ""]);
+	exports.push([module.id, ".bar-root {\n  margin-bottom: 1em;\n}\n\n.barchart-notes {\n  margin-top: 3em;\n}\n\n.barchart-notes p {\n  font-size: 1em;\n}\n\n.bar-chart-label {\n  font-size: 1.3em;\n  margin-bottom: 5px;\n}\n\n.bar-chart-bar {\n  border-radius: 2px;\n  height: 3em;\n}\n\n.bar-value {\n  font-weight: bold;\n}\n", ""]);
 	
 	// exports
 
@@ -61278,7 +61314,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n  background-color: #fbfaf0;\n  min-height: 100vh;\n}\n\nsection {\n  padding: 2em;\n}\n\n.select-county-heading {\n  padding-left:1.5em;\n}\n\n.section-heading,\n.family-type-hr {\n  font-family: 'Oswald', 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n}\n\n\n\np {\n  font-size: 1.6em;\n  margin: 0;\n  color: #656565;\n}\n\np.hunger-data-hint {\n  font-size: 1em;\n  font-weight: normal;\n  width: 90%; /* matches snugget */\n  margin: 0 auto; /* matches snugget */\n}\n\n/* HEADER */\nnav .container-fluid {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav {\n  margin-right: 0.3em;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n@media only screen and (max-width: 825px) {\n  .nav-item {\n    font-size: 1.1em;\n  }\n  .nav-item-separator {\n    visibility: hidden;\n  }\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\n.ho-logo-wrapper {\n  display: flex;\n  flex-wrap: nowrap;\n}\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n  padding-top: 5px;\n}\n\n@media only screen and (max-width: 768px) {\n  .navbar-text {\n    display: none;\n  }\n  .ho-logo-wrapper {\n    margin-left: 5px;\n  }\n}\n.dynamic-text {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.benefits-row {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-around;\n  margin-bottom: 3em;\n}\n\n.benefits-row .school-benefits-text {\n  padding-right: 1em;\n}\n\n.benefits-row .snap-benefits-text {\n  margin-left: 1em;\n}\n\n@media only screen and (max-width: 480px) {\n  p.placeholder {\n    display: none;\n  }\n  .benefits-row p {\n    margin: 0;\n    padding: 0;\n  }\n}\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width: 90%;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n/* FOOTER */\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n  padding-bottom:.25em;\n  padding-top:1em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 10px 30px 40px 14px;\n  border-bottom: 1px solid black;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  z-index: 100;\n}\n\n.sticky .slider-self-wrapper {\n  border: none;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-right: 1em;\n  padding-left: 2em;\n}\n\n.sticky .slider-wage-box {\n  margin-bottom: 10px;\n}\n\n\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n.slider-wage-box {\n  display: inline-block;\n  text-align: center;\n  font-size: 2em;\n  font-weight: bold;\n  color: #669776;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 1em;\n  width: 100%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  padding-top: 5em;\n  padding-bottom: 9em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 1em 2em 2.75em;\n  }\n  .slider-wage-box {\n    margin-bottom: 10px;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 20em;\n  padding-top:2em;\n  padding-bottom:2em;\n}\n\n.mission-statement {\n  background-color: #fff;\n  box-shadow: 0 0 5px 0 #000;\n}\n\n.cover-text {\n  text-align:justify;\n  padding-right:3.75em;\n  font-size:1.25em;\n  border:none;\n}\n\n.apple-girl {\n  max-height: 35em;\n}\n\n\n\n/* BarChart*/\n.bar-chart-section {\n  border: 1px solid #656565;\n    background-color: #eee;\n    padding: 1.5em;\n    margin: 25px auto;\n    width: 95%;\n    border-radius:3px;\n}\n\n/* OTHER PAGES */\n.hunger-page-root {\n  margin: 60px auto 0 auto;\n  max-width: 95%;\n}\n\n.hunger-page-root p {\n  margin-bottom: 1em;\n}\n\n.team-list {\n  list-style: none;\n}\n.team-list li {\n  font-size: 1.25em;\n  margin: 12px 0 12px 0;\n}\n.team-list span {\n  margin: 12px;\n}\n\n.deep-dive-source-list {\n  list-style: none;\n}\n", ""]);
+	exports.push([module.id, "/* GLOBAL STYLES */\nbody {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n  background-color: #fbfaf0;\n  min-height: 100vh;\n}\n\nsection {\n  padding: 2em;\n}\n\n.select-county-heading {\n  padding-left:1.5em;\n}\n\n.section-heading,\n.family-type-hr {\n  font-family: 'Oswald', 'Roboto', Arial, sans-serif;\n  font-weight: 300;\n}\n\n\n\np {\n  font-size: 1.6em;\n  margin: 0;\n  color: #656565;\n}\n\np.hunger-data-hint {\n  font-size: 1em;\n  font-weight: normal;\n  width: 90%; /* matches snugget */\n  margin: 0 auto; /* matches snugget */\n}\n\n/* HEADER */\nnav .container-fluid {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n\n.navbar {\n  z-index: 1;\n}\n\n.navbar-nav {\n  margin-right: 0.3em;\n}\n\n.navbar-nav > li > a {\n  color: #5b5b5b;\n  line-height: normal;\n}\n\n.nav-item-separator span {\n  display: inline-block;\n  height: 10px;\n  width: 9px;\n  margin-bottom: -17px;\n  background-color: #5b5b5b;\n}\n\n.navbar-default {\n  border: none;\n  background-color: #c9dacf;\n  padding: 0.5em;\n}\n\n.navbar-default .glyphicon-stop {\n  position: relative;\n  top: 1.2em;\n  background-color: #5b5b5b;\n  font-size: 0.4em;\n  margin-left: 5px;\n  margin-right: 5px;\n}\n\n.nav-item {\n  font-size: 1.4em;\n}\n\n@media only screen and (max-width: 825px) {\n  .nav-item {\n    font-size: 1.1em;\n  }\n  .nav-item-separator {\n    visibility: hidden;\n  }\n}\n\nheader {\n  height: 3em;\n  font-size: 2rem;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n  box-shadow: 0 12px 2px 0 #999;\n}\n\n.ho-logo-wrapper {\n  display: flex;\n  flex-wrap: nowrap;\n}\n\n.ho-logo-wrapper p {\n  font-size: 1.1em;\n  padding-top: 5px;\n}\n\n@media only screen and (max-width: 768px) {\n  .navbar-text {\n    display: none;\n  }\n  .ho-logo-wrapper {\n    margin-left: 5px;\n  }\n}\n.dynamic-text {\n  font-family: 'Roboto', Arial, sans-serif;\n  font-size: 1.3em;\n  font-weight: bold;\n  color: #669776;\n}\n\n.benefits-row {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n  margin-bottom: 3em;\n}\n\n.snap-benefits-text,\n.school-benefits-text {\n  font-size: 1em;\n  text-align: center;\n}\n\n.snap-benefits-text span {\n  display: inline-block;\n  min-width: 110px;\n  text-align: left;\n}\n\n.school-benefits-text {\n  margin-left: 3em;\n}\n\n@media only screen and (max-width: 480px) {\n  p.placeholder {\n    display: none;\n  }\n  .benefits-row p {\n    margin: 0;\n    padding: 0;\n  }\n}\n/* SECTION 4: HOUSING */\n.can-afford-housing {\n  border: 1px solid #5b5b5b;\n  background-color: #fff;\n  padding: 0.5em;\n  margin: 0 auto;\n  width: 90%;\n}\n\n.can-afford-housing h3 {\n  padding-left: 1em; /* matching p text-indent */\n  font-size: 2.3em;\n  font-weight: bold;\n}\n\n.afford-housing-yes h3 {\n  color: #669776;\n}\n\n.afford-housing-no h3 {\n  color: #b5441d;\n}\n\n/* SECTION 5: STATE MAP VIEW */\n.map-row {\n  margin-top: 1em;\n}\n\n.map-wrapper {\n  margin-top: 1em;\n  margin-bottom: 1em;\n}\n\n.fine-print {\n  max-width: 90%;\n  margin: 0 auto;\n  font-size: 0.9em;\n}\n/* FOOTER */\nfooter {\n  font-size: 2rem;\n  padding: 1em;\n  color: #5b5b5b;\n  background-color: #c9dacf;\n}\n\n.ho-logo {\n  max-height: 3em;\n}\n\n.ho-logo-gray {\n  max-height: 50px;\n}\n\n\n/* GENERAL */\n.section-heading {\n  font-size: 2.4em;\n  padding-bottom:.25em;\n  padding-top:1em;\n}\n\n@media only screen and (max-width: 480px) {\n  .section-heading {\n    font-size: 1.8em;\n  }\n}\n\n/* TEST STATS */\n.test-stats {\n  display: none;\n  max-width: 90%;\n  margin: 10px auto;\n}\n.test-stats p {\n  display: inline;\n  margin-left: 20px;\n  font-size: 1.2em;\n}\n\n/* STICKY STYLE MODIFICATIONS */\n.sticky {\n  background-color: #fff;\n  padding: 10px 30px 40px 14px;\n  border-bottom: 1px solid black;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  z-index: 100;\n}\n\n.sticky .slider-self-wrapper {\n  border: none;\n  padding-top: 0;\n  padding-bottom: 0;\n  padding-right: 1em;\n  padding-left: 2em;\n}\n\n.sticky .slider-wage-box {\n  margin-bottom: 10px;\n}\n\n\n\n/* SLIDER (main styles in rc-slider.css) */\n.slider-section {\n  margin-bottom: 1.5em;\n}\n.slider-with-heading {\n  margin: 0 auto;\n  width: 90%;\n}\n\n.slider-wage-box {\n  display: inline-block;\n  text-align: center;\n  font-size: 2em;\n  font-weight: bold;\n  color: #669776;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 1em;\n  width: 100%;\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-section {\n    margin-bottom: 0;\n  }\n  .slider-with-heading {\n    margin: 0;\n    width: 100%;\n  }\n}\n\n.slider-self-wrapper {\n  width: 100%;\n  background-color: #fff;\n  padding: 8em 3em;\n  padding-top: 5em;\n  padding-bottom: 9em;\n  border: 1px solid #000;\n\n}\n\n@media only screen and (max-width: 480px) {\n  .slider-self-wrapper {\n    padding: 1em 2em 2.75em;\n  }\n  .slider-wage-box {\n    margin-bottom: 10px;\n  }\n}\n\n/* HOUSING */\n.can-afford-housing h3 {\n  font-weight: bold;\n}\n\n/* MAP */\n.map-toggle-btn {\n  display: block;\n  margin: 10px auto;\n}\n\n/* LOGO-MISSION */\n.OHE-logo {\n  max-height: 20em;\n  padding-top:2em;\n  padding-bottom:2em;\n}\n\n.mission-statement {\n  background-color: #fff;\n  box-shadow: 0 0 5px 0 #000;\n}\n\n.cover-text {\n  text-align:justify;\n  padding-right:3.75em;\n  font-size:1.25em;\n  border:none;\n}\n\n.apple-girl {\n  max-height: 35em;\n}\n\n/* BarChart*/\n.bar-chart-section {\n  border: 1px solid #656565;\n    background-color: #eee;\n    padding: 1.5em;\n    margin: 25px auto;\n    width: 95%;\n    border-radius:3px;\n}\n\n/* OTHER PAGES */\n.hunger-page-root {\n  margin: 60px auto 0 auto;\n  max-width: 95%;\n}\n\n.hunger-page-root p {\n  margin-bottom: 1em;\n}\n\n.team-list {\n  list-style: none;\n}\n.team-list li {\n  font-size: 1.25em;\n  margin: 12px 0 12px 0;\n}\n.team-list span {\n  margin: 12px;\n}\n\n.deep-dive-source-list {\n  list-style: none;\n}\n\n.deep-dive-source-list li {\n  margin: 10px;\n}\n", ""]);
 	
 	// exports
 
@@ -61453,7 +61489,7 @@
 	        _react2.default.createElement(
 	          "span",
 	          { className: "role" },
-	          "Program Director"
+	          "Program Director, Software Engineer"
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -61462,7 +61498,7 @@
 	        _react2.default.createElement(
 	          "span",
 	          { className: "name" },
-	          "Tiffany Devine"
+	          "Tiffany DeVine"
 	        ),
 	        "-",
 	        _react2.default.createElement(
@@ -61680,7 +61716,42 @@
 	    _react2.default.createElement(
 	      "ul",
 	      { className: "deep-dive-source-list" },
-	      _react2.default.createElement("li", null)
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "http://raiseeffect.org/#/about?_k=33mbvy" },
+	          "http://raiseeffect.org/#/about?_k=33mbvy"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "http://agsci.oregonstate.edu/sites/agscid7/files/oregonhungerreportjune2016.pdf" },
+	          "http://agsci.oregonstate.edu/sites/agscid7/files/oregonhungerreportjune2016.pdf"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "https://oregonhunger.org/hunger-in-oregon" },
+	          "https://oregonhunger.org/hunger-in-oregon"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "http://map.feedingamerica.org/county/2014/overall/oregon" },
+	          "http://map.feedingamerica.org/county/2014/overall/oregon"
+	        )
+	      )
 	    )
 	  );
 	};
