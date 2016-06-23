@@ -258,16 +258,16 @@ export default class App extends React.Component {
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
             <div className="benefits-row">
-              <p className="snap-benefits-text-wrapper">
+              <div className="snap-benefits-text-wrapper">
                 <p className="snap-benefits-text">
                 Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
-              </p>
-              <p className="school-benefits-text-wrapper">
+              </div>
+              <div className="school-benefits-text-wrapper">
                 <p className="school-benefits-text">
                 Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
-              </p>
+              </div>
             </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
@@ -321,16 +321,16 @@ export default class App extends React.Component {
           <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
           <div className="benefits-row">
-            <p className="snap-benefits-text-wrapper">
+            <div className="snap-benefits-text-wrapper">
               <p className="snap-benefits-text">
               Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
               </p>
-            </p>
-            <p className="school-benefits-text-wrapper">
+            </div>
+            <div className="school-benefits-text-wrapper">
               <p className="school-benefits-text">
               Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
               </p>
-            </p>
+            </div>
           </div>
           <div className="indicator-wrapper">
             <IndicatorSlider
