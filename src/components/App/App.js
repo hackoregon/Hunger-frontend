@@ -376,6 +376,14 @@ export default class App extends React.Component {
                     >
                     You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
                     </p>
+                    <div className="barchart-notes">
+                      <p>
+                      <strong>DATA HINT</strong>: Transportation expenses include car insurance, gas, oil, registration, repairs and monthly payments OR public transportation for commuting to and from work and day care plus a weekly shopping trip.
+                      </p>
+                      <p>
+                      Miscellaneous expenses include clothing, shoes, paper products, diapers, nonprescription medications, cleaning products, household items, personal items and telephone service.
+                      </p>
+                    </div>
                     </section>
               </div>
             </div>
