@@ -15,12 +15,15 @@ section {
 }
 
 .section-heading,
+.subheading,
 .family-type-hr {
   font-family: 'Oswald', 'Roboto', Arial, sans-serif;
   font-weight: 300;
 }
 
-
+.subheading {
+  font-size: 1.7em;
+}
 
 p {
   font-size: 1.6em;
