@@ -9,8 +9,6 @@ import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
-import { sssTransportation } from '../../fixtures/sssTransportation'
-import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { StickyContainer, Sticky } from 'react-sticky'
@@ -104,7 +102,7 @@ export default class App extends React.Component {
   }
 
   getIndicatorValue(bestCase = true) {
-    let { individuals, selectedCounty, sliderWage } = this.state
+    let { selectedCounty } = this.state
     const statusPositions = [12.5, 37.5, 62.5, 87.5]
     const status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase)
     return statusPositions[status]
