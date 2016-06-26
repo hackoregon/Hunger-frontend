@@ -183,7 +183,6 @@ function calcMealGap(individuals, income, fips, bestCase = true) {
   return Math.max(0, Math.round(mealGap))
 }
 
-
 export {
   calcMealGap,
   moneyAfterHousing,
