@@ -20,8 +20,6 @@ const DataDeepDive = () => (
       <li><a href="https://oregonhunger.org/hunger-in-oregon" target="_blank">https://oregonhunger.org/hunger-in-oregon</a></li>
       <li><a href="http://map.feedingamerica.org/county/2014/overall/oregon" target="_blank">http://map.feedingamerica.org/county/2014/overall/oregon</a></li>
     </ul>
-
-
   </div>
 )
 

@@ -16,4 +16,8 @@ const HorizontalRule = (props) => {
   )
 }
 
+HorizontalRule.propTypes = {
+  small: PropTypes.bool,
+}
+
 export default HorizontalRule
