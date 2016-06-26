@@ -258,16 +258,16 @@ export default class App extends React.Component {
               <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
             </DonutChart>
             <div className="benefits-row">
-              <p className="snap-benefits-text-wrapper">
+              <div className="snap-benefits-text-wrapper">
                 <p className="snap-benefits-text">
                 Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
-              </p>
-              <p className="school-benefits-text-wrapper">
+              </div>
+              <div className="school-benefits-text-wrapper">
                 <p className="school-benefits-text">
                 Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
-              </p>
+              </div>
             </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
@@ -321,16 +321,16 @@ export default class App extends React.Component {
           <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
           <div className="benefits-row">
-            <p className="snap-benefits-text-wrapper">
+            <div className="snap-benefits-text-wrapper">
               <p className="snap-benefits-text">
               Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
               </p>
-            </p>
-            <p className="school-benefits-text-wrapper">
+            </div>
+            <div className="school-benefits-text-wrapper">
               <p className="school-benefits-text">
               Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
               </p>
-            </p>
+            </div>
           </div>
           <div className="indicator-wrapper">
             <IndicatorSlider
@@ -411,7 +411,7 @@ export default class App extends React.Component {
                 <p className="snugget-text conclusion-text">
                   The Oregon Hunger Equation is a conservative model. The amount of data that is available for looking at hunger in Oregon is vast, and this program attempts to make sense of it by showing the simplest, best-case scenarios in counties across Oregon. For more info about how this model was built, take a look at the <Link style={{ color: "#669776" }} to="/data-deep-dive">data deep dive.</Link>
                 </p>
-                <p className="fine-print">This website is intended to be used for informational purposes only, as a tool to better understand hunger throughout Oregon. It is not intended to be used to calculate actual SNAP or school meal benefits for an individual or family.</p>
+                <p className="fine-print">This website is intended to be used for informational purposes only, as a tool to better understand hunger throughout Oregon. It is not intended to be used to calculate actual SNAP or school meal benefits for an individual or family. Visit the <Link to="/data-deep-dive">data deep dive</Link> page for details on what is included in the calculations.</p>
               </div>
             </div>
           </div>
