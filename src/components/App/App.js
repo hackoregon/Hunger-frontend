@@ -378,10 +378,7 @@ export default class App extends React.Component {
                     </p>
                     <div className="barchart-notes">
                       <p>
-                      <strong>DATA HINT</strong>: Transportation expenses include car insurance, gas, oil, registration, repairs and monthly payments OR public transportation for commuting to and from work and day care plus a weekly shopping trip.
-                      </p>
-                      <p>
-                      Miscellaneous expenses include clothing, shoes, paper products, diapers, nonprescription medications, cleaning products, household items, personal items and telephone service.
+                      <strong>DATA HINT</strong>: For details about what is included in transportation and miscellaneous costs, see the <Link to="/data-deep-dive">data deep dive.</Link>
                       </p>
                     </div>
                     </section>
