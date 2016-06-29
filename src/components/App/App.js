@@ -9,8 +9,6 @@ import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
-import { sssTransportation } from '../../fixtures/sssTransportation'
-import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
 import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { StickyContainer, Sticky } from 'react-sticky'
@@ -104,7 +102,7 @@ export default class App extends React.Component {
   }
 
   getIndicatorValue(bestCase = true) {
-    let { individuals, selectedCounty, sliderWage } = this.state
+    let { selectedCounty } = this.state
     const statusPositions = [12.5, 37.5, 62.5, 87.5]
     const status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase)
     return statusPositions[status]
@@ -328,7 +326,8 @@ export default class App extends React.Component {
             </div>
             <div className="school-benefits-text-wrapper">
               <p className="school-benefits-text">
-              Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
+              Estimated school meal benefits: <span
+                className="dynamic-text" style={{color: "#b5441d"}}>$0.00</span>
               </p>
             </div>
           </div>
