@@ -20416,21 +20416,17 @@
 	
 	var _data2 = _interopRequireDefault(_data);
 	
-	var _sssTransportation = __webpack_require__(280);
-	
-	var _sssMiscellaneous = __webpack_require__(281);
-	
 	var _constants = __webpack_require__(239);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _MapView = __webpack_require__(282);
+	var _MapView = __webpack_require__(280);
 	
 	var _MapView2 = _interopRequireDefault(_MapView);
 	
-	var _reactSticky = __webpack_require__(285);
+	var _reactSticky = __webpack_require__(283);
 	
-	var _calculators = __webpack_require__(289);
+	var _calculators = __webpack_require__(287);
 	
 	var _jquery = __webpack_require__(290);
 	
@@ -20545,10 +20541,7 @@
 	    key: 'getIndicatorValue',
 	    value: function getIndicatorValue() {
 	      var bestCase = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
-	      var _state2 = this.state;
-	      var individuals = _state2.individuals;
-	      var selectedCounty = _state2.selectedCounty;
-	      var sliderWage = _state2.sliderWage;
+	      var selectedCounty = this.state.selectedCounty;
 	
 	      var statusPositions = [12.5, 37.5, 62.5, 87.5];
 	      var status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase);
@@ -20564,10 +20557,10 @@
 	    value: function render() {
 	      var _this3 = this;
 	
-	      var _state3 = this.state;
-	      var individuals = _state3.individuals;
-	      var sliderWage = _state3.sliderWage;
-	      var selectedCounty = _state3.selectedCounty;
+	      var _state2 = this.state;
+	      var individuals = _state2.individuals;
+	      var sliderWage = _state2.sliderWage;
+	      var selectedCounty = _state2.selectedCounty;
 	
 	      var barChartData = [{
 	        label: "Your $ for transportation",
@@ -20967,8 +20960,9 @@
 	                  'Estimated school meal benefits: ',
 	                  _react2.default.createElement(
 	                    'span',
-	                    { className: 'dynamic-text' },
-	                    '$' + (0, _calculators.getSchoolMealBenefit)(individuals, selectedCounty.fips).toFixed(2)
+	                    {
+	                      className: 'dynamic-text', style: { color: "#b5441d" } },
+	                    '$0.00'
 	                  )
 	                )
 	              )
@@ -28285,6 +28279,10 @@
 	      props.children
 	    )
 	  );
+	};
+	
+	HorizontalRule.propTypes = {
+	  small: _react.PropTypes.bool
 	};
 	
 	exports.default = HorizontalRule;
@@ -42324,394 +42322,6 @@
 
 /***/ },
 /* 280 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	   value: true
-	});
-	var sssTransportation = exports.sssTransportation = {
-	   "41071": {
-	      "transportation_1": 270.1328796,
-	      "transportation_3": 278.4928796,
-	      "transportation_4": 529.5710565
-	   },
-	   "41069": {
-	      "transportation_1": 240.9042698,
-	      "transportation_3": 249.2642698,
-	      "transportation_4": 475.2418056
-	   },
-	   "41067": {
-	      "transportation_1": 279.7548182,
-	      "transportation_3": 288.1148182,
-	      "transportation_4": 548.8149338
-	   },
-	   "41065": {
-	      "transportation_1": 245.0328895,
-	      "transportation_3": 253.3928895,
-	      "transportation_4": 483.499045
-	   },
-	   "41063": {
-	      "transportation_1": 240.3030286,
-	      "transportation_3": 248.6630286,
-	      "transportation_4": 474.039323
-	   },
-	   "41061": {
-	      "transportation_1": 238.6599959,
-	      "transportation_3": 247.0199959,
-	      "transportation_4": 470.7532577
-	   },
-	   "41059": {
-	      "transportation_1": 239.5720439,
-	      "transportation_3": 247.9320439,
-	      "transportation_4": 472.5773537
-	   },
-	   "41057": {
-	      "transportation_1": 242.1096241,
-	      "transportation_3": 250.4696241,
-	      "transportation_4": 477.6525141
-	   },
-	   "41055": {
-	      "transportation_1": 247.5893165,
-	      "transportation_3": 255.9493165,
-	      "transportation_4": 488.6118989
-	   },
-	   "41053": {
-	      "transportation_1": 272.8629658,
-	      "transportation_3": 281.2229658,
-	      "transportation_4": 535.031229
-	   },
-	   "41051": {
-	      "transportation_1": 100,
-	      "transportation_3": 100,
-	      "transportation_4": 200
-	   },
-	   "41049": {
-	      "transportation_1": 241.8558661,
-	      "transportation_3": 250.2158661,
-	      "transportation_4": 477.1449981
-	   },
-	   "41047": {
-	      "transportation_1": 279.1396064,
-	      "transportation_3": 287.4996064,
-	      "transportation_4": 547.5845103
-	   },
-	   "41045": {
-	      "transportation_1": 238.7818266,
-	      "transportation_3": 247.1418266,
-	      "transportation_4": 470.9969192
-	   },
-	   "41043": {
-	      "transportation_1": 236.9994626,
-	      "transportation_3": 245.3594626,
-	      "transportation_4": 467.4321912
-	   },
-	   "41041": {
-	      "transportation_1": 241.9548115,
-	      "transportation_3": 250.3148115,
-	      "transportation_4": 477.3428889
-	   },
-	   "41039": {
-	      "transportation_1": 237.7634291,
-	      "transportation_3": 246.1234291,
-	      "transportation_4": 468.9601241
-	   },
-	   "41037": {
-	      "transportation_1": 238.1625763,
-	      "transportation_3": 246.5225763,
-	      "transportation_4": 469.7584185
-	   },
-	   "41035": {
-	      "transportation_1": 240.4403406,
-	      "transportation_3": 248.8003406,
-	      "transportation_4": 474.3139471
-	   },
-	   "41033": {
-	      "transportation_1": 238.4116226,
-	      "transportation_3": 246.7716226,
-	      "transportation_4": 470.2565112
-	   },
-	   "41031": {
-	      "transportation_1": 242.2038578,
-	      "transportation_3": 250.5638578,
-	      "transportation_4": 477.8409816
-	   },
-	   "41029": {
-	      "transportation_1": 234.2747612,
-	      "transportation_3": 242.6347612,
-	      "transportation_4": 461.9827882
-	   },
-	   "41027": {
-	      "transportation_1": 244.7017252,
-	      "transportation_3": 253.0617252,
-	      "transportation_4": 482.8367164
-	   },
-	   "41025": {
-	      "transportation_1": 236.5363711,
-	      "transportation_3": 244.8963711,
-	      "transportation_4": 466.5060081
-	   },
-	   "41023": {
-	      "transportation_1": 238.2870995,
-	      "transportation_3": 246.6470995,
-	      "transportation_4": 470.0074649
-	   },
-	   "41021": {
-	      "transportation_1": 242.6083899,
-	      "transportation_3": 250.9683899,
-	      "transportation_4": 478.6500456
-	   },
-	   "41019": {
-	      "transportation_1": 237.1697565,
-	      "transportation_3": 245.5297565,
-	      "transportation_4": 467.7727789
-	   },
-	   "41017": {
-	      "transportation_1": 240.5298626,
-	      "transportation_3": 248.8898626,
-	      "transportation_4": 474.4929912
-	   },
-	   "41015": {
-	      "transportation_1": 239.1298184,
-	      "transportation_3": 247.4898184,
-	      "transportation_4": 471.6929027
-	   },
-	   "41013": {
-	      "transportation_1": 236.7524356,
-	      "transportation_3": 245.1124356,
-	      "transportation_4": 466.9381371
-	   },
-	   "41011": {
-	      "transportation_1": 236.8123413,
-	      "transportation_3": 245.1723413,
-	      "transportation_4": 467.0579486
-	   },
-	   "41009": {
-	      "transportation_1": 277.7664861,
-	      "transportation_3": 286.1264861,
-	      "transportation_4": 544.8382697
-	   },
-	   "41007": {
-	      "transportation_1": 242.5976203,
-	      "transportation_3": 250.9576203,
-	      "transportation_4": 478.6285065
-	   },
-	   "41005": {
-	      "transportation_1": 278.9780629,
-	      "transportation_3": 287.3380629,
-	      "transportation_4": 547.2614232
-	   },
-	   "41003": {
-	      "transportation_1": 234.5211151,
-	      "transportation_3": 242.8811151,
-	      "transportation_4": 462.4754961
-	   },
-	   "41001": {
-	      "transportation_1": 238.4991254,
-	      "transportation_3": 246.8591254,
-	      "transportation_4": 470.4315167
-	   }
-	};
-	
-	exports.default = sssTransportation;
-
-/***/ },
-/* 281 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var sssMiscellaneous = exports.sssMiscellaneous = {
-	  "41071": {
-	    "miscellaneous_1": 137.0987144,
-	    "miscellaneous_3": 295.52404,
-	    "miscellaneous_4": 347.0787723
-	  },
-	  "41069": {
-	    "miscellaneous_1": 108.7539846,
-	    "miscellaneous_3": 285.0476172,
-	    "miscellaneous_4": 333.600631
-	  },
-	  "41067": {
-	    "miscellaneous_1": 146.1427564,
-	    "miscellaneous_3": 331.4841537,
-	    "miscellaneous_4": 383.6043275
-	  },
-	  "41065": {
-	    "miscellaneous_1": 122.2248504,
-	    "miscellaneous_3": 285.2138691,
-	    "miscellaneous_4": 336.3950394
-	  },
-	  "41063": {
-	    "miscellaneous_1": 112.7691693,
-	    "miscellaneous_3": 285.76653,
-	    "miscellaneous_4": 334.2695837
-	  },
-	  "41061": {
-	    "miscellaneous_1": 110.7706045,
-	    "miscellaneous_3": 288.3597676,
-	    "miscellaneous_4": 337.8441482
-	  },
-	  "41059": {
-	    "miscellaneous_1": 114.3993523,
-	    "miscellaneous_3": 301.8114231,
-	    "miscellaneous_4": 350.3280145
-	  },
-	  "41057": {
-	    "miscellaneous_1": 124.6962561,
-	    "miscellaneous_3": 272.3272438,
-	    "miscellaneous_4": 322.8511741
-	  },
-	  "41055": {
-	    "miscellaneous_1": 115.7218624,
-	    "miscellaneous_3": 284.9528033,
-	    "miscellaneous_4": 333.9221453
-	  },
-	  "41053": {
-	    "miscellaneous_1": 123.0308796,
-	    "miscellaneous_3": 286.0900093,
-	    "miscellaneous_4": 338.0674788
-	  },
-	  "41051": {
-	    "miscellaneous_1": 123.1945546,
-	    "miscellaneous_3": 333.2045694,
-	    "miscellaneous_4": 370.6646605
-	  },
-	  "41049": {
-	    "miscellaneous_1": 108.4863226,
-	    "miscellaneous_3": 288.3782323,
-	    "miscellaneous_4": 336.5851667
-	  },
-	  "41047": {
-	    "miscellaneous_1": 121.3501357,
-	    "miscellaneous_3": 281.6381158,
-	    "miscellaneous_4": 332.6180727
-	  },
-	  "41045": {
-	    "miscellaneous_1": 109.0976419,
-	    "miscellaneous_3": 269.2342752,
-	    "miscellaneous_4": 316.3945592
-	  },
-	  "41043": {
-	    "miscellaneous_1": 115.2250994,
-	    "miscellaneous_3": 279.9630844,
-	    "miscellaneous_4": 327.3429175
-	  },
-	  "41041": {
-	    "miscellaneous_1": 125.4444033,
-	    "miscellaneous_3": 290.6253332,
-	    "miscellaneous_4": 342.1341059
-	  },
-	  "41039": {
-	    "miscellaneous_1": 122.6630683,
-	    "miscellaneous_3": 307.2814909,
-	    "miscellaneous_4": 355.5663948
-	  },
-	  "41037": {
-	    "miscellaneous_1": 114.6310494,
-	    "miscellaneous_3": 280.9876902,
-	    "miscellaneous_4": 329.2738632
-	  },
-	  "41035": {
-	    "miscellaneous_1": 119.3689397,
-	    "miscellaneous_3": 292.0732343,
-	    "miscellaneous_4": 342.3572227
-	  },
-	  "41033": {
-	    "miscellaneous_1": 124.1667512,
-	    "miscellaneous_3": 301.7001064,
-	    "miscellaneous_4": 351.438386
-	  },
-	  "41031": {
-	    "miscellaneous_1": 114.9787344,
-	    "miscellaneous_3": 289.6815291,
-	    "miscellaneous_4": 340.6945382
-	  },
-	  "41029": {
-	    "miscellaneous_1": 121.7984445,
-	    "miscellaneous_3": 293.0528735,
-	    "miscellaneous_4": 340.787708
-	  },
-	  "41027": {
-	    "miscellaneous_1": 135.6905876,
-	    "miscellaneous_3": 324.8238828,
-	    "miscellaneous_4": 376.672131
-	  },
-	  "41025": {
-	    "miscellaneous_1": 108.3574639,
-	    "miscellaneous_3": 284.7130743,
-	    "miscellaneous_4": 332.8630775
-	  },
-	  "41023": {
-	    "miscellaneous_1": 110.3364206,
-	    "miscellaneous_3": 294.943494,
-	    "miscellaneous_4": 342.7685265
-	  },
-	  "41021": {
-	    "miscellaneous_1": 110.3681968,
-	    "miscellaneous_3": 285.5831506,
-	    "miscellaneous_4": 334.4272012
-	  },
-	  "41019": {
-	    "miscellaneous_1": 109.2821969,
-	    "miscellaneous_3": 270.9636785,
-	    "miscellaneous_4": 318.3121231
-	  },
-	  "41017": {
-	    "miscellaneous_1": 126.5507959,
-	    "miscellaneous_3": 290.782137,
-	    "miscellaneous_4": 340.1433373
-	  },
-	  "41015": {
-	    "miscellaneous_1": 123.7190252,
-	    "miscellaneous_3": 284.3968966,
-	    "miscellaneous_4": 335.4818172
-	  },
-	  "41013": {
-	    "miscellaneous_1": 116.7099335,
-	    "miscellaneous_3": 287.8442277,
-	    "miscellaneous_4": 336.5306939
-	  },
-	  "41011": {
-	    "miscellaneous_1": 114.7941144,
-	    "miscellaneous_3": 272.3466219,
-	    "miscellaneous_4": 321.024557
-	  },
-	  "41009": {
-	    "miscellaneous_1": 131.6364346,
-	    "miscellaneous_3": 318.4210751,
-	    "miscellaneous_4": 372.295496
-	  },
-	  "41007": {
-	    "miscellaneous_1": 118.0295194,
-	    "miscellaneous_3": 281.3282197,
-	    "miscellaneous_4": 329.5391772
-	  },
-	  "41005": {
-	    "miscellaneous_1": 146.7560845,
-	    "miscellaneous_3": 330.4999367,
-	    "miscellaneous_4": 383.6166123
-	  },
-	  "41003": {
-	    "miscellaneous_1": 125.163539,
-	    "miscellaneous_3": 318.0872551,
-	    "miscellaneous_4": 367.5444678
-	  },
-	  "41001": {
-	    "miscellaneous_1": 113.8726097,
-	    "miscellaneous_3": 287.8200738,
-	    "miscellaneous_4": 336.8841259
-	  }
-	};
-	
-	exports.default = sssMiscellaneous;
-
-/***/ },
-/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42734,7 +42344,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(283);
+	__webpack_require__(281);
 	
 	var MapView = function (_React$Component) {
 	  _inherits(MapView, _React$Component);
@@ -42874,13 +42484,13 @@
 	exports.default = MapView;
 
 /***/ },
-/* 283 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(282);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(231)(content, {});
@@ -42900,7 +42510,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(230)();
@@ -42914,7 +42524,7 @@
 
 
 /***/ },
-/* 285 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42924,15 +42534,15 @@
 	});
 	exports.Channel = exports.StickyContainer = exports.Sticky = undefined;
 	
-	var _sticky = __webpack_require__(286);
+	var _sticky = __webpack_require__(284);
 	
 	var _sticky2 = _interopRequireDefault(_sticky);
 	
-	var _container = __webpack_require__(287);
+	var _container = __webpack_require__(285);
 	
 	var _container2 = _interopRequireDefault(_container);
 	
-	var _channel = __webpack_require__(288);
+	var _channel = __webpack_require__(286);
 	
 	var _channel2 = _interopRequireDefault(_channel);
 	
@@ -42944,7 +42554,7 @@
 	exports.default = _sticky2.default;
 
 /***/ },
-/* 286 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43197,7 +42807,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 287 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43216,7 +42826,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _channel = __webpack_require__(288);
+	var _channel = __webpack_require__(286);
 	
 	var _channel2 = _interopRequireDefault(_channel);
 	
@@ -43302,7 +42912,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 288 */
+/* 286 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43340,7 +42950,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 289 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43352,9 +42962,9 @@
 	
 	var _data = __webpack_require__(279);
 	
-	var _sssMiscellaneous = __webpack_require__(281);
+	var _sssMiscellaneous = __webpack_require__(288);
 	
-	var _sssTransportation = __webpack_require__(280);
+	var _sssTransportation = __webpack_require__(289);
 	
 	var _constants = __webpack_require__(239);
 	
@@ -43560,6 +43170,394 @@
 	exports.getSSSMiscellaneous = getSSSMiscellaneous;
 	exports.getSSSTransportation = getSSSTransportation;
 	exports.getBarChartValues = getBarChartValues;
+
+/***/ },
+/* 288 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var sssMiscellaneous = exports.sssMiscellaneous = {
+	  "41071": {
+	    "miscellaneous_1": 137.0987144,
+	    "miscellaneous_3": 295.52404,
+	    "miscellaneous_4": 347.0787723
+	  },
+	  "41069": {
+	    "miscellaneous_1": 108.7539846,
+	    "miscellaneous_3": 285.0476172,
+	    "miscellaneous_4": 333.600631
+	  },
+	  "41067": {
+	    "miscellaneous_1": 146.1427564,
+	    "miscellaneous_3": 331.4841537,
+	    "miscellaneous_4": 383.6043275
+	  },
+	  "41065": {
+	    "miscellaneous_1": 122.2248504,
+	    "miscellaneous_3": 285.2138691,
+	    "miscellaneous_4": 336.3950394
+	  },
+	  "41063": {
+	    "miscellaneous_1": 112.7691693,
+	    "miscellaneous_3": 285.76653,
+	    "miscellaneous_4": 334.2695837
+	  },
+	  "41061": {
+	    "miscellaneous_1": 110.7706045,
+	    "miscellaneous_3": 288.3597676,
+	    "miscellaneous_4": 337.8441482
+	  },
+	  "41059": {
+	    "miscellaneous_1": 114.3993523,
+	    "miscellaneous_3": 301.8114231,
+	    "miscellaneous_4": 350.3280145
+	  },
+	  "41057": {
+	    "miscellaneous_1": 124.6962561,
+	    "miscellaneous_3": 272.3272438,
+	    "miscellaneous_4": 322.8511741
+	  },
+	  "41055": {
+	    "miscellaneous_1": 115.7218624,
+	    "miscellaneous_3": 284.9528033,
+	    "miscellaneous_4": 333.9221453
+	  },
+	  "41053": {
+	    "miscellaneous_1": 123.0308796,
+	    "miscellaneous_3": 286.0900093,
+	    "miscellaneous_4": 338.0674788
+	  },
+	  "41051": {
+	    "miscellaneous_1": 123.1945546,
+	    "miscellaneous_3": 333.2045694,
+	    "miscellaneous_4": 370.6646605
+	  },
+	  "41049": {
+	    "miscellaneous_1": 108.4863226,
+	    "miscellaneous_3": 288.3782323,
+	    "miscellaneous_4": 336.5851667
+	  },
+	  "41047": {
+	    "miscellaneous_1": 121.3501357,
+	    "miscellaneous_3": 281.6381158,
+	    "miscellaneous_4": 332.6180727
+	  },
+	  "41045": {
+	    "miscellaneous_1": 109.0976419,
+	    "miscellaneous_3": 269.2342752,
+	    "miscellaneous_4": 316.3945592
+	  },
+	  "41043": {
+	    "miscellaneous_1": 115.2250994,
+	    "miscellaneous_3": 279.9630844,
+	    "miscellaneous_4": 327.3429175
+	  },
+	  "41041": {
+	    "miscellaneous_1": 125.4444033,
+	    "miscellaneous_3": 290.6253332,
+	    "miscellaneous_4": 342.1341059
+	  },
+	  "41039": {
+	    "miscellaneous_1": 122.6630683,
+	    "miscellaneous_3": 307.2814909,
+	    "miscellaneous_4": 355.5663948
+	  },
+	  "41037": {
+	    "miscellaneous_1": 114.6310494,
+	    "miscellaneous_3": 280.9876902,
+	    "miscellaneous_4": 329.2738632
+	  },
+	  "41035": {
+	    "miscellaneous_1": 119.3689397,
+	    "miscellaneous_3": 292.0732343,
+	    "miscellaneous_4": 342.3572227
+	  },
+	  "41033": {
+	    "miscellaneous_1": 124.1667512,
+	    "miscellaneous_3": 301.7001064,
+	    "miscellaneous_4": 351.438386
+	  },
+	  "41031": {
+	    "miscellaneous_1": 114.9787344,
+	    "miscellaneous_3": 289.6815291,
+	    "miscellaneous_4": 340.6945382
+	  },
+	  "41029": {
+	    "miscellaneous_1": 121.7984445,
+	    "miscellaneous_3": 293.0528735,
+	    "miscellaneous_4": 340.787708
+	  },
+	  "41027": {
+	    "miscellaneous_1": 135.6905876,
+	    "miscellaneous_3": 324.8238828,
+	    "miscellaneous_4": 376.672131
+	  },
+	  "41025": {
+	    "miscellaneous_1": 108.3574639,
+	    "miscellaneous_3": 284.7130743,
+	    "miscellaneous_4": 332.8630775
+	  },
+	  "41023": {
+	    "miscellaneous_1": 110.3364206,
+	    "miscellaneous_3": 294.943494,
+	    "miscellaneous_4": 342.7685265
+	  },
+	  "41021": {
+	    "miscellaneous_1": 110.3681968,
+	    "miscellaneous_3": 285.5831506,
+	    "miscellaneous_4": 334.4272012
+	  },
+	  "41019": {
+	    "miscellaneous_1": 109.2821969,
+	    "miscellaneous_3": 270.9636785,
+	    "miscellaneous_4": 318.3121231
+	  },
+	  "41017": {
+	    "miscellaneous_1": 126.5507959,
+	    "miscellaneous_3": 290.782137,
+	    "miscellaneous_4": 340.1433373
+	  },
+	  "41015": {
+	    "miscellaneous_1": 123.7190252,
+	    "miscellaneous_3": 284.3968966,
+	    "miscellaneous_4": 335.4818172
+	  },
+	  "41013": {
+	    "miscellaneous_1": 116.7099335,
+	    "miscellaneous_3": 287.8442277,
+	    "miscellaneous_4": 336.5306939
+	  },
+	  "41011": {
+	    "miscellaneous_1": 114.7941144,
+	    "miscellaneous_3": 272.3466219,
+	    "miscellaneous_4": 321.024557
+	  },
+	  "41009": {
+	    "miscellaneous_1": 131.6364346,
+	    "miscellaneous_3": 318.4210751,
+	    "miscellaneous_4": 372.295496
+	  },
+	  "41007": {
+	    "miscellaneous_1": 118.0295194,
+	    "miscellaneous_3": 281.3282197,
+	    "miscellaneous_4": 329.5391772
+	  },
+	  "41005": {
+	    "miscellaneous_1": 146.7560845,
+	    "miscellaneous_3": 330.4999367,
+	    "miscellaneous_4": 383.6166123
+	  },
+	  "41003": {
+	    "miscellaneous_1": 125.163539,
+	    "miscellaneous_3": 318.0872551,
+	    "miscellaneous_4": 367.5444678
+	  },
+	  "41001": {
+	    "miscellaneous_1": 113.8726097,
+	    "miscellaneous_3": 287.8200738,
+	    "miscellaneous_4": 336.8841259
+	  }
+	};
+	
+	exports.default = sssMiscellaneous;
+
+/***/ },
+/* 289 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	var sssTransportation = exports.sssTransportation = {
+	   "41071": {
+	      "transportation_1": 270.1328796,
+	      "transportation_3": 278.4928796,
+	      "transportation_4": 529.5710565
+	   },
+	   "41069": {
+	      "transportation_1": 240.9042698,
+	      "transportation_3": 249.2642698,
+	      "transportation_4": 475.2418056
+	   },
+	   "41067": {
+	      "transportation_1": 279.7548182,
+	      "transportation_3": 288.1148182,
+	      "transportation_4": 548.8149338
+	   },
+	   "41065": {
+	      "transportation_1": 245.0328895,
+	      "transportation_3": 253.3928895,
+	      "transportation_4": 483.499045
+	   },
+	   "41063": {
+	      "transportation_1": 240.3030286,
+	      "transportation_3": 248.6630286,
+	      "transportation_4": 474.039323
+	   },
+	   "41061": {
+	      "transportation_1": 238.6599959,
+	      "transportation_3": 247.0199959,
+	      "transportation_4": 470.7532577
+	   },
+	   "41059": {
+	      "transportation_1": 239.5720439,
+	      "transportation_3": 247.9320439,
+	      "transportation_4": 472.5773537
+	   },
+	   "41057": {
+	      "transportation_1": 242.1096241,
+	      "transportation_3": 250.4696241,
+	      "transportation_4": 477.6525141
+	   },
+	   "41055": {
+	      "transportation_1": 247.5893165,
+	      "transportation_3": 255.9493165,
+	      "transportation_4": 488.6118989
+	   },
+	   "41053": {
+	      "transportation_1": 272.8629658,
+	      "transportation_3": 281.2229658,
+	      "transportation_4": 535.031229
+	   },
+	   "41051": {
+	      "transportation_1": 100,
+	      "transportation_3": 100,
+	      "transportation_4": 200
+	   },
+	   "41049": {
+	      "transportation_1": 241.8558661,
+	      "transportation_3": 250.2158661,
+	      "transportation_4": 477.1449981
+	   },
+	   "41047": {
+	      "transportation_1": 279.1396064,
+	      "transportation_3": 287.4996064,
+	      "transportation_4": 547.5845103
+	   },
+	   "41045": {
+	      "transportation_1": 238.7818266,
+	      "transportation_3": 247.1418266,
+	      "transportation_4": 470.9969192
+	   },
+	   "41043": {
+	      "transportation_1": 236.9994626,
+	      "transportation_3": 245.3594626,
+	      "transportation_4": 467.4321912
+	   },
+	   "41041": {
+	      "transportation_1": 241.9548115,
+	      "transportation_3": 250.3148115,
+	      "transportation_4": 477.3428889
+	   },
+	   "41039": {
+	      "transportation_1": 237.7634291,
+	      "transportation_3": 246.1234291,
+	      "transportation_4": 468.9601241
+	   },
+	   "41037": {
+	      "transportation_1": 238.1625763,
+	      "transportation_3": 246.5225763,
+	      "transportation_4": 469.7584185
+	   },
+	   "41035": {
+	      "transportation_1": 240.4403406,
+	      "transportation_3": 248.8003406,
+	      "transportation_4": 474.3139471
+	   },
+	   "41033": {
+	      "transportation_1": 238.4116226,
+	      "transportation_3": 246.7716226,
+	      "transportation_4": 470.2565112
+	   },
+	   "41031": {
+	      "transportation_1": 242.2038578,
+	      "transportation_3": 250.5638578,
+	      "transportation_4": 477.8409816
+	   },
+	   "41029": {
+	      "transportation_1": 234.2747612,
+	      "transportation_3": 242.6347612,
+	      "transportation_4": 461.9827882
+	   },
+	   "41027": {
+	      "transportation_1": 244.7017252,
+	      "transportation_3": 253.0617252,
+	      "transportation_4": 482.8367164
+	   },
+	   "41025": {
+	      "transportation_1": 236.5363711,
+	      "transportation_3": 244.8963711,
+	      "transportation_4": 466.5060081
+	   },
+	   "41023": {
+	      "transportation_1": 238.2870995,
+	      "transportation_3": 246.6470995,
+	      "transportation_4": 470.0074649
+	   },
+	   "41021": {
+	      "transportation_1": 242.6083899,
+	      "transportation_3": 250.9683899,
+	      "transportation_4": 478.6500456
+	   },
+	   "41019": {
+	      "transportation_1": 237.1697565,
+	      "transportation_3": 245.5297565,
+	      "transportation_4": 467.7727789
+	   },
+	   "41017": {
+	      "transportation_1": 240.5298626,
+	      "transportation_3": 248.8898626,
+	      "transportation_4": 474.4929912
+	   },
+	   "41015": {
+	      "transportation_1": 239.1298184,
+	      "transportation_3": 247.4898184,
+	      "transportation_4": 471.6929027
+	   },
+	   "41013": {
+	      "transportation_1": 236.7524356,
+	      "transportation_3": 245.1124356,
+	      "transportation_4": 466.9381371
+	   },
+	   "41011": {
+	      "transportation_1": 236.8123413,
+	      "transportation_3": 245.1723413,
+	      "transportation_4": 467.0579486
+	   },
+	   "41009": {
+	      "transportation_1": 277.7664861,
+	      "transportation_3": 286.1264861,
+	      "transportation_4": 544.8382697
+	   },
+	   "41007": {
+	      "transportation_1": 242.5976203,
+	      "transportation_3": 250.9576203,
+	      "transportation_4": 478.6285065
+	   },
+	   "41005": {
+	      "transportation_1": 278.9780629,
+	      "transportation_3": 287.3380629,
+	      "transportation_4": 547.2614232
+	   },
+	   "41003": {
+	      "transportation_1": 234.5211151,
+	      "transportation_3": 242.8811151,
+	      "transportation_4": 462.4754961
+	   },
+	   "41001": {
+	      "transportation_1": 238.4991254,
+	      "transportation_3": 246.8591254,
+	      "transportation_4": 470.4315167
+	   }
+	};
+	
+	exports.default = sssTransportation;
 
 /***/ },
 /* 290 */
