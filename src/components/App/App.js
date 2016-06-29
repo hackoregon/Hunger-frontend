@@ -118,20 +118,20 @@ export default class App extends React.Component {
     const barChartData = [
       {
         label: "Your $ for transportation",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation")
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation").toFixed(2)
       },
       {
         label: "Average transportation costs",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed"),
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed").toFixed(2),
         description: "transportation is based on the local cost of a bus pass"
       },
       {
         label: "Your $ for miscellaneous",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous")
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous").toFixed(2)
       },
       {
         label: "Average miscellaneous costs",
-        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed"),
+        value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed").toFixed(2),
         description: "miscellaneous includes ... but does not include ..."
       },
     ]
