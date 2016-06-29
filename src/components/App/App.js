@@ -375,6 +375,11 @@ export default class App extends React.Component {
                     >
                     You can now afford <span className="dynamic-text">{extraMeals}</span> extra meals.
                     </p>
+                    <div className="barchart-notes">
+                      <p>
+                      <strong>DATA HINT</strong>: For details about what is included in transportation and miscellaneous costs, see the <Link to="/data-deep-dive">data deep dive.</Link>
+                      </p>
+                    </div>
                     </section>
               </div>
             </div>
