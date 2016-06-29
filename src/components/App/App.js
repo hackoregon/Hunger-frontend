@@ -326,7 +326,8 @@ export default class App extends React.Component {
             </div>
             <div className="school-benefits-text-wrapper">
               <p className="school-benefits-text">
-              Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
+              Estimated school meal benefits: <span
+                className="dynamic-text" style={{color: "#b5441d"}}>$0.00</span>
               </p>
             </div>
           </div>
