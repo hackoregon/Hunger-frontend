@@ -71,15 +71,6 @@ nav .container-fluid {
   padding: 0.5em;
 }
 
-.navbar-default .glyphicon-stop {
-  position: relative;
-  top: 1.2em;
-  background-color: #5b5b5b;
-  font-size: 0.4em;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
 .nav-item {
   font-size: 1.4em;
 }
