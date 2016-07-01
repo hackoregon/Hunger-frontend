@@ -36,21 +36,14 @@ function getBarChartValues(individuals, income, fips, bar = 'misc') {
     // (cost covered)
     let barValue
     if (bar === 'transportation') {
-      barValue = Number(Math.min(moneyTowardTranspo, transportationCost))
+      barValue = Math.min(moneyTowardTranspo, transportationCost)
     } else if (bar === 'miscellaneous') {
-      barValue = Number(Math.min(moneyTowardMisc, miscellaneousCost))
+      barValue = Math.min(moneyTowardMisc, miscellaneousCost)
     }
     return barValue
 
     // if both bars have extra money (all costs are met), that overflow goes toward food
-    // but we should calculate this in App because all of the needed functions are exported.
-    //   const moneyForOtherStuff = moneyAfterHousing(individuals, income, fips) * 0.25
-    //   const transportationCost = getSSSTransportation(individuals, fips)
-    //   const miscellaneousCost = getSSSMiscellaneous(individuals, fips)
-    //   const excessTowardFood = Math.max(0, moneyForOtherStuff - (transportationCost + miscellaneousCost))
-    //   if (excessTowardFood) {
-    //       const extraMeals = Math.floor(excessTowardFood / costOfMeals[fips].cost_per_meal)
-    //   }
+    // but we calculate this in App because all of the needed functions are exported.
   }
 }
 
