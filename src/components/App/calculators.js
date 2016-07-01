@@ -36,9 +36,9 @@ function getBarChartValues(individuals, income, fips, bar = 'misc') {
     // (cost covered)
     let barValue
     if (bar === 'transportation') {
-      barValue = Number(Math.min(moneyTowardTranspo, transportationCost))
+      barValue = Math.min(moneyTowardTranspo, transportationCost)
     } else if (bar === 'miscellaneous') {
-      barValue = Number(Math.min(moneyTowardMisc, miscellaneousCost))
+      barValue = Math.min(moneyTowardMisc, miscellaneousCost)
     }
     return barValue
 
