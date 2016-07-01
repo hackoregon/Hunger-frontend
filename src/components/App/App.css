@@ -182,17 +182,23 @@ header {
   margin-bottom: 1em;
 }
 
-.fine-print {
-  max-width: 90%;
-  margin: 0 auto;
-  font-size: 0.9em;
+.map-toggle-btn {
+  display: block;
+  margin: 10px auto;
 }
+
 /* FOOTER */
 footer {
   font-size: 2rem;
   padding: 1em;
   color: #5b5b5b;
   background-color: #c9dacf;
+}
+
+.fine-print {
+  max-width: 90%;
+  margin: 0 auto;
+  font-size: 0.9em;
 }
 
 .ho-logo {
@@ -202,7 +208,6 @@ footer {
 .ho-logo-gray {
   max-height: 50px;
 }
-
 
 /* GENERAL */
 .section-heading {
@@ -308,12 +313,6 @@ footer {
   font-weight: bold;
 }
 
-/* MAP */
-.map-toggle-btn {
-  display: block;
-  margin: 10px auto;
-}
-
 /* LOGO-MISSION */
 .OHE-logo {
   max-height: 20em;
@@ -339,7 +338,7 @@ footer {
 
 /* BarChart*/
 .bar-chart-section {
-  border: 1px solid #656565;
+    border: 1px solid #656565;
     background-color: #eee;
     padding: 1.5em;
     margin: 25px auto;
