@@ -7,7 +7,7 @@
     "start": "npm run watch",
     "build": "webpack",
     "watch": "webpack-dev-server",
-    "test": "mocha --compilers js:babel-core/register ./src/components/**/*.test.js"
+    "test": "mocha --compilers js:babel-core/register --require ignore-styles ./src/components/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "eslint-plugin-react": "^5.1.1",
     "expect": "^1.20.2",
     "file-loader": "^0.8.5",
+    "ignore-styles": "^4.0.0",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "@15.2.1",
     "resolve-url-loader": "^1.4.3",
