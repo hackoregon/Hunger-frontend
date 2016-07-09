@@ -1,7 +1,7 @@
-import { schoolMeals, costOfMeals, housing } from '../../fixtures/data'
-import { sssMiscellaneous } from '../../fixtures/sssMiscellaneous'
-import { sssTransportation } from '../../fixtures/sssTransportation'
-import constants from '../../fixtures/constants'
+import { schoolMeals, costOfMeals, housing } from '../fixtures/data'
+import { sssMiscellaneous } from '../fixtures/sssMiscellaneous'
+import { sssTransportation } from '../fixtures/sssTransportation'
+import constants from '../fixtures/constants'
 
 const { MEAL_PERIOD_DAYS } = constants
 
