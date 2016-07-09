@@ -22,7 +22,7 @@ import {
   getSchoolMealBenefit,
   getSSSTransportation,
   getSSSMiscellaneous,
-  getBarChartValues } from './calculators'
+  getBarChartValues } from '../../utils/calculators'
 import jQuery from 'jquery'
 import { Link } from 'react-router'
 
