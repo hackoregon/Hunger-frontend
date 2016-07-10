@@ -13,13 +13,13 @@ import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
 import { StickyContainer, Sticky } from 'react-sticky'
 import {
-  calcMealGap,
-  moneyAfterHousing,
+  getMealGap,
+  getMoneyAfterHousing,
   getMonthlyMealCost,
-  snapCalculator,
+  getSnapBenefits,
   getHousingCost,
-  incomePlusBenefits,
-  getSchoolMealBenefit,
+  getIncomePlusBenefits,
+  getSchoolMealBenefits,
   getSSSTransportation,
   getSSSMiscellaneous,
   getBarChartValues } from '../../utils/calculators'
@@ -89,7 +89,7 @@ export default class App extends React.Component {
     const { individuals, sliderWage } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
-    const canAfford = totalMealsGoal - calcMealGap(individuals, sliderWage, fips, bestCase)
+    const canAfford = totalMealsGoal - getMealGap(individuals, sliderWage, fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
     } else if (canAfford >= (totalMealsGoal * 0.75) && canAfford < totalMealsGoal) {
@@ -153,7 +153,7 @@ export default class App extends React.Component {
     const miscColor = "#b8dfab"
     const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
 
-    const moneyForOtherStuff = moneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.25
+    const moneyForOtherStuff = getMoneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.25
     const transportationCost = getSSSTransportation(individuals, selectedCounty.fips)
     const miscellaneousCost = getSSSMiscellaneous(individuals, selectedCounty.fips)
     const excessTowardFood = Math.max(0, moneyForOtherStuff - (transportationCost + miscellaneousCost))
@@ -170,9 +170,9 @@ export default class App extends React.Component {
     const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
 
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
-    const bestCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
+    const bestCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
-    const worstCaseMissingMeals = calcMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
+    const worstCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
@@ -238,10 +238,10 @@ export default class App extends React.Component {
           <div className="test-stats">
             <p>Food cost: {getMonthlyMealCost(individuals, selectedCounty.fips)}</p>
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
-            <p>School meal benefit: {getSchoolMealBenefit(individuals, selectedCounty.fips)}</p>
-            <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, BEST_CASE)}</p>
-            <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>School meal benefit: {getSchoolMealBenefits(individuals, selectedCounty.fips)}</p>
+            <p>Snap benefit: {getSnapBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {getIncomePlusBenefits(individuals, sliderWage, selectedCounty.fips, BEST_CASE)}</p>
+            <p>Money after housing: {getMoneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
             <h2 className="section-heading food-security-heading text-center">
               What’s your day-to-day experience putting food on the table?
@@ -258,12 +258,12 @@ export default class App extends React.Component {
             <div className="benefits-row">
               <div className="snap-benefits-text-wrapper">
                 <p className="snap-benefits-text">
-                Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
+                Estimated SNAP benefits: <span className="dynamic-text">{`$${getSnapBenefits(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
               </div>
               <div className="school-benefits-text-wrapper">
                 <p className="school-benefits-text">
-                Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefit(individuals, selectedCounty.fips).toFixed(2)}`}</span>
+                Estimated school meal benefits: <span className="dynamic-text">{`$${getSchoolMealBenefits(individuals, selectedCounty.fips).toFixed(2)}`}</span>
                 </p>
               </div>
             </div>
@@ -305,9 +305,9 @@ export default class App extends React.Component {
             <p>Food cost: {getMonthlyMealCost(individuals, selectedCounty.fips)}</p>
             <p>Housing cost: {getHousingCost(individuals, selectedCounty.fips)}</p>
             <p>School meal benefit: {0}</p>
-            <p>Snap benefit: {snapCalculator(individuals, sliderWage, selectedCounty.fips)}</p>
-            <p>Income plus benefits: {incomePlusBenefits(individuals, sliderWage, selectedCounty.fips, false)}</p>
-            <p>Money after housing: {moneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Snap benefit: {getSnapBenefits(individuals, sliderWage, selectedCounty.fips)}</p>
+            <p>Income plus benefits: {getIncomePlusBenefits(individuals, sliderWage, selectedCounty.fips, false)}</p>
+            <p>Money after housing: {getMoneyAfterHousing(individuals, sliderWage, selectedCounty.fips)}</p>
           </div>
           <DonutChart
           values={worstCaseMealValues}
@@ -321,7 +321,7 @@ export default class App extends React.Component {
           <div className="benefits-row">
             <div className="snap-benefits-text-wrapper">
               <p className="snap-benefits-text">
-              Estimated SNAP benefits: <span className="dynamic-text">{`$${snapCalculator(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
+              Estimated SNAP benefits: <span className="dynamic-text">{`$${getSnapBenefits(individuals, sliderWage, selectedCounty.fips).toFixed(2)}`}</span>
               </p>
             </div>
             <div className="school-benefits-text-wrapper">
