@@ -23,7 +23,7 @@ function getBarChartValues(individuals, income, fips, bar = 'misc') {
     return miscellaneousCost
   } else {
     // calculate the money our model set aside for spending on transportation and miscellaneous
-    const moneyForOtherStuff = moneyAfterHousing(individuals, income, fips) * 0.25
+    const moneyForOtherStuff = getMoneyAfterHousing(individuals, income, fips) * 0.25
     // calculate the overflow for each bar: if it's > 0, that cost is covered
     // moneyForOtherStuff is split 50/50 between transportation and miscellaneous
     const transportationExtra = Math.max(0, (moneyForOtherStuff * 0.5) - transportationCost)
@@ -59,7 +59,7 @@ function getMonthlyMealCost(individuals, fips) {
   }
 }
 
-function snapCalculator(individuals, income, fips) {
+function getSnapBenefits(individuals, income, fips) {
   let limit, shelter, maxBenefit
   if (individuals === 1) {
     limit = 1832
@@ -105,7 +105,7 @@ function getHousingCost(individuals, fips) {
   }
 }
 
-function moneyAfterHousing(individuals, income, fips) {
+function getMoneyAfterHousing(individuals, income, fips) {
   let result
 
   if (individuals === 1) {
@@ -121,7 +121,7 @@ function moneyAfterHousing(individuals, income, fips) {
   return Math.max(0, Number(result.toFixed(2)))
 }
 
-function getSchoolMealBenefit(individuals, fips) {
+function getSchoolMealBenefits(individuals, fips) {
   let schoolMealBenefit
   if (individuals === 1) {
     schoolMealBenefit = 0
@@ -135,15 +135,15 @@ function getSchoolMealBenefit(individuals, fips) {
   return schoolMealBenefit
 }
 
-function incomePlusBenefits(individuals, income, fips, bestCase = true) {
-  const moneyAfterMisc = Math.round(moneyAfterHousing(individuals, income, fips) * 0.75)
-  const snapBenefit = snapCalculator(individuals, income, fips)
-  const schoolMealBenefit = bestCase ? getSchoolMealBenefit(individuals, fips) : 0
+function getIncomePlusBenefits(individuals, income, fips, bestCase = true) {
+  const moneyAfterMisc = Math.round(getMoneyAfterHousing(individuals, income, fips) * 0.75)
+  const snapBenefit = getSnapBenefits(individuals, income, fips)
+  const schoolMealBenefit = bestCase ? getSchoolMealBenefits(individuals, fips) : 0
 
   return Math.max(0, Number((moneyAfterMisc + snapBenefit + schoolMealBenefit).toFixed(2)))
 }
 
-function calcMealGap(individuals, income, fips, bestCase = true) {
+function getMealGap(individuals, income, fips, bestCase = true) {
 
   /*
   User inputs family type (1,3,4), income, a fips.
@@ -154,15 +154,15 @@ function calcMealGap(individuals, income, fips, bestCase = true) {
   */
 
   // return best and worst case scenarios
-  let schoolMealBenefit = getSchoolMealBenefit(individuals, fips)
+  let schoolMealBenefit = getSchoolMealBenefits(individuals, fips)
 
   if (!bestCase) {
     schoolMealBenefit = 0
   }
   /* These are expressed in terms of income */
   // 25% taken off for misc
-  const incomeAfterHousingCost = Math.max(0, moneyAfterHousing(individuals, income, fips) * 0.75)
-  const snap = snapCalculator(individuals, income, fips)
+  const incomeAfterHousingCost = Math.max(0, getMoneyAfterHousing(individuals, income, fips) * 0.75)
+  const snap = getSnapBenefits(individuals, income, fips)
   const incomePlusBenefits = Math.max(
     0, Math.round(incomeAfterHousingCost + snap + schoolMealBenefit))
 
@@ -177,13 +177,13 @@ function calcMealGap(individuals, income, fips, bestCase = true) {
 }
 
 export {
-  calcMealGap,
-  moneyAfterHousing,
-  snapCalculator,
+  getMealGap,
+  getMoneyAfterHousing,
+  getSnapBenefits,
   getMonthlyMealCost,
   getHousingCost,
-  incomePlusBenefits,
-  getSchoolMealBenefit,
+  getIncomePlusBenefits,
+  getSchoolMealBenefits,
   getSSSMiscellaneous,
   getSSSTransportation,
   getBarChartValues,
