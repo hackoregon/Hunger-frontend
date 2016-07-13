@@ -87,7 +87,7 @@ export default class App extends React.Component {
   getFoodSecurityStatus(fips, bestCase = true) {
     const { individuals, sliderWage } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
     const canAfford = totalMealsGoal - getMealGap(individuals, sliderWage, fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
@@ -172,6 +172,7 @@ export default class App extends React.Component {
     const BEST_CASE = true
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     const bestCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
+    // meal values get passed into DonutChart
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
     const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
