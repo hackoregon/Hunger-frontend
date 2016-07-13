@@ -22,7 +22,7 @@ const CoreLayout = (props) => (
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav navbar-right">
-                <li className="nav-item"><Link to="/home">Home</Link></li>
+                <li className="nav-item"><Link to="/">Home</Link></li>
                 <li className="nav-item-separator hidden-xs"><span></span></li>
                 <li className="nav-item"><Link to="/data-deep-dive">Data Deep Dive</Link></li>
                 <li className="nav-item-separator hidden-xs"><span></span></li>
