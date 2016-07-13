@@ -11,7 +11,6 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={CoreLayout} >
     <IndexRoute component={App} />
-      <Route path="/home" component={App} />
       <Route path="team" component={Team} />
       <Route path="data-deep-dive" component={DataDeepDive} />
     </Route>
