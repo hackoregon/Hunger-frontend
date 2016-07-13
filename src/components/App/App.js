@@ -28,7 +28,6 @@ import {
 
 window.jQuery = jQuery
 require('bootstrap')
-//require('../../styles/main.css')
 require('./App.css')
 require('../../styles/rc-slider.css')
 require('../../styles/react-dropdown.css')
@@ -45,9 +44,9 @@ export default class App extends React.Component {
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setFamilyType = this._setFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
+    this._getIndicatorValue = this._getIndicatorValue.bind(this)
+    this._getMapFipsColors = this._getMapFipsColors.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
-    this.getIndicatorValue = this.getIndicatorValue.bind(this)
-    this.getMapFipsColors = this.getMapFipsColors.bind(this)
     this.isSingleAdult = this.isSingleAdult.bind(this)
   }
 
@@ -71,7 +70,7 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
-  getMapFipsColors(bestCase = true) {
+  _getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties // from fixture data
@@ -101,7 +100,7 @@ export default class App extends React.Component {
     }
   }
 
-  getIndicatorValue(bestCase = true) {
+  _getIndicatorValue(bestCase = true) {
     let { selectedCounty } = this.state
     const statusPositions = [12.5, 37.5, 62.5, 87.5]
     const status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase)
@@ -269,7 +268,7 @@ export default class App extends React.Component {
             </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
-                value={this.getIndicatorValue(true)}
+                value={this._getIndicatorValue(true)}
                 sections={4}
                 labels={indicatorLabels}
               />
@@ -333,7 +332,7 @@ export default class App extends React.Component {
           </div>
           <div className="indicator-wrapper">
             <IndicatorSlider
-              value={this.getIndicatorValue(false)}
+              value={this._getIndicatorValue(false)}
               sections={4}
               labels={indicatorLabels}
             />
@@ -397,7 +396,7 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
+                    fipsColors={this._getMapFipsColors(this.state.bestCaseMap)}
                   />
                   <button
                     className="map-toggle-btn"
