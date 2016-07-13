@@ -1,17 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Slider from 'rc-slider'
 import Dropdown from 'react-dropdown'
+import { StickyContainer, Sticky } from 'react-sticky'
+import jQuery from 'jquery'
 import IndicatorSlider from '../IndicatorSlider/IndicatorSlider'
 import HorizontalRule from '../HorizontalRule/HorizontalRule'
 import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
-import counties from '../../fixtures/counties'
-import data from '../../fixtures/data'
-import constants from '../../fixtures/constants'
 import MapView from '../MapView/MapView'
-import { StickyContainer, Sticky } from 'react-sticky'
+import counties from '../../fixtures/counties'
+import data from '../../fixtures/data' // costOfMeals, schoolMeals, housing
+import constants from '../../fixtures/constants' // MEAL_PERIOD_DAYS, RATINGS
 import {
   getMealGap,
   getMoneyAfterHousing,
@@ -23,12 +25,9 @@ import {
   getSSSTransportation,
   getSSSMiscellaneous,
   getBarChartValues } from '../../utils/calculators'
-import jQuery from 'jquery'
-import { Link } from 'react-router'
 
 window.jQuery = jQuery
 require('bootstrap')
-//require('../../styles/main.css')
 require('./App.css')
 require('../../styles/rc-slider.css')
 require('../../styles/react-dropdown.css')
@@ -45,9 +44,9 @@ export default class App extends React.Component {
     this._onDropdownSelect = this._onDropdownSelect.bind(this)
     this._setFamilyType = this._setFamilyType.bind(this)
     this._onSliderChange = this._onSliderChange.bind(this)
+    this._getIndicatorValue = this._getIndicatorValue.bind(this)
+    this._getMapFipsColors = this._getMapFipsColors.bind(this)
     this.getFoodSecurityStatus = this.getFoodSecurityStatus.bind(this)
-    this.getIndicatorValue = this.getIndicatorValue.bind(this)
-    this.getMapFipsColors = this.getMapFipsColors.bind(this)
     this.isSingleAdult = this.isSingleAdult.bind(this)
   }
 
@@ -71,7 +70,7 @@ export default class App extends React.Component {
     this.setState({ sliderWage: value })
   }
 
-  getMapFipsColors(bestCase = true) {
+  _getMapFipsColors(bestCase = true) {
     let status
     const colors = ['#b5441d', '#dc6632', '#eadd69', '#eee597']
     const fipsColors = counties // from fixture data
@@ -88,7 +87,7 @@ export default class App extends React.Component {
   getFoodSecurityStatus(fips, bestCase = true) {
     const { individuals, sliderWage } = this.state
     const { RATINGS, MEAL_PERIOD_DAYS } = constants
-    const totalMealsGoal = this.state.individuals * 3 * MEAL_PERIOD_DAYS
+    const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
     const canAfford = totalMealsGoal - getMealGap(individuals, sliderWage, fips, bestCase)
     if (canAfford >= totalMealsGoal) {
       return RATINGS['sufficient']
@@ -101,7 +100,7 @@ export default class App extends React.Component {
     }
   }
 
-  getIndicatorValue(bestCase = true) {
+  _getIndicatorValue(bestCase = true) {
     let { selectedCounty } = this.state
     const statusPositions = [12.5, 37.5, 62.5, 87.5]
     const status = this.getFoodSecurityStatus(selectedCounty.fips, bestCase)
@@ -115,6 +114,7 @@ export default class App extends React.Component {
   render() {
 
     const { individuals, sliderWage, selectedCounty } = this.state
+    // bar chart calculations / data
     const barChartData = [
       {
         label: "Your $ for transportation",
@@ -123,7 +123,6 @@ export default class App extends React.Component {
       {
         label: "Average transportation costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed").toFixed(2),
-        description: "transportation is based on the local cost of a bus pass"
       },
       {
         label: "Your $ for miscellaneous",
@@ -132,9 +131,14 @@ export default class App extends React.Component {
       {
         label: "Average miscellaneous costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed").toFixed(2),
-        description: "miscellaneous includes ... but does not include ..."
       },
     ]
+    const budgetColor = "#4e735a"
+    const transportationColor = "#b8dfab"
+    const miscColor = "#b8dfab"
+    const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
+
+    // wage slider calculations / data
     const getSliderMax = () => {
       return (individuals === 4 ? 2500 : 2000) // 4-person family gets $2500 max
     }
@@ -148,10 +152,10 @@ export default class App extends React.Component {
     if (individuals === 4) {
       sliderMarks['2500'] = '$2500'
     }
-    const budgetColor = "#4e735a"
-    const transportationColor = "#b8dfab"
-    const miscColor = "#b8dfab"
-    const barColors = [transportationColor, budgetColor, miscColor, budgetColor]
+
+    // county dropdown calculations / data
+    const options = counties.map(c => ({ value: c.fips, label: c.name }))
+    const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
 
     const moneyForOtherStuff = getMoneyAfterHousing(individuals, sliderWage, selectedCounty.fips) * 0.25
     const transportationCost = getSSSTransportation(individuals, selectedCounty.fips)
@@ -161,22 +165,21 @@ export default class App extends React.Component {
     if (excessTowardFood) {
       extraMeals = Math.floor(excessTowardFood / data.costOfMeals[selectedCounty.fips].cost_per_meal)
     }
-    const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
-    const BEST_CASE = true
+
+    // food housing security calculations / data
     const { MEAL_PERIOD_DAYS } = constants
     const totalMealsGoal = individuals * 3 * MEAL_PERIOD_DAYS
-
-    const options = counties.map(c => ({ value: c.fips, label: c.name }))
-    const dropdownCounty = { value: selectedCounty.fips, label: selectedCounty.name }
-
+    const BEST_CASE = true
     const costPerMeal = data.costOfMeals[selectedCounty.fips].cost_per_meal
     const bestCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, BEST_CASE)
+    // meal values get passed into DonutChart
     const bestCaseMealValues = [bestCaseMissingMeals, totalMealsGoal - bestCaseMissingMeals]
+    const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseMissingMeals = getMealGap(individuals, sliderWage, selectedCounty.fips, !BEST_CASE)
     const worstCaseMealValues = [worstCaseMissingMeals, totalMealsGoal - worstCaseMissingMeals]
-    const bestCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, BEST_CASE)
     const worstCaseFoodStatus = this.getFoodSecurityStatus(selectedCounty.fips, !BEST_CASE)
     const housingSufficient = ((2 / 3) * sliderWage > getHousingCost(individuals, selectedCounty.fips))
+    const indicatorLabels = ["Extremely Vulnerable", "Vulnerable", "Moderately Sufficient", "Sufficient"]
 
     return (
       <div>
@@ -269,7 +272,7 @@ export default class App extends React.Component {
             </div>
             <div className="indicator-wrapper">
               <IndicatorSlider
-                value={this.getIndicatorValue(true)}
+                value={this._getIndicatorValue(true)}
                 sections={4}
                 labels={indicatorLabels}
               />
@@ -316,7 +319,7 @@ export default class App extends React.Component {
           costPerMeal={costPerMeal}
           extraMeals={extraMeals}
           >
-          <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
+            <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
           <div className="benefits-row">
             <div className="snap-benefits-text-wrapper">
@@ -333,7 +336,7 @@ export default class App extends React.Component {
           </div>
           <div className="indicator-wrapper">
             <IndicatorSlider
-              value={this.getIndicatorValue(false)}
+              value={this._getIndicatorValue(false)}
               sections={4}
               labels={indicatorLabels}
             />
@@ -397,7 +400,7 @@ export default class App extends React.Component {
               <div className="row map-row">
                 <div className="col-xs-12 col-md-6 col-md-offset-3 map-wrapper housing-map-wrapper">
                   <MapView
-                    fipsColors={this.getMapFipsColors(this.state.bestCaseMap)}
+                    fipsColors={this._getMapFipsColors(this.state.bestCaseMap)}
                   />
                   <button
                     className="map-toggle-btn"

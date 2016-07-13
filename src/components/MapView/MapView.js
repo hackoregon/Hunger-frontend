@@ -16,7 +16,7 @@ class MapView extends React.Component {
       // convert HTML Collection to Array
       counties = [].slice.call(counties)
       const setFill = (c) => {
-        // remove 'fip-' prefix from id, leaving just the fips number
+        // remove 'fips-' prefix from id, leaving just the fips number
         const fips = c.id.substring(5)
         c.setAttribute("fill", colors[fips])
       }
@@ -27,7 +27,6 @@ class MapView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log("receiveProps", nextProps.fipsColors)
     this.applyColors(nextProps)
   }
 
