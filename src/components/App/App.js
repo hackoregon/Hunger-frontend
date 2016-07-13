@@ -319,7 +319,7 @@ export default class App extends React.Component {
           costPerMeal={costPerMeal}
           extraMeals={extraMeals}
           >
-          <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
+            <image xlinkHref="src/assets/apple.svg" height="76" width="76" x="-36" y="-42" />
           </DonutChart>
           <div className="benefits-row">
             <div className="snap-benefits-text-wrapper">
