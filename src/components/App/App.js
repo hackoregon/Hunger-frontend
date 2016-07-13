@@ -1,17 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router'
 import Slider from 'rc-slider'
 import Dropdown from 'react-dropdown'
+import { StickyContainer, Sticky } from 'react-sticky'
+import jQuery from 'jquery'
 import IndicatorSlider from '../IndicatorSlider/IndicatorSlider'
 import HorizontalRule from '../HorizontalRule/HorizontalRule'
 import FamilyTypeSelect from '../FamilyTypeSelect/FamilyTypeSelect'
 import DayToDaySnugget from '../DayToDayHungerSnugget/DayToDayHungerSnugget'
 import DonutChart from '../DonutChart/DonutChart'
 import BarChart from '../CCHorizontalBarChart/CCHorizontalBarChart'
+import MapView from '../MapView/MapView'
 import counties from '../../fixtures/counties'
 import data from '../../fixtures/data'
 import constants from '../../fixtures/constants'
-import MapView from '../MapView/MapView'
-import { StickyContainer, Sticky } from 'react-sticky'
 import {
   getMealGap,
   getMoneyAfterHousing,
@@ -23,8 +25,6 @@ import {
   getSSSTransportation,
   getSSSMiscellaneous,
   getBarChartValues } from '../../utils/calculators'
-import jQuery from 'jquery'
-import { Link } from 'react-router'
 
 window.jQuery = jQuery
 require('bootstrap')
