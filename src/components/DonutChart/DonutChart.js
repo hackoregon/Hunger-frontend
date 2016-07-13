@@ -74,6 +74,7 @@ class DonutChart extends Component {
           ${costPerMeal}
           </span>
         </p>
+
         <Chart width={width} height={height}>
           <DataSeries data={this.state.values}>
             <Pie innerRadius={72} outerRadius={80} style={(d, i) => ({ fill: this.getColors(i) })}>
@@ -81,6 +82,7 @@ class DonutChart extends Component {
             </Pie>
           </DataSeries>
         </Chart>
+
         <p className="donut-meals-short-text">
           <span className="donut-meals-short-text" style={extraMeals === 0 ? {} : { display: "none" }}>
           You are <span className="dynamic-text">{mealsShort}</span> meals short this month
