@@ -122,7 +122,6 @@ export default class App extends React.Component {
       {
         label: "Average transportation costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "transportation_fixed").toFixed(2),
-        description: "transportation is based on the local cost of a bus pass"
       },
       {
         label: "Your $ for miscellaneous",
@@ -131,7 +130,6 @@ export default class App extends React.Component {
       {
         label: "Average miscellaneous costs",
         value: getBarChartValues(individuals, sliderWage, selectedCounty.fips, "miscellaneous_fixed").toFixed(2),
-        description: "miscellaneous includes ... but does not include ..."
       },
     ]
     const getSliderMax = () => {
