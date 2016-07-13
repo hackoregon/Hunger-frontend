@@ -61,3 +61,8 @@ export default class FamilyTypeSelect extends React.Component {
     )
   }
 }
+
+FamilyTypeSelect.propTypes = {
+  selectedType: PropTypes.number.isRequired,
+  onSelect: PropTypes.func.isRequired
+}
