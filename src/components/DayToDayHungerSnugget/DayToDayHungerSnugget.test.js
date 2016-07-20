@@ -81,7 +81,22 @@ describe('DayToDayHungerSnugget', function() {
     .prop('style').color)
     .toEqual('#b5441d')
   })
-  it('has the correct text for a sufficient single individual')
-  it('has the correct text for a sufficient family of three')
-  it('has the correct text for a sufficient family of four')
+  it('has the correct text for a sufficient single individual', function correctTextSufficientSingle() {
+    const snuggetText = "You do not have trouble putting food on the table. Your meals are complete and you generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently."
+
+    expect(shallow(<Snugget individuals={1} securityStatus={3} />).find('.snugget-text').text())
+      .toEqual(snuggetText)
+  })
+  it('has the correct text for a sufficient family of three', function correctTextSufficientThree() {
+    const snuggetText = "You don’t have trouble putting food on the table. Your meals are complete and you and your children generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently."
+
+    expect(shallow(<Snugget individuals={3} securityStatus={3} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for a sufficient family of four', function correctTextSufficientFour() {
+    const snuggetText = "You don’t have trouble putting food on the table. Your meals are complete and you, your partner, and your children generally do not skip meals. You are either not eligible for benefits or your benefits cover your meals sufficiently."
+
+    expect(shallow(<Snugget individuals={4} securityStatus={3} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
 })
