@@ -99,9 +99,24 @@ describe('DayToDayHungerSnugget', function() {
     expect(shallow(<Snugget individuals={4} securityStatus={3} />).find('.snugget-text').text())
     .toEqual(snuggetText)
   })
-  it('has the correct text for a moderately sufficient single individual')
-  it('has the correct text for a moderately sufficient family of three')
-  it('has the correct text for a moderately sufficient family of four')
+  it('has the correct text for a moderately sufficient single individual', function correctTextModSuffSingle() {
+    const snuggetText = "For the most part you are able to put food on the table. You may live month-to-month but you are able to feed yourself complete meals most of the time. You may or may not be eligible for benefits."
+
+    expect(shallow(<Snugget individuals={1} securityStatus={2} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for a moderately sufficient family of three', function correctTextModSuffThree() {
+    const snuggetText = "For the most part you are able to put food on the table. You may live month-to-month and you may skip the occasional meal in order to make sure your children have enough to eat. You may or may not be eligible for benefits."
+
+    expect(shallow(<Snugget individuals={3} securityStatus={2} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for a moderately sufficient family of four', function correctTextModSuffFour() {
+    const snuggetText = "For the most part you are able to put food on the table. You may live month-to-month and you and your partner may skip the occasional meal in order to make sure your children have enough to eat. You may or may not be eligible for benefits."
+
+    expect(shallow(<Snugget individuals={4} securityStatus={2} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
 
   it('has the correct text for a vulnerable single individual')
   it('has the correct text for a vulnerable family of three')
