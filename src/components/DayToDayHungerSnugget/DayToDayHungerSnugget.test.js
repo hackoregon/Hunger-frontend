@@ -99,4 +99,15 @@ describe('DayToDayHungerSnugget', function() {
     expect(shallow(<Snugget individuals={4} securityStatus={3} />).find('.snugget-text').text())
     .toEqual(snuggetText)
   })
+  it('has the correct text for a moderately sufficient single individual')
+  it('has the correct text for a moderately sufficient family of three')
+  it('has the correct text for a moderately sufficient family of four')
+
+  it('has the correct text for a vulnerable single individual')
+  it('has the correct text for a vulnerable family of three')
+  it('has the correct text for a vulnerable family of four')
+
+  it('has the correct text for an extremely vulnerable single individual')
+  it('has the correct text for an extremely vulnerable family of three')
+  it('has the correct text for an extremely vulnerable family of four')
 })
