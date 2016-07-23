@@ -118,10 +118,25 @@ describe('DayToDayHungerSnugget', function() {
     .toEqual(snuggetText)
   })
 
-  it('has the correct text for a vulnerable single individual')
-  it('has the correct text for a vulnerable family of three')
-  it('has the correct text for a vulnerable family of four')
+  it('has the correct text for a vulnerable single individual', function correctTextVulnerableSingle() {
+    const snuggetText = "In general, you are struggling to put food on the table. It’s likely that you are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
 
+    expect(shallow(<Snugget individuals={1} securityStatus={1} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for a vulnerable family of three', function correctTextVulnerableThree() {
+    const snuggetText = "In general, you are struggling to put food on the table. It’s likely that you and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
+
+    expect(shallow(<Snugget individuals={3} securityStatus={1} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for a vulnerable family of four', function correctTextVulnerableFour() {
+    const snuggetText = "In general, you are struggling to put food on the table. It’s likely that you, your partner, and your children are skipping meals or watering down food. If you are receiving benefits, you are still struggling."
+
+    expect(shallow(<Snugget individuals={4} securityStatus={1} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+
+  })
   it('has the correct text for an extremely vulnerable single individual')
   it('has the correct text for an extremely vulnerable family of three')
   it('has the correct text for an extremely vulnerable family of four')
