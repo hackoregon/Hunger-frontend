@@ -137,7 +137,22 @@ describe('DayToDayHungerSnugget', function() {
     .toEqual(snuggetText)
 
   })
-  it('has the correct text for an extremely vulnerable single individual')
-  it('has the correct text for an extremely vulnerable family of three')
-  it('has the correct text for an extremely vulnerable family of four')
+  it('has the correct text for an extremely vulnerable single individual', function correctTextExtremelyVulnerableSingle() {
+    const snuggetText = "Having enough food is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits but you are still not getting enough food."
+
+    expect(shallow(<Snugget individuals={1} securityStatus={0} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for an extremely vulnerable family of three', function correctTextExtremelyVulnerableThree() {
+    const snuggetText = "Having enough food for yourself and your children is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits and yet you are still not getting enough food."
+
+    expect(shallow(<Snugget individuals={3} securityStatus={0} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
+  it('has the correct text for an extremely vulnerable family of four', function correctTextExtremelyVulnerableFour() {
+    const snuggetText = "Having enough food for yourself, your partner, and your children is a constant struggle. Every month you are likely to skip and water down multiple meals. You are most likely eligible for benefits and yet you are still not getting enough food."
+
+    expect(shallow(<Snugget individuals={4} securityStatus={0} />).find('.snugget-text').text())
+    .toEqual(snuggetText)
+  })
 })
