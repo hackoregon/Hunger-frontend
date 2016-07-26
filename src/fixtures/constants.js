@@ -1,6 +1,6 @@
-const MEAL_PERIOD_DAYS = 30
+export const MEAL_PERIOD_DAYS = 30
 
-const RATINGS = {
+export const RATINGS = {
   sufficient: 3,
   moderatelySufficient: 2,
   vulnerable: 1,

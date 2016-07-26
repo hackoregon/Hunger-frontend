@@ -2,6 +2,7 @@ import React from 'react'
 import expect from 'expect'
 import { shallow } from 'enzyme'
 import Snugget from './DayToDayHungerSnugget'
+import { RATINGS } from '../../fixtures/constants'
 
 const minProps = {
   securityStatus: 0,
