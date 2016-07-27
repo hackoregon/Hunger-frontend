@@ -5,7 +5,7 @@ import Snugget from './DayToDayHungerSnugget'
 import { RATINGS } from '../../fixtures/constants'
 
 const minProps = {
-  securityStatus: 0,
+  securityStatus: RATINGS['vulnerable'],
   individuals: 1
 }
 
